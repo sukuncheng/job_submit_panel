@@ -23,7 +23,7 @@ sed -i --follow-symlinks "s;^randf.*$;randf = .false.;g" $pseudo2D
 ASR_air_drag=(0.001 0.0015 0.002 0.0025 0.003 0.0035 0.004 0.0045)
 #
 for (( i_date=1; i_date<=1; i_date++ )); do # ${#dir_list[@]}
-for (( i_air=1; i_air<=1; i_air++ )); do  # ${#ASR_air_drag[@]}
+for (( i_air=1; i_air<=7; i_air++ )); do  # ${#ASR_air_drag[@]}
   #   for (( i_ens=1; i_ens<=1; i_ens++ )); do
         # make the output directories L2
         outdir=$IO_nextsim/neXtSIM_test07_05_multitasks_test/date$i_date/airdrag${ASR_air_drag[$i_air-1]}
@@ -48,12 +48,13 @@ for (( i_air=1; i_air<=1; i_air++ )); do  # ${#ASR_air_drag[@]}
         #   1 - copy nextsim.exec from NEXTSIMDIR/model/bin in order to run
         #   -t test run without submit to fram
         #   -e ~/nextsim.ensemble.src      # envirmonental variables
+
+  #  done   
+done
       XPID=$(squeue |grep chengsuk)
       while [[ ${XPID}x != ""x ]]; do
         sleep 20
         XPID=$(squeue |grep chengsuk)
         echo $XPID
       done    
-  #  done   
-done
 done
