@@ -22,11 +22,11 @@ restart_dir=/cluster/work/users/chengsukun/src/IO_nextsim/neXtSIM_test07_02/rest
 sed -i --follow-symlinks "s;^randf.*$;randf = .false.;g" $pseudo2D
 ASR_air_drag=(0.001 0.0015 0.002 0.0025 0.003 0.0035 0.004 0.0045)
 #
-for (( i_date=6; i_date<=${#dir_list[@]}; i_date++ )); do # ${#dir_list[@]}
-    for (( i_air=1; i_air<=${#ASR_air_drag[@]}; i_air++ )); do  # ${#ASR_air_drag[@]}
+for (( i_date=1; i_date<=${#dir_list[@]}; i_date++ )); do # ${#dir_list[@]}
+for (( i_air=1; i_air<=${#ASR_air_drag[@]}; i_air++ )); do  # ${#ASR_air_drag[@]}
   #   for (( i_ens=1; i_ens<=1; i_ens++ )); do
         # make the output directories L2
-        outdir=$IO_nextsim/neXtSIM_test07_04/date$i_date/airdrag${ASR_air_drag[$i_air-1]}
+        outdir=$IO_nextsim/neXtSIM_test07_07_multitasks_test/date$i_date/airdrag${ASR_air_drag[$i_air-1]}
         # make the run directory for each ensemble member L3
         ENSdir=$outdir  #/`printf "ENS%.2d" "$i_ens"`
           
@@ -35,25 +35,27 @@ for (( i_date=6; i_date<=${#dir_list[@]}; i_date++ )); do # ${#dir_list[@]}
         sed -i "s|^time_init.*$|time_init=${time_init_list[$i_date-1]}|g" $config            
         sed -i "s|^input_path.*$|input_path=$restart_dir|g" $config
         sed -i "s|^basename.*$|basename=${dir_list[$i_date-1]}|g" $config               
-        #-------------------------------------
-        # cfg=$ENSdir/`basename $config`
-       # rm -rf $ENSdir
+        #-----------------------------------
+        rm -rf $ENSdir
         mkdir -p $ENSdir
         cd $ENSdir
-        cp $config .
         cp $pseudo2D .
-        
+
+        # should not be simplified cfg, it avoids overwrite and use nextsim.cfg in job_submisson folder in . $run_script $cfg 1 -e ~/nextsim.ensemble.src      
+        cfg=$ENSdir/`basename $config`  
+        cp $config $cfg          
     #    # submit job        
-        . $run_script $config 1 -e ~/nextsim.ensemble.src                  
+        . $run_script $cfg 1 -e ~/nextsim.ensemble.src                  
         #   1 - copy nextsim.exec from NEXTSIMDIR/model/bin in order to run
         #   -t test run without submit to fram
         #   -e ~/nextsim.ensemble.src      # envirmonental variables
-      XPID=$(squeue |grep chengsuk)
-      while [[ ${XPID}x != ""x ]]; do
-        sleep 20
-        XPID=$(squeue |grep chengsuk)
-        echo $XPID
-      done    
   #  done   
-    done
 done
+done
+# a block code to enable sequence job-submitting
+      # XPID=$(squeue |grep chengsuk)
+      # while [[ ${XPID}x != ""x ]]; do
+      #   sleep 20
+      #   XPID=$(squeue |grep chengsuk)
+      #   echo $XPID
+      # done    
