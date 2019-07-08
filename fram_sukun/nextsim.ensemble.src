@@ -1,0 +1,6 @@
+# Environment for compiling and running neXtSIM on fram
+source $HOME/nextsim.src
+
+# now set USE_ENSEMBLE=1 and set FFTW_DIR
+export USE_ENSEMBLE=1
+export FFTW_DIR=${EBROOTFFTW}
