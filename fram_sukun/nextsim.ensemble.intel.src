@@ -1,0 +1,89 @@
+export LC_ALL=en_US.utf8
+
+#GIT_REPOS=/cluster/home/alileoalilei
+GIT_REPOS=/cluster/home/timill/src
+NEXTSIM_REPOS_DIR=$GIT_REPOS
+
+#=======  variables for the forecast platform
+# forecast platform root
+# User or use-case specific directories
+export NEXTSIMDIR=$HOME/src/nextsim
+export NEXTSIMTOOLS_ROOT_DIR=$HOME/src/nextsim-tools
+export NEXTSIMF_ROOT_DIR=$HOME/src/nextsimf
+export NEXTSIM_ENV_ROOT_DIR=$HOME/src/nextsim-env
+export SWARP_ROUTINES=$HOME/src/SWARP-routines
+export INPUT_DATA_DIR=$CLUSTER_ROOT_DIR/data
+export XSIM_COMP_VERBOSE=no
+#export NEXTSIMTOOLS_ROOT_DIR=$NEXTSIM_REPOS_DIR/nextsim-tools/
+#export NEXTSIM_ENV_ROOT_DIR=$NEXTSIM_REPOS_DIR/nextsim-env/
+
+# links to input observation and forecasts data, and meshes
+export NEXTSIM_MESH_DIR=$CLUSTER_ROOT_DIR/mesh
+#export NEXTSIM_MESH_DIR=$HOME/Data/nextsim_mesh_dir
+export NEXTSIM_DATA_DIR=$HOME/Data/nextsim_data_dir
+
+# input downloaded observation data
+export INPUT_OBS_DATA_DIR=/Data/sim/data
+
+# input downloaded forecast data
+export INPUT_FORECAST_DATA_DIR=/Data/nextsimf/data
+
+# for automatic python tests (nosetests)
+export NEXTSIM_TEST_DATA_DIR=$NEXTSIMTOOLS_ROOT_DIR/example_data
+export TEST_FORECAST_DATA_DIR=/Data/nextsimf/forecasts/Arctic5km_forecast/20181025
+export FORECAST_WITH_OSISAF_DRIFTERS_DIR=/Data/sim/tim/forecasts/Arctic5km_forecast/20181020
+
+# ======== variables for the model compilation
+# Load the right modules
+#ml load GCC/7.3.0-2.30
+#ml load Boost/1.63.0-foss-2017a-Python-2.7.13
+#ml load netCDF-C++4/4.3.0-foss-2017a-HDF5-1.8.18
+#ml load ifort/2019.1.144-GCC-8.2.0-2.31.1
+ml load ifort/2018.3.222-GCC-7.3.0-2.30
+ml load Boost/1.68.0-intel-2018b-Python-3.6.6
+ml load netCDF-C++4/4.3.0-intel-2018b
+ml load CMake/3.9.1
+#ml load FFTW/3.3.8-intel-2019a
+ml load FFTW/3.3.8-intel-2018b
+ml load PETSc/3.10.1-intel-2018b
+ml load OpenBLAS/0.3.1-GCC-7.3.0-2.30
+
+# Linking module and neXtSIM envinronment variables
+CLUSTER_ROOT_DIR=/cluster/projects/nn2993k/sim
+#export PETSC_DIR=$CLUSTER_ROOT_DIR/packages/petsc/
+#export PETSC_DIR=$CLUSTER_ROOT_DIR/packages/petsc_intel/
+export PETSC_DIR=$EBROOTPETSC
+export BOOST_INCDIR=$EBROOTBOOST/include
+export BOOST_LIBDIR=$EBROOTBOOST/lib
+export NETCDF_DIR=$EBROOTNETCDFMINCPLUSPLUS4
+export FFTW_DIR=${EBROOTFFTW}
+
+#GMSH related variables
+export GMSH_DIR=$CLUSTER_ROOT_DIR/packages/gmsh/
+#export GMSH_DIR=$CLUSTER_ROOT_DIR/packages/gmsh-intel/
+export PATH=$PATH:$GMSH_DIR/bin
+export XSIMCOMP_VERBOSE=no
+export USE_NEXTWIM=0
+export USE_ENSEMBLE=1
+export NEXTSIM_BUILD_TYPE=
+
+# where the model forecasts are kept
+export OUTPUT_FORECAST_DATA_DIR=${GIT_REPOS}/data
+
+# ======== variables for the model runtime
+#export LD_LIBRARY_PATH=$BOOST_DIR/lib:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=$GMSH_DIR/lib:$LD_LIBRARY_PATH
+#export LD_LIBRARY_PATH=$PETSC_DIR/lib:$LD_LIBRARY_PATH
+#export LD_LIBRARY_PATH=$FFTW_DIR/lib:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=$NEXTSIMDIR/lib:$LD_LIBRARY_PATH
+
+# ============== paths
+export PATH=$PATH:$GMSH_DIR/bin
+export PATH=$PATH:$NEXTSIMTOOLS_ROOT_DIR/python/pynextsim/scripts
+export PATH=$PATH:$NEXTSIMTOOLS_ROOT_DIR/scripts
+export PATH=$PATH:$NEXTSIMF_ROOT_DIR/pynextsimf/scripts
+export PATH=$PATH:$NEXTSIMF_ROOT_DIR/scripts
+#export PATH=$PATH:$NEXTSIM_ROOT_DIR/model/bin
+
+# email for slurm jobs
+# export MY_EMAIL="sukun.cheng@nersc.no"
