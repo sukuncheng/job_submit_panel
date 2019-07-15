@@ -1,0 +1,573 @@
+Reading nextsim.cfg...
+[INFO] : -----------------------Simulation started on 2019-Jul-11 19:22:22
+[INFO] : TIMESTEP= 200
+[INFO] : DURATION= 1.296e+06
+Info    : Running 'gmsh -2 -part 32 -format msh2 -bin -string Mesh.MshFileVersion=2.2; -string Mesh.Partitioner=2; -string Mesh.MetisAlgorithm=2; -string Mesh.MetisRefinementAlgorithm=2; -string General.Verbosity=0; /cluster/work/users/chengsukun/src/IO_nextsim/neXtSIM_test07_09_free_drift/date1/airdrag0.003/par32small_arctic_10km.msh' [Gmsh 3.0.6, 1 node, max. 1 thread]
+Info    : Started on Thu Jul 11 19:22:22 2019
+Info    : Reading '/cluster/work/users/chengsukun/src/IO_nextsim/neXtSIM_test07_09_free_drift/date1/airdrag0.003/par32small_arctic_10km.msh'...
+Info    : 66045 vertices
+Info    : 128054 elements
+ 20%    : Reading elements                                           40%    : Reading elements                                           60%    : Reading elements                                           80%    : Reading elements                                          100%    : Reading elements                                                                                    Info    : Done reading '/cluster/work/users/chengsukun/src/IO_nextsim/neXtSIM_test07_09_free_drift/date1/airdrag0.003/par32small_arctic_10km.msh'
+Info    : Finalized high order topology of periodic connections
+Info    : Meshing 1D...
+Info    : Done meshing 1D (0.000787806 s)
+Info    : Meshing 2D...
+Info    : Done meshing 2D (0.000264004 s)
+Info    : 66045 vertices 128054 elements
+Info    : Building graph...
+Info    : Partitioning graph...
+Info    : Launching METIS graph partitioner
+Info    : Number of Edges Cut : 2310
+Info    : Done partitioning graph
+Info    : Writing '/cluster/work/users/chengsukun/src/IO_nextsim/neXtSIM_test07_09_free_drift/date1/airdrag0.003/par32small_arctic_10km.msh'...
+Info    : Done writing '/cluster/work/users/chengsukun/src/IO_nextsim/neXtSIM_test07_09_free_drift/date1/airdrag0.003/par32small_arctic_10km.msh'
+Info    : Stopped on Thu Jul 11 19:22:24 2019
+Info    : No current model available: creating one
+[WARNING] : Warning: Couldn't read drifter positions from restart file. Drifter positions initialised as if there was no restart.
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  F
+synforc is set to zero for initial time
+--------------------------------------------------------------------------
+A process has executed an operation involving a call to the
+"fork()" system call to create a child process.  Open MPI is currently
+operating in a condition that could result in memory corruption or
+other system errors; your job may hang, crash, or produce silent
+data corruption.  The use of fork() (or system() or other calls that
+create child processes) is strongly discouraged.
+
+The process that invoked fork was:
+
+  Local host:          [[7335,0],0] (PID 160765)
+
+If you are *absolutely sure* that your application will successfully
+and correctly survive a call to fork(), you may disable this warning
+by setting the mpi_warn_on_fork MCA parameter to 0.
+--------------------------------------------------------------------------
+[INFO] :  ---------- progression: ( 0%) ---------- time spent: 00:00:16
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+[INFO] :  ---------- progression: ( 5%) ---------- time spent: 00:00:28
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+[INFO] :  ---------- progression: (10%) ---------- time spent: 00:00:42
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+[INFO] :  ---------- progression: (15%) ---------- time spent: 00:00:55
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+[INFO] :  ---------- progression: (20%) ---------- time spent: 00:01:08
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+[INFO] :  ---------- progression: (25%) ---------- time spent: 00:01:24
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+[INFO] :  ---------- progression: (30%) ---------- time spent: 00:01:38
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+[INFO] :  ---------- progression: (35%) ---------- time spent: 00:01:51
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+[INFO] :  ---------- progression: (40%) ---------- time spent: 00:02:05
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+[INFO] :  ---------- progression: (45%) ---------- time spent: 00:02:18
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+[INFO] :  ---------- progression: (50%) ---------- time spent: 00:02:32
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+[INFO] :  ---------- progression: (55%) ---------- time spent: 00:02:45
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+[INFO] :  ---------- progression: (60%) ---------- time spent: 00:02:58
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+[INFO] :  ---------- progression: (65%) ---------- time spent: 00:03:12
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+[INFO] :  ---------- progression: (70%) ---------- time spent: 00:03:25
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+[INFO] :  ---------- progression: (75%) ---------- time spent: 00:03:38
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+[INFO] :  ---------- progression: (80%) ---------- time spent: 00:03:52
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+[INFO] :  ---------- progression: (85%) ---------- time spent: 00:04:06
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+[INFO] :  ---------- progression: (90%) ---------- time spent: 00:04:19
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+[INFO] :  ---------- progression: (95%) ---------- time spent: 00:04:32
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  T
+synforc exists -> Nothing to do
+[INFO] :    =====   Timer results =====   
+ Timer name              | time spent | % of parent | % of total
+ Total                   |    0:03:38 |      100.00 |     100.00
+   remesh                |    0:00:18 |        8.24 |       8.24
+     angle_check         |    0:00:17 |       99.78 |       8.22
+     Unaccounted for     |    0:00:00 |        0.22 |       0.02
+   checkReload           |    0:01:42 |       46.80 |      46.80
+     bCoord              |    0:00:10 |       10.71 |       5.01
+     checkReloadDatasets |    0:01:30 |       88.75 |      41.54
+       asr_elements      |    0:00:14 |       16.30 |       6.77
+       topaz_elements    |    0:00:01 |        1.58 |       0.66
+       etopo_elements    |    0:00:00 |        0.01 |       0.00
+       asr_nodes         |    0:01:13 |       80.99 |      33.64
+       topaz_nodes       |    0:00:00 |        1.00 |       0.42
+       Unaccounted for   |    0:00:00 |        0.11 |       0.05
+     Coord               |    0:00:00 |        0.49 |       0.23
+     Unaccounted for     |    0:00:00 |        0.04 |       0.02
+   auxiliary             |    0:00:00 |        0.00 |       0.00
+   thermo                |    0:01:04 |       29.36 |      29.36
+     fluxes              |    0:00:51 |       79.91 |      23.46
+       ow_fluxes         |    0:00:16 |       31.79 |       7.46
+       ia_fluxes         |    0:00:34 |       68.16 |      15.99
+       Unaccounted for   |    0:00:00 |        0.05 |       0.01
+     slab                |    0:00:11 |       17.40 |       5.11
+     Unaccounted for     |    0:00:01 |        2.69 |       0.79
+   dynamics              |    0:00:03 |        1.49 |       1.49
+   output                |    0:00:15 |        7.19 |       7.19
+   Unaccounted for       |    0:00:15 |        6.92 |       6.92
+[INFO] : nb regrid total = 0
+[INFO] : -----------------------Simulation done on 2019-Jul-11 19:27:08
+[INFO] : -----------------------Total time spent:  00:04:47

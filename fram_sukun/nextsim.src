@@ -8,9 +8,10 @@ ml load netCDF-C++4/4.3.0-foss-2017a-HDF5-1.8.18
 ml load CMake/3.9.1 
 
 # Linking module and neXtSIM envinronment variables
-Rdir=/nird/projects/nird/NS2993K/NORSTORE_OSL_DISK/NS2993K/
-Wdir=/cluster/work/users/chengsukun/IO_nextsim
-CLUSTER_ROOT_DIR=/cluster/projects/nn2993k/sim
+export Rdir=/nird/projects/nird/NS2993K/NORSTORE_OSL_DISK/NS2993K/chengsukun
+export IO_nextsim=/cluster/work/users/chengsukun/src/IO_nextsim
+export Job_sub_dir=/cluster/home/chengsukun/src/fram_job_submit_panel
+export CLUSTER_ROOT_DIR=/cluster/projects/nn2993k/sim
 export PETSC_DIR=$CLUSTER_ROOT_DIR/packages/petsc/
 export BOOST_INCDIR=$EBROOTBOOST/include
 export BOOST_LIBDIR=$EBROOTBOOST/lib

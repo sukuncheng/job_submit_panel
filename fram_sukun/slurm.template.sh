@@ -130,8 +130,7 @@ cp -a $config $SCRATCH
 pseudo2D=$NEXTSIMDIR/modules/enkf/perturbation/nml/pseudo2D.nml
 cp -a $pseudo2D $SCRATCH
 cp -a $SLURM_SUBMIT_DIR/bin/nextsim.exec $progdir
-#cp -a $NEXTSIMDIR/data/* $NEXTSIM_DATA_DIR/* $SCRATCH/data
-cp -a $NEXTSIMDIR/data/* $SCRATCH/data
+cp -a $NEXTSIMDIR/data/*  $NEXTSIM_DATA_DIR/*  $SCRATCH/data  # the order allow overwritten of files in different directories, but I don;t know the order
 cp -a $NEXTSIM_MESH_DIR/* $NEXTSIMDIR/mesh/* $SCRATCH/mesh
 
 # Set $NEXTSIMDIR, NEXTSIM_MESH_DIR, and NEXTSIM_DATA_DIR
