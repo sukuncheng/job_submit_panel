@@ -21,14 +21,13 @@ restart_dir=$IO_nextsim/neXtSIM_test07_02/restart
 # set pseudo2D.nml
 # unsolved  sed -i --follow-symlinks "s;^iopath.*$;iopath   = `".`";g" $pseudo2D
 sed -i --follow-symlinks "s;^randf.*$;randf = .true.;g" $pseudo2D
-sed -i --follow-symlinks "s;^vwndspd.*$;vwndspd  =  0.64;g" $pseudo2D
+sed -i --follow-symlinks "s;^vwndspd.*$;vwndspd  =  3;g" $pseudo2D
 Ne=20
 #
-XPID=1
-for (( i_date=1; i_date<=1; i_date++ )); do # ${#dir_list[@]}
-for (( i_ens=1; i_ens<=$Ne; i_ens++ )); do
+for (( i_date=1; i_date<= ${#dir_list[@]}; i_date++ )); do # ${#dir_list[@]}
+for (( i_ens =1; i_ens <=$Ne; i_ens++ )); do
       # make the output directories L2
-      ENSdir=$IO_nextsim/neXtSIM_test07_13_wind_perturbation/date$i_date/ENS$i_ens
+      ENSdir=$IO_nextsim/neXtSIM_test07_18_wind_perturbation/date$i_date/ENS$i_ens
       
       # modify config files and send to member directories
       sed -i "s|^exporter_path.*$|exporter_path=$ENSdir|g"  $config
@@ -50,11 +49,15 @@ for (( i_ens=1; i_ens<=$Ne; i_ens++ )); do
       # submit job        
       . $run_script $cfg 1 -e ~/nextsim.ensemble.src       
       # a block code to enable sequence job-submitting
-      while [[ $XPID -ge 20 ]]; do
+      job_list=$(squeue -u chengsukun)
+      XPID=$(grep -o chengsuk <<<$job_list |wc -l)  # number of current running jobs
+      echo $XPID    
+      while [[ $XPID -ge 20 ]]; do # set the maximum of simultaneous running jobs, don't have to be Ne
             sleep 20
             job_list=$(squeue -u chengsukun)
             XPID=$(grep -o chengsuk <<<$job_list |wc -l)  # number of current running jobs
-      done              
+      done          
+
 done
 done   
 

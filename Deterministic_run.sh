@@ -8,17 +8,20 @@ source ./fram_sukun/nextsim.src
 config=$Job_sub_dir/nextsim.cfg
 run_script=$Job_sub_dir/run.fram.sh  # link of $NEXTSIM_ENV_ROOT_DIR/machines/fram_sukun/run.fram.sh
 pseudo2D=$Job_sub_dir/pseudo2D.nml  # link of $NEXTSIMDIR/modules/enkf/perturbation/nml/pseudo2D.nml
+sed -i --follow-symlinks "s;^randf.*$;randf = .false.;g" $pseudo2D
 
+opened_script=$Job_sub_dir/`basename $0`  
 # output directories and set it in nextsim.cfg
-outdir=$IO_nextsim/neXtSIM_test07_10_issue333
-
+outdir=$IO_nextsim/neXtSIM_test07_25_winter_stage1
 sed -i "s|^exporter_path.*$|exporter_path=$outdir|g"  $config               
+
 #-------------------------------------
 rm -rf $outdir
 mkdir -p $outdir
 cd $outdir
 cp $pseudo2D .
 cp $run_script . # backup
+cp $opened_script . # backup filepath=$(cd "$(dirname "$0")"; pwd)  
 
 # should not be simplified cfg, it avoids overwrite and use nextsim.cfg in job_submisson folder in . $run_script $cfg 1 -e ~/nextsim.ensemble.src      
 cfg=$outdir/`basename $config`  
