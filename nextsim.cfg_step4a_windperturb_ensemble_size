@@ -2,8 +2,8 @@
 # section for simulation options
 # instruction of setting parameters can be found in nextsim/model/ options.cpp
 [simul]
-time_init=2008-04-18
-duration=11
+time_init=2008-01-01
+duration=12
 timestep=200
 spinup_duration=1
 
@@ -11,7 +11,7 @@ spinup_duration=1
 # cannot be 0,default is 4 times/day. If nagative, then it outputs time step times per day.
 output_per_day=0
 # exporter_path is redefined in SBMT_ENSEMBLE_RUN.sh
-exporter_path=/cluster/work/users/chengsukun/src/IO_nextsim/neXtSIM_test09_28_winter_step6_wind_cohesion/alea_factor1/date13/ENS20
+exporter_path=/cluster/work/users/chengsukun/src/IO_nextsim/neXtSIM_test09_02_winter_step4a_wind_perturbation_vwnd_3_semsemblesize/date1/ENS80
 
 # section for mesh options
 [mesh]
@@ -24,7 +24,7 @@ partitioner-space=disk #memory
 [restart]
 start_from_restart=true
 input_path=/cluster/work/users/chengsukun/src/IO_nextsim/neXtSIM_test09_01_winter_step2/restart
-basename=20080418T000000Z
+basename=20080101T000000Z
 # write_final_restart=false
 # write_interval_restart=true
 # write_initial_restart=false
@@ -45,9 +45,9 @@ newice_type=4
 
 # dynamics
 [dynamics]
-alea_factor=0
+alea_factor=0.
 use_coriolis=true
-ASR_quad_drag_coef_air=0.0055
+ASR_quad_drag_coef_air=0.0065
 
 [drifters]
 use_iabp_drifters=true

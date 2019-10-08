@@ -1,1 +1,0 @@
-/cluster/work/users/chengsukun/src/nextsim-env/machines/fram_sukun/run.fram.debug.sh
