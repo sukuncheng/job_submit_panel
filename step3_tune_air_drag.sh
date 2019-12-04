@@ -38,7 +38,7 @@ ASR_air_drag=(0.0025 0.003 0.0035 0.004 0.0045 0.005 0.0055 0.006 0.0065 0.007 0
 for (( i_date=1; i_date<=${#dir_list[@]}; i_date++ )); do # ${#dir_list[@]}
 for (( i_air=1; i_air<=${#ASR_air_drag[@]}; i_air++ )); do  # ${#ASR_air_drag[@]}
         # make the output directories L2
-        ENSdir=$IO_nextsim/neXtSIM_test09_01_winter_step3_airdragcoefs/date$i_date/airdrag${ASR_air_drag[$i_air-1]}
+        ENSdir=$IO_nextsim/neXtSIM_test09_01_winter_step3_airdragcoefs/date$i_date/ENS$i_air #$airdrag${ASR_air_drag[$i_air-1]}
           
         # modify config files and send to member directories        
         sed -i "s|^time_init.*$|time_init=${time_init_list[$i_date-1]}|g" $config            

@@ -1,0 +1,829 @@
+Reading nextsim.cfg...
+[INFO] : -----------------------Simulation started on 2019-Oct-29 13:57:47
+[INFO] : TIMESTEP= 200
+[INFO] : DURATION= 950400
+[WARNING] : Warning: Couldn't read drifter positions from restart file. Drifter positions initialised as if there was no restart.
+randf option switched off in pseudo2D.nml
+no perturbation will be applied
+ checking if synforc files exists:  F
+synforc is set to zero for initial time
+--------------------------------------------------------------------------
+A process has executed an operation involving a call to the
+"fork()" system call to create a child process.  Open MPI is currently
+operating in a condition that could result in memory corruption or
+other system errors; your job may hang, crash, or produce silent
+data corruption.  The use of fork() (or system() or other calls that
+create child processes) is strongly discouraged.
+
+The process that invoked fork was:
+
+  Local host:          [[2268,0],0] (PID 179522)
+
+If you are *absolutely sure* that your application will successfully
+and correctly survive a call to fork(), you may disable this warning
+by setting the mpi_warn_on_fork MCA parameter to 0.
+--------------------------------------------------------------------------
+[INFO] :  ---------- progression: ( 0%) ---------- time spent: 00:00:14
+terminate called after throwing an instance of 'std::bad_array_new_length'
+terminate called after throwing an instance of 'std::bad_array_new_length'
+terminate called after throwing an instance of 'std::bad_array_new_length'
+terminate called after throwing an instance of 'std::bad_array_new_length'
+terminate called after throwing an instance of 'std::bad_array_new_length'
+terminate called after throwing an instance of 'std::bad_array_new_length'
+terminate called after throwing an instance of 'std::bad_array_new_length'
+terminate called after throwing an instance of 'std::bad_array_new_length'
+terminate called after throwing an instance of 'std::bad_array_new_length'
+terminate called after throwing an instance of 'std::bad_array_new_length'
+terminate called after throwing an instance of 'std::bad_array_new_length'
+terminate called after throwing an instance of 'std::bad_array_new_length'
+terminate called after throwing an instance of 'std::bad_array_new_length'
+terminate called after throwing an instance of 'std::bad_array_new_length'
+terminate called after throwing an instance of 'std::bad_array_new_length'
+terminate called after throwing an instance of 'std::bad_array_new_length'
+terminate called after throwing an instance of 'std::bad_array_new_length'
+terminate called after throwing an instance of 'std::bad_array_new_length'
+terminate called after throwing an instance of 'std::bad_array_new_length'
+terminate called after throwing an instance of 'std::bad_array_new_length'
+terminate called after throwing an instance of 'std::bad_array_new_length'
+terminate called after throwing an instance of 'std::bad_array_new_length'
+terminate called after throwing an instance of 'std::bad_array_new_length'
+terminate called after throwing an instance of 'std::bad_array_new_length'
+terminate called after throwing an instance of 'std::bad_array_new_length'
+terminate called after throwing an instance of 'std::bad_array_new_length'
+terminate called after throwing an instance of 'std::bad_array_new_length'
+terminate called after throwing an instance of 'std::bad_array_new_length'
+terminate called after throwing an instance of 'std::bad_array_new_length'
+terminate called after throwing an instance of 'std::bad_array_new_length'
+terminate called after throwing an instance of 'std::bad_array_new_length'
+terminate called after throwing an instance of 'std::bad_array_new_length'
+  what():  std::bad_array_new_length
+  what():  std::bad_array_new_length
+  what():  std::bad_array_new_length
+  what():  std::bad_array_new_length
+  what():  std::bad_array_new_length
+  what():  std::bad_array_new_length
+  what():  std::bad_array_new_length
+  what():  std::bad_array_new_length
+  what():  std::bad_array_new_length
+  what():  std::bad_array_new_length
+[c78-7:179535] *** Process received signal ***
+  what():  std::bad_array_new_length
+[c78-7:179536] *** Process received signal ***
+  what():  std::bad_array_new_length
+[c78-7:179540] *** Process received signal ***
+  what():  std::bad_array_new_length
+[c78-7:179543] *** Process received signal ***
+  what():  std::bad_array_new_length
+[c78-7:179544] *** Process received signal ***
+  what():  std::bad_array_new_length
+[c78-7:179549] *** Process received signal ***
+  what():  std::bad_array_new_length
+[c78-7:179550] *** Process received signal ***
+[c78-7:179550] Signal: Aborted (6)
+[c78-7:179550] Signal code:  (-6)
+[c78-7:179522] *** Process received signal ***
+[c78-7:179522] Signal: Aborted (6)
+[c78-7:179522] Signal code:  (-6)
+  what():  std::bad_array_new_length
+[c78-7:179523] *** Process received signal ***
+[c78-7:179524] *** Process received signal ***
+[c78-7:179524] Signal: Aborted (6)
+[c78-7:179524] Signal code:  (-6)
+[c78-7:179525] *** Process received signal ***
+[c78-7:179525] Signal: Aborted (6)
+[c78-7:179525] Signal code:  (-6)
+  what():  std::bad_array_new_length
+[c78-7:179526] *** Process received signal ***
+[c78-7:179526] Signal: Aborted (6)
+[c78-7:179526] Signal code:  (-6)
+[c78-7:179527] *** Process received signal ***
+[c78-7:179527] Signal: Aborted (6)
+[c78-7:179527] Signal code:  (-6)
+[c78-7:179528] *** Process received signal ***
+[c78-7:179528] Signal: Aborted (6)
+[c78-7:179528] Signal code:  (-6)
+  what():  std::bad_array_new_length
+[c78-7:179529] *** Process received signal ***
+[c78-7:179529] Signal: Aborted (6)
+[c78-7:179529] Signal code:  (-6)
+[c78-7:179530] *** Process received signal ***
+[c78-7:179530] Signal: Aborted (6)
+[c78-7:179530] Signal code:  (-6)
+[c78-7:179531] *** Process received signal ***
+[c78-7:179531] Signal: Aborted (6)
+[c78-7:179531] Signal code:  (-6)
+  what():  std::bad_array_new_length
+[c78-7:179532] *** Process received signal ***
+[c78-7:179532] Signal: Aborted (6)
+[c78-7:179532] Signal code:  (-6)
+[c78-7:179533] *** Process received signal ***
+[c78-7:179533] Signal: Aborted (6)
+[c78-7:179533] Signal code:  (-6)
+[c78-7:179534] *** Process received signal ***
+[c78-7:179534] Signal: Aborted (6)
+[c78-7:179534] Signal code:  (-6)
+[c78-7:179535] Signal: Aborted (6)
+[c78-7:179535] Signal code:  (-6)
+[c78-7:179536] Signal: Aborted (6)
+[c78-7:179536] Signal code:  (-6)
+  what():  std::bad_array_new_length
+[c78-7:179537] *** Process received signal ***
+[c78-7:179537] Signal: Aborted (6)
+[c78-7:179537] Signal code:  (-6)
+  what():  std::bad_array_new_length
+[c78-7:179538] *** Process received signal ***
+[c78-7:179538] Signal: Aborted (6)
+[c78-7:179538] Signal code:  (-6)
+  what():  std::bad_array_new_length
+[c78-7:179539] *** Process received signal ***
+[c78-7:179539] Signal: Aborted (6)
+[c78-7:179539] Signal code:  (-6)
+[c78-7:179540] Signal: Aborted (6)
+[c78-7:179540] Signal code:  (-6)
+  what():  std::bad_array_new_length
+[c78-7:179541] *** Process received signal ***
+[c78-7:179541] Signal: Aborted (6)
+[c78-7:179541] Signal code:  (-6)
+  what():  std::bad_array_new_length
+[c78-7:179542] *** Process received signal ***
+[c78-7:179542] Signal: Aborted (6)
+[c78-7:179542] Signal code:  (-6)
+[c78-7:179543] Signal: Aborted (6)
+[c78-7:179543] Signal code:  (-6)
+[c78-7:179544] Signal: Aborted (6)
+[c78-7:179544] Signal code:  (-6)
+  what():  std::bad_array_new_length
+[c78-7:179545] *** Process received signal ***
+[c78-7:179545] Signal: Aborted (6)
+[c78-7:179545] Signal code:  (-6)
+  what():  std::bad_array_new_length
+[c78-7:179546] *** Process received signal ***
+[c78-7:179546] Signal: Aborted (6)
+[c78-7:179546] Signal code:  (-6)
+  what():  std::bad_array_new_length
+[c78-7:179547] *** Process received signal ***
+[c78-7:179547] Signal: Aborted (6)
+[c78-7:179547] Signal code:  (-6)
+  what():  std::bad_array_new_length
+[c78-7:179548] *** Process received signal ***
+[c78-7:179548] Signal: Aborted (6)
+[c78-7:179548] Signal code:  (-6)
+[c78-7:179549] Signal: Aborted (6)
+[c78-7:179549] Signal code:  (-6)
+  what():  std::bad_array_new_length
+[c78-7:179551] *** Process received signal ***
+[c78-7:179551] Signal: Aborted (6)
+[c78-7:179551] Signal code:  (-6)
+  what():  std::bad_array_new_length
+[c78-7:179552] *** Process received signal ***
+[c78-7:179552] Signal: Aborted (6)
+[c78-7:179552] Signal code:  (-6)
+  what():  std::bad_array_new_length
+[c78-7:179553] *** Process received signal ***
+[c78-7:179553] Signal: Aborted (6)
+[c78-7:179553] Signal code:  (-6)
+[c78-7:179523] Signal: Aborted (6)
+[c78-7:179523] Signal code:  (-6)
+[c78-7:179539] [ 0] /lib64/libpthread.so.0(+0xf5d0)[0x2b89952135d0]
+[c78-7:179544] [ 0] /lib64/libpthread.so.0(+0xf5d0)[0x2b874a3005d0]
+[c78-7:179522] [ 0] /lib64/libpthread.so.0(+0xf5d0)[0x2b359420f5d0]
+[c78-7:179522] [ 1] /lib64/libc.so.6(gsignal+0x37)[0x2b35944532c7]
+[c78-7:179522] [ 2] /lib64/libc.so.6(abort+0x148)[0x2b35944549b8]
+[c78-7:179523] [ 0] /lib64/libpthread.so.0(+0xf5d0)[0x2ab7cf6df5d0]
+[c78-7:179523] [ 1] /lib64/libc.so.6(gsignal+0x37)[0x2ab7cf9232c7]
+[c78-7:179524] [ 0] /lib64/libpthread.so.0(+0xf5d0)[0x2b49cf28b5d0]
+[c78-7:179524] [ 1] /lib64/libc.so.6(gsignal+0x37)[0x2b49cf4cf2c7]
+[c78-7:179524] [ 2] /lib64/libc.so.6(abort+0x148)[0x2b49cf4d09b8]
+[c78-7:179525] [ 0] /lib64/libpthread.so.0(+0xf5d0)[0x2ab442d755d0]
+[c78-7:179525] [ 1] /lib64/libc.so.6(gsignal+0x37)[0x2ab442fb92c7]
+[c78-7:179525] [ 2] /lib64/libc.so.6(abort+0x148)[0x2ab442fba9b8]
+[c78-7:179525] [ 3] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(_ZN9__gnu_cxx27__verbose_terminate_handlerEv+0x15d)[0x2ab441152f1d]
+[c78-7:179526] [ 0] /lib64/libpthread.so.0(+0xf5d0)[0x2b2b9349f5d0]
+[c78-7:179526] [ 1] /lib64/libc.so.6(gsignal+0x37)[0x2b2b936e32c7]
+[c78-7:179526] [ 2] /lib64/libc.so.6(abort+0x148)[0x2b2b936e49b8]
+[c78-7:179526] [ 3] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(_ZN9__gnu_cxx27__verbose_terminate_handlerEv+0x15d)[0x2b2b9187cf1d]
+[c78-7:179527] [ 0] /lib64/libpthread.so.0(+0xf5d0)[0x2acfc4b165d0]
+[c78-7:179527] [ 1] /lib64/libc.so.6(gsignal+0x37)[0x2acfc4d5a2c7]
+[c78-7:179527] [ 2] /lib64/libc.so.6(abort+0x148)[0x2acfc4d5b9b8]
+[c78-7:179527] [ 3] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(_ZN9__gnu_cxx27__verbose_terminate_handlerEv+0x15d)[0x2acfc2ef3f1d]
+[c78-7:179527] [ 4] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x97ed6)[0x2acfc2ef1ed6]
+[c78-7:179527] [ 5] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x97f21)[0x2acfc2ef1f21]
+[c78-7:179528] [ 0] /lib64/libpthread.so.0(+0xf5d0)[0x2b94c047f5d0]
+[c78-7:179528] [ 1] /lib64/libc.so.6(gsignal+0x37)[0x2b94c06c32c7]
+[c78-7:179528] [ 2] /lib64/libc.so.6(abort+0x148)[0x2b94c06c49b8]
+[c78-7:179528] [ 3] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(_ZN9__gnu_cxx27__verbose_terminate_handlerEv+0x15d)[0x2b94be85cf1d]
+[c78-7:179528] [ 4] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x97ed6)[0x2b94be85aed6]
+[c78-7:179529] [ 0] /lib64/libpthread.so.0(+0xf5d0)[0x2b1bb08c15d0]
+[c78-7:179529] [ 1] /lib64/libc.so.6(gsignal+0x37)[0x2b1bb0b052c7]
+[c78-7:179529] [ 2] /lib64/libc.so.6(abort+0x148)[0x2b1bb0b069b8]
+[c78-7:179529] [ 3] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(_ZN9__gnu_cxx27__verbose_terminate_handlerEv+0x15d)[0x2b1baec9ef1d]
+[c78-7:179529] [ 4] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x97ed6)[0x2b1baec9ced6]
+[c78-7:179529] [ 5] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x97f21)[0x2b1baec9cf21]
+[c78-7:179529] [ 6] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x98139)[0x2b1baec9d139]
+[c78-7:179530] [ 0] /lib64/libpthread.so.0(+0xf5d0)[0x2afa309c25d0]
+[c78-7:179530] [ 1] /lib64/libc.so.6(gsignal+0x37)[0x2afa30c062c7]
+[c78-7:179530] [ 2] /lib64/libc.so.6(abort+0x148)[0x2afa30c079b8]
+[c78-7:179530] [ 3] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(_ZN9__gnu_cxx27__verbose_terminate_handlerEv+0x15d)[0x2afa2ed9ff1d]
+[c78-7:179530] [ 4] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x97ed6)[0x2afa2ed9ded6]
+[c78-7:179530] [ 5] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x97f21)[0x2afa2ed9df21]
+[c78-7:179530] [ 6] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x98139)[0x2afa2ed9e139]
+[c78-7:179531] [ 0] /lib64/libpthread.so.0(+0xf5d0)[0x2ba2ab4505d0]
+[c78-7:179531] [ 1] /lib64/libc.so.6(gsignal+0x37)[0x2ba2ab6942c7]
+[c78-7:179531] [ 2] /lib64/libc.so.6(abort+0x148)[0x2ba2ab6959b8]
+[c78-7:179531] [ 3] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(_ZN9__gnu_cxx27__verbose_terminate_handlerEv+0x15d)[0x2ba2a982df1d]
+[c78-7:179531] [ 4] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x97ed6)[0x2ba2a982bed6]
+[c78-7:179531] [ 5] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x97f21)[0x2ba2a982bf21]
+[c78-7:179531] [ 6] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x98139)[0x2ba2a982c139]
+[c78-7:179531] [ 7] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x96ec2)[0x2ba2a982aec2]
+[c78-7:179531] [ 8] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_ZN4bamg4Mesh8ReadMeshEPiPdS2_ii+0x36a)[0x2ba2aaea450a]
+[c78-7:179532] [ 0] /lib64/libpthread.so.0(+0xf5d0)[0x2ad4324385d0]
+[c78-7:179532] [ 1] /lib64/libc.so.6(gsignal+0x37)[0x2ad43267c2c7]
+[c78-7:179532] [ 2] /lib64/libc.so.6(abort+0x148)[0x2ad43267d9b8]
+[c78-7:179532] [ 3] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(_ZN9__gnu_cxx27__verbose_terminate_handlerEv+0x15d)[0x2ad430815f1d]
+[c78-7:179532] [ 4] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x97ed6)[0x2ad430813ed6]
+[c78-7:179532] [ 5] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x97f21)[0x2ad430813f21]
+[c78-7:179532] [ 6] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x98139)[0x2ad430814139]
+[c78-7:179532] [ 7] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x96ec2)[0x2ad430812ec2]
+[c78-7:179532] [ 8] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_ZN4bamg4Mesh8ReadMeshEPiPdS2_ii+0x36a)[0x2ad431e8c50a]
+[c78-7:179532] [ 9] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_ZN4bamg4MeshC1EPiPdS2_ii+0x9e)[0x2ad431ea025e]
+[c78-7:179533] [ 0] /lib64/libpthread.so.0(+0xf5d0)[0x2b2a3a8545d0]
+[c78-7:179533] [ 1] /lib64/libc.so.6(gsignal+0x37)[0x2b2a3aa982c7]
+[c78-7:179533] [ 2] /lib64/libc.so.6(abort+0x148)[0x2b2a3aa999b8]
+[c78-7:179533] [ 3] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(_ZN9__gnu_cxx27__verbose_terminate_handlerEv+0x15d)[0x2b2a38c2ff1d]
+[c78-7:179533] [ 4] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x97ed6)[0x2b2a38c2ded6]
+[c78-7:179533] [ 5] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x97f21)[0x2b2a38c2df21]
+[c78-7:179533] [ 6] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x98139)[0x2b2a38c2e139]
+[c78-7:179533] [ 7] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x96ec2)[0x2b2a38c2cec2]
+[c78-7:179533] [ 8] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_ZN4bamg4Mesh8ReadMeshEPiPdS2_ii+0x36a)[0x2b2a3a2a650a]
+[c78-7:179533] [ 9] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_ZN4bamg4MeshC1EPiPdS2_ii+0x9e)[0x2b2a3a2ba25e]
+[c78-7:179533] [10] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_Z16BamgConvertMeshxP8BamgMeshP8BamgGeomPiPdS4_ii+0x5c)[0x2b2a3a2f141c]
+[c78-7:179533] [11] /cluster/work/jobs/395484/bin/nextsim.exec[0x473234]
+[c78-7:179533] [12] /cluster/work/jobs/395484/bin/nextsim.exec[0x474065]
+[c78-7:179534] [ 0] /lib64/libpthread.so.0(+0xf5d0)[0x2b8f318ec5d0]
+[c78-7:179534] [ 1] /lib64/libc.so.6(gsignal+0x37)[0x2b8f31b302c7]
+[c78-7:179534] [ 2] /lib64/libc.so.6(abort+0x148)[0x2b8f31b319b8]
+[c78-7:179534] [ 3] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(_ZN9__gnu_cxx27__verbose_terminate_handlerEv+0x15d)[0x2b8f2fcc7f1d]
+[c78-7:179534] [ 4] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x97ed6)[0x2b8f2fcc5ed6]
+[c78-7:179534] [ 5] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x97f21)[0x2b8f2fcc5f21]
+[c78-7:179534] [ 6] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x98139)[0x2b8f2fcc6139]
+[c78-7:179534] [ 7] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x96ec2)[0x2b8f2fcc4ec2]
+[c78-7:179534] [ 8] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_ZN4bamg4Mesh8ReadMeshEPiPdS2_ii+0x36a)[0x2b8f3133e50a]
+[c78-7:179534] [ 9] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_ZN4bamg4MeshC1EPiPdS2_ii+0x9e)[0x2b8f3135225e]
+[c78-7:179534] [10] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_Z16BamgConvertMeshxP8BamgMeshP8BamgGeomPiPdS4_ii+0x5c)[0x2b8f3138941c]
+[c78-7:179534] [11] /cluster/work/jobs/395484/bin/nextsim.exec[0x473234]
+[c78-7:179534] [12] /cluster/work/jobs/395484/bin/nextsim.exec[0x474065]
+[c78-7:179534] [13] /cluster/work/jobs/395484/bin/nextsim.exec[0x474aff]
+[c78-7:179534] [14] /cluster/work/jobs/395484/bin/nextsim.exec[0x4822bc]
+[c78-7:179534] [15] /cluster/work/jobs/395484/bin/nextsim.exec[0x483569]
+[c78-7:179534] [16] /cluster/work/jobs/395484/bin/nextsim.exec(main+0x230)[0x424a70]
+[c78-7:179535] [ 0] /lib64/libpthread.so.0(+0xf5d0)[0x2af42c0525d0]
+[c78-7:179535] [ 1] /lib64/libc.so.6(gsignal+0x37)[0x2af42c2962c7]
+[c78-7:179535] [ 2] /lib64/libc.so.6(abort+0x148)[0x2af42c2979b8]
+[c78-7:179535] [ 3] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(_ZN9__gnu_cxx27__verbose_terminate_handlerEv+0x15d)[0x2af42a42df1d]
+[c78-7:179535] [ 4] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x97ed6)[0x2af42a42bed6]
+[c78-7:179535] [ 5] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x97f21)[0x2af42a42bf21]
+[c78-7:179535] [ 6] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x98139)[0x2af42a42c139]
+[c78-7:179535] [ 7] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x96ec2)[0x2af42a42aec2]
+[c78-7:179535] [ 8] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_ZN4bamg4Mesh8ReadMeshEPiPdS2_ii+0x36a)[0x2af42baa450a]
+[c78-7:179535] [ 9] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_ZN4bamg4MeshC1EPiPdS2_ii+0x9e)[0x2af42bab825e]
+[c78-7:179535] [10] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_Z16BamgConvertMeshxP8BamgMeshP8BamgGeomPiPdS4_ii+0x5c)[0x2af42baef41c]
+[c78-7:179535] [11] /cluster/work/jobs/395484/bin/nextsim.exec[0x473234]
+[c78-7:179535] [12] /cluster/work/jobs/395484/bin/nextsim.exec[0x474065]
+[c78-7:179535] [13] /cluster/work/jobs/395484/bin/nextsim.exec[0x474aff]
+[c78-7:179535] [14] /cluster/work/jobs/395484/bin/nextsim.exec[0x4822bc]
+[c78-7:179535] [15] /cluster/work/jobs/395484/bin/nextsim.exec[0x483569]
+[c78-7:179535] [16] /cluster/work/jobs/395484/bin/nextsim.exec(main+0x230)[0x424a70]
+[c78-7:179535] [17] /lib64/libc.so.6(__libc_start_main+0xf5)[0x2af42c282495]
+[c78-7:179535] [18] /cluster/work/jobs/395484/bin/nextsim.exec[0x424bb6]
+[c78-7:179536] [ 0] /lib64/libpthread.so.0(+0xf5d0)[0x2b580dde65d0]
+[c78-7:179536] [ 1] /lib64/libc.so.6(gsignal+0x37)[0x2b580e02a2c7]
+[c78-7:179536] [ 2] /lib64/libc.so.6(abort+0x148)[0x2b580e02b9b8]
+[c78-7:179536] [ 3] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(_ZN9__gnu_cxx27__verbose_terminate_handlerEv+0x15d)[0x2b580c1c3f1d]
+[c78-7:179536] [ 4] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x97ed6)[0x2b580c1c1ed6]
+[c78-7:179536] [ 5] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x97f21)[0x2b580c1c1f21]
+[c78-7:179536] [ 6] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x98139)[0x2b580c1c2139]
+[c78-7:179536] [ 7] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x96ec2)[0x2b580c1c0ec2]
+[c78-7:179536] [ 8] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_ZN4bamg4Mesh8ReadMeshEPiPdS2_ii+0x36a)[0x2b580d83a50a]
+[c78-7:179536] [ 9] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_ZN4bamg4MeshC1EPiPdS2_ii+0x9e)[0x2b580d84e25e]
+[c78-7:179536] [10] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_Z16BamgConvertMeshxP8BamgMeshP8BamgGeomPiPdS4_ii+0x5c)[0x2b580d88541c]
+[c78-7:179536] [11] /cluster/work/jobs/395484/bin/nextsim.exec[0x473234]
+[c78-7:179536] [12] /cluster/work/jobs/395484/bin/nextsim.exec[0x474065]
+[c78-7:179536] [13] /cluster/work/jobs/395484/bin/nextsim.exec[0x474aff]
+[c78-7:179536] [14] /cluster/work/jobs/395484/bin/nextsim.exec[0x4822bc]
+[c78-7:179536] [15] /cluster/work/jobs/395484/bin/nextsim.exec[0x483569]
+[c78-7:179536] [16] /cluster/work/jobs/395484/bin/nextsim.exec(main+0x230)[0x424a70]
+[c78-7:179536] [17] /lib64/libc.so.6(__libc_start_main+0xf5)[0x2b580e016495]
+[c78-7:179536] [18] /cluster/work/jobs/395484/bin/nextsim.exec[0x424bb6]
+[c78-7:179536] *** End of error message ***
+[c78-7:179537] [ 0] /lib64/libpthread.so.0(+0xf5d0)[0x2b87b73735d0]
+[c78-7:179537] [ 1] /lib64/libc.so.6(gsignal+0x37)[0x2b87b75b72c7]
+[c78-7:179537] [ 2] /lib64/libc.so.6(abort+0x148)[0x2b87b75b89b8]
+[c78-7:179537] [ 3] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(_ZN9__gnu_cxx27__verbose_terminate_handlerEv+0x15d)[0x2b87b5750f1d]
+[c78-7:179537] [ 4] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x97ed6)[0x2b87b574eed6]
+[c78-7:179537] [ 5] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x97f21)[0x2b87b574ef21]
+[c78-7:179537] [ 6] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x98139)[0x2b87b574f139]
+[c78-7:179537] [ 7] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x96ec2)[0x2b87b574dec2]
+[c78-7:179537] [ 8] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_ZN4bamg4Mesh8ReadMeshEPiPdS2_ii+0x36a)[0x2b87b6dc750a]
+[c78-7:179537] [ 9] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_ZN4bamg4MeshC1EPiPdS2_ii+0x9e)[0x2b87b6ddb25e]
+[c78-7:179537] [10] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_Z16BamgConvertMeshxP8BamgMeshP8BamgGeomPiPdS4_ii+0x5c)[0x2b87b6e1241c]
+[c78-7:179537] [11] /cluster/work/jobs/395484/bin/nextsim.exec[0x473234]
+[c78-7:179537] [12] /cluster/work/jobs/395484/bin/nextsim.exec[0x474065]
+[c78-7:179537] [13] /cluster/work/jobs/395484/bin/nextsim.exec[0x474aff]
+[c78-7:179537] [14] /cluster/work/jobs/395484/bin/nextsim.exec[0x4822bc]
+[c78-7:179537] [15] /cluster/work/jobs/395484/bin/nextsim.exec[0x483569]
+[c78-7:179537] [16] /cluster/work/jobs/395484/bin/nextsim.exec(main+0x230)[0x424a70]
+[c78-7:179537] [17] /lib64/libc.so.6(__libc_start_main+0xf5)[0x2b87b75a3495]
+[c78-7:179537] [18] /cluster/work/jobs/395484/bin/nextsim.exec[0x424bb6]
+[c78-7:179537] *** End of error message ***
+[c78-7:179538] [ 0] /lib64/libpthread.so.0(+0xf5d0)[0x2b00fca3a5d0]
+[c78-7:179538] [ 1] /lib64/libc.so.6(gsignal+0x37)[0x2b00fcc7e2c7]
+[c78-7:179538] [ 2] /lib64/libc.so.6(abort+0x148)[0x2b00fcc7f9b8]
+[c78-7:179538] [ 3] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(_ZN9__gnu_cxx27__verbose_terminate_handlerEv+0x15d)[0x2b00fae17f1d]
+[c78-7:179538] [ 4] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x97ed6)[0x2b00fae15ed6]
+[c78-7:179538] [ 5] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x97f21)[0x2b00fae15f21]
+[c78-7:179538] [ 6] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x98139)[0x2b00fae16139]
+[c78-7:179538] [ 7] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x96ec2)[0x2b00fae14ec2]
+[c78-7:179538] [ 8] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_ZN4bamg4Mesh8ReadMeshEPiPdS2_ii+0x36a)[0x2b00fc48e50a]
+[c78-7:179538] [ 9] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_ZN4bamg4MeshC1EPiPdS2_ii+0x9e)[0x2b00fc4a225e]
+[c78-7:179538] [10] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_Z16BamgConvertMeshxP8BamgMeshP8BamgGeomPiPdS4_ii+0x5c)[0x2b00fc4d941c]
+[c78-7:179538] [11] /cluster/work/jobs/395484/bin/nextsim.exec[0x473234]
+[c78-7:179538] [12] /cluster/work/jobs/395484/bin/nextsim.exec[0x474065]
+[c78-7:179538] [13] /cluster/work/jobs/395484/bin/nextsim.exec[0x474aff]
+[c78-7:179538] [14] /cluster/work/jobs/395484/bin/nextsim.exec[0x4822bc]
+[c78-7:179538] [15] /cluster/work/jobs/395484/bin/nextsim.exec[0x483569]
+[c78-7:179538] [16] /cluster/work/jobs/395484/bin/nextsim.exec(main+0x230)[0x424a70]
+[c78-7:179538] [17] /lib64/libc.so.6(__libc_start_main+0xf5)[0x2b00fcc6a495]
+[c78-7:179538] [18] /cluster/work/jobs/395484/bin/nextsim.exec[0x424bb6]
+[c78-7:179538] *** End of error message ***
+[c78-7:179539] [ 1] /lib64/libc.so.6(gsignal+0x37)[0x2b89954572c7]
+[c78-7:179539] [ 2] /lib64/libc.so.6(abort+0x148)[0x2b89954589b8]
+[c78-7:179539] [ 3] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(_ZN9__gnu_cxx27__verbose_terminate_handlerEv+0x15d)[0x2b89935f0f1d]
+[c78-7:179539] [ 4] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x97ed6)[0x2b89935eeed6]
+[c78-7:179539] [ 5] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x97f21)[0x2b89935eef21]
+[c78-7:179539] [ 6] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x98139)[0x2b89935ef139]
+[c78-7:179539] [ 7] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x96ec2)[0x2b89935edec2]
+[c78-7:179539] [ 8] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_ZN4bamg4Mesh8ReadMeshEPiPdS2_ii+0x36a)[0x2b8994c6750a]
+[c78-7:179539] [ 9] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_ZN4bamg4MeshC1EPiPdS2_ii+0x9e)[0x2b8994c7b25e]
+[c78-7:179539] [10] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_Z16BamgConvertMeshxP8BamgMeshP8BamgGeomPiPdS4_ii+0x5c)[0x2b8994cb241c]
+[c78-7:179539] [11] /cluster/work/jobs/395484/bin/nextsim.exec[0x473234]
+[c78-7:179539] [12] /cluster/work/jobs/395484/bin/nextsim.exec[0x474065]
+[c78-7:179539] [13] /cluster/work/jobs/395484/bin/nextsim.exec[0x474aff]
+[c78-7:179539] [14] /cluster/work/jobs/395484/bin/nextsim.exec[0x4822bc]
+[c78-7:179539] [15] /cluster/work/jobs/395484/bin/nextsim.exec[0x483569]
+[c78-7:179539] [16] /cluster/work/jobs/395484/bin/nextsim.exec(main+0x230)[0x424a70]
+[c78-7:179539] [17] /lib64/libc.so.6(__libc_start_main+0xf5)[0x2b8995443495]
+[c78-7:179539] [18] /cluster/work/jobs/395484/bin/nextsim.exec[0x424bb6]
+[c78-7:179539] *** End of error message ***
+[c78-7:179540] [ 0] /lib64/libpthread.so.0(+0xf5d0)[0x2af610be75d0]
+[c78-7:179540] [ 1] /lib64/libc.so.6(gsignal+0x37)[0x2af610e2b2c7]
+[c78-7:179540] [ 2] /lib64/libc.so.6(abort+0x148)[0x2af610e2c9b8]
+[c78-7:179540] [ 3] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(_ZN9__gnu_cxx27__verbose_terminate_handlerEv+0x15d)[0x2af60efc4f1d]
+[c78-7:179540] [ 4] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x97ed6)[0x2af60efc2ed6]
+[c78-7:179540] [ 5] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x97f21)[0x2af60efc2f21]
+[c78-7:179540] [ 6] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x98139)[0x2af60efc3139]
+[c78-7:179540] [ 7] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x96ec2)[0x2af60efc1ec2]
+[c78-7:179540] [ 8] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_ZN4bamg4Mesh8ReadMeshEPiPdS2_ii+0x36a)[0x2af61063b50a]
+[c78-7:179540] [ 9] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_ZN4bamg4MeshC1EPiPdS2_ii+0x9e)[0x2af61064f25e]
+[c78-7:179540] [10] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_Z16BamgConvertMeshxP8BamgMeshP8BamgGeomPiPdS4_ii+0x5c)[0x2af61068641c]
+[c78-7:179540] [11] /cluster/work/jobs/395484/bin/nextsim.exec[0x473234]
+[c78-7:179540] [12] /cluster/work/jobs/395484/bin/nextsim.exec[0x474065]
+[c78-7:179540] [13] /cluster/work/jobs/395484/bin/nextsim.exec[0x474aff]
+[c78-7:179540] [14] /cluster/work/jobs/395484/bin/nextsim.exec[0x4822bc]
+[c78-7:179540] [15] /cluster/work/jobs/395484/bin/nextsim.exec[0x483569]
+[c78-7:179540] [16] /cluster/work/jobs/395484/bin/nextsim.exec(main+0x230)[0x424a70]
+[c78-7:179540] [17] /lib64/libc.so.6(__libc_start_main+0xf5)[0x2af610e17495]
+[c78-7:179540] [18] /cluster/work/jobs/395484/bin/nextsim.exec[0x424bb6]
+[c78-7:179540] *** End of error message ***
+[c78-7:179541] [ 0] /lib64/libpthread.so.0(+0xf5d0)[0x2b6b51a6f5d0]
+[c78-7:179541] [ 1] /lib64/libc.so.6(gsignal+0x37)[0x2b6b51cb32c7]
+[c78-7:179541] [ 2] /lib64/libc.so.6(abort+0x148)[0x2b6b51cb49b8]
+[c78-7:179541] [ 3] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(_ZN9__gnu_cxx27__verbose_terminate_handlerEv+0x15d)[0x2b6b4fe4cf1d]
+[c78-7:179541] [ 4] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x97ed6)[0x2b6b4fe4aed6]
+[c78-7:179541] [ 5] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x97f21)[0x2b6b4fe4af21]
+[c78-7:179541] [ 6] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x98139)[0x2b6b4fe4b139]
+[c78-7:179541] [ 7] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x96ec2)[0x2b6b4fe49ec2]
+[c78-7:179541] [ 8] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_ZN4bamg4Mesh8ReadMeshEPiPdS2_ii+0x36a)[0x2b6b514c350a]
+[c78-7:179541] [ 9] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_ZN4bamg4MeshC1EPiPdS2_ii+0x9e)[0x2b6b514d725e]
+[c78-7:179541] [10] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_Z16BamgConvertMeshxP8BamgMeshP8BamgGeomPiPdS4_ii+0x5c)[0x2b6b5150e41c]
+[c78-7:179541] [11] /cluster/work/jobs/395484/bin/nextsim.exec[0x473234]
+[c78-7:179541] [12] /cluster/work/jobs/395484/bin/nextsim.exec[0x474065]
+[c78-7:179541] [13] /cluster/work/jobs/395484/bin/nextsim.exec[0x474aff]
+[c78-7:179541] [14] /cluster/work/jobs/395484/bin/nextsim.exec[0x4822bc]
+[c78-7:179541] [15] /cluster/work/jobs/395484/bin/nextsim.exec[0x483569]
+[c78-7:179541] [16] /cluster/work/jobs/395484/bin/nextsim.exec(main+0x230)[0x424a70]
+[c78-7:179541] [17] /lib64/libc.so.6(__libc_start_main+0xf5)[0x2b6b51c9f495]
+[c78-7:179541] [18] /cluster/work/jobs/395484/bin/nextsim.exec[0x424bb6]
+[c78-7:179541] *** End of error message ***
+[c78-7:179542] [ 0] /lib64/libpthread.so.0(+0xf5d0)[0x2b9e4ee675d0]
+[c78-7:179542] [ 1] /lib64/libc.so.6(gsignal+0x37)[0x2b9e4f0ab2c7]
+[c78-7:179542] [ 2] /lib64/libc.so.6(abort+0x148)[0x2b9e4f0ac9b8]
+[c78-7:179542] [ 3] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(_ZN9__gnu_cxx27__verbose_terminate_handlerEv+0x15d)[0x2b9e4d244f1d]
+[c78-7:179542] [ 4] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x97ed6)[0x2b9e4d242ed6]
+[c78-7:179542] [ 5] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x97f21)[0x2b9e4d242f21]
+[c78-7:179542] [ 6] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x98139)[0x2b9e4d243139]
+[c78-7:179542] [ 7] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x96ec2)[0x2b9e4d241ec2]
+[c78-7:179542] [ 8] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_ZN4bamg4Mesh8ReadMeshEPiPdS2_ii+0x36a)[0x2b9e4e8bb50a]
+[c78-7:179542] [ 9] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_ZN4bamg4MeshC1EPiPdS2_ii+0x9e)[0x2b9e4e8cf25e]
+[c78-7:179542] [10] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_Z16BamgConvertMeshxP8BamgMeshP8BamgGeomPiPdS4_ii+0x5c)[0x2b9e4e90641c]
+[c78-7:179542] [11] /cluster/work/jobs/395484/bin/nextsim.exec[0x473234]
+[c78-7:179542] [12] /cluster/work/jobs/395484/bin/nextsim.exec[0x474065]
+[c78-7:179542] [13] /cluster/work/jobs/395484/bin/nextsim.exec[0x474aff]
+[c78-7:179542] [14] /cluster/work/jobs/395484/bin/nextsim.exec[0x4822bc]
+[c78-7:179542] [15] /cluster/work/jobs/395484/bin/nextsim.exec[0x483569]
+[c78-7:179542] [16] /cluster/work/jobs/395484/bin/nextsim.exec(main+0x230)[0x424a70]
+[c78-7:179542] [17] /lib64/libc.so.6(__libc_start_main+0xf5)[0x2b9e4f097495]
+[c78-7:179542] [18] /cluster/work/jobs/395484/bin/nextsim.exec[0x424bb6]
+[c78-7:179542] *** End of error message ***
+[c78-7:179543] [ 0] /lib64/libpthread.so.0(+0xf5d0)[0x2ab9eecd65d0]
+[c78-7:179543] [ 1] /lib64/libc.so.6(gsignal+0x37)[0x2ab9eef1a2c7]
+[c78-7:179543] [ 2] /lib64/libc.so.6(abort+0x148)[0x2ab9eef1b9b8]
+[c78-7:179543] [ 3] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(_ZN9__gnu_cxx27__verbose_terminate_handlerEv+0x15d)[0x2ab9ed0b3f1d]
+[c78-7:179543] [ 4] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x97ed6)[0x2ab9ed0b1ed6]
+[c78-7:179543] [ 5] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x97f21)[0x2ab9ed0b1f21]
+[c78-7:179543] [ 6] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x98139)[0x2ab9ed0b2139]
+[c78-7:179543] [ 7] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x96ec2)[0x2ab9ed0b0ec2]
+[c78-7:179543] [ 8] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_ZN4bamg4Mesh8ReadMeshEPiPdS2_ii+0x36a)[0x2ab9ee72a50a]
+[c78-7:179543] [ 9] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_ZN4bamg4MeshC1EPiPdS2_ii+0x9e)[0x2ab9ee73e25e]
+[c78-7:179543] [10] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_Z16BamgConvertMeshxP8BamgMeshP8BamgGeomPiPdS4_ii+0x5c)[0x2ab9ee77541c]
+[c78-7:179543] [11] /cluster/work/jobs/395484/bin/nextsim.exec[0x473234]
+[c78-7:179543] [12] /cluster/work/jobs/395484/bin/nextsim.exec[0x474065]
+[c78-7:179543] [13] /cluster/work/jobs/395484/bin/nextsim.exec[0x474aff]
+[c78-7:179543] [14] /cluster/work/jobs/395484/bin/nextsim.exec[0x4822bc]
+[c78-7:179543] [15] /cluster/work/jobs/395484/bin/nextsim.exec[0x483569]
+[c78-7:179543] [16] /cluster/work/jobs/395484/bin/nextsim.exec(main+0x230)[0x424a70]
+[c78-7:179543] [17] /lib64/libc.so.6(__libc_start_main+0xf5)[0x2ab9eef06495]
+[c78-7:179543] [18] /cluster/work/jobs/395484/bin/nextsim.exec[0x424bb6]
+[c78-7:179543] *** End of error message ***
+[c78-7:179544] [ 1] /lib64/libc.so.6(gsignal+0x37)[0x2b874a5442c7]
+[c78-7:179544] [ 2] /lib64/libc.so.6(abort+0x148)[0x2b874a5459b8]
+[c78-7:179544] [ 3] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(_ZN9__gnu_cxx27__verbose_terminate_handlerEv+0x15d)[0x2b87486ddf1d]
+[c78-7:179544] [ 4] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x97ed6)[0x2b87486dbed6]
+[c78-7:179544] [ 5] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x97f21)[0x2b87486dbf21]
+[c78-7:179544] [ 6] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x98139)[0x2b87486dc139]
+[c78-7:179544] [ 7] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x96ec2)[0x2b87486daec2]
+[c78-7:179544] [ 8] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_ZN4bamg4Mesh8ReadMeshEPiPdS2_ii+0x36a)[0x2b8749d5450a]
+[c78-7:179544] [ 9] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_ZN4bamg4MeshC1EPiPdS2_ii+0x9e)[0x2b8749d6825e]
+[c78-7:179544] [10] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_Z16BamgConvertMeshxP8BamgMeshP8BamgGeomPiPdS4_ii+0x5c)[0x2b8749d9f41c]
+[c78-7:179544] [11] /cluster/work/jobs/395484/bin/nextsim.exec[0x473234]
+[c78-7:179544] [12] /cluster/work/jobs/395484/bin/nextsim.exec[0x474065]
+[c78-7:179544] [13] /cluster/work/jobs/395484/bin/nextsim.exec[0x474aff]
+[c78-7:179544] [14] /cluster/work/jobs/395484/bin/nextsim.exec[0x4822bc]
+[c78-7:179544] [15] /cluster/work/jobs/395484/bin/nextsim.exec[0x483569]
+[c78-7:179544] [16] /cluster/work/jobs/395484/bin/nextsim.exec(main+0x230)[0x424a70]
+[c78-7:179544] [17] /lib64/libc.so.6(__libc_start_main+0xf5)[0x2b874a530495]
+[c78-7:179544] [18] /cluster/work/jobs/395484/bin/nextsim.exec[0x424bb6]
+[c78-7:179544] *** End of error message ***
+[c78-7:179545] [ 0] /lib64/libpthread.so.0(+0xf5d0)[0x2b7f199cf5d0]
+[c78-7:179545] [ 1] /lib64/libc.so.6(gsignal+0x37)[0x2b7f19c132c7]
+[c78-7:179545] [ 2] /lib64/libc.so.6(abort+0x148)[0x2b7f19c149b8]
+[c78-7:179545] [ 3] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(_ZN9__gnu_cxx27__verbose_terminate_handlerEv+0x15d)[0x2b7f17dacf1d]
+[c78-7:179545] [ 4] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x97ed6)[0x2b7f17daaed6]
+[c78-7:179545] [ 5] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x97f21)[0x2b7f17daaf21]
+[c78-7:179545] [ 6] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x98139)[0x2b7f17dab139]
+[c78-7:179545] [ 7] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x96ec2)[0x2b7f17da9ec2]
+[c78-7:179545] [ 8] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_ZN4bamg4Mesh8ReadMeshEPiPdS2_ii+0x36a)[0x2b7f1942350a]
+[c78-7:179545] [ 9] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_ZN4bamg4MeshC1EPiPdS2_ii+0x9e)[0x2b7f1943725e]
+[c78-7:179545] [10] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_Z16BamgConvertMeshxP8BamgMeshP8BamgGeomPiPdS4_ii+0x5c)[0x2b7f1946e41c]
+[c78-7:179545] [11] /cluster/work/jobs/395484/bin/nextsim.exec[0x473234]
+[c78-7:179545] [12] /cluster/work/jobs/395484/bin/nextsim.exec[0x474065]
+[c78-7:179545] [13] /cluster/work/jobs/395484/bin/nextsim.exec[0x474aff]
+[c78-7:179545] [14] /cluster/work/jobs/395484/bin/nextsim.exec[0x4822bc]
+[c78-7:179545] [15] /cluster/work/jobs/395484/bin/nextsim.exec[0x483569]
+[c78-7:179545] [16] /cluster/work/jobs/395484/bin/nextsim.exec(main+0x230)[0x424a70]
+[c78-7:179545] [17] /lib64/libc.so.6(__libc_start_main+0xf5)[0x2b7f19bff495]
+[c78-7:179545] [18] /cluster/work/jobs/395484/bin/nextsim.exec[0x424bb6]
+[c78-7:179545] *** End of error message ***
+[c78-7:179546] [ 0] /lib64/libpthread.so.0(+0xf5d0)[0x2afae3f535d0]
+[c78-7:179546] [ 1] /lib64/libc.so.6(gsignal+0x37)[0x2afae41972c7]
+[c78-7:179546] [ 2] /lib64/libc.so.6(abort+0x148)[0x2afae41989b8]
+[c78-7:179546] [ 3] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(_ZN9__gnu_cxx27__verbose_terminate_handlerEv+0x15d)[0x2afae2330f1d]
+[c78-7:179546] [ 4] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x97ed6)[0x2afae232eed6]
+[c78-7:179546] [ 5] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x97f21)[0x2afae232ef21]
+[c78-7:179546] [ 6] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x98139)[0x2afae232f139]
+[c78-7:179546] [ 7] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x96ec2)[0x2afae232dec2]
+[c78-7:179546] [ 8] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_ZN4bamg4Mesh8ReadMeshEPiPdS2_ii+0x36a)[0x2afae39a750a]
+[c78-7:179546] [ 9] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_ZN4bamg4MeshC1EPiPdS2_ii+0x9e)[0x2afae39bb25e]
+[c78-7:179546] [10] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_Z16BamgConvertMeshxP8BamgMeshP8BamgGeomPiPdS4_ii+0x5c)[0x2afae39f241c]
+[c78-7:179546] [11] /cluster/work/jobs/395484/bin/nextsim.exec[0x473234]
+[c78-7:179546] [12] /cluster/work/jobs/395484/bin/nextsim.exec[0x474065]
+[c78-7:179546] [13] /cluster/work/jobs/395484/bin/nextsim.exec[0x474aff]
+[c78-7:179546] [14] /cluster/work/jobs/395484/bin/nextsim.exec[0x4822bc]
+[c78-7:179546] [15] /cluster/work/jobs/395484/bin/nextsim.exec[0x483569]
+[c78-7:179546] [16] /cluster/work/jobs/395484/bin/nextsim.exec(main+0x230)[0x424a70]
+[c78-7:179546] [17] /lib64/libc.so.6(__libc_start_main+0xf5)[0x2afae4183495]
+[c78-7:179546] [18] /cluster/work/jobs/395484/bin/nextsim.exec[0x424bb6]
+[c78-7:179546] *** End of error message ***
+[c78-7:179547] [ 0] /lib64/libpthread.so.0(+0xf5d0)[0x2afbda9515d0]
+[c78-7:179547] [ 1] /lib64/libc.so.6(gsignal+0x37)[0x2afbdab952c7]
+[c78-7:179547] [ 2] /lib64/libc.so.6(abort+0x148)[0x2afbdab969b8]
+[c78-7:179547] [ 3] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(_ZN9__gnu_cxx27__verbose_terminate_handlerEv+0x15d)[0x2afbd8d2ef1d]
+[c78-7:179547] [ 4] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x97ed6)[0x2afbd8d2ced6]
+[c78-7:179547] [ 5] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x97f21)[0x2afbd8d2cf21]
+[c78-7:179547] [ 6] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x98139)[0x2afbd8d2d139]
+[c78-7:179547] [ 7] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x96ec2)[0x2afbd8d2bec2]
+[c78-7:179547] [ 8] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_ZN4bamg4Mesh8ReadMeshEPiPdS2_ii+0x36a)[0x2afbda3a550a]
+[c78-7:179547] [ 9] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_ZN4bamg4MeshC1EPiPdS2_ii+0x9e)[0x2afbda3b925e]
+[c78-7:179547] [10] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_Z16BamgConvertMeshxP8BamgMeshP8BamgGeomPiPdS4_ii+0x5c)[0x2afbda3f041c]
+[c78-7:179547] [11] /cluster/work/jobs/395484/bin/nextsim.exec[0x473234]
+[c78-7:179547] [12] /cluster/work/jobs/395484/bin/nextsim.exec[0x474065]
+[c78-7:179547] [13] /cluster/work/jobs/395484/bin/nextsim.exec[0x474aff]
+[c78-7:179547] [14] /cluster/work/jobs/395484/bin/nextsim.exec[0x4822bc]
+[c78-7:179547] [15] /cluster/work/jobs/395484/bin/nextsim.exec[0x483569]
+[c78-7:179547] [16] /cluster/work/jobs/395484/bin/nextsim.exec(main+0x230)[0x424a70]
+[c78-7:179547] [17] /lib64/libc.so.6(__libc_start_main+0xf5)[0x2afbdab81495]
+[c78-7:179547] [18] /cluster/work/jobs/395484/bin/nextsim.exec[0x424bb6]
+[c78-7:179547] *** End of error message ***
+[c78-7:179548] [ 0] /lib64/libpthread.so.0(+0xf5d0)[0x2ac800ee25d0]
+[c78-7:179548] [ 1] /lib64/libc.so.6(gsignal+0x37)[0x2ac8011262c7]
+[c78-7:179548] [ 2] /lib64/libc.so.6(abort+0x148)[0x2ac8011279b8]
+[c78-7:179548] [ 3] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(_ZN9__gnu_cxx27__verbose_terminate_handlerEv+0x15d)[0x2ac7ff2bff1d]
+[c78-7:179548] [ 4] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x97ed6)[0x2ac7ff2bded6]
+[c78-7:179548] [ 5] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x97f21)[0x2ac7ff2bdf21]
+[c78-7:179548] [ 6] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x98139)[0x2ac7ff2be139]
+[c78-7:179548] [ 7] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x96ec2)[0x2ac7ff2bcec2]
+[c78-7:179548] [ 8] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_ZN4bamg4Mesh8ReadMeshEPiPdS2_ii+0x36a)[0x2ac80093650a]
+[c78-7:179548] [ 9] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_ZN4bamg4MeshC1EPiPdS2_ii+0x9e)[0x2ac80094a25e]
+[c78-7:179548] [10] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_Z16BamgConvertMeshxP8BamgMeshP8BamgGeomPiPdS4_ii+0x5c)[0x2ac80098141c]
+[c78-7:179548] [11] /cluster/work/jobs/395484/bin/nextsim.exec[0x473234]
+[c78-7:179548] [12] /cluster/work/jobs/395484/bin/nextsim.exec[0x474065]
+[c78-7:179548] [13] /cluster/work/jobs/395484/bin/nextsim.exec[0x474aff]
+[c78-7:179548] [14] /cluster/work/jobs/395484/bin/nextsim.exec[0x4822bc]
+[c78-7:179548] [15] /cluster/work/jobs/395484/bin/nextsim.exec[0x483569]
+[c78-7:179548] [16] /cluster/work/jobs/395484/bin/nextsim.exec(main+0x230)[0x424a70]
+[c78-7:179548] [17] /lib64/libc.so.6(__libc_start_main+0xf5)[0x2ac801112495]
+[c78-7:179548] [18] /cluster/work/jobs/395484/bin/nextsim.exec[0x424bb6]
+[c78-7:179548] *** End of error message ***
+[c78-7:179549] [ 0] /lib64/libpthread.so.0(+0xf5d0)[0x2afd716845d0]
+[c78-7:179549] [ 1] /lib64/libc.so.6(gsignal+0x37)[0x2afd718c82c7]
+[c78-7:179549] [ 2] /lib64/libc.so.6(abort+0x148)[0x2afd718c99b8]
+[c78-7:179549] [ 3] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(_ZN9__gnu_cxx27__verbose_terminate_handlerEv+0x15d)[0x2afd6fa61f1d]
+[c78-7:179549] [ 4] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x97ed6)[0x2afd6fa5fed6]
+[c78-7:179549] [ 5] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x97f21)[0x2afd6fa5ff21]
+[c78-7:179549] [ 6] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x98139)[0x2afd6fa60139]
+[c78-7:179549] [ 7] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x96ec2)[0x2afd6fa5eec2]
+[c78-7:179549] [ 8] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_ZN4bamg4Mesh8ReadMeshEPiPdS2_ii+0x36a)[0x2afd710d850a]
+[c78-7:179549] [ 9] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_ZN4bamg4MeshC1EPiPdS2_ii+0x9e)[0x2afd710ec25e]
+[c78-7:179549] [10] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_Z16BamgConvertMeshxP8BamgMeshP8BamgGeomPiPdS4_ii+0x5c)[0x2afd7112341c]
+[c78-7:179549] [11] /cluster/work/jobs/395484/bin/nextsim.exec[0x473234]
+[c78-7:179549] [12] /cluster/work/jobs/395484/bin/nextsim.exec[0x474065]
+[c78-7:179549] [13] /cluster/work/jobs/395484/bin/nextsim.exec[0x474aff]
+[c78-7:179549] [14] /cluster/work/jobs/395484/bin/nextsim.exec[0x4822bc]
+[c78-7:179549] [15] /cluster/work/jobs/395484/bin/nextsim.exec[0x483569]
+[c78-7:179549] [16] /cluster/work/jobs/395484/bin/nextsim.exec(main+0x230)[0x424a70]
+[c78-7:179549] [17] /lib64/libc.so.6(__libc_start_main+0xf5)[0x2afd718b4495]
+[c78-7:179549] [18] /cluster/work/jobs/395484/bin/nextsim.exec[0x424bb6]
+[c78-7:179549] *** End of error message ***
+[c78-7:179550] [ 0] /lib64/libpthread.so.0(+0xf5d0)[0x2b6441b1a5d0]
+[c78-7:179550] [ 1] /lib64/libc.so.6(gsignal+0x37)[0x2b6441d5e2c7]
+[c78-7:179550] [ 2] /lib64/libc.so.6(abort+0x148)[0x2b6441d5f9b8]
+[c78-7:179550] [ 3] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(_ZN9__gnu_cxx27__verbose_terminate_handlerEv+0x15d)[0x2b643fef7f1d]
+[c78-7:179550] [ 4] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x97ed6)[0x2b643fef5ed6]
+[c78-7:179550] [ 5] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x97f21)[0x2b643fef5f21]
+[c78-7:179550] [ 6] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x98139)[0x2b643fef6139]
+[c78-7:179550] [ 7] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x96ec2)[0x2b643fef4ec2]
+[c78-7:179550] [ 8] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_ZN4bamg4Mesh8ReadMeshEPiPdS2_ii+0x36a)[0x2b644156e50a]
+[c78-7:179550] [ 9] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_ZN4bamg4MeshC1EPiPdS2_ii+0x9e)[0x2b644158225e]
+[c78-7:179550] [10] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_Z16BamgConvertMeshxP8BamgMeshP8BamgGeomPiPdS4_ii+0x5c)[0x2b64415b941c]
+[c78-7:179550] [11] /cluster/work/jobs/395484/bin/nextsim.exec[0x473234]
+[c78-7:179550] [12] /cluster/work/jobs/395484/bin/nextsim.exec[0x474065]
+[c78-7:179550] [13] /cluster/work/jobs/395484/bin/nextsim.exec[0x474aff]
+[c78-7:179550] [14] /cluster/work/jobs/395484/bin/nextsim.exec[0x4822bc]
+[c78-7:179550] [15] /cluster/work/jobs/395484/bin/nextsim.exec[0x483569]
+[c78-7:179550] [16] /cluster/work/jobs/395484/bin/nextsim.exec(main+0x230)[0x424a70]
+[c78-7:179550] [17] /lib64/libc.so.6(__libc_start_main+0xf5)[0x2b6441d4a495]
+[c78-7:179550] [18] /cluster/work/jobs/395484/bin/nextsim.exec[0x424bb6]
+[c78-7:179550] *** End of error message ***
+[c78-7:179551] [ 0] /lib64/libpthread.so.0(+0xf5d0)[0x2b91dfa255d0]
+[c78-7:179551] [ 1] /lib64/libc.so.6(gsignal+0x37)[0x2b91dfc692c7]
+[c78-7:179551] [ 2] /lib64/libc.so.6(abort+0x148)[0x2b91dfc6a9b8]
+[c78-7:179551] [ 3] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(_ZN9__gnu_cxx27__verbose_terminate_handlerEv+0x15d)[0x2b91dde02f1d]
+[c78-7:179551] [ 4] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x97ed6)[0x2b91dde00ed6]
+[c78-7:179551] [ 5] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x97f21)[0x2b91dde00f21]
+[c78-7:179551] [ 6] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x98139)[0x2b91dde01139]
+[c78-7:179551] [ 7] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x96ec2)[0x2b91dddffec2]
+[c78-7:179551] [ 8] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_ZN4bamg4Mesh8ReadMeshEPiPdS2_ii+0x36a)[0x2b91df47950a]
+[c78-7:179551] [ 9] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_ZN4bamg4MeshC1EPiPdS2_ii+0x9e)[0x2b91df48d25e]
+[c78-7:179551] [10] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_Z16BamgConvertMeshxP8BamgMeshP8BamgGeomPiPdS4_ii+0x5c)[0x2b91df4c441c]
+[c78-7:179551] [11] /cluster/work/jobs/395484/bin/nextsim.exec[0x473234]
+[c78-7:179551] [12] /cluster/work/jobs/395484/bin/nextsim.exec[0x474065]
+[c78-7:179551] [13] /cluster/work/jobs/395484/bin/nextsim.exec[0x474aff]
+[c78-7:179551] [14] /cluster/work/jobs/395484/bin/nextsim.exec[0x4822bc]
+[c78-7:179551] [15] /cluster/work/jobs/395484/bin/nextsim.exec[0x483569]
+[c78-7:179551] [16] /cluster/work/jobs/395484/bin/nextsim.exec(main+0x230)[0x424a70]
+[c78-7:179551] [17] /lib64/libc.so.6(__libc_start_main+0xf5)[0x2b91dfc55495]
+[c78-7:179551] [18] /cluster/work/jobs/395484/bin/nextsim.exec[0x424bb6]
+[c78-7:179551] *** End of error message ***
+[c78-7:179552] [ 0] /lib64/libpthread.so.0(+0xf5d0)[0x2b2e60ff85d0]
+[c78-7:179552] [ 1] /lib64/libc.so.6(gsignal+0x37)[0x2b2e6123c2c7]
+[c78-7:179552] [ 2] /lib64/libc.so.6(abort+0x148)[0x2b2e6123d9b8]
+[c78-7:179552] [ 3] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(_ZN9__gnu_cxx27__verbose_terminate_handlerEv+0x15d)[0x2b2e5f3d5f1d]
+[c78-7:179552] [ 4] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x97ed6)[0x2b2e5f3d3ed6]
+[c78-7:179552] [ 5] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x97f21)[0x2b2e5f3d3f21]
+[c78-7:179552] [ 6] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x98139)[0x2b2e5f3d4139]
+[c78-7:179552] [ 7] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x96ec2)[0x2b2e5f3d2ec2]
+[c78-7:179552] [ 8] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_ZN4bamg4Mesh8ReadMeshEPiPdS2_ii+0x36a)[0x2b2e60a4c50a]
+[c78-7:179552] [ 9] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_ZN4bamg4MeshC1EPiPdS2_ii+0x9e)[0x2b2e60a6025e]
+[c78-7:179552] [10] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_Z16BamgConvertMeshxP8BamgMeshP8BamgGeomPiPdS4_ii+0x5c)[0x2b2e60a9741c]
+[c78-7:179552] [11] /cluster/work/jobs/395484/bin/nextsim.exec[0x473234]
+[c78-7:179552] [12] /cluster/work/jobs/395484/bin/nextsim.exec[0x474065]
+[c78-7:179552] [13] /cluster/work/jobs/395484/bin/nextsim.exec[0x474aff]
+[c78-7:179552] [14] /cluster/work/jobs/395484/bin/nextsim.exec[0x4822bc]
+[c78-7:179552] [15] /cluster/work/jobs/395484/bin/nextsim.exec[0x483569]
+[c78-7:179552] [16] /cluster/work/jobs/395484/bin/nextsim.exec(main+0x230)[0x424a70]
+[c78-7:179552] [17] /lib64/libc.so.6(__libc_start_main+0xf5)[0x2b2e61228495]
+[c78-7:179552] [18] /cluster/work/jobs/395484/bin/nextsim.exec[0x424bb6]
+[c78-7:179552] *** End of error message ***
+[c78-7:179553] [ 0] /lib64/libpthread.so.0(+0xf5d0)[0x2b9cb46355d0]
+[c78-7:179553] [ 1] /lib64/libc.so.6(gsignal+0x37)[0x2b9cb48792c7]
+[c78-7:179553] [ 2] /lib64/libc.so.6(abort+0x148)[0x2b9cb487a9b8]
+[c78-7:179553] [ 3] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(_ZN9__gnu_cxx27__verbose_terminate_handlerEv+0x15d)[0x2b9cb2a12f1d]
+[c78-7:179553] [ 4] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x97ed6)[0x2b9cb2a10ed6]
+[c78-7:179553] [ 5] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x97f21)[0x2b9cb2a10f21]
+[c78-7:179553] [ 6] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x98139)[0x2b9cb2a11139]
+[c78-7:179553] [ 7] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x96ec2)[0x2b9cb2a0fec2]
+[c78-7:179553] [ 8] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_ZN4bamg4Mesh8ReadMeshEPiPdS2_ii+0x36a)[0x2b9cb408950a]
+[c78-7:179553] [ 9] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_ZN4bamg4MeshC1EPiPdS2_ii+0x9e)[0x2b9cb409d25e]
+[c78-7:179553] [10] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_Z16BamgConvertMeshxP8BamgMeshP8BamgGeomPiPdS4_ii+0x5c)[0x2b9cb40d441c]
+[c78-7:179553] [11] /cluster/work/jobs/395484/bin/nextsim.exec[0x473234]
+[c78-7:179553] [12] /cluster/work/jobs/395484/bin/nextsim.exec[0x474065]
+[c78-7:179553] [13] /cluster/work/jobs/395484/bin/nextsim.exec[0x474aff]
+[c78-7:179553] [14] /cluster/work/jobs/395484/bin/nextsim.exec[0x4822bc]
+[c78-7:179553] [15] /cluster/work/jobs/395484/bin/nextsim.exec[0x483569]
+[c78-7:179553] [16] /cluster/work/jobs/395484/bin/nextsim.exec(main+0x230)[0x424a70]
+[c78-7:179553] [17] /lib64/libc.so.6(__libc_start_main+0xf5)[0x2b9cb4865495]
+[c78-7:179553] [18] /cluster/work/jobs/395484/bin/nextsim.exec[0x424bb6]
+[c78-7:179553] *** End of error message ***
+[c78-7:179522] [ 3] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(_ZN9__gnu_cxx27__verbose_terminate_handlerEv+0x15d)[0x2b35925ecf1d]
+[c78-7:179522] [ 4] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x97ed6)[0x2b35925eaed6]
+[c78-7:179522] [ 5] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x97f21)[0x2b35925eaf21]
+[c78-7:179522] [ 6] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x98139)[0x2b35925eb139]
+[c78-7:179522] [ 7] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x96ec2)[0x2b35925e9ec2]
+[c78-7:179522] [ 8] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_ZN4bamg4Mesh8ReadMeshEPiPdS2_ii+0x36a)[0x2b3593c6350a]
+[c78-7:179522] [ 9] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_ZN4bamg4MeshC1EPiPdS2_ii+0x9e)[0x2b3593c7725e]
+[c78-7:179522] [10] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_Z16BamgConvertMeshxP8BamgMeshP8BamgGeomPiPdS4_ii+0x5c)[0x2b3593cae41c]
+[c78-7:179522] [11] /cluster/work/jobs/395484/bin/nextsim.exec[0x473234]
+[c78-7:179522] [12] /cluster/work/jobs/395484/bin/nextsim.exec[0x474065]
+[c78-7:179522] [13] /cluster/work/jobs/395484/bin/nextsim.exec[0x474aff]
+[c78-7:179522] [14] /cluster/work/jobs/395484/bin/nextsim.exec[0x4822bc]
+[c78-7:179522] [15] /cluster/work/jobs/395484/bin/nextsim.exec[0x483569]
+[c78-7:179522] [16] /cluster/work/jobs/395484/bin/nextsim.exec(main+0x230)[0x424a70]
+[c78-7:179522] [17] /lib64/libc.so.6(__libc_start_main+0xf5)[0x2b359443f495]
+[c78-7:179522] [18] /cluster/work/jobs/395484/bin/nextsim.exec[0x424bb6]
+[c78-7:179522] *** End of error message ***
+[c78-7:179523] [ 2] /lib64/libc.so.6(abort+0x148)[0x2ab7cf9249b8]
+[c78-7:179523] [ 3] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(_ZN9__gnu_cxx27__verbose_terminate_handlerEv+0x15d)[0x2ab7cdabcf1d]
+[c78-7:179523] [ 4] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x97ed6)[0x2ab7cdabaed6]
+[c78-7:179523] [ 5] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x97f21)[0x2ab7cdabaf21]
+[c78-7:179523] [ 6] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x98139)[0x2ab7cdabb139]
+[c78-7:179523] [ 7] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x96ec2)[0x2ab7cdab9ec2]
+[c78-7:179523] [ 8] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_ZN4bamg4Mesh8ReadMeshEPiPdS2_ii+0x36a)[0x2ab7cf13350a]
+[c78-7:179523] [ 9] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_ZN4bamg4MeshC1EPiPdS2_ii+0x9e)[0x2ab7cf14725e]
+[c78-7:179523] [10] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_Z16BamgConvertMeshxP8BamgMeshP8BamgGeomPiPdS4_ii+0x5c)[0x2ab7cf17e41c]
+[c78-7:179523] [11] /cluster/work/jobs/395484/bin/nextsim.exec[0x473234]
+[c78-7:179523] [12] /cluster/work/jobs/395484/bin/nextsim.exec[0x474065]
+[c78-7:179523] [13] /cluster/work/jobs/395484/bin/nextsim.exec[0x474aff]
+[c78-7:179523] [14] /cluster/work/jobs/395484/bin/nextsim.exec[0x4822bc]
+[c78-7:179523] [15] /cluster/work/jobs/395484/bin/nextsim.exec[0x483569]
+[c78-7:179523] [16] /cluster/work/jobs/395484/bin/nextsim.exec(main+0x230)[0x424a70]
+[c78-7:179523] [17] /lib64/libc.so.6(__libc_start_main+0xf5)[0x2ab7cf90f495]
+[c78-7:179523] [18] /cluster/work/jobs/395484/bin/nextsim.exec[0x424bb6]
+[c78-7:179523] *** End of error message ***
+[c78-7:179524] [ 3] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(_ZN9__gnu_cxx27__verbose_terminate_handlerEv+0x15d)[0x2b49cd668f1d]
+[c78-7:179524] [ 4] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x97ed6)[0x2b49cd666ed6]
+[c78-7:179524] [ 5] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x97f21)[0x2b49cd666f21]
+[c78-7:179524] [ 6] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x98139)[0x2b49cd667139]
+[c78-7:179524] [ 7] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x96ec2)[0x2b49cd665ec2]
+[c78-7:179524] [ 8] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_ZN4bamg4Mesh8ReadMeshEPiPdS2_ii+0x36a)[0x2b49cecdf50a]
+[c78-7:179524] [ 9] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_ZN4bamg4MeshC1EPiPdS2_ii+0x9e)[0x2b49cecf325e]
+[c78-7:179524] [10] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_Z16BamgConvertMeshxP8BamgMeshP8BamgGeomPiPdS4_ii+0x5c)[0x2b49ced2a41c]
+[c78-7:179524] [11] /cluster/work/jobs/395484/bin/nextsim.exec[0x473234]
+[c78-7:179524] [12] /cluster/work/jobs/395484/bin/nextsim.exec[0x474065]
+[c78-7:179524] [13] /cluster/work/jobs/395484/bin/nextsim.exec[0x474aff]
+[c78-7:179524] [14] /cluster/work/jobs/395484/bin/nextsim.exec[0x4822bc]
+[c78-7:179524] [15] /cluster/work/jobs/395484/bin/nextsim.exec[0x483569]
+[c78-7:179524] [16] /cluster/work/jobs/395484/bin/nextsim.exec(main+0x230)[0x424a70]
+[c78-7:179524] [17] /lib64/libc.so.6(__libc_start_main+0xf5)[0x2b49cf4bb495]
+[c78-7:179524] [18] /cluster/work/jobs/395484/bin/nextsim.exec[0x424bb6]
+[c78-7:179524] *** End of error message ***
+[c78-7:179525] [ 4] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x97ed6)[0x2ab441150ed6]
+[c78-7:179525] [ 5] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x97f21)[0x2ab441150f21]
+[c78-7:179525] [ 6] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x98139)[0x2ab441151139]
+[c78-7:179525] [ 7] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x96ec2)[0x2ab44114fec2]
+[c78-7:179525] [ 8] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_ZN4bamg4Mesh8ReadMeshEPiPdS2_ii+0x36a)[0x2ab4427c950a]
+[c78-7:179525] [ 9] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_ZN4bamg4MeshC1EPiPdS2_ii+0x9e)[0x2ab4427dd25e]
+[c78-7:179525] [10] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_Z16BamgConvertMeshxP8BamgMeshP8BamgGeomPiPdS4_ii+0x5c)[0x2ab44281441c]
+[c78-7:179525] [11] /cluster/work/jobs/395484/bin/nextsim.exec[0x473234]
+[c78-7:179525] [12] /cluster/work/jobs/395484/bin/nextsim.exec[0x474065]
+[c78-7:179525] [13] /cluster/work/jobs/395484/bin/nextsim.exec[0x474aff]
+[c78-7:179525] [14] /cluster/work/jobs/395484/bin/nextsim.exec[0x4822bc]
+[c78-7:179525] [15] /cluster/work/jobs/395484/bin/nextsim.exec[0x483569]
+[c78-7:179525] [16] /cluster/work/jobs/395484/bin/nextsim.exec(main+0x230)[0x424a70]
+[c78-7:179525] [17] /lib64/libc.so.6(__libc_start_main+0xf5)[0x2ab442fa5495]
+[c78-7:179525] [18] /cluster/work/jobs/395484/bin/nextsim.exec[0x424bb6]
+[c78-7:179525] *** End of error message ***
+[c78-7:179526] [ 4] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x97ed6)[0x2b2b9187aed6]
+[c78-7:179526] [ 5] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x97f21)[0x2b2b9187af21]
+[c78-7:179526] [ 6] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x98139)[0x2b2b9187b139]
+[c78-7:179526] [ 7] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x96ec2)[0x2b2b91879ec2]
+[c78-7:179526] [ 8] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_ZN4bamg4Mesh8ReadMeshEPiPdS2_ii+0x36a)[0x2b2b92ef350a]
+[c78-7:179526] [ 9] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_ZN4bamg4MeshC1EPiPdS2_ii+0x9e)[0x2b2b92f0725e]
+[c78-7:179526] [10] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_Z16BamgConvertMeshxP8BamgMeshP8BamgGeomPiPdS4_ii+0x5c)[0x2b2b92f3e41c]
+[c78-7:179526] [11] /cluster/work/jobs/395484/bin/nextsim.exec[0x473234]
+[c78-7:179526] [12] /cluster/work/jobs/395484/bin/nextsim.exec[0x474065]
+[c78-7:179526] [13] /cluster/work/jobs/395484/bin/nextsim.exec[0x474aff]
+[c78-7:179526] [14] /cluster/work/jobs/395484/bin/nextsim.exec[0x4822bc]
+[c78-7:179526] [15] /cluster/work/jobs/395484/bin/nextsim.exec[0x483569]
+[c78-7:179526] [16] /cluster/work/jobs/395484/bin/nextsim.exec(main+0x230)[0x424a70]
+[c78-7:179526] [17] /lib64/libc.so.6(__libc_start_main+0xf5)[0x2b2b936cf495]
+[c78-7:179526] [18] /cluster/work/jobs/395484/bin/nextsim.exec[0x424bb6]
+[c78-7:179526] *** End of error message ***
+[c78-7:179527] [ 6] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x98139)[0x2acfc2ef2139]
+[c78-7:179527] [ 7] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x96ec2)[0x2acfc2ef0ec2]
+[c78-7:179527] [ 8] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_ZN4bamg4Mesh8ReadMeshEPiPdS2_ii+0x36a)[0x2acfc456a50a]
+[c78-7:179527] [ 9] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_ZN4bamg4MeshC1EPiPdS2_ii+0x9e)[0x2acfc457e25e]
+[c78-7:179527] [10] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_Z16BamgConvertMeshxP8BamgMeshP8BamgGeomPiPdS4_ii+0x5c)[0x2acfc45b541c]
+[c78-7:179527] [11] /cluster/work/jobs/395484/bin/nextsim.exec[0x473234]
+[c78-7:179527] [12] /cluster/work/jobs/395484/bin/nextsim.exec[0x474065]
+[c78-7:179527] [13] /cluster/work/jobs/395484/bin/nextsim.exec[0x474aff]
+[c78-7:179527] [14] /cluster/work/jobs/395484/bin/nextsim.exec[0x4822bc]
+[c78-7:179527] [15] /cluster/work/jobs/395484/bin/nextsim.exec[0x483569]
+[c78-7:179527] [16] /cluster/work/jobs/395484/bin/nextsim.exec(main+0x230)[0x424a70]
+[c78-7:179527] [17] /lib64/libc.so.6(__libc_start_main+0xf5)[0x2acfc4d46495]
+[c78-7:179527] [18] /cluster/work/jobs/395484/bin/nextsim.exec[0x424bb6]
+[c78-7:179527] *** End of error message ***
+[c78-7:179528] [ 5] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x97f21)[0x2b94be85af21]
+[c78-7:179528] [ 6] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x98139)[0x2b94be85b139]
+[c78-7:179528] [ 7] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x96ec2)[0x2b94be859ec2]
+[c78-7:179528] [ 8] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_ZN4bamg4Mesh8ReadMeshEPiPdS2_ii+0x36a)[0x2b94bfed350a]
+[c78-7:179528] [ 9] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_ZN4bamg4MeshC1EPiPdS2_ii+0x9e)[0x2b94bfee725e]
+[c78-7:179528] [10] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_Z16BamgConvertMeshxP8BamgMeshP8BamgGeomPiPdS4_ii+0x5c)[0x2b94bff1e41c]
+[c78-7:179528] [11] /cluster/work/jobs/395484/bin/nextsim.exec[0x473234]
+[c78-7:179528] [12] /cluster/work/jobs/395484/bin/nextsim.exec[0x474065]
+[c78-7:179528] [13] /cluster/work/jobs/395484/bin/nextsim.exec[0x474aff]
+[c78-7:179528] [14] /cluster/work/jobs/395484/bin/nextsim.exec[0x4822bc]
+[c78-7:179528] [15] /cluster/work/jobs/395484/bin/nextsim.exec[0x483569]
+[c78-7:179528] [16] /cluster/work/jobs/395484/bin/nextsim.exec(main+0x230)[0x424a70]
+[c78-7:179528] [17] /lib64/libc.so.6(__libc_start_main+0xf5)[0x2b94c06af495]
+[c78-7:179528] [18] /cluster/work/jobs/395484/bin/nextsim.exec[0x424bb6]
+[c78-7:179528] *** End of error message ***
+[c78-7:179529] [ 7] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x96ec2)[0x2b1baec9bec2]
+[c78-7:179529] [ 8] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_ZN4bamg4Mesh8ReadMeshEPiPdS2_ii+0x36a)[0x2b1bb031550a]
+[c78-7:179529] [ 9] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_ZN4bamg4MeshC1EPiPdS2_ii+0x9e)[0x2b1bb032925e]
+[c78-7:179529] [10] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_Z16BamgConvertMeshxP8BamgMeshP8BamgGeomPiPdS4_ii+0x5c)[0x2b1bb036041c]
+[c78-7:179529] [11] /cluster/work/jobs/395484/bin/nextsim.exec[0x473234]
+[c78-7:179529] [12] /cluster/work/jobs/395484/bin/nextsim.exec[0x474065]
+[c78-7:179529] [13] /cluster/work/jobs/395484/bin/nextsim.exec[0x474aff]
+[c78-7:179529] [14] /cluster/work/jobs/395484/bin/nextsim.exec[0x4822bc]
+[c78-7:179529] [15] /cluster/work/jobs/395484/bin/nextsim.exec[0x483569]
+[c78-7:179529] [16] /cluster/work/jobs/395484/bin/nextsim.exec(main+0x230)[0x424a70]
+[c78-7:179529] [17] /lib64/libc.so.6(__libc_start_main+0xf5)[0x2b1bb0af1495]
+[c78-7:179529] [18] /cluster/work/jobs/395484/bin/nextsim.exec[0x424bb6]
+[c78-7:179529] *** End of error message ***
+[c78-7:179530] [ 7] /cluster/software/GCCcore/6.3.0/lib64/libstdc++.so.6(+0x96ec2)[0x2afa2ed9cec2]
+[c78-7:179530] [ 8] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_ZN4bamg4Mesh8ReadMeshEPiPdS2_ii+0x36a)[0x2afa3041650a]
+[c78-7:179530] [ 9] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_ZN4bamg4MeshC1EPiPdS2_ii+0x9e)[0x2afa3042a25e]
+[c78-7:179530] [10] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_Z16BamgConvertMeshxP8BamgMeshP8BamgGeomPiPdS4_ii+0x5c)[0x2afa3046141c]
+[c78-7:179530] [11] /cluster/work/jobs/395484/bin/nextsim.exec[0x473234]
+[c78-7:179530] [12] /cluster/work/jobs/395484/bin/nextsim.exec[0x474065]
+[c78-7:179530] [13] /cluster/work/jobs/395484/bin/nextsim.exec[0x474aff]
+[c78-7:179530] [14] /cluster/work/jobs/395484/bin/nextsim.exec[0x4822bc]
+[c78-7:179530] [15] /cluster/work/jobs/395484/bin/nextsim.exec[0x483569]
+[c78-7:179530] [16] /cluster/work/jobs/395484/bin/nextsim.exec(main+0x230)[0x424a70]
+[c78-7:179530] [17] /lib64/libc.so.6(__libc_start_main+0xf5)[0x2afa30bf2495]
+[c78-7:179530] [18] /cluster/work/jobs/395484/bin/nextsim.exec[0x424bb6]
+[c78-7:179530] *** End of error message ***
+[c78-7:179531] [ 9] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_ZN4bamg4MeshC1EPiPdS2_ii+0x9e)[0x2ba2aaeb825e]
+[c78-7:179531] [10] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_Z16BamgConvertMeshxP8BamgMeshP8BamgGeomPiPdS4_ii+0x5c)[0x2ba2aaeef41c]
+[c78-7:179531] [11] /cluster/work/jobs/395484/bin/nextsim.exec[0x473234]
+[c78-7:179531] [12] /cluster/work/jobs/395484/bin/nextsim.exec[0x474065]
+[c78-7:179531] [13] /cluster/work/jobs/395484/bin/nextsim.exec[0x474aff]
+[c78-7:179531] [14] /cluster/work/jobs/395484/bin/nextsim.exec[0x4822bc]
+[c78-7:179531] [15] /cluster/work/jobs/395484/bin/nextsim.exec[0x483569]
+[c78-7:179531] [16] /cluster/work/jobs/395484/bin/nextsim.exec(main+0x230)[0x424a70]
+[c78-7:179531] [17] /lib64/libc.so.6(__libc_start_main+0xf5)[0x2ba2ab680495]
+[c78-7:179531] [18] /cluster/work/jobs/395484/bin/nextsim.exec[0x424bb6]
+[c78-7:179531] *** End of error message ***
+[c78-7:179532] [10] /cluster/home/chengsukun/src/nextsim/lib/libbamg.so.1(_Z16BamgConvertMeshxP8BamgMeshP8BamgGeomPiPdS4_ii+0x5c)[0x2ad431ed741c]
+[c78-7:179532] [11] /cluster/work/jobs/395484/bin/nextsim.exec[0x473234]
+[c78-7:179532] [12] /cluster/work/jobs/395484/bin/nextsim.exec[0x474065]
+[c78-7:179532] [13] /cluster/work/jobs/395484/bin/nextsim.exec[0x474aff]
+[c78-7:179532] [14] /cluster/work/jobs/395484/bin/nextsim.exec[0x4822bc]
+[c78-7:179532] [15] /cluster/work/jobs/395484/bin/nextsim.exec[0x483569]
+[c78-7:179532] [16] /cluster/work/jobs/395484/bin/nextsim.exec(main+0x230)[0x424a70]
+[c78-7:179532] [17] /lib64/libc.so.6(__libc_start_main+0xf5)[0x2ad432668495]
+[c78-7:179532] [18] /cluster/work/jobs/395484/bin/nextsim.exec[0x424bb6]
+[c78-7:179532] *** End of error message ***
+[c78-7:179533] [13] /cluster/work/jobs/395484/bin/nextsim.exec[0x474aff]
+[c78-7:179533] [14] /cluster/work/jobs/395484/bin/nextsim.exec[0x4822bc]
+[c78-7:179533] [15] /cluster/work/jobs/395484/bin/nextsim.exec[0x483569]
+[c78-7:179533] [16] /cluster/work/jobs/395484/bin/nextsim.exec(main+0x230)[0x424a70]
+[c78-7:179533] [17] /lib64/libc.so.6(__libc_start_main+0xf5)[0x2b2a3aa84495]
+[c78-7:179533] [18] /cluster/work/jobs/395484/bin/nextsim.exec[0x424bb6]
+[c78-7:179533] *** End of error message ***
+[c78-7:179534] [17] /lib64/libc.so.6(__libc_start_main+0xf5)[0x2b8f31b1c495]
+[c78-7:179534] [18] /cluster/work/jobs/395484/bin/nextsim.exec[0x424bb6]
+[c78-7:179534] *** End of error message ***
+[c78-7:179535] *** End of error message ***
+srun: error: c78-7: tasks 1-18,20-31: Aborted (core dumped)
+srun: error: c78-7: task 19: Aborted (core dumped)
+srun: error: c78-7: task 0: Aborted (core dumped)

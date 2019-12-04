@@ -16,7 +16,7 @@ exporter_path=/cluster/work/users/chengsukun/src/IO_nextsim/neXtSIM_test09_01_wi
 # section for mesh options
 [mesh]
 filename=small_arctic_10km.msh
-partitioner-fileformat=binary #ascii
+partitioner-fileformat=ascii #binary
 partitioner=metis
 partitioner-space=disk #memory
 
