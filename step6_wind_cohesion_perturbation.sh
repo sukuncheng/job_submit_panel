@@ -4,13 +4,14 @@
 source ./fram_sukun/nextsim.src 
 # 
 rm nohup.out
-dir_list=("20080101T000000Z" "20080110T000000Z" "20080119T000000Z" "20080128T000000Z" "20080206T000000Z" \
-          "20080215T000000Z" "20080224T000000Z" "20080304T000000Z" "20080313T000000Z" \
-          "20080322T000000Z" "20080331T000000Z" "20080409T000000Z" "20080418T000000Z" ) # "20080427T000000Z"
-time_init_list=("2008-01-01" "2008-01-10" "2008-01-19" "2008-01-28" "2008-02-06" \
-                "2008-02-15" "2008-02-24" "2008-03-04" "2008-03-13" \
-                "2008-03-22" "2008-03-31" "2008-04-09" "2008-04-18" )
-
+# dir_list=("20080101T000000Z" "20080110T000000Z" "20080119T000000Z" "20080128T000000Z" "20080206T000000Z" \
+#           "20080215T000000Z" "20080224T000000Z" "20080304T000000Z" "20080313T000000Z" \
+#           "20080322T000000Z" "20080331T000000Z" "20080409T000000Z" "20080418T000000Z" ) # "20080427T000000Z"
+# time_init_list=("2008-01-01" "2008-01-10" "2008-01-19" "2008-01-28" "2008-02-06" \
+#                 "2008-02-15" "2008-02-24" "2008-03-04" "2008-03-13" \
+#                 "2008-03-22" "2008-03-31" "2008-04-09" "2008-04-18" )
+dir_list="20080110T000000Z"
+time_init_list="2008-01-10"
 # set evironmetnal variables
 cp ./nextsim.cfg_step456 ./nextsim.cfg
 config=$Job_sub_dir/nextsim.cfg
@@ -22,9 +23,9 @@ opened_script=$Job_sub_dir/`basename $0`
 # 2. copy files to work directory via nextsim/data/ in slurm.template.sh
 restart_dir=$IO_nextsim/neXtSIM_test09_01_winter_step2/restart
 ########################## changes  #########################################
-Output_dir=/neXtSIM_test11_06_winter_step4_wind_perturbation
-wind_perturbation='yes'
-cohesion_perturbation='no'
+Output_dir=/neXtSIM_test12_04_winter_step5_cohesion_perturbation
+wind_perturbation='no'
+cohesion_perturbation='yes'
 #
 # Output_dir=/neXtSIM_test10_28_winter_step5_cohesion_perturbation
 # wind_perturbation='no'
@@ -53,9 +54,9 @@ else
 fi
 
 #############################################################################
-for (( i_date=1; i_date<= ${#dir_list[@]}; i_date++ )); do
+for (( i_date=1; i_date<=${#dir_list[@]}; i_date++ )); do #
       if [ $i_date == 1]
-            Ne=40
+            Ne=80
       then
             Ne=20 # ensemble size
       fi
@@ -101,7 +102,6 @@ done
 
 # `pwd` - return of command pwd
 # #/`printf "ENS%.2d" "$i_ens"`
-Ne=20
 for (( i_date=1; i_date<= ${#dir_list[@]}; i_date++ )); do
 for (( i_ens =1; i_ens <=$Ne; i_ens++ )); do 
       # # make the output directories L2
@@ -109,7 +109,8 @@ for (( i_ens =1; i_ens <=$Ne; i_ens++ )); do
       cd $ENSdir
       #
       if !(grep -q "Simulation done" nextsim.log)
-      then           
+      then          
+          rm *.nc *bin *.dat 
           . $run_script nextsim.cfg 1 -e ~/nextsim.ensemble.src       # submit job  
       fi
       # a block code to enable sequence job-submitting

@@ -55,7 +55,7 @@ use_osisaf_drifters=true
 use_equally_spaced_drifters=true
 
 [moorings]
-use_moorings=true
+use_moorings=false
 spacing=10
 output_timestep=1
 
