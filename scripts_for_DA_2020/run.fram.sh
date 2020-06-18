@@ -1,1 +1,0 @@
-fram_sukun/run.fram.sh
