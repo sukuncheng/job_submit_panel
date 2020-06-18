@@ -25,22 +25,24 @@
 # 6. ln -s enkf-c/bin/enkf* to 
 
 #---------  Confirm working/data/ouput directories ----
-    source ../fram_sukun/nextsim.src 
-    rm nohup.out
     RUNPATH=$(cd `dirname $0`;pwd)       # path of this .sh 
-    RUNFILE=$(basename $0)          # name of this .sh
-    OBS_DIR=/cluster/projects/nn2993k/sim/data/CS2_SMOS_v2.2 #   $NEXTSIM_DATA_DIR/CS2SMOS
-    OBSNAME_PREFIX=$NEXTSIM_DATA_DIR"/CS2SMOS/W_XX-ESA,SMOS_CS2,NH_25KM_EASE2_" 
+    RUNFILE=$(basename $0)               # name of this .sh
+    
+    source $RUNPATH/nextsim.src 
+    #rm nohup.out
+    REFGRID=$RUNPATH/reference_grid.nc  # enkf reference grid  
+    ENSPATH=$IO_nextsim/test_18_06_ensemble_size    # output path
+    
+    OBSNAME_PREFIX=$CLUSTER_ROOT_DIR/data/CS2_SMOS_v2.2/"CS2SMOS/W_XX-ESA,SMOS_CS2,NH_25KM_EASE2_" 
     OBSNAME_SUFFIX="_r_v202_01_l4sit"  
-    REFGRID=$Job_submit_path/reference_grid.nc  # enkf reference grid  
     
 #--------  experiment settings ------------
-    ENSPATH=$Job_submit_path/test_18_06_ensemble_size    # output path
+    
     time_init=2018-11-11                  # starting date of simulation
     #   tduration*duration is the total simulation time in days
     duration=1    # nextsim duration in a forecast-analysisf cycle, usually CS2SMOS frequency
     tduration=1   # number of forecast-analysis cycle. 
-    UPDATE=1      # UPDATE=0 indicates forecast is executed without EnKF
+    UPDATE=0      # UPDATE=0 indicates forecast is executed without EnKF
     ESIZE=2       # ensemble size
     NPROC=4       # cpu cores  
     maximum_instants=2   # max instants (submitted jobs)
@@ -48,7 +50,7 @@
     if [ $UPDATE -gt 0 ]; then 
         echo "execute nextsim with EnKF filter!"
     else
-        echo "execute nextsim only, no assimilation!"
+        echo "execute nextsim only"
     fi
 #-------------------------------------------------------------
 # rm -r $ENSPATH
