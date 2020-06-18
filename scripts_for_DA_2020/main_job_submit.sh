@@ -1,7 +1,7 @@
 #!/bin/bash
 #set -e
 # main job submitting script
-# - core.sh includes 1) nextsim, 2) enkf. They call docker individually
+# - core.sh includes 1) nextsim, 2) enkf. 
 # final results are saved in 
 #   ENSPATH/filter/prior/***.nc.analysis  linked in NEXTSIM_DATA_DIR/...
 # Directory structure:
@@ -16,29 +16,35 @@
 #-------------------------------------------------------------
 ## common settings in part1 and part2
 #---  model paths and alias --------------
-    echo "Confirm working/data/ouput directories"
-    NEXTSIMDIR=/home/cheng/Desktop/nextsim  
-    NEXTSIM_DATA_DIR=/home/cheng/Desktop/data #/media/cheng/_cheng/data
-    NEXTSIM_MESH_DIR=/home/cheng/Desktop/mesh #/media/cheng/_cheng/mesh    
-    REFGRID=${NEXTSIM_DATA_DIR}/reference_grid.nc  # enkf reference grid
-    RUNPATH=$(cd `dirname $0`;pwd)  # path of this .sh 
+# Modifications for Fram  
+# 1. comment NEXTSIMDIR path
+# 2. cp reference_grid.nc to data/ 
+# 3. set RUNPATH to IO_nextsim on fram
+# 4. path of CS2SMOS, check ~/src/data
+# 5. put nextsim/bin/nextsim.exec in path
+# 6. ln -s enkf-c/bin/enkf* to 
+
+#---------  Confirm working/data/ouput directories ----
+    source ../fram_sukun/nextsim.src 
+    rm nohup.out
+    RUNPATH=$(cd `dirname $0`;pwd)       # path of this .sh 
     RUNFILE=$(basename $0)          # name of this .sh
+    OBS_DIR=/cluster/projects/nn2993k/sim/data/CS2_SMOS_v2.2 #   $NEXTSIM_DATA_DIR/CS2SMOS
+    OBSNAME_PREFIX=$NEXTSIM_DATA_DIR"/CS2SMOS/W_XX-ESA,SMOS_CS2,NH_25KM_EASE2_" 
+    OBSNAME_SUFFIX="_r_v202_01_l4sit"  
+    REFGRID=$Job_submit_path/reference_grid.nc  # enkf reference grid  
     
 #--------  experiment settings ------------
-    ENSPATH=$RUNPATH/one_step_nextsim_enkf    # output directory
+    ENSPATH=$Job_submit_path/test_18_06_ensemble_size    # output path
     time_init=2018-11-11                  # starting date of simulation
     #   tduration*duration is the total simulation time in days
-    duration=1   # nextsim duration in a forecast-analysisf cycle, which is usually CS2SMOS frequency
-    tduration=1   # number of nextsim-enkf (forecast-analysis) cycle. 
+    duration=1    # nextsim duration in a forecast-analysisf cycle, usually CS2SMOS frequency
+    tduration=1   # number of forecast-analysis cycle. 
     UPDATE=1      # UPDATE=0 indicates forecast is executed without EnKF
-    ESIZE=2      # ensemble size
-    NPROC=6       # cpu cores   
-    # prefix & suffix of observation data, also modify SMOSOBS in part2_core.sh
-    OBSNAME_PREFIX=$NEXTSIM_DATA_DIR"/CS2SMOS/W_XX-ESA,SMOS_CS2,NH_25KM_EASE2_" 
-    OBSNAME_SUFFIX="_r_v202_01_l4sit"    
-    OBS_DIR=/data/CS2SMOS #   $NEXTSIM_DATA_DIR/CS2SMOS
+    ESIZE=2       # ensemble size
+    NPROC=4       # cpu cores  
+    maximum_instants=2   # max instants (submitted jobs)
     #
-    docker_image='nextsim_enkf' # select docker image
     if [ $UPDATE -gt 0 ]; then 
         echo "execute nextsim with EnKF filter!"
     else

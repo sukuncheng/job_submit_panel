@@ -95,31 +95,31 @@ for (( i_date=1; i_date<=${#dir_list[@]}; i_date++ )); do #
       done
 done   
 
-#  . $run_script $cfg 1 -e ~/nextsim.ensemble.src                  
-  #   1 - copy nextsim.exec from NEXTSIMDIR/model/bin in order to run
-  #   -t test run without submit to fram
-  #   -e ~/nextsim.ensemble.src      # envirmonental variables
+# #  . $run_script $cfg 1 -e ~/nextsim.ensemble.src                  
+#   #   1 - copy nextsim.exec from NEXTSIMDIR/model/bin in order to run
+#   #   -t test run without submit to fram
+#   #   -e ~/nextsim.ensemble.src      # envirmonental variables
 
-# `pwd` - return of command pwd
-# #/`printf "ENS%.2d" "$i_ens"`
-for (( i_date=1; i_date<= ${#dir_list[@]}; i_date++ )); do
-for (( i_ens =1; i_ens <=$Ne; i_ens++ )); do 
-      # # make the output directories L2
-      ENSdir=$IO_nextsim$Output_dir/date$i_date/ENS$i_ens
-      cd $ENSdir
-      #
-      if !(grep -q "Simulation done" nextsim.log)
-      then          
-          rm *.nc *bin *.dat 
-          . $run_script nextsim.cfg 1 -e ~/nextsim.ensemble.src       # submit job  
-      fi
-      # a block code to enable sequence job-submitting
-      job_list=$(squeue -u chengsukun)
-      XPID=$(grep -o chengsuk <<<$job_list |wc -l)  # number of current running jobs
-      while [[ $XPID -ge 10 ]]; do # set the maximum of simultaneous running jobs, don't have to be Ne
-            sleep 20
-            job_list=$(squeue -u chengsukun)
-            XPID=$(grep -o chengsuk <<<$job_list |wc -l)  # number of current running jobs
-      done       
-done
-done   
+# # `pwd` - return of command pwd
+# # #/`printf "ENS%.2d" "$i_ens"`
+# for (( i_date=1; i_date<= ${#dir_list[@]}; i_date++ )); do
+# for (( i_ens =1; i_ens <=$Ne; i_ens++ )); do 
+#       # # make the output directories L2
+#       ENSdir=$IO_nextsim$Output_dir/date$i_date/ENS$i_ens
+#       cd $ENSdir
+#       #
+#       if !(grep -q "Simulation done" nextsim.log)
+#       then          
+#           rm *.nc *bin *.dat 
+#           . $run_script nextsim.cfg 1 -e ~/nextsim.ensemble.src       # submit job  
+#       fi
+#       # a block code to enable sequence job-submitting
+#       job_list=$(squeue -u chengsukun)
+#       XPID=$(grep -o chengsuk <<<$job_list |wc -l)  # number of current running jobs
+#       while [[ $XPID -ge 10 ]]; do # set the maximum of simultaneous running jobs, don't have to be Ne
+#             sleep 20
+#             job_list=$(squeue -u chengsukun)
+#             XPID=$(grep -o chengsuk <<<$job_list |wc -l)  # number of current running jobs
+#       done       
+# done
+# done   

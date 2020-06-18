@@ -28,10 +28,8 @@
         mkdir -p ${MEMPATH}
         cd ${MEMPATH}       
         # pseudo2D.nml
-        # if  use docker,  
-        exporter_path="/docker_io"   # if not use docker , set exporter_path=${MEMPATH}
+        exporter_path=${MEMPATH}
         input_path="/data/restart"
-        #
         sed -e "s;^iopath.*$;iopath = '${exporter_path}';g" \
             -e "s;^randf.*$;randf    = .true.;g" \
             ${RUNPATH}/pseudo2D.nml > ./pseudo2D.nml        # 
@@ -58,7 +56,8 @@
         cp ${REFGRID} ./reference_grid.nc
         #    
         echo "get config files from host_machine/enkf-c directory "
-        cp ${NEXTSIMDIR}/modules/enkf/enkf-c/cfg/* .  # except stats.prm and enoi.prm
+        cp ${NEXTSIMDIR}/modules/enkf/enkf-c/cfg/* .  # exclude stats.prm & enoi.prm
+        cp ${NEXTSIMDIR}/modules/enkf/enkf-c/bin/enkf_* .
         sed -i "s;mpirun;mpirun --allow-run-as-root;g" ./Makefile
         sed -i "s;^ENSSIZE.*$;ENSSIZE = "${ESIZE}";g"  enkf.prm
         sed -i "s;^ENSSIZE.*$;ENSSIZE = "${ESIZE}";g" enkf-global.prm
