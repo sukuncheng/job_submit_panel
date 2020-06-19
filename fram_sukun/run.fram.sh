@@ -168,9 +168,6 @@ then
     echo in order to find slurm.template.sh
     exit 1
 fi
-cmd="cp $Job_sub_dir/fram_sukun/slurm.template.sh $script"
-echo $cmd
-$cmd
 
 # modify the required fields
 sed -i "s/JOB_NAME/$JOB_NAME/g" $script

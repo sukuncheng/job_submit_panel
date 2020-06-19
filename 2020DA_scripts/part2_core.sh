@@ -8,7 +8,7 @@ for (( mem=1; mem<=${ESIZE}; mem++ )); do
     sed -i "s;^restart_from_analysis=.*$;restart_from_analysis="${restart_from_analysis}";g" ./nextsim.cfg 
    
     # submit job        
-    . $RUNPATH/run.fram.sh ./nextsim.cfg 1 -e $RUNPATH/nextsim.src       
+    source $ENVFRAM/run.fram.sh ./nextsim.cfg 1 -e $ENVFRAM/nextsim.src       
     # barrier of max instants
     job_list=$(squeue -u chengsukun)
     XPID=$(grep -o chengsuk <<<$job_list |wc -l)  # number of current running jobs

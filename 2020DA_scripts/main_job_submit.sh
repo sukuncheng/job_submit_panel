@@ -25,19 +25,20 @@
 # 6. ln -s enkf-c/bin/enkf* to 
 
 #---------  Confirm working/data/ouput directories ----
-    RUNPATH=$(cd `dirname $0`;pwd)       # path of this .sh 
     RUNFILE=$(basename $0)               # name of this .sh
-    
-    source $RUNPATH/nextsim.src 
+    RUNPATH=$(cd `dirname $0`;pwd)       # path of this .sh 
+    #save backup to nextsim-env/machines/fram_sukun
+    ENVFRAM=/cluster/home/chengsukun/src/fram_job_submit_panel/fram_sukun 
+    source $ENVFRAM/nextsim.ensemble.src
     #rm nohup.out
     REFGRID=$RUNPATH/reference_grid.nc  # enkf reference grid  
     ENSPATH=$IO_nextsim/test_18_06_ensemble_size    # output path
-    
+    # rm -r $ENSPATH    
+    #
     OBSNAME_PREFIX=$CLUSTER_ROOT_DIR/data/CS2_SMOS_v2.2/"CS2SMOS/W_XX-ESA,SMOS_CS2,NH_25KM_EASE2_" 
     OBSNAME_SUFFIX="_r_v202_01_l4sit"  
-    
+
 #--------  experiment settings ------------
-    
     time_init=2018-11-11                  # starting date of simulation
     #   tduration*duration is the total simulation time in days
     duration=1    # nextsim duration in a forecast-analysisf cycle, usually CS2SMOS frequency
@@ -52,10 +53,10 @@
     else
         echo "execute nextsim only"
     fi
-#-------------------------------------------------------------
-# rm -r $ENSPATH
+#-------------------------------------------
+
 # create ensemble directories and files
-. $RUNPATH/part1_initialization.sh   
+source $RUNPATH/part1_initialization.sh   
 # execute ensemble runs
 for (( i=1; i<=${tduration}; i++ )); do
     if [ $i -eq 1 ]; then 
@@ -65,5 +66,5 @@ for (( i=1; i<=${tduration}; i++ )); do
         time_init=$(date +%Y-%m-%d -d "${time_init} + ${duration} day")        
     fi
     # a forecast-analysis cycle  
-    . $RUNPATH/part2_core.sh   
+    source $RUNPATH/part2_core.sh   
 done
