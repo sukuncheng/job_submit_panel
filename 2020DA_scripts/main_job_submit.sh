@@ -29,11 +29,12 @@
     RUNPATH=$(cd `dirname $0`;pwd)       # path of this .sh 
     #save backup to nextsim-env/machines/fram_sukun
     ENVFRAM=/cluster/home/chengsukun/src/fram_job_submit_panel/fram_sukun 
+    source $ENVFRAM/nextsim.src
     source $ENVFRAM/nextsim.ensemble.src
     #rm nohup.out
     REFGRID=$RUNPATH/reference_grid.nc  # enkf reference grid  
     ENSPATH=$IO_nextsim/test_18_06_ensemble_size    # output path
-    # rm -r $ENSPATH    
+    rm -r $ENSPATH    
     #
     OBSNAME_PREFIX=$CLUSTER_ROOT_DIR/data/CS2_SMOS_v2.2/"CS2SMOS/W_XX-ESA,SMOS_CS2,NH_25KM_EASE2_" 
     OBSNAME_SUFFIX="_r_v202_01_l4sit"  

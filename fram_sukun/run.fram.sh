@@ -161,13 +161,17 @@ fi
 
 
 # get slurm template
-script=slurm.${JOB_NAME}.sh
+script=$ENVFRAM/slurm.${JOB_NAME}.sh
 if [ -z "$NEXTSIM_ENV_ROOT_DIR" ]
 then
     echo please define NEXTSIM_ENV_ROOT_DIR environment variable
     echo in order to find slurm.template.sh
     exit 1
 fi
+
+cmd="cp $ENVFRAM/slurm.template.sh $script"
+echo $cmd
+$cmd
 
 # modify the required fields
 sed -i "s/JOB_NAME/$JOB_NAME/g" $script

@@ -1,5 +1,5 @@
 # Environment for compiling and running neXtSIM on fram
-source $SRCPATH/nextsim.src
+#source nextsim.src
 
 # now set USE_ENSEMBLE=1 and set FFTW_DIR
 export USE_ENSEMBLE=1
