@@ -1,7 +1,7 @@
 ! Namelist for mod_random_forcing
 
 &setup
-iopath = '/docker_io'
+iopath = '.'
 xdim     = 3600
 ydim     = 501
 debug = .false.

@@ -23,7 +23,9 @@
 # 4. path of CS2SMOS, check ~/src/data
 # 5. put nextsim/bin/nextsim.exec in path
 # 6. ln -s enkf-c/bin/enkf* to 
-
+# 7. ln -sf /cluster/projects/nn2993k/sim/data/ECMWF_forecast_arctic/* /nextsim/data/ECMWF_forecast_arctic ,  not use INPUT_DATA_DIR includes too many data
+#   same for /cluster/projects/nn2993k/sim/data/CS2_SMOS_v2.2, TOPAZ4RC_daily/20181*, 20190* .
+# CS2_SMOS_v2.2 is weekly data, and variables are different.
 #---------  Confirm working/data/ouput directories ----
     RUNFILE=$(basename $0)               # name of this .sh
     RUNPATH=$(cd `dirname $0`;pwd)       # path of this .sh 
@@ -34,9 +36,9 @@
     #rm nohup.out
     REFGRID=$RUNPATH/reference_grid.nc  # enkf reference grid  
     ENSPATH=$IO_nextsim/test_18_06_ensemble_size    # output path
-    rm -r $ENSPATH    
+    #rm -r $ENSPATH    
     #
-    OBSNAME_PREFIX=$CLUSTER_ROOT_DIR/data/CS2_SMOS_v2.2/"CS2SMOS/W_XX-ESA,SMOS_CS2,NH_25KM_EASE2_" 
+    OBSNAME_PREFIX=$NEXTSIMDIR/data/CS2_SMOS_v2.1/"CS2SMOS/W_XX-ESA,SMOS_CS2,NH_25KM_EASE2_" 
     OBSNAME_SUFFIX="_r_v202_01_l4sit"  
 
 #--------  experiment settings ------------
@@ -44,10 +46,10 @@
     #   tduration*duration is the total simulation time in days
     duration=1    # nextsim duration in a forecast-analysisf cycle, usually CS2SMOS frequency
     tduration=1   # number of forecast-analysis cycle. 
-    UPDATE=0      # UPDATE=0 indicates forecast is executed without EnKF
-    ESIZE=2       # ensemble size
-    NPROC=4       # cpu cores  
-    maximum_instants=2   # max instants (submitted jobs)
+    UPDATE=1      # UPDATE=0 indicates forecast is executed without EnKF
+    ESIZE=3       # ensemble size
+    #NPROC=4       # cpu cores  
+    maximum_instants=10   # max instants (submitted jobs)
     #
     if [ $UPDATE -gt 0 ]; then 
         echo "execute nextsim with EnKF filter!"

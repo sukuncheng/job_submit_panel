@@ -29,11 +29,11 @@
         cd ${MEMPATH}       
         # pseudo2D.nml
         exporter_path=${MEMPATH}
-        input_path="/data/restart"
-        sed -e "s;^iopath.*$;iopath = '${exporter_path}';g" \
+        input_path=$RUNPATH"/restart"
+        sed -e "s;^iopath.*$;iopath = '.';g" \
             -e "s;^randf.*$;randf    = .true.;g" \
             ${RUNPATH}/pseudo2D.nml > ./pseudo2D.nml        # 
-            
+	    
         # nextsim.cfg
         sed -e "s;^duration=.*$;duration="${duration}";g" \
             -e "s;^exporter_path=.*$;exporter_path="${exporter_path}";g" \
@@ -60,7 +60,8 @@
         cp ${NEXTSIMDIR}/modules/enkf/enkf-c/bin/enkf_* .
         sed -i "s;mpirun;mpirun --allow-run-as-root;g" ./Makefile
         sed -i "s;^ENSSIZE.*$;ENSSIZE = "${ESIZE}";g"  enkf.prm
-        sed -i "s;^ENSSIZE.*$;ENSSIZE = "${ESIZE}";g" enkf-global.prm
+        sed -i "s;^ENSSIZE.*$;ENSSIZE = "${ESIZE}";g" enkf-global.prm 
+        sed -i "s;^READER.*$;READER = standard3;g" obs.prm    
     fi
 
     cp ${RUNPATH}/*.sh $ENSPATH/    

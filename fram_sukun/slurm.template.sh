@@ -127,7 +127,8 @@ do
 done
 progdir=$SCRATCH/bin
 cp -a $config $SCRATCH
-pseudo2D=$NEXTSIMDIR/modules/enkf/perturbation/nml/pseudo2D.nml
+#pseudo2D=$NEXTSIMDIR/modules/enkf/perturbation/nml/pseudo2D.nml
+pseudo2D=./pseudo2D.nml # same path as nextsim.cfg set by user
 cp -a $pseudo2D $SCRATCH
 cp -a $SLURM_SUBMIT_DIR/bin/nextsim.exec $progdir
 cp -a $NEXTSIMDIR/data/*  $NEXTSIM_DATA_DIR/*  $SCRATCH/data  # the order allow overwritten of files in different directories, but I don;t know the order

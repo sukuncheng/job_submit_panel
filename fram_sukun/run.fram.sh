@@ -161,7 +161,7 @@ fi
 
 
 # get slurm template
-script=$ENVFRAM/slurm.${JOB_NAME}.sh
+script=slurm.${JOB_NAME}.sh
 if [ -z "$NEXTSIM_ENV_ROOT_DIR" ]
 then
     echo please define NEXTSIM_ENV_ROOT_DIR environment variable
