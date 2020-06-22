@@ -53,7 +53,8 @@
         #
         echo "cd ENSPATH/filter & put reference_grid.nc in it"
         cd $FILTER  
-        cp ${REFGRID} ./reference_grid.nc
+        cp $RUNPATH/reference_grid.nc .
+        cp $RUNPATH/main_enkf_outputs_unix .
         #    
         echo "get config files from host_machine/enkf-c directory "
         cp ${NEXTSIMDIR}/modules/enkf/enkf-c/cfg/* .  # exclude stats.prm & enoi.prm

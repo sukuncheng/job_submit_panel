@@ -34,7 +34,6 @@
     source $ENVFRAM/nextsim.src
     source $ENVFRAM/nextsim.ensemble.src
     #rm nohup.out
-    REFGRID=$RUNPATH/reference_grid.nc  # enkf reference grid  
     ENSPATH=$IO_nextsim/test_18_06_ensemble_size    # output path
     #rm -r $ENSPATH    
     #
@@ -45,7 +44,7 @@
     time_init=2018-11-11                  # starting date of simulation
     #   tduration*duration is the total simulation time in days
     duration=1    # nextsim duration in a forecast-analysisf cycle, usually CS2SMOS frequency
-    tduration=1   # number of forecast-analysis cycle. 
+    tduration=2   # number of forecast-analysis cycle. 
     UPDATE=1      # UPDATE=0 indicates forecast is executed without EnKF
     ESIZE=3       # ensemble size
     #NPROC=4       # cpu cores  
