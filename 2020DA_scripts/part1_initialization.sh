@@ -54,14 +54,17 @@
         echo "cd ENSPATH/filter & put reference_grid.nc in it"
         cd $FILTER  
         cp $RUNPATH/reference_grid.nc .
-        cp $RUNPATH/main_enkf_outputs_unix .
+        cp $RUNPATH/main_enkf_outputs_unix.m .
         #    
         echo "get config files from host_machine/enkf-c directory "
         cp ${NEXTSIMDIR}/modules/enkf/enkf-c/cfg/* .  # exclude stats.prm & enoi.prm
         cp ${NEXTSIMDIR}/modules/enkf/enkf-c/bin/enkf_* .
         sed -i "s;mpirun;mpirun --allow-run-as-root;g" ./Makefile
-        sed -i "s;^ENSSIZE.*$;ENSSIZE = "${ESIZE}";g"  enkf.prm
         sed -i "s;^ENSSIZE.*$;ENSSIZE = "${ESIZE}";g" enkf-global.prm 
+        sed -i "s;^ENSSIZE.*$;ENSSIZE = "${ESIZE}";g"  enkf.prm
+        sed -i "s;^INFLATION.*$;INFLATION = 1.01;g"  enkf.prm
+        sed -i "s;^LOCRAD.*$;LOCRAD = 300;g"  enkf.prm
+        sed -i "s;^RFACTOR.*$;RFACTOR = 1;g"  enkf.prm
         sed -i "s;^READER.*$;READER = standard3;g" obs.prm    
     fi
 

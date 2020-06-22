@@ -70,7 +70,7 @@ if [ ${UPDATE} -gt 0 ]; then
 
     # backup outputs of each cycle
     BACKUP_PATH=${ENSPATH}/DAdata/${time_init}
-    mkdir -p BACKUP_PATH  # save analysis results to DAdata        
+    mkdir -p $BACKUP_PATH  # save analysis results to DAdata        
     mrun main_enkf_outputs_unix  # set mrun= matlab -noslash -nodesktop -batch in .bashrc
     cp *.png $BACKUP_PATH
     cp ${NEXTSIMDIR}/data/*.nc.analysis $BACKUP_PATH
