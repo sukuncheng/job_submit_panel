@@ -50,7 +50,6 @@ if [ ${UPDATE} -gt 0 ]; then
     else
         echo "WARNING: ${SMOSOBS} is not found. "
     fi
-    sed -i "s;^.*FILE.*$;FILE =/cluster/home/chengsukun/src/nextsim/data/CS2_SMOS_v2.1/W_XX-ESA,SMOS_CS2,NH_25KM_EASE2_20181105_20181111_r_v201_01_l4sit.nc;g"  obs.prm 
     #  done   
 
     echo "run enkf, outputs: $filter/prior/*.nc.analysis, $filter/enkf.out" 
@@ -58,7 +57,7 @@ if [ ${UPDATE} -gt 0 ]; then
 #    make enkf  ########$NEXTSIMDIR/data:/data##### change data address in .prm files
     ./enkf_prep --no-superobing enkf.prm 2>&1 | tee prep.out
     ./enkf_calc --use-rmsd-for-obsstats enkf.prm 2>&1 | tee calc.out
-    ./enkf_update --calculate-spread --output-increment enkf.prm 2>&1 | tee update.out    
+    ./enkf_update --calculate-spread  enkf.prm 2>&1 | tee update.out    
     #
     echo "project *.nc.analysis on reference_grid.nc, save to /NEXTSIMDIR/data/"
     # nextsim will read /NEXTSIMDIR/data/**.nc.analysis data in next DA cycle    
@@ -71,9 +70,10 @@ if [ ${UPDATE} -gt 0 ]; then
     # backup outputs of each cycle
     BACKUP_PATH=${ENSPATH}/DAdata/${time_init}
     mkdir -p $BACKUP_PATH  # save analysis results to DAdata        
-    mrun main_enkf_outputs_unix  # set mrun= matlab -noslash -nodesktop -batch in .bashrc
-    cp *.png $BACKUP_PATH
+    #matlab -nosplash -nodesktop  -batch  main_enkf_outputs_unix  # set mrun= matlab -noslash -nodesktop -batch in .bashrc
+    #cp *.png $BACKUP_PATH
     cp ${NEXTSIMDIR}/data/*.nc.analysis $BACKUP_PATH
     cp -r ./prior $BACKUP_PATH/prior
+    cp spread.nc $BACKUP_PATH
     echo "enkf done"
 fi #UPDATE 
