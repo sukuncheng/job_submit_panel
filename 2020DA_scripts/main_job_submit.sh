@@ -44,9 +44,9 @@
     time_init=2018-11-11                  # starting date of simulation
     #   tduration*duration is the total simulation time in days
     duration=1    # nextsim duration in a forecast-analysisf cycle, usually CS2SMOS frequency
-    tduration=5   # number of forecast-analysis cycle. 
+    tduration=2   # number of forecast-analysis cycle. 
     UPDATE=1      # UPDATE=0 indicates forecast is executed without EnKF
-    ESIZE=3       # ensemble size
+    ESIZE=2       # ensemble size
     #NPROC=4       # cpu cores  
     maximum_instants=10   # max instants (submitted jobs)
     #

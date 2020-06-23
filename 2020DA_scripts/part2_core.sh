@@ -74,6 +74,6 @@ if [ ${UPDATE} -gt 0 ]; then
     #cp *.png $BACKUP_PATH
     cp ${NEXTSIMDIR}/data/*.nc.analysis $BACKUP_PATH
     cp -r ./prior $BACKUP_PATH/prior
-    cp spread.nc $BACKUP_PATH
+    cp spread.nc observations.nc $BACKUP_PATH
     echo "enkf done"
 fi #UPDATE 

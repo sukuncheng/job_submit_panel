@@ -59,6 +59,7 @@
         echo "get config files from host_machine/enkf-c directory "
         cp ${NEXTSIMDIR}/modules/enkf/enkf-c/cfg/* .  # exclude stats.prm & enoi.prm
         cp ${NEXTSIMDIR}/modules/enkf/enkf-c/bin/enkf_* .
+        # modifications in enkf configurations
         sed -i "s;mpirun;mpirun --allow-run-as-root;g" ./Makefile
         sed -i "s;^ENSSIZE.*$;ENSSIZE = "${ESIZE}";g" enkf-global.prm 
         sed -i "s;^ENSSIZE.*$;ENSSIZE = "${ESIZE}";g"  enkf.prm
