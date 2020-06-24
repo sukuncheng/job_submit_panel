@@ -35,7 +35,6 @@
     source $ENVFRAM/nextsim.ensemble.src
     ENSPATH=$IO_nextsim/test_18_06_ensemble_size    # output path
     rm -r $ENSPATH    
-    rm nohup.out
     #
     OBSNAME_PREFIX=$NEXTSIMDIR/data/CS2_SMOS_v2.2/W_XX-ESA,SMOS_CS2,NH_25KM_EASE2_ 
     OBSNAME_SUFFIX=_r_v202_01_l4sit
