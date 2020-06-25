@@ -8,7 +8,7 @@ for (( mem=1; mem<=${ESIZE}; mem++ )); do
     sed -i "s;^restart_from_analysis=.*$;restart_from_analysis="${restart_from_analysis}";g" ./nextsim.cfg 
    
     # submit job        
-    source $ENVFRAM/run.fram.sh ./nextsim.cfg 1 -e $ENVFRAM/nextsim.src       
+     source $ENVFRAM/run.fram.sh ./nextsim.cfg 1 -e $ENVFRAM/nextsim.src       
     # barrier of max instants
     job_list=$(squeue -u chengsukun)
     XPID=$(grep -o chengsuk <<<$job_list |wc -l)  # number of current running jobs
@@ -42,9 +42,11 @@ if [ ${UPDATE} -gt 0 ]; then
     #
     cd $FILTER
     echo "link observations to ENSPATH/filter/obs, and obs.prm"
-    tind=${duration} # $(echo "(${duration}+1)/1"|bc)
-    #  for (( tind = 0; tind < ${???}; tind++ )); do
-    SMOSOBS=${OBSNAME_PREFIX}$(date +%Y%m%d -d "${time_init} + ${tind} day")_$(date +%Y%m%d -d "${time_init} + ${tind+7} day")${OBSNAME_SUFFIX}.nc
+    A1=${duration} # 
+    A2=`echo "(${duration}+6)"|bc`
+#  for (( tind = 0; tind < ${???}; tind++ )); do
+    SMOSOBS=${OBSNAME_PREFIX}$(date +%Y%m%d -d "${time_init} + $A1 day")_$(date +%Y%m%d -d "${time_init} + $A2 day")${OBSNAME_SUFFIX}.nc
+    echo ${time_init} '   '  ${tind} '   ' $duration 
     if [ -f ${SMOSOBS} ]; then
         sed -i "s;^.*FILE.*$;FILE ="${SMOSOBS}";g"  obs.prm 
     else

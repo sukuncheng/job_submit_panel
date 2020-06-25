@@ -1,0 +1,3 @@
+execute nextsim with EnKF filter!
+cd ENSPATH/filter & put reference_grid.nc in it
+get config files from host_machine/enkf-c directory 

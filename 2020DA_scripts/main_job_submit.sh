@@ -29,11 +29,10 @@
 #---------  Confirm working/data/ouput directories ----
     RUNFILE=$(basename $0)               # name of this .sh
     RUNPATH=$(cd `dirname $0`;pwd)       # path of this .sh 
-    #save backup to nextsim-env/machines/fram_sukun
-    ENVFRAM=/cluster/home/chengsukun/src/fram_job_submit_panel/fram_sukun 
+    ENVFRAM=/cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun 
     source $ENVFRAM/nextsim.src
     source $ENVFRAM/nextsim.ensemble.src
-    ENSPATH=$IO_nextsim/test_18_06_ensemble_size    # output path
+    ENSPATH=$IO_nextsim/test_25_06_test1_sit_weekly    # output path
     rm -r $ENSPATH    
     #
     OBSNAME_PREFIX=$NEXTSIMDIR/data/CS2_SMOS_v2.2/W_XX-ESA,SMOS_CS2,NH_25KM_EASE2_ 
@@ -42,12 +41,12 @@
 #--------  experiment settings ------------
     time_init=2018-11-11                  # starting date of simulation
     #   tduration*duration is the total simulation time in days
-    duration=1    # nextsim duration in a forecast-analysisf cycle, usually CS2SMOS frequency
-    tduration=2   # number of forecast-analysis cycle. 
+    duration=7    # nextsim duration in a forecast-analysisf cycle, usually CS2SMOS frequency
+    tduration=1   # number of forecast-analysis cycle. 
     UPDATE=1      # UPDATE=0 indicates forecast is executed without EnKF
     ESIZE=2       # ensemble size
     #NPROC=4       # cpu cores  
-    maximum_instants=10   # max instants (submitted jobs)
+    maximum_instants=20   # max instants (submitted jobs)
     #
     if [ $UPDATE -gt 0 ]; then 
         echo "execute nextsim with EnKF filter!"
@@ -66,6 +65,6 @@ for (( i=1; i<=${tduration}; i++ )); do
         restart_from_analysis=true
         time_init=$(date +%Y-%m-%d -d "${time_init} + ${duration} day")        
     fi
-    # a forecast-analysis cycle  
+# a forecast-analysis cycle  
     source $RUNPATH/part2_core.sh   
 done

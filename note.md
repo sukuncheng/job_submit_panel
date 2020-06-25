@@ -122,6 +122,32 @@ Small_arctic_10km.msh
 git fetch --all
 git reset --hard origin/master
 
+# 25-6
+- several failures of incomplete output of prior.nc. It needs to investigate why variables are not saved to prior.nc when duration >1 with wind pertubation. The issue maybe related to the following warning in nextsim.log
+Reading nextsim.cfg...
+[INFO] : -----------------------Simulation started on 2020-Jun-25 03:19:28
+[INFO] : TIMESTEP= 200
+[INFO] : DURATION= 604800
+pseudo-random forcing is active for ensemble generation
+ Using FFTW for Fourier transform
+ Feel the power of the Fastest Fourier Transform in the West!
+--------------------------------------------------------------------------
+A process has executed an operation involving a call to the
+"fork()" system call to create a child process.  Open MPI is currently
+operating in a condition that could result in memory corruption or
+other system errors; your job may hang, crash, or produce silent
+data corruption.  The use of fork() (or system() or other calls that
+create child processes) is strongly discouraged.
+
+The process that invoked fork was:
+
+  Local host:          [[2549,0],0] (PID 159425)
+
+If you are *absolutely sure* that your application will successfully
+and correctly survive a call to fork(), you may disable this warning
+by setting the mpi_warn_on_fork MCA parameter to 0.
+--------------------------------------------------------------------------
+[INFO] :  ---------- progression: ( 0%) ---------- time spent: 00:01:25
 
 # 22-6
 install m_map on fram

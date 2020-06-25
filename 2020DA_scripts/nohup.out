@@ -1,0 +1,17 @@
+execute nextsim with EnKF filter!
+cd ENSPATH/filter & put reference_grid.nc in it
+get config files from host_machine/enkf-c directory 
+initialize files, done
+ensemble runs start
+cp -r /cluster/home/chengsukun/src/nextsim/model/bin .
+cp /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/slurm.template.sh slurm.nextsim.sh
+Finished modifying slurm.nextsim.sh
+sbatch slurm.nextsim.sh /cluster/work/users/chengsukun/src/IO_nextsim/test_25_06_test1_sit_weekly/mem001/nextsim.cfg -e /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.src
+Submitted batch job 592373
+1
+cp -r /cluster/home/chengsukun/src/nextsim/model/bin .
+cp /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/slurm.template.sh slurm.nextsim.sh
+Finished modifying slurm.nextsim.sh
+sbatch slurm.nextsim.sh /cluster/work/users/chengsukun/src/IO_nextsim/test_25_06_test1_sit_weekly/mem002/nextsim.cfg -e /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.src
+Submitted batch job 592374
+2
