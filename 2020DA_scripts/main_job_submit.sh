@@ -32,7 +32,7 @@
     ENVFRAM=/cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun 
     source $ENVFRAM/nextsim.src
     source $ENVFRAM/nextsim.ensemble.src
-    ENSPATH=$IO_nextsim/test_25_06_test1_sit_weekly    # output path
+    ENSPATH=$IO_nextsim/test_24_06_Ne20_T4_D7   # output path
     rm -r $ENSPATH    
     #
     OBSNAME_PREFIX=$NEXTSIMDIR/data/CS2_SMOS_v2.2/W_XX-ESA,SMOS_CS2,NH_25KM_EASE2_ 
@@ -42,9 +42,9 @@
     time_init=2018-11-11                  # starting date of simulation
     #   tduration*duration is the total simulation time in days
     duration=7    # nextsim duration in a forecast-analysisf cycle, usually CS2SMOS frequency
-    tduration=1   # number of forecast-analysis cycle. 
-    UPDATE=1      # UPDATE=0 indicates forecast is executed without EnKF
-    ESIZE=2       # ensemble size
+    tduration=4   # number of forecast-analysis cycle. 
+    UPDATE=1      # ToDo tduration>0, update=1 UPDATE=0 indicates forecast is executed without EnKF
+    ESIZE=20       # ensemble size
     #NPROC=4       # cpu cores  
     maximum_instants=20   # max instants (submitted jobs)
     #

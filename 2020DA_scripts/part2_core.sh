@@ -74,7 +74,6 @@ if [ ${UPDATE} -gt 0 ]; then
     mkdir -p $BACKUP_PATH  # save analysis results to DAdata        
     #matlab -nosplash -nodesktop  -batch  main_enkf_outputs_unix  # set mrun= matlab -noslash -nodesktop -batch in .bashrc
     #cp *.png $BACKUP_PATH
-    cp ${NEXTSIMDIR}/data/*.nc.analysis $BACKUP_PATH
     cp -r ./prior $BACKUP_PATH/prior
     cp spread.nc observations.nc $BACKUP_PATH
     echo "enkf done"
