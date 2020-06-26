@@ -36,13 +36,22 @@
 
 4. localisation radii defines the impact area size of observation. Increasing it increases the number of local observations
 
-## changes in enkf-c
-start[0] = 0; //dimlen[0] - 1;
 
 
 # discard location changes and pull from remote repository
 git fetch --all
 git reset --hard origin/master
+
+# 26-6
+- correct time domain size in prior.nc from 2 to 1. It fixes the bug of all-zeros sit in .nc.analysis 
+  Remove duplicate stateVectorAppendNetcdf , which is called inside of updateStateVector() located in exportStateVector()ahead.
+  No need to change in enkf-c/common/utils.c, line 861: start[0] = 0; //dimlen[0] - 1;
+
+- change output directories structure: OUTPUTPATH-> time -> members. Thus, all middle results are solved
+- write a script to find crashed nextsim instants and resubmit before doing enkf
+- TODO
+  - matlab to batch process analysis results 
+  - remove .dat .bin outputs, check with Tim to see if it is already done.
 
 # 25-6
 - several failures of incomplete output of prior.nc. It needs to investigate why variables are not saved to prior.nc when duration >1 with wind pertubation. The issue maybe related to the following warning in nextsim.log
