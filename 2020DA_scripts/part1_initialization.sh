@@ -25,7 +25,7 @@
 #   prepare forecast files
     for (( mem=1; mem<=${ESIZE}; mem++ )); do
         MEMPATH=${ENSPATH}/${ENSEMBLE[${mem}]}
-        mkdir -p ${MEMPATH}
+	mkdir -p ${MEMPATH}
         cd ${MEMPATH}       
         # pseudo2D.nml
         exporter_path=${MEMPATH}
@@ -54,7 +54,6 @@
         echo "cd ENSPATH/filter & put reference_grid.nc in it"
         cd $FILTER  
         cp $RUNPATH/reference_grid.nc .
-        cp $RUNPATH/main_enkf_outputs_unix.m .
         #    
         echo "get config files from host_machine/enkf-c directory "
         cp ${NEXTSIMDIR}/modules/enkf/enkf-c/cfg/* .  # exclude stats.prm & enoi.prm
@@ -68,6 +67,4 @@
         sed -i "s;^RFACTOR.*$;RFACTOR = 1;g"  enkf.prm
         sed -i "s;^READER.*$;READER = standard3;g" obs.prm    
     fi
-
-    cp ${RUNPATH}/*.sh $ENSPATH/    
-echo "initialize files, done"
+echo "part1 initialize files system, done"
