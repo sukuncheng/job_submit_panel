@@ -1,121 +1,43 @@
-# Experiment Setup
-
-- Exp.1: Deterministic run
-  
-- Exp.2: Ensemble run with wind-perturbation
-  
-- Exp.3: Ensemble run wiht wind-perturbation_run & EnKF assimilated ice thickness
-
-- Postprocess is to present the difference between Exp. 2 and Exp. 3, then discuss based on the comparison
-
-## Exp.1: Deterministic run
-
-- Simulation Duration is set as 7 days from 11-11 to 2018-11-18.   
-  - Use restart file on 2018-11-11 from 1-year determinsitic run created by Timothy
-  
-## Exp.2: Ensemble run with wind-perturbation
-
-- Same as Exp. 1
-  
-- Plan to run 20 ensemble members.
-  
-- Run two members at one time with 6 cpu cores for each member. 12 CPU cores in total.
-  
-- Notice the nextsim occupies more memory as duration increases. For a 7-day simulation, a run occupies almost 17 Gb in the end. Thus, members are run one by one.
-  spinup_duration=0
-  duration=7    # nextsim duration in a forecast-analysisf cycle, which is usually CS2SMOS frequency
-  tduration=1   # number of nextsim-enkf (forecast-analysis) cycle. 
-  UPDATE=0      # UPDATE=0 indicates forecast is executed without EnKF
-## Exp.3: Ensemble run with wind-perturbation_run & EnKF assimilated ice thickness
-
-- Same as Exp. 2
-- Because memory is released after each forecast-analysis cycle, the computer has more avaiable memory to run multiple members in parallel.
-- However, short duration of nextsim in each DA cycle leads to insuitable to study buoy trajectories of buoys like in the ensemble prediction study.
-- ensemble runs on the next day are initialized using the analysis results that generated based on all the ensemble runs at this time slot. Thus, it cannot change ensemble size when doing Exp.3. It is less flexible compared with Exp. 2.
-- Unknow crash occurs several times when running Exp. 3
-- Key Parameters Settings
-  duration=1
-  tduration=7
-  UPDATE=1
-  ensemble size=20
-  cpu core=7, 2 members at one time.
-  Exp.3 is expected to cost 14 hours.
-
-## Settings
-
-- Modifications of __nextsim.cfg__ are added in job_submit script. 
-- Set ECMWF data size as xdim, ydim in __pseudo2D.nml__
-  
-## Data sources
-
-- ice-type=topaz
-    /data/20181129_dm-metno-MODEL-topaz4-ARC-b20181120-fv02.0
-- ocean-type=topaz
-- atmosphere-type=ec2
-       /data/ECMWF_forecast_arctic/ec2_start20181115
-- bathymetry-type=etopo
-    /data/ETOPO_Arctic_2arcmin
-
-- Assimilation data: CS2SMOS ice thickness,e.g.,
-    W_XX-ESA,SMOS_CS2,NH_25KM_EASE2_20181112_20181118_r_v202_01_l4sit
-
-## Forecast-Analysis Cycle (neXtSIM-EnKF)
-
-- Generally, a Forecast-Analysis Cycle is 
-  - Forecast: neXtSIM restart with analysis data (except the very first time)
-  - Analysis: assimilate neXtSIM output with CS2SMOS ice thickness
-  
-- in .sh, tduration*duration is the total simulation time in days
-
-## Todo
+# Todo
+- add a script-block to resubmit crashed job. Waiting all jobs are finished before moving to enkf.
+- block  output of daily output of .bin and .dat, only output the final (check with Tim)
+-investigate prior.nc size puzzle
 -Adjust ECMWF data air drag coefficient.
 -Run more periods to reducing results dependence on initial dates.
--merge enkf_interface to developer branch of nextsim
--operate netcdf files in ensemble members, e.g., extract ice thickness and save ensemble mean .
+-merge branch to enkf_interface or others
 -add damage to Moorings.nc
 
-
-## Ohter notes
--Reduce writing/reading in wind perturbation.
-  Because of many times of writing/reading operations in the simulation, the computational efficiency depends on the hard disk capability. Using m.2 ssd harddive with 2Gb/s read/write capability could save considerable time.
-  
-- The master core occupies most of the computer memory, increasing as duration increasing. Other cores occupy equally amount of memory with small fluctuation arround a constant. 
-
-- different data size 
-  Moorings.nc 501x391, prior.nc & .nc.analysis 522x528
+## Moorings and prior
+-                  grid size            data size (initial size,  final size, tested duration 2 or 7day)
+  Moorings.nc       501x391                  1589306,   7891730      
+  prior.nc          522x528                  2224737,  19898089
 
 - same name:output_timestep is in moorings and statevector
 - restart data is recognized by basename=final  (field_basename.bin/dat)
+- 
+
+# enkf
+## Reference_grid :
+  grid size: 528*522
+  longitude: -180 to 180
+  latitude: N 40.137 to 90 
+## compile  
+  make clean;make; cp ./bin/* example_filter/; cd example_filter/; make clean; 
+  keywords related to spread： UPDATE_DOANALYSISSPREAD， &fields[i - bufindex], "write analysis spread" 
 
 
-# Errors
-## 4-June-2020, all-zero output from EnKF-c
-  __data directory is host machine, which is unknown in a docker container running enkf-c__
-  changes:
-  in main_job_submit.sh
-        OBS_DIR = /data/CS2SMOS (for docker)
-  in part2_core.sh: 
-        docker run --rm -v $FILTER:/docker_io $NEXTSIM_DATA_DIR:/data $docker_image \
-            sh -c  "cp /nextsim/modules/enkf/enkf-c/bin/enkf_* . &&  make enkf > enkf.out"
-  also check FILE in obs.prm
-  Because CS2SMOS data is 2D, while Ali studied SMOS data is 1D, the difference could be the reason of all-zero-output from EnKF-c.
-  notice filter/obs is empty. Using make enkf_prep to write observations-orig.nc based on observation data specified in obs.prm.
-  enkf-prep doesn't find valid observation from the observation data file.
-  Path of the observation data is valid. 
-  Enkf-c doesn't have a debug option.
-# fram_job_submit_panel
-Situation 1  - one test with multiple nodes
-Situation 2 - parallel run multiple tests, each test uses one node
-Situation 3 - parallel run multiple tests, each test uses multiple nodes
+## Tune factors
+1. Incresing R-factor decreases the impact of observation. Ensemble spread/sqrt(R-factor)
+2. Incresing K-factor increases the impact of ensemble spread. background check. 2.7.3. 
+   Modifies observation error so that the increment for this observation would not exceed KFACTOR * <ensemble spread> (all in observation space) after assimilating this observation only.
+3. Inflation . The ensemble anomalies (A=E-x.1') for any model state element will be inflated to avoid collapses. 
+    (x_a - x\bar)*inflation + x\bar
+    capping of inflation: inflation = 1+inflation*( std_f/std_a-1)
 
-# issues errors
-issue1_error_multi-tasks_1node is on situation 2
-Suspect the error is due to confliction of accessing common mesh file from multiple core
-Small_arctic_10km.msh
+4. localisation radii defines the impact area size of observation. Increasing it increases the number of local observations
 
-> It should access par32small_arctic_10km.msh, but this mesh is copied to out directory, thus no in the working directory, where is the code for this.
-> move small_arctic_10km.msh  *.mpp from sim/mesh to my own data directory chengsukun/src/data, and then softlink them to nextsim/data. remote nextsim_mesh_dir in cp -a $NEXTSIMDIR/data/* $NEXTSIM_DATA_DIR/* $SCRATCH/data in slurm.template.sh
->active debugging in nextsim.cfg [debugging]
+## changes in enkf-c
+start[0] = 0; //dimlen[0] - 1;
 
 
 # discard location changes and pull from remote repository
@@ -124,6 +46,35 @@ git reset --hard origin/master
 
 # 25-6
 - several failures of incomplete output of prior.nc. It needs to investigate why variables are not saved to prior.nc when duration >1 with wind pertubation. The issue maybe related to the following warning in nextsim.log
+Reading nextsim.cfg...
+[INFO] : -----------------------Simulation started on 2020-Jun-25 03:19:28
+[INFO] : TIMESTEP= 200
+[INFO] : DURATION= 604800
+pseudo-random forcing is active for ensemble generation
+ Using FFTW for Fourier transform
+ Feel the power of the Fastest Fourier Transform in the West!
+--------------------------------------------------------------------------
+A process has executed an operation involving a call to the
+"fork()" system call to create a child process.  Open MPI is currently
+operating in a condition that could result in memory corruption or
+other system errors; your job may hang, crash, or produce silent
+data corruption.  The use of fork() (or system() or other calls that
+create child processes) is strongly discouraged.
+
+The process that invoked fork was:
+
+  Local host:          [[2549,0],0] (PID 159425)
+
+If you are *absolutely sure* that your application will successfully
+and correctly survive a call to fork(), you may disable this warning
+by setting the mpi_warn_on_fork MCA parameter to 0.
+--------------------------------------------------------------------------
+[INFO] :  ---------- progression: ( 0%) ---------- time spent: 00:01:25
+
+# 25-6
+- Incomplete output of prior.nc. 
+  prior.nc doesn't save data when duration =7 day
+  It needs to investigate why variables are not saved to prior.nc when duration >1 with wind pertubation. The issue maybe related to the following warning in nextsim.log. (searching the waring online, it may be related memory size, try smaller memory size for each run.
 Reading nextsim.cfg...
 [INFO] : -----------------------Simulation started on 2020-Jun-25 03:19:28
 [INFO] : TIMESTEP= 200
@@ -243,32 +194,102 @@ find error in reading file (obs_add->readobs()->reader()->get_obsfiles->find_fil
 fatal: unable to access 'http://github.com/nansencenter/nextsim/': Recv failure: Connection reset by peer
 solution:  git config --global url."https://".insteadOf http://
 
+# Errors
+## 4-June-2020, all-zero output from EnKF-c
+  __data directory is host machine, which is unknown in a docker container running enkf-c__
+  changes:
+  in main_job_submit.sh
+        OBS_DIR = /data/CS2SMOS (for docker)
+  in part2_core.sh: 
+        docker run --rm -v $FILTER:/docker_io $NEXTSIM_DATA_DIR:/data $docker_image \
+            sh -c  "cp /nextsim/modules/enkf/enkf-c/bin/enkf_* . &&  make enkf > enkf.out"
+  also check FILE in obs.prm
+  Because CS2SMOS data is 2D, while Ali studied SMOS data is 1D, the difference could be the reason of all-zero-output from EnKF-c.
+  notice filter/obs is empty. Using make enkf_prep to write observations-orig.nc based on observation data specified in obs.prm.
+  enkf-prep doesn't find valid observation from the observation data file.
+  Path of the observation data is valid. 
+  Enkf-c doesn't have a debug option.
 
-Reference_grid :
-  grid size: 528*522
-  longitude: -180 to 180
-  latitude: N 40.137 to 90 
+# issues errors
+issue1_error_multi-tasks_1node is on situation 2
+Suspect the error is due to confliction of accessing common mesh file from multiple core
+Small_arctic_10km.msh
 
-make clean;make; cp ./bin/* example_filter/; cd example_filter/; make clean; 
-keywords related to spread： UPDATE_DOANALYSISSPREAD， &fields[i - bufindex], "write analysis spread" 
-
-Modifies observation error so that the increment for this observation would not exceed KFACTOR * <ensemble spread> (all in observation space) after assimilating this observation only.
-
-1. Incresing R-factor decreases the impact of observation. Ensemble spread/sqrt(R-factor)
-2. Incresing K-factor increases the impact of ensemble spread. background check. 2.7.3. 
-3. Inflation . The ensemble anomalies (A=E-x.1') for any model state element will be inflated to avoid collapses. 
-    (x_a - x\bar)*inflation + x\bar
-    capping of inflation: inflation = 1+inflation*( std_f/std_a-1)
-
-4. localisation radii defines the impact area size of observation. Increasing it increases the number of local observations
+> It should access par32small_arctic_10km.msh, but this mesh is copied to out directory, thus no in the working directory, where is the code for this.
+> move small_arctic_10km.msh  *.mpp from sim/mesh to my own data directory chengsukun/src/data, and then softlink them to nextsim/data. remote nextsim_mesh_dir in cp -a $NEXTSIMDIR/data/* $NEXTSIM_DATA_DIR/* $SCRATCH/data in slurm.template.sh
+>active debugging in nextsim.cfg [debugging]
 
 
-# 
-array=(1 2 3 4 5)
-${#array[@]}  length of array
-${array[*]}   get of elements in the array
+# Experiment Setup
 
-cat -n 文件名|grep '关键字'|awk '{print $1}'
+- Exp.1: Deterministic run
+  
+- Exp.2: Ensemble run with wind-perturbation
+  
+- Exp.3: Ensemble run wiht wind-perturbation_run & EnKF assimilated ice thickness
 
-# changes in enkf-c
-start[0] = 0; //dimlen[0] - 1;
+- Postprocess is to present the difference between Exp. 2 and Exp. 3, then discuss based on the comparison
+
+## Exp.1: Deterministic run
+
+- Simulation Duration is set as 7 days from 11-11 to 2018-11-18.   
+  - Use restart file on 2018-11-11 from 1-year determinsitic run created by Timothy
+  
+## Exp.2: Ensemble run with wind-perturbation
+
+- Same as Exp. 1
+  
+- Plan to run 20 ensemble members.
+  
+- Run two members at one time with 6 cpu cores for each member. 12 CPU cores in total.
+  
+- Notice the nextsim occupies more memory as duration increases. For a 7-day simulation, a run occupies almost 17 Gb in the end. Thus, members are run one by one.
+  spinup_duration=0
+  duration=7    # nextsim duration in a forecast-analysisf cycle, which is usually CS2SMOS frequency
+  tduration=1   # number of nextsim-enkf (forecast-analysis) cycle. 
+  UPDATE=0      # UPDATE=0 indicates forecast is executed without EnKF
+## Exp.3: Ensemble run with wind-perturbation_run & EnKF assimilated ice thickness
+
+- Same as Exp. 2
+- Because memory is released after each forecast-analysis cycle, the computer has more avaiable memory to run multiple members in parallel.
+- However, short duration of nextsim in each DA cycle leads to insuitable to study buoy trajectories of buoys like in the ensemble prediction study.
+- ensemble runs on the next day are initialized using the analysis results that generated based on all the ensemble runs at this time slot. Thus, it cannot change ensemble size when doing Exp.3. It is less flexible compared with Exp. 2.
+- Unknow crash occurs several times when running Exp. 3
+- Key Parameters Settings
+  duration=1
+  tduration=7
+  UPDATE=1
+  ensemble size=20
+  cpu core=7, 2 members at one time.
+  Exp.3 is expected to cost 14 hours.
+
+## Settings
+
+- Modifications of __nextsim.cfg__ are added in job_submit script. 
+- Set ECMWF data size as xdim, ydim in __pseudo2D.nml__
+  
+## Data sources
+
+- ice-type=topaz
+    /data/20181129_dm-metno-MODEL-topaz4-ARC-b20181120-fv02.0
+- ocean-type=topaz
+- atmosphere-type=ec2
+       /data/ECMWF_forecast_arctic/ec2_start20181115
+- bathymetry-type=etopo
+    /data/ETOPO_Arctic_2arcmin
+
+- Assimilation data: CS2SMOS ice thickness,e.g.,
+    W_XX-ESA,SMOS_CS2,NH_25KM_EASE2_20181112_20181118_r_v202_01_l4sit
+
+## Forecast-Analysis Cycle (neXtSIM-EnKF)
+
+- Generally, a Forecast-Analysis Cycle is 
+  - Forecast: neXtSIM restart with analysis data (except the very first time)
+  - Analysis: assimilate neXtSIM output with CS2SMOS ice thickness
+  
+- in .sh, tduration*duration is the total simulation time in days
+
+## Ohter notes
+-Reduce writing/reading in wind perturbation.
+  Because of many times of writing/reading operations in the simulation, the computational efficiency depends on the hard disk capability. Using m.2 ssd harddive with 2Gb/s read/write capability could save considerable time.  
+- The master core occupies most of the computer memory, increasing as duration increasing. Other cores occupy equally amount of memory with small fluctuation arround a constant. 
