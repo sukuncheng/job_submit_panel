@@ -42,12 +42,18 @@
     time_init=2018-11-11                  # starting date of simulation
     #   tduration*duration is the total simulation time in days
     duration=7    # nextsim duration in a forecast-analysisf cycle, usually CS2SMOS frequency
-    tduration=4   # number of forecast-analysis cycle. 
-    UPDATE=1      # ToDo tduration>0, update=1 UPDATE=0 indicates forecast is executed without EnKF
+    tduration=4   # number of forecast-analysis cycle. also see "UPDATE"
     ESIZE=20       # ensemble size
     #NPROC=4       # cpu cores  
     maximum_instants=20   # max instants (submitted jobs)
     #
+    if [[ tduration -gt 0 ]]; then
+        UPDATE=1      # forecast and EnKF
+    else
+        UPDATE=0      # forecast
+    fi
+    #
+    [[ tduration -gt 0 ]] && UPDATE=1 || UPDATE=0
     if [ $UPDATE -gt 0 ]; then 
         echo "execute nextsim with EnKF filter!"
     else
