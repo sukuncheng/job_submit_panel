@@ -32,8 +32,8 @@
     ENVFRAM=/cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun 
     source $ENVFRAM/nextsim.src
     source $ENVFRAM/nextsim.ensemble.src
-    ENSPATH=$IO_nextsim/test_24_06_Ne20_T4_D7   # output path
-    rm -r $ENSPATH    
+    OUTPUTPATH=$IO_nextsim/test_24_06_Ne20_T4_D7   # output path
+    rm -r $OUTPUTPATH    
     #
     OBSNAME_PREFIX=$NEXTSIMDIR/data/CS2_SMOS_v2.2/W_XX-ESA,SMOS_CS2,NH_25KM_EASE2_ 
     OBSNAME_SUFFIX=_r_v202_01_l4sit
@@ -60,7 +60,6 @@
         echo "execute nextsim only"
     fi
 #-------------------------------------------
-
 # create ensemble directories and files
 source $RUNPATH/part1_initialization.sh   
 # execute ensemble runs
@@ -71,6 +70,9 @@ for (( i=1; i<=${tduration}; i++ )); do
         restart_from_analysis=true
         time_init=$(date +%Y-%m-%d -d "${time_init} + ${duration} day")        
     fi
-# a forecast-analysis cycle  
+# a forecast-analysis cycle
+    ENSPATH=$OUTPUTPATH/$time_init  
     source $RUNPATH/part2_core.sh   
 done
+
+mv nohup.out $OUTPUTPATH/log.txt

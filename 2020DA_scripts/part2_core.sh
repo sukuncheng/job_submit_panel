@@ -13,14 +13,15 @@ for (( j=1; j<=5; j++ )); do  # this loop is supposed to find and resubmit crash
     for (( mem=1; mem<=${ESIZE}; mem++ )); do
         cd ${ENSPATH}/${ENSEMBLE[${mem}]}  #MEMPATH
         # submit job        
-        if [[ -f nextsim.log || !(grep -q "Simulation done" nextsim.log) ]];then                  
-            source $ENVFRAM/run.fram.sh ./nextsim.cfg 1 -e $ENVFRAM/nextsim.src       
+        if (! grep -q "Simulation done" nextsim.log);then
+	    source $ENVFRAM/run.fram.sh ./nextsim.cfg 1 -e $ENVFRAM/nextsim.src       
         fi
-        while [[ $XPID -ge $maximum_instants ]]; do # maximum of running instants
+        job_list=$(squeue -u chengsukun)
+        XPID=$(grep -o chengsuk <<<$job_list |wc -l)  # number of current running jobs
+	while [[ $XPID -ge $maximum_instants ]]; do # maximum of running instants
             sleep 20
             job_list=$(squeue -u chengsukun)
             XPID=$(grep -o chengsuk <<<$job_list |wc -l)  # number of current running jobs
-            echo $XPID '---' ${ENSEMBLE[${mem}]}
         done    
     done
         
@@ -30,7 +31,7 @@ for (( j=1; j<=5; j++ )); do  # this loop is supposed to find and resubmit crash
         job_list=$(squeue -u chengsukun)
         XPID=$(grep -o chengsuk <<<$job_list |wc -l)  # number of current running jobs
     done    
-    if [ $j -ge 2]; then 
+    if [ $j -ge 2 ]; then 
         break
     fi
 done
@@ -77,14 +78,9 @@ if [ ${UPDATE} -gt 0 ]; then
         cdo merge ./reference_grid.nc  ./prior/${ENSEMBLE[${mem}]}.nc.analysis ${NEXTSIMDIR}/data/${ENSEMBLE[${mem}]}.nc.analysis 
         # note  enkf and cdo depend on the path of reference_grid.nc
     done
-
-    # backup outputs of each cycle
-    BACKUP_PATH=${ENSPATH}/DAdata/${time_init}
-    mkdir -p $BACKUP_PATH  # save analysis results to DAdata    
+ 
     # enable matlab in shell    
     #matlab -nosplash -nodesktop  -batch  main_enkf_outputs_unix  # set mrun= matlab -noslash -nodesktop -batch in .bashrc
-    #cp *.png $BACKUP_PATH  
-    cp -r ./prior $BACKUP_PATH/prior
-    cp spread.nc observations.nc $BACKUP_PATH
+    
     echo "enkf done"
 fi #UPDATE 
