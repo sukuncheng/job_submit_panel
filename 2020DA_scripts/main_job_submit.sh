@@ -32,7 +32,7 @@
     ENVFRAM=/cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun 
     source $ENVFRAM/nextsim.src
     source $ENVFRAM/nextsim.ensemble.src
-    OUTPUTPATH=$IO_nextsim/test_24_06_Ne20_T4_D7   # output path
+    OUTPUTPATH=$IO_nextsim/test_26_06_Ne20_T4_D7   # output path
     rm -r $OUTPUTPATH 
     mkdir $OUTPUTPATH   
     #
