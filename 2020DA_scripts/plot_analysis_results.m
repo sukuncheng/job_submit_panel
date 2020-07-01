@@ -37,7 +37,7 @@ function fun_geomap_spread()
 % part 3. plot
     h_fig = figure('visible','off'); 
     set(h_fig,'Position',[100,200,900,300], 'color','w');
-    colormap jet;
+    colormap(bluewhitered);
     upper = max(max(max(v1)), max(max(v2)));
     subplot(121); func_arctic_map(lon, lat, v1);  title('forecast ensemble spread'); caxis([0 upper]);
     subplot(122); func_arctic_map(lon, lat, v2);  title('analysis ensemble spread'); caxis([0 upper]);
@@ -62,7 +62,7 @@ function fun_geomap_field()
 % plot   forecast_analysis
     h_fig = figure('visible','off'); 
     set(h_fig,'Position',[100,200,900,300], 'color','w');
-    colormap jet;
+    colormap(bluewhitered);
     upper = max(max(max(v1)), max(max(v2)));
     subplot(121); func_arctic_map(lon, lat, v1); title('forecast field');   caxis([0 upper]);
     subplot(122); func_arctic_map(lon, lat, v2); title('analysis field');   caxis([0 upper]);
@@ -90,7 +90,7 @@ function fun_plot_observation(file)
     Z = ncread(file,'value');
     Z(Z<0) = nan;
 %     
-    colormap jet;
+    colormap(bluewhitered);
     m_scatter(lon,lat,10,Z,'o','filled'); 
     hold on;
     m_coast('patch',0.7*[1 1 1]);
@@ -124,4 +124,3 @@ end
 % 
 %     varid = netcdf.inqVarID(ncid,'analysis_sea_ice_thickness')
 %     sit = netcdf.getVar(ncid,varid);
-

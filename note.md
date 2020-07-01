@@ -42,8 +42,17 @@
 git fetch --all
 git reset --hard origin/master
 
+
+# 30-6
+7.5 km resolution. 
+what is the scaled cohesion value
+("dynamics.C_lab", po::value<double>()->default_value( 6.8465e+6 ), "Pa")   // Cohesion value at the lab scale (10^6 Pa is the order of magnitude determined by Schulson).
+# 27-6
+- Test 1 is done. Ne20_T4_D7.
+- set 4 cores in rum.fram.sh is not done.
+
 # 26-6
-- correct time domain size in prior.nc from 2 to 1. It fixes the bug of all-zeros sit in .nc.analysis 
+- Correct time domain size in prior.nc from 2 to 1. It fixes the bug of all-zeros sit in .nc.analysis 
   Remove duplicate stateVectorAppendNetcdf , which is called inside of updateStateVector() located in exportStateVector()ahead.
   No need to change in enkf-c/common/utils.c, line 861: start[0] = 0; //dimlen[0] - 1;
 
