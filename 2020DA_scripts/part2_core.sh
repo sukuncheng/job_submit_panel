@@ -13,15 +13,17 @@ for (( j=1; j<=5; j++ )); do  # this loop is supposed to find and resubmit crash
     for (( mem=1; mem<=${ESIZE}; mem++ )); do
         cd ${ENSPATH}/${ENSEMBLE[${mem}]}  #MEMPATH
         # submit job        
-        if (! grep -q "Simulation done" nextsim.log);then
-	    source $ENVFRAM/run.fram.sh ./nextsim.cfg 1 -e $ENVFRAM/nextsim.src       
+        if [[ ! -f nextsim.log || !(grep -q "Simulation done" nextsim.log) ]];then                  
+            source $ENVFRAM/run.fram.sh ./nextsim.cfg 1 -e $ENVFRAM/nextsim.src       
         fi
         job_list=$(squeue -u chengsukun)
         XPID=$(grep -o chengsuk <<<$job_list |wc -l)  # number of current running jobs
-	while [[ $XPID -ge $maximum_instants ]]; do # maximum of running instants
+        #
+        while [[ $XPID -ge $maximum_instants ]]; do # maximum of running instants
             sleep 20
             job_list=$(squeue -u chengsukun)
             XPID=$(grep -o chengsuk <<<$job_list |wc -l)  # number of current running jobs
+            echo $XPID '---' ${ENSEMBLE[${mem}]}
         done    
     done
         
@@ -78,9 +80,7 @@ if [ ${UPDATE} -gt 0 ]; then
         cdo merge ./reference_grid.nc  ./prior/${ENSEMBLE[${mem}]}.nc.analysis ${NEXTSIMDIR}/data/${ENSEMBLE[${mem}]}.nc.analysis 
         # note  enkf and cdo depend on the path of reference_grid.nc
     done
- 
-    # enable matlab in shell    
-    #matlab -nosplash -nodesktop  -batch  main_enkf_outputs_unix  # set mrun= matlab -noslash -nodesktop -batch in .bashrc
-    
-    echo "enkf done"
+    # plots 
+    cp $RUNPATH . #in $FILTER
+    matlab -nosplash -nodesktop  -nojvm  -batch  "create_plots;quit"
 fi #UPDATE 

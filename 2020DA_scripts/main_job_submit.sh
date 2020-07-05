@@ -5,7 +5,8 @@
 # final results are saved in 
 #   ENSPATH/filter/prior/***.nc.analysis  linked in NEXTSIM_DATA_DIR/...
 # Directory structure:
-# ENSPATH -- mem001
+# ENSPATH 2018-11-11 includes
+#         -- mem001
 #         -- mem002
 #         -- ...
 #         -- mem***
@@ -32,7 +33,7 @@
     ENVFRAM=/cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun 
     source $ENVFRAM/nextsim.src
     source $ENVFRAM/nextsim.ensemble.src
-    OUTPUTPATH=$IO_nextsim/test_26_06_Ne20_T4_D7   # output path
+    OUTPUTPATH=$IO_nextsim/test2_06_07_Ne20_T4_D7   # output path
     rm -r $OUTPUTPATH 
     mkdir $OUTPUTPATH   
     #
@@ -65,7 +66,8 @@ for (( i=1; i<=${tduration}; i++ )); do
     fi
 
     ENSPATH=$OUTPUTPATH/$time_init  
-     mkdir -p $ENSPATH
+    mkdir -p $ENSPATH
+    cp *.sh $ENSPATH
 
 # create ensemble directories and files
     source $RUNPATH/part1_initialization.sh   
@@ -74,4 +76,4 @@ for (( i=1; i<=${tduration}; i++ )); do
 done
 
 mv nohup.out $OUTPUTPATH/log.txt
-
+echo "enkf done"

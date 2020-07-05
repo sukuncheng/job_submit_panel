@@ -42,6 +42,28 @@
 git fetch --all
 git reset --hard origin/master
 
+# 3-7
+create read_cs2smos.c from read_smos.c
+needs to change:  allreaders.c/h, reader_smos.c, add reader_cs2smos.c to Makefile,
+     obs.prm(product, reader)
+
+
+ice concentration >1 seems not an error (maximum of analysis is about 1.2~1.4 in ensemble members). 
+nextim/finiteelement.cpp 
+- update() has a correction script limits concentration <=1
+   M_conc[cpt] = std::min(1.,std::max(M_conc[cpt],0.));
+- initIce() has several ice source options, e.g. a command in topazAmsr2Ice() below
+  M_conc[i] = std::min(1., M_init_conc[i]);
+
+a comment says "after the advection the concentration can be higher than 1, meaning that ridging should have occured" in finiteelement.cpp
+
+# 2-7
+ if a data file is listed in the observation data parameter file, then observationsfrom  this  file  are  assimilated.
+add ice concentration to enk-c
+-  obstypes.prm
+-  obs.prm
+- add concentration in reader_smos.c, refer to reader_cars.c
+- model.prm
 
 # 30-6
 7.5 km resolution. 
