@@ -49,7 +49,8 @@ if [ ${UPDATE} -gt 0 ]; then
     echo "link mem00*/prior.nc to /filter/prior/mem00*.nc"
     for (( mem=1; mem<=${ESIZE}; mem++ )); do
         mv  ${ENSPATH}/${ENSEMBLE[${mem}]}/prior.nc \
-            ${FILTER}/prior/${ENSEMBLE[${mem}]}'.nc'
+            ${FILTER}/prior/${ENSEMBLE[${mem}]}'.nc' # use `ln -sf` in docker cannot link correctly with data on host machine
+        [ -f ${ENSPATH}/${ENSEMBLE[${mem}]}/*.00 ] && rm ${ENSPATH}/${ENSEMBLE[${mem}]}/*.00 ${ENSPATH}/${ENSEMBLE[${mem}]}/*.01
     done
     #
     cd $FILTER
@@ -77,10 +78,12 @@ if [ ${UPDATE} -gt 0 ]; then
     # nextsim will read /NEXTSIMDIR/data/**.nc.analysis data in next DA cycle    
     rm ${NEXTSIMDIR}/data/*.nc.analysis
     for (( mem=1; mem<=${ESIZE}; mem++ )); do
+        [ ! -f ${FILTER}/prior/${ENSEMBLE[${mem}]}.nc.analysis  ] && sleep 5
         cdo merge ./reference_grid.nc  ./prior/${ENSEMBLE[${mem}]}.nc.analysis ${NEXTSIMDIR}/data/${ENSEMBLE[${mem}]}.nc.analysis 
         # note  enkf and cdo depend on the path of reference_grid.nc
     done
+    echo "enkf done, create plots"
     # plots 
-    cp $RUNPATH . #in $FILTER
+    cp $RUNPATH/create_plots.m . #in $FILTER
     matlab -nosplash -nodesktop  -nojvm  -batch  "create_plots;quit"
 fi #UPDATE 

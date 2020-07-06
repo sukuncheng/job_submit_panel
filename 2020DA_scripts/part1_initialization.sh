@@ -55,8 +55,8 @@
         cd $FILTER  
         cp $RUNPATH/reference_grid.nc .
         #    
-        echo "get config files from host_machine/enkf-c directory "
-        cp ${RUNPATH}/enkf_cfg/* .  # exclude stats.prm & enoi.prm
+        echo "get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm"
+        cp ${RUNPATH}/enkf_cfg/* .  #from ${NEXTSIMDIR}/modules/enkf/enkf-c/cfg/* # except stats.prm and enoi.prm
         cp ${NEXTSIMDIR}/modules/enkf/enkf-c/bin/enkf_* .
         # modifications in enkf configurations
         sed -i "s;mpirun;mpirun --allow-run-as-root;g" ./Makefile
