@@ -64,6 +64,5 @@
         sed -i "s;^INFLATION.*$;INFLATION = 1.;g"  enkf.prm
         sed -i "s;^LOCRAD.*$;LOCRAD = 300;g"  enkf.prm
         sed -i "s;^RFACTOR.*$;RFACTOR = 1;g"  enkf.prm
-        sed -i "s;^READER.*$;READER = standard;g" obs.prm    
     fi
-echo "part1 initialize files system, done"
+echo "part1 initialize files system, done" 
