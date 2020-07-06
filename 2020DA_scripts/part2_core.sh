@@ -50,7 +50,9 @@ if [ ${UPDATE} -gt 0 ]; then
     for (( mem=1; mem<=${ESIZE}; mem++ )); do
         mv  ${ENSPATH}/${ENSEMBLE[${mem}]}/prior.nc \
             ${FILTER}/prior/${ENSEMBLE[${mem}]}'.nc' # use `ln -sf` in docker cannot link correctly with data on host machine
-        [ -f ${ENSPATH}/${ENSEMBLE[${mem}]}/*.00 ] && rm ${ENSPATH}/${ENSEMBLE[${mem}]}/*.00 ${ENSPATH}/${ENSEMBLE[${mem}]}/*.01
+        if [[ -f ${ENSPATH}/${ENSEMBLE[${mem}]}/*.00 ]];then
+            rm ${ENSPATH}/${ENSEMBLE[${mem}]}/*.00 ${ENSPATH}/${ENSEMBLE[${mem}]}/*.01
+        fi
     done
     #
     cd $FILTER

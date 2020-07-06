@@ -20,7 +20,7 @@ enkf-calc: enkf_calc observations.nc prior
 	nice -n +19 mpirun --allow-run-as-root -np $(NP_CALC) ./enkf_calc --use-rmsd-for-obsstats enkf.prm 2>&1 | tee calc.out
 
 enkf-update: enkf_update X5.nc prior
-	nice -n +19 mpirun --allow-run-as-root -np $(NP_UPDATE) ./enkf_update --calculate-spread --output-increment enkf.prm 2>&1 | tee update.out
+	nice -n +19 mpirun --allow-run-as-root -np $(NP_UPDATE) ./enkf_update --calculate-spread enkf.prm 2>&1 | tee update.out
 
 enoi-prep: enkf_prep conf obs enoi.prm
 	./enkf_prep enoi.prm 2>&1 | tee prep.out
