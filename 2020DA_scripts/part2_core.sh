@@ -13,8 +13,11 @@ for (( j=1; j<=5; j++ )); do  # this loop is supposed to find and resubmit crash
     for (( mem=1; mem<=${ESIZE}; mem++ )); do
         cd ${ENSPATH}/${ENSEMBLE[${mem}]}  #MEMPATH
         # submit job        
-        if [[ ! -f nextsim.log || !(grep -q "Simulation done" nextsim.log) ]];then                  
-            source $ENVFRAM/run.fram.sh ./nextsim.cfg 1 -e $ENVFRAM/nextsim.src       
+	if [ -f nextsim.log ] && [ grep -q "Simulation done" slurm.nextsim.*.log ] 
+	then
+	    echo ${ENSEMBLE[${mem}]} "is done"
+	else
+	    source $ENVFRAM/run.fram.sh ./nextsim.cfg 1 -e $ENVFRAM/nextsim.src       
         fi
         job_list=$(squeue -u chengsukun)
         XPID=$(grep -o chengsuk <<<$job_list |wc -l)  # number of current running jobs
@@ -23,7 +26,6 @@ for (( j=1; j<=5; j++ )); do  # this loop is supposed to find and resubmit crash
             sleep 20
             job_list=$(squeue -u chengsukun)
             XPID=$(grep -o chengsuk <<<$job_list |wc -l)  # number of current running jobs
-            echo $XPID '---' ${ENSEMBLE[${mem}]}
         done    
     done
         
@@ -87,5 +89,5 @@ if [ ${UPDATE} -gt 0 ]; then
     echo "enkf done, create plots"
     # plots 
     cp $RUNPATH/create_plots.m . #in $FILTER
-    matlab -nosplash -nodesktop  -nojvm  -batch  "create_plots;quit"
+#    matlab -nosplash -nodesktop  -nojvm  -softwareopengl  -batch  "create_plots;quit"
 fi #UPDATE 

@@ -33,9 +33,6 @@
     ENVFRAM=/cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun 
     source $ENVFRAM/nextsim.src
     source $ENVFRAM/nextsim.ensemble.src
-    OUTPUTPATH=$IO_nextsim/test2_06_07_Ne20_T4_D7   # output path
-    rm -r $OUTPUTPATH 
-    mkdir $OUTPUTPATH   
     #
     OBSNAME_PREFIX=$NEXTSIMDIR/data/CS2_SMOS_v2.2/W_XX-ESA,SMOS_CS2,NH_25KM_EASE2_ 
     OBSNAME_SUFFIX=_r_v202_01_l4sit
@@ -43,13 +40,15 @@
 #--------  experiment settings ------------
     time_init=2018-11-11                  # starting date of simulation
     #   tduration*duration is the total simulation time in days
-    duration=7    # nextsim duration in a forecast-analysisf cycle, usually CS2SMOS frequency
-    tduration=4   # number of forecast-analysis cycle. 
-    UPDATE=1    
-    ESIZE=20       # ensemble size
-    #NPROC=4       # cpu cores  
+    duration=1    # nextsim duration in a forecast-analysisf cycle, usually CS2SMOS frequency
+    tduration=1   # number of forecast-analysis cycle. 
+    ESIZE=1       # ensemble size
     maximum_instants=20   # max instants (submitted jobs)
-    #
+    OUTPUTPATH=$IO_nextsim/test2_Ne${ESIZE}_T${tduration}_D${duration}   # output path
+    [ -d $OUTPUTPATH ] && rm -r $OUTPUTPATH
+    mkdir $OUTPUTPATH    
+#
+    UPDATE=1    
     if [ $UPDATE -gt 0 ]; then 
         echo "execute nextsim with EnKF filter!"
     else
