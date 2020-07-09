@@ -40,9 +40,9 @@
 #--------  experiment settings ------------
     time_init=2018-11-11                  # starting date of simulation
     #   tduration*duration is the total simulation time in days
-    duration=1    # nextsim duration in a forecast-analysisf cycle, usually CS2SMOS frequency
-    tduration=1   # number of forecast-analysis cycle. 
-    ESIZE=1       # ensemble size
+    duration=6    # nextsim duration in a forecast-analysisf cycle, usually CS2SMOS frequency
+    tduration=4   # number of forecast-analysis cycle. 
+    ESIZE=20       # ensemble size
     maximum_instants=20   # max instants (submitted jobs)
     OUTPUTPATH=$IO_nextsim/test2_Ne${ESIZE}_T${tduration}_D${duration}   # output path
     [ -d $OUTPUTPATH ] && rm -r $OUTPUTPATH

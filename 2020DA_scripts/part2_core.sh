@@ -13,7 +13,7 @@ for (( j=1; j<=5; j++ )); do  # this loop is supposed to find and resubmit crash
     for (( mem=1; mem<=${ESIZE}; mem++ )); do
         cd ${ENSPATH}/${ENSEMBLE[${mem}]}  #MEMPATH
         # submit job        
-	if [ -f nextsim.log ] && [ grep -q "Simulation done" slurm.nextsim.*.log ] 
+	if [ grep -q "Simulation done" slurm.nextsim.*.log ] 
 	then
 	    echo ${ENSEMBLE[${mem}]} "is done"
 	else
