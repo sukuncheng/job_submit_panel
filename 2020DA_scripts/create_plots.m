@@ -62,15 +62,22 @@ function fun_geomap_field(Var)
     % plot   forecast_analysis
         h_fig = figure(); 
         set(h_fig,'Position',[100,200,900,300], 'color','w');
-        colormap(bluewhitered);
-        upper = max(max(max(v1)), max(max(v2)));
-        subplot(121); func_arctic_map(lon, lat, v1); title('forecast field');   caxis([0 upper]);
-        subplot(122); func_arctic_map(lon, lat, v2); title('analysis field');   caxis([0 upper]);
+        
+        if (strcmp(Var,'sic'))
+            upper = 1;
+            lower =0.8;
+        else 
+            upper = max(max(max(v1)), max(max(v2)));
+            lower = 0;
+        end
+        subplot(121); func_arctic_map(lon, lat, v1); title('forecast field');   caxis([lower upper]);
+        subplot(122); func_arctic_map(lon, lat, v2); title('analysis field');   caxis([lower upper]);
         saveas(gcf,['field_' Var '_' memid '.png'],'png');    
-    % plot increment
+    % plot increments
         h_fig = figure(); 
         inc = v2 - v1;
         inc(inc==0) = nan;
+        colormap(bluewhitered);
         func_arctic_map(lon, lat, inc); title('increment');
         saveas(gcf,['field_increment_' Var '_' memid '.png'],'png');    
     end
@@ -227,3 +234,4 @@ function newmap = bluewhitered(m)
     % 
     % % set(gcf, 'colormap', newmap), colorbar
 end
+
