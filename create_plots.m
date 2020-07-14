@@ -27,15 +27,15 @@ function fun_geomap_spread(Var)
 % part 2. get sit from spread.nc
     file = 'spread.nc';
     v1 = ncread(file, Var);
-    v1(v1<=0) = nan;
+    v1(v1<0) = nan;
     v2 = ncread(file, [Var '_an']);    
 % part 3. plot
     h_fig = figure(); 
-    set(h_fig,'Position',[100,200,900,300], 'color','w');
-    colormap(bluewhitered);
+    set(h_fig,'Position',[100,200,900,300], 'color','w');    
     upper = max(max(max(v1)), max(max(v2)));
-    subplot(121); func_arctic_map(lon, lat, v1);  title('forecast ensemble spread'); caxis([0 upper]);
-    subplot(122); func_arctic_map(lon, lat, v2);  title('analysis ensemble spread'); caxis([0 upper]);
+    subplot(121); func_arctic_map(lon, lat, v1);  title(['forecast ensemble spread - ' Var]); caxis([0 upper]);
+    subplot(122); func_arctic_map(lon, lat, v2);  title(['analysis ensemble spread - ' Var]); caxis([0 upper]);
+    colormap(jet);
 %   
     saveas(h_fig,['spread_' Var '.png'],'png');
 end
@@ -70,17 +70,17 @@ function fun_geomap_field(Var)
             upper = max(max(max(v1)), max(max(v2)));
             lower = 0;
         end
-        subplot(121); func_arctic_map(lon, lat, v1); title('forecast field');   caxis([lower upper]);
-        subplot(122); func_arctic_map(lon, lat, v2); title('analysis field');   caxis([lower upper]);
+        subplot(121); func_arctic_map(lon, lat, v1); title(['forecast - ' Var]);   caxis([lower upper]);
+        subplot(122); func_arctic_map(lon, lat, v2); title(['analysis - ' Var]);   caxis([lower upper]);
         saveas(gcf,['field_' Var '_' memid '.png'],'png');    
     % plot increments
         h_fig = figure(); 
         inc = v2 - v1;
         inc(inc==0) = nan;
-        colormap(bluewhitered);
         upper = max(max(max(v1)), max(max(v2)));
-        func_arctic_map(lon, lat, inc); title('increment'); caxis([-upper upper]);
-        saveas(gcf,['field_increment_' Var '_' memid '.png'],'png');    
+        func_arctic_map(lon, lat, inc); title(['increment - ' Var]); caxis([-upper upper]);
+        colormap(bluewhitered);
+        saveas(gcf,['Increment_' Var '_' memid '.png'],'png');    
     end
 end
 %  -----------------
@@ -101,11 +101,11 @@ function fun_plot_observation(Var)
     Z = ncread(file,'value');
     Z(Z<0) = nan;
 %     
-    colormap(bluewhitered);
     m_scatter(lon,lat,10,Z,'o','filled'); 
     hold on;
     m_coast('patch',0.7*[1 1 1]);
     m_grid('color','k');
+    colormap(jet);
     h = colorbar;
     title(h, '(m)');
     saveas(h_fig,'observations.png','png');
