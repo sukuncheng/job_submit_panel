@@ -1,5 +1,5 @@
 #!/bin/bash
-#set -e
+set -e
 # main job submitting script
 # - core.sh includes 1) nextsim, 2) enkf. 
 # final results are saved in 
@@ -14,7 +14,7 @@
 #                     -- obs  (link observations from NEXTIM_DATA_DIR)
 #                     -- prior 
 # changes in nextsim.cfg, pseudo2D.nml are summarized in part1_initialization.sh, seek them by searching sed command
-#-------------------------------------------------------------
+#-----------------------------------------------------------
 ## common settings in part1 and part2
 #---  model paths and alias --------------
 # Modifications for Fram  
@@ -40,13 +40,17 @@
 #--------  experiment settings ------------
     time_init=2018-11-11                  # starting date of simulation
     #   tduration*duration is the total simulation time in days
-    duration=6    # nextsim duration in a forecast-analysisf cycle, usually CS2SMOS frequency
+    duration=7    # nextsim duration in a forecast-analysisf cycle, usually CS2SMOS frequency
     tduration=4   # number of forecast-analysis cycle. 
-    ESIZE=20       # ensemble size
+    ESIZE=2       # ensemble size
     maximum_instants=20   # max instants (submitted jobs)
-    OUTPUTPATH=$IO_nextsim/test2_Ne${ESIZE}_T${tduration}_D${duration}   # output path
-    [ -d $OUTPUTPATH ] && rm -r $OUTPUTPATH
-    mkdir $OUTPUTPATH    
+    OUTPUTPATH=$IO_nextsim/test3_Aug4_Ne${ESIZE}_T${tduration}_D${duration}/I${INFLATION}_L${LOCRAD}_R${RFACTOR}_K${KFACTOR}   # output path
+    OUTPUTPATH=${OUTPUTPATH//./p}
+    echo $OUTPUTPATH
+    [ -d $OUTPUTPATH ] && rm -r $OUTPUTPATH    
+    mkdir -p $OUTPUTPATH    
+    > nohup.out  # empty this file
+
 #
     UPDATE=1    
     if [ $UPDATE -gt 0 ]; then 
@@ -65,8 +69,8 @@ for (( i=1; i<=${tduration}; i++ )); do
     fi
 
     ENSPATH=$OUTPUTPATH/$time_init  
-    mkdir -p $ENSPATH
-    cp *.sh $ENSPATH
+    mkdir -p $ENSPATH    
+    cp ${RUNPATH}/*.sh $ENSPATH
 
 # create ensemble directories and files
     source $RUNPATH/part1_initialization.sh   
@@ -74,5 +78,5 @@ for (( i=1; i<=${tduration}; i++ )); do
     source $RUNPATH/part2_core.sh  
 done
 
-mv nohup.out $OUTPUTPATH/log.txt
+mv $RUNPATH/nohup.out $OUTPUTPATH/log.txt
 echo "enkf done"

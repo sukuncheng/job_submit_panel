@@ -1,52 +1,65 @@
 # Todo
-- add a script-block to resubmit crashed job. Waiting all jobs are finished before moving to enkf.
-- block  output of daily output of .bin and .dat, only output the final (check with Tim)
--investigate prior.nc size puzzle
--Adjust ECMWF data air drag coefficient.
--Run more periods to reducing results dependence on initial dates.
--merge branch to enkf_interface or others
--add damage to Moorings.nc
+1. DONE. add a script-block to resubmit crashed job. Waiting all jobs are finished before moving to enkf. 
+2. DONE: stop daily output of .bin and .dat, only output the final. output_per_day=0 in nextsim.cfg
+3. DONE. increate time step in nextsim.cfg in the latest nextsim version. from 200 to 400
+4. DONE. investigate prior.nc size puzzle. duplication of outputing statevectors is fixed
+5. Adjust ECMWF data air drag coefficient.
+6. Run more periods to reducing results dependence on the initial dates.
+7. DONE. merge branch to enkf_interface or others. merged develop branch
+8. discard: add damage to Moorings.nc
+9. Tune factors (R, K, inflation, localisation radii) in enkf
+10. implement Ali's changes
 
-## Moorings and prior
+
+## Moorings and prior (refer to Todo - 4)
 -                  grid size            data size (initial size,  final size, tested duration 2 or 7day)
   Moorings.nc       501x391                  1589306,   7891730      
   prior.nc          522x528                  2224737,  19898089
 
 - same name:output_timestep is in moorings and statevector
 - restart data is recognized by basename=final  (field_basename.bin/dat)
-- 
 
-# enkf
-## Reference_grid :
+# Enkf - c
+## compile  
+  make clean;make; cp ./bin/* example_filter/; cd example_filter/; make clean; 
+  keywords in code related to spread： UPDATE_DOANALYSISSPREAD， &fields[i - bufindex], "write analysis spread" 
+## Reference_grid prepared for using enkf-c code
   grid size: 528*522
   longitude: -180 to 180
   latitude: N 40.137 to 90 
-## compile  
-  make clean;make; cp ./bin/* example_filter/; cd example_filter/; make clean; 
-  keywords related to spread： UPDATE_DOANALYSISSPREAD， &fields[i - bufindex], "write analysis spread" 
 
-
-## Tune factors
+## Tune factors (refer to Todo 9)
 1. Incresing R-factor decreases the impact of observation. Ensemble spread/sqrt(R-factor)
 2. Incresing K-factor increases the impact of ensemble spread. background check. 2.7.3. 
    Modifies observation error so that the increment for this observation would not exceed KFACTOR * <ensemble spread> (all in observation space) after assimilating this observation only.
 3. Inflation . The ensemble anomalies (A=E-x.1') for any model state element will be inflated to avoid collapses. 
     (x_a - x\bar)*inflation + x\bar
     capping of inflation: inflation = 1+inflation*( std_f/std_a-1)
-
 4. localisation radii defines the impact area size of observation. Increasing it increases the number of local observations
 
+# knowledge
+divergence of the Kalman filter: if the ensemble collapses, the Kalman gain tends to zero and the assimilation system behaves as one – expensive – free run.
+
+# 8-8 
+optimize EnKF parameters using enumeration method
 
 
-# discard location changes and pull from remote repository
-git fetch --all
-git reset --hard origin/master
+# 17-7
+ lost records in 2 weeks
+ finished test 1 (assimilate sit), and test2 (assimilate sic and sit)
+ save results from test 2 in .docx document.
+ increase time step in nextsim.cfg from 200 to 400 and change output_per_day=0
+
+Investigate the possible mutual interuption in sic and sit assimilation
+prior/mem***.nc + obs. -> prior/mem***.analysis.nc
+# Todo
+ - redo test2 using 7 day forecasts instead of 6 day
+ 
 
 # 3-7
 create read_cs2smos.c from read_smos.c
 needs to change:  allreaders.c/h, reader_smos.c, add reader_cs2smos.c to Makefile,
      obs.prm(product, reader)
-
 
 ice concentration >1 seems not an error (maximum of analysis is about 1.2~1.4 in ensemble members). 
 nextim/finiteelement.cpp 
@@ -58,7 +71,7 @@ nextim/finiteelement.cpp
 a comment says "after the advection the concentration can be higher than 1, meaning that ridging should have occured" in finiteelement.cpp
 
 # 2-7
- if a data file is listed in the observation data parameter file, then observationsfrom  this  file  are  assimilated.
+ if a data file is listed in the observation data parameter file, then observations from  this  file  are  assimilated.
 add ice concentration to enk-c
 -  obstypes.prm
 -  obs.prm
@@ -333,3 +346,8 @@ Small_arctic_10km.msh
 -Reduce writing/reading in wind perturbation.
   Because of many times of writing/reading operations in the simulation, the computational efficiency depends on the hard disk capability. Using m.2 ssd harddive with 2Gb/s read/write capability could save considerable time.  
 - The master core occupies most of the computer memory, increasing as duration increasing. Other cores occupy equally amount of memory with small fluctuation arround a constant. 
+
+# git 
+## discard location changes and pull from remote repository
+  git fetch --all
+  git reset --hard origin/master
