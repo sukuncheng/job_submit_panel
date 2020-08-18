@@ -34,10 +34,9 @@ for (( m=0; m<${#KFACTORs[@]};   m++ )); do
     source main_job_submit.sh
     
     # wait for all jobs to finish
-    while [[ $XPID -ge 1 ]]; do 
+    while [[ $Nruns -ge 1 ]]; do 
         sleep 200
-        job_list=$(squeue -u chengsukun)
-        XPID=$(grep -o chengsuk <<<$job_list |wc -l)  # number of current running jobs
+        XPID=$((squeue -u chengsukun) | grep -o chengsuk |wc -l) # number of current running jobs 
     done   
 done
 done

@@ -2,8 +2,7 @@
 set -e
 # main job submitting script
 # - core.sh includes 1) nextsim, 2) enkf. 
-# final results are saved in 
-#   ENSPATH/filter/prior/***.nc.analysis  linked in NEXTSIM_DATA_DIR/...
+# results are saved in ENSPATH/filter/prior/***.nc.analysis,linked in NEXTSIM_DATA_DIR/...
 # Directory structure:
 # ENSPATH 2018-11-11 includes
 #         -- mem001
@@ -13,11 +12,12 @@ set -e
 #         -- filter (include EnKF package)
 #                     -- obs  (link observations from NEXTIM_DATA_DIR)
 #                     -- prior 
-# changes in nextsim.cfg, pseudo2D.nml are summarized in part1_initialization.sh, seek them by searching sed command
+# changes in nextsim.cfg, pseudo2D.nml are in part1_initialization.sh
 #-----------------------------------------------------------
-## common settings in part1 and part2
+
+## common settings
 #---  model paths and alias --------------
-# Modifications for Fram  
+# Important modifications for Fram  
 # 1. comment NEXTSIMDIR path
 # 2. cp reference_grid.nc to data/ 
 # 3. set RUNPATH to IO_nextsim on fram
@@ -38,26 +38,19 @@ set -e
     OBSNAME_SUFFIX=_r_v202_01_l4sit
 
 #--------  experiment settings ------------
-    time_init=2018-11-11                  # starting date of simulation
-    #   tduration*duration is the total simulation time in days
-    duration=7    # nextsim duration in a forecast-analysisf cycle, usually CS2SMOS frequency
+    time_init=2018-11-11   # starting date of simulation
+    duration=7    # forecast duration,#   tduration*duration is the total simulation time in days
     tduration=4   # number of forecast-analysis cycle. 
     ESIZE=2       # ensemble size
-    maximum_instants=20   # max instants (submitted jobs)
-    OUTPUTPATH=$IO_nextsim/test3_Aug4_Ne${ESIZE}_T${tduration}_D${duration}/I${INFLATION}_L${LOCRAD}_R${RFACTOR}_K${KFACTOR}   # output path
+    maximum_instants=100   # max instants (submitted jobs)
+    OUTPUTPATH=${IO_nextsim}/test3_Ne${ESIZE}_T${tduration}_D${duration}/I${INFLATION}_L${LOCRAD}_R${RFACTOR}_K${KFACTOR}   # output path
     OUTPUTPATH=${OUTPUTPATH//./p}
-    echo $OUTPUTPATH
+    echo 'work path:' $OUTPUTPATH
     [ -d $OUTPUTPATH ] && rm -r $OUTPUTPATH    
     mkdir -p $OUTPUTPATH    
     > nohup.out  # empty this file
-
 #
-    UPDATE=1    
-    if [ $UPDATE -gt 0 ]; then 
-        echo "execute nextsim with EnKF filter!"
-    else
-        echo "execute nextsim only"
-    fi
+    UPDATE=1 # 1: active assimilation
 #-------------------------------------------
 # execute ensemble runs
 for (( i=1; i<=${tduration}; i++ )); do
@@ -67,16 +60,14 @@ for (( i=1; i<=${tduration}; i++ )); do
         restart_from_analysis=true
         time_init=$(date +%Y-%m-%d -d "${time_init} + ${duration} day")        
     fi
-
-    ENSPATH=$OUTPUTPATH/$time_init  
-    mkdir -p $ENSPATH    
-    cp ${RUNPATH}/*.sh $ENSPATH
-
+    echo "=========start period ${time_init}"
+    ENSPATH=$OUTPUTPATH/date${i}  
+    mkdir -p $ENSPATH        
 # create ensemble directories and files
     source $RUNPATH/part1_initialization.sh   
 # a forecast-analysis cycle
     source $RUNPATH/part2_core.sh  
 done
-
+cp ${RUNPATH}/*.sh ${OUTPUTPATH}
 mv $RUNPATH/nohup.out $OUTPUTPATH/log.txt
 echo "enkf done"

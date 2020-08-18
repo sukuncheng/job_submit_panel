@@ -1,16 +1,18 @@
-execute nextsim with EnKF filter!
-cd ENSPATH/filter & put reference_grid.nc in it
-get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm
-part1 initialize files system, done
-skip ensemble forecasting
-link mem00*/prior.nc to /filter/prior/mem00*.nc
-link observations to ENSPATH/filter/obs, and obs.prm
-2018-11-11         7
-run enkf, outputs: /prior/*.nc.analysis, /enkf.out
+=========start period 2018-11-11
+Part1 initialize files system
+  cd ENSPATH/filter & get a copy of reference_grid.nc 
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm
+Done
+  skip ensemble forecasting
+Start EnKF assimilation
+  link mem00*/prior.nc to /filter/prior/mem00*.nc
+  link observations to ENSPATH/filter/obs, and obs.prm
+  2018-11-11         7
+  run enkf, outputs: /prior/*.nc.analysis, /enkf.out
   running PREP for EnKF-C version 1.94.0:
     command = "./enkf_prep --no-superobing enkf.prm"
-    dir = "/cluster/work/users/chengsukun/src/IO_nextsim/test3_Aug4_Ne2_T4_D7/I1_L100_R1_K1/2018-11-11/filter"
-  2020-08-10 10:21:41
+    dir = "/cluster/work/users/chengsukun/src/IO_nextsim/test3_Ne2_T4_D7/I1_L100_R1_K1/date1/filter"
+  2020-08-18 15:18:41
   reading prep specs from "enkf.prm":
     MODE = EnKF
     SCHEME = ETKF
@@ -129,22 +131,22 @@ run enkf, outputs: /prior/*.nc.analysis, /enkf.out
     sea_ice_thickness 4988     21199    0        0        0        0        0        0        21199    0        4988    
     sea_ice_concentration 7018     19169    0        0        0        0        0        0        19169    0        7018    
     total   12006    40368    0        0        0        0        0        0        40368    0        12006   
-  2020-08-10 10:21:43
+  2020-08-18 15:18:43
   finished
 --------------------------------------------------------------------------
 No OpenFabrics connection schemes reported that they were able to be
 used on a specific port.  As such, the openib BTL (OpenFabrics
 support) will be disabled for this port.
 
-  Local host:           login-1-1
+  Local host:           login-1-2
   Local device:         mlx4_0
   Local port:           1
   CPCs attempted:       rdmacm, udcm
 --------------------------------------------------------------------------
   running CALC for EnKF-C version 1.94.0:
     command = "./enkf_calc --use-rmsd-for-obsstats enkf.prm"
-    dir = "/cluster/work/users/chengsukun/src/IO_nextsim/test3_Aug4_Ne2_T4_D7/I1_L100_R1_K1/2018-11-11/filter"
-  2020-08-10 10:22:04
+    dir = "/cluster/work/users/chengsukun/src/IO_nextsim/test3_Ne2_T4_D7/I1_L100_R1_K1/date1/filter"
+  2020-08-18 15:19:00
   reading system specs from "enkf.prm":
     MODE = EnKF
     SCHEME = ETKF
@@ -233,14 +235,14 @@ support) will be disabled for this port.
     12006 observations
     allocating 1344672 bytes for array of observations
   calculating ensemble observations:
-  2020-08-10 10:22:05
+  2020-08-18 15:19:01
     allocating 3841920 bytes for HE array:
     distributing iterations:
       1 processes get 40 iterations each
     sea_ice_thickness ........................................
     sea_ice_concentration ........................................
   adding forecast innovations and spread to "observations.nc":
-  2020-08-10 10:22:05
+  2020-08-18 15:19:02
   moderating observations:
     observations substantially modified:
       sea_ice_thickness          0 (0.0%)
@@ -248,7 +250,7 @@ support) will be disabled for this port.
       total        0 (0.0%)
   writing modified obs errors to "observations.nc":
   calculating transforms:
-  2020-08-10 10:22:05
+  2020-08-18 15:19:02
     creating kd-trees for observations:
     calculating transforms for reference_grid:
       creating empty file "X5.nc":
@@ -792,13 +794,13 @@ support) will be disabled for this port.
       # of inversions in ens space = 131520
   writing point logs:
   calculating analysed observations:
-  2020-08-10 10:24:16
+  2020-08-18 15:20:36
     sorting obs by ij:
-    2020-08-10 10:24:16
+    2020-08-18 15:20:36
     updating HE:
     distributing iterations:
       1 processes get 12006 iterations each
-    2020-08-10 10:24:17
+    2020-08-18 15:20:38
   adding analysis innovations and spread to "observations.nc":
   printing observation statistics:
     region obs.type   # obs.  [for.inn.] [an.inn.]   for.inn.   an.inn.  for.spread  an.spread
@@ -808,22 +810,22 @@ support) will be disabled for this port.
              SMOS       498845126715929557.289  45126713354684.750  21303033910977.246  21303032640235.816      0.037  17913.942  
            sea_ice_concentration          701851287428908737.117  51287428852846.055  27213620357685.945  27213621076500.008      0.006  20063.636  
              SMOS       701851287428908737.117  51287428852846.055  27213620357685.945  27213621076500.008      0.006  20063.636  
-  2020-08-10 10:24:17
+  2020-08-18 15:20:38
   finished
 --------------------------------------------------------------------------
 No OpenFabrics connection schemes reported that they were able to be
 used on a specific port.  As such, the openib BTL (OpenFabrics
 support) will be disabled for this port.
 
-  Local host:           login-1-1
+  Local host:           login-1-2
   Local device:         mlx4_0
   Local port:           1
   CPCs attempted:       rdmacm, udcm
 --------------------------------------------------------------------------
   running UPDATE for EnKF-C version 1.94.0:
     command = "./enkf_update --calculate-spread enkf.prm"
-    dir = "/cluster/work/users/chengsukun/src/IO_nextsim/test3_Aug4_Ne2_T4_D7/I1_L100_R1_K1/2018-11-11/filter"
-  2020-08-10 10:24:19
+    dir = "/cluster/work/users/chengsukun/src/IO_nextsim/test3_Ne2_T4_D7/I1_L100_R1_K1/date1/filter"
+  2020-08-18 15:20:44
   reading system specs from "enkf.prm":
     MODE = EnKF
     SCHEME = ETKF
@@ -887,36 +889,36 @@ support) will be disabled for this port.
     allocating disk space for spread:
     distributing iterations:
       1 processes get 40 iterations each
-    2020-08-10 10:24:19
+    2020-08-18 15:20:45
     allocating disk space for analysis:................................................................................
     processing fields for reference_grid:
-      2020-08-10 10:24:20
+      2020-08-18 15:20:48
       2 fields
       distributing iterations:
         1 processes get 2 iterations each
       sit      0   (0: 0: 50.0%)
       sic      0   (0: 1: 100.0%)
-  2020-08-10 10:24:23
+  2020-08-18 15:20:52
   finished
-project *.nc.analysis on reference_grid.nc, save to /NEXTSIMDIR/data/ for ensemble forecasting in the next cycle
+  project *.nc.analysis on reference_grid.nc, save to /NEXTSIMDIR/data/ for ensemble forecasting in the next cycle
 Warning (find_time_vars): Time variable >time< not found!
-cdo    merge: Processed 16 variables over 2 timesteps [0.67s 86MB].
+cdo    merge: Processed 16 variables over 2 timesteps [0.50s 86MB].
 Warning (find_time_vars): Time variable >time< not found!
-cdo    merge: Processed 16 variables over 2 timesteps [0.64s 86MB].
-enkf done
-cd ENSPATH/filter & put reference_grid.nc in it
-get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm
-part1 initialize files system, done
-ensemble runs start
-grep: slurm.nextsim.*.log: No such file or directory
+cdo    merge: Processed 16 variables over 2 timesteps [0.36s 86MB].
+Enkf done
+=========start period 2018-11-18
+Part1 initialize files system
+  cd ENSPATH/filter & get a copy of reference_grid.nc 
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm
+Done
+Ensemble runs start
+  loop 1
 cp -r /cluster/home/chengsukun/src/nextsim/model/bin .
 cp /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/slurm.template.sh slurm.nextsim.sh
 Finished modifying slurm.nextsim.sh
-sbatch slurm.nextsim.sh /cluster/work/users/chengsukun/src/IO_nextsim/test3_Aug4_Ne2_T4_D7/I1_L100_R1_K1/2018-11-18/mem001/nextsim.cfg -e /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.src
-Submitted batch job 654896
-grep: slurm.nextsim.*.log: No such file or directory
+  submit mem 1 as ID: 687290, 1 jobs are running
 cp -r /cluster/home/chengsukun/src/nextsim/model/bin .
 cp /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/slurm.template.sh slurm.nextsim.sh
 Finished modifying slurm.nextsim.sh
-sbatch slurm.nextsim.sh /cluster/work/users/chengsukun/src/IO_nextsim/test3_Aug4_Ne2_T4_D7/I1_L100_R1_K1/2018-11-18/mem002/nextsim.cfg -e /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.src
-Submitted batch job 654897
+  submit mem 2 as ID: 687291, 2 jobs are running
+    2 jobs are running

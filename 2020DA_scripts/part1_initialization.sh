@@ -13,7 +13,7 @@
 #         -- filter (include EnKF package)
 #                     -- obs  (link observations from NEXTIM_DATA_DIR)
 #                     -- prior 
-
+echo "Part1 initialize files system"
 #   create a namelist of ensemble member directories
     ENSEMBLE=()             
     for (( mem=1; mem<=${ESIZE}; mem++ )); do
@@ -51,11 +51,11 @@
         mkdir -p ${FILTER}/prior  # create directory to store prior states
         mkdir -p ${FILTER}/obs    # observation directory
         #
-        echo "cd ENSPATH/filter & put reference_grid.nc in it"
+        echo "  cd ENSPATH/filter & get a copy of reference_grid.nc "
         cd $FILTER  
         cp $RUNPATH/reference_grid.nc .
         #    
-        echo "get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm"
+        echo "  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm"
         cp ${RUNPATH}/enkf_cfg/* .  #from ${NEXTSIMDIR}/modules/enkf/enkf-c/cfg/* # except stats.prm and enoi.prm
         cp ${NEXTSIMDIR}/modules/enkf/enkf-c/bin/enkf_* .
         # modifications in enkf configurations
@@ -65,4 +65,4 @@
         sed -i "s;^LOCRAD.*$;LOCRAD = 300;g"  enkf.prm
         sed -i "s;^RFACTOR.*$;RFACTOR = 1;g"  enkf.prm
     fi
-echo "part1 initialize files system, done" 
+echo "Done" 

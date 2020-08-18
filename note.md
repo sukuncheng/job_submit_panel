@@ -11,13 +11,7 @@
 10. implement Ali's changes
 
 
-## Moorings and prior (refer to Todo - 4)
--                  grid size            data size (initial size,  final size, tested duration 2 or 7day)
-  Moorings.nc       501x391                  1589306,   7891730      
-  prior.nc          522x528                  2224737,  19898089
 
-- same name:output_timestep is in moorings and statevector
-- restart data is recognized by basename=final  (field_basename.bin/dat)
 
 # Enkf - c
 ## compile  
@@ -37,11 +31,20 @@
     capping of inflation: inflation = 1+inflation*( std_f/std_a-1)
 4. localisation radii defines the impact area size of observation. Increasing it increases the number of local observations
 
-# knowledge
+# knowledges
 divergence of the Kalman filter: if the ensemble collapses, the Kalman gain tends to zero and the assimilation system behaves as one – expensive – free run.
 
+# 12-8
+data in SIDNEPx buoy project is included in IABP. Thus, IABP dataset is used as an observation source to valid the simulation.
+
+# 10-8
+To reduce computational time <1 hour, changes are made in nextsim.cfg, such as step=900, dynamics-type=bmeb, dynamic->substeps=120
+use_sidfex_drifters=true
+
+
+
 # 8-8 
-optimize EnKF parameters using enumeration method
+create a script to generate runs for optimizing EnKF parameters using enumeration method
 
 
 # 17-7
@@ -342,7 +345,7 @@ Small_arctic_10km.msh
   
 - in .sh, tduration*duration is the total simulation time in days
 
-## Ohter notes
+## Other notes
 -Reduce writing/reading in wind perturbation.
   Because of many times of writing/reading operations in the simulation, the computational efficiency depends on the hard disk capability. Using m.2 ssd harddive with 2Gb/s read/write capability could save considerable time.  
 - The master core occupies most of the computer memory, increasing as duration increasing. Other cores occupy equally amount of memory with small fluctuation arround a constant. 
@@ -351,3 +354,12 @@ Small_arctic_10km.msh
 ## discard location changes and pull from remote repository
   git fetch --all
   git reset --hard origin/master
+
+
+## Moorings and prior (refer to Todo - 4)
+-                  grid size            data size (initial size,  final size, tested duration 2 or 7day)
+  Moorings.nc       501x391                  1589306,   7891730      
+  prior.nc          522x528                  2224737,  19898089
+
+- same name:output_timestep is in moorings and statevector
+- restart data is recognized by basename=final  (field_basename.bin/dat)

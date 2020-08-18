@@ -41,8 +41,8 @@ newice_type=4
 
 # dynamics
 [dynamics]
-C_lab=3e+6
-compression_factor=10e3
+alea_factor=0.333333
+C_lab=8215800
 use_coriolis=true
 
 [drifters]
