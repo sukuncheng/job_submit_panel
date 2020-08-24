@@ -1,59 +1,39 @@
 #!/bin/bash
-
+echo "Part 2. Forecast and assimilation"
 #------ PART 1: ensemble forecasting ------------
 if [ ${time_init} == "2018-11-11" ]; then
     echo "  skip ensemble forecasting"
 else
     for (( mem=1; mem<=${ESIZE}; mem++ )); do
         cd ${ENSPATH}/${ENSEMBLE[${mem}]}  #MEMPATH
-       # update time_init per time step
+        # update time_init per time step
         sed -i "s;^time_init=.*$;time_init="${time_init}";g" ./nextsim.cfg
         sed -i "s;^restart_from_analysis=.*$;restart_from_analysis="${restart_from_analysis}";g" ./nextsim.cfg       
     done 
-
+    #
     echo "Ensemble runs start"
-    declare -a JOBID=( $(for i in {1..40}; do echo nan; done) )
-    # number of current running jobs
-    XPID0=$((squeue -u chengsukun) | grep -o chengsuk |wc -l)      
-    Nruns=0
-    for (( j=1; j<=5; j++ )); do  # this loop is supposed to find and resubmit crashed jobs.
-        echo "  loop" ${j}
-        # submit jobs from member paths, when all members instances are completed, the outside loop will complete quickly.
-        for (( mem=1; mem<=${ESIZE}; mem++ )); do                    
-	        cd ${ENSPATH}/${ENSEMBLE[${mem}]}  #MEMPATH
-            # submit job "squeue -u chengsukun | grep -q ${JOBID[$mem]}"            
-            # the job is not the queue but simulated is unfinished, submit it (again).
-            #if ! grep -q "Simulation done" slurm.nextsim.*.log; then
-            if [ ! -f field_final.bin ]; then
-                source $ENVFRAM/run.fram.sh ./nextsim.cfg 1 -e $ENVFRAM/nextsim.src   
-                JOBID[$mem]=$PID                                        
-                Nruns=$(( $Nruns+1 )) 
-                echo '  submit mem '$mem' as ID: '${JOBID[$mem]}', '$Nruns' jobs are running'                 
-            else
-                [[ j -gt 1 ]] && Nruns=$(( $Nruns-1 )) 
-                echo '  member '$mem' is finished' 
+    declare -a JOBID=( $(for i in {1..100}; do echo nan; done) )        
+    Nfinished=0
+    while [[ ${Nfinished} -lt ${ESIZE} ]]; do  # It's to submit jobs and resubmit crashed jobs.
+        Nfinished=0 # it is reset to 0 in loop
+        # submit jobs from member paths
+        for (( mem=1; mem<=${ESIZE}; mem++ )); do        
+            cd ${ENSPATH}/${ENSEMBLE[${mem}]}  #MEMPATH              
+            # check members tasks fullfillment.
+            if grep -q -s "Simulation done" nextsim.log; then
+        #        echo 'member'$mem 'is finished.'
+                Nfinished=$(( $Nfinished+1 ))
+            else # submit jobs
+                if ! squeue -u chengsukun | grep -q ${JOBID[$mem]}; then
+                    #rm *.bin *.dat *.nc *.msh
+                    source $ENVFRAM/run.fram.sh ./nextsim.cfg 1 -e $ENVFRAM/nextsim.src   
+                    JOBID[$mem]=$PID                                 
+                    echo '  submit member '$mem' as ID: '${JOBID[$mem]} 
+                fi
             fi
-            # # # barrier
-            # XPID=$((squeue -u chengsukun) | grep -o chengsuk |wc -l) 
-
-            # while [[ $XPID -ge $maximum_instants ]]; do # maximum of running instants
-            #     sleep 20
-            #     XPID=$((squeue -u chengsukun) | grep -o chengsuk |wc -l)
-            # done    
-        done
-            
-        # wait for all jobs to finish
-        XPID=$((squeue -u chengsukun) | grep -o chengsuk |wc -l) 
-
-        while [[ $XPID -gt $XPID0 ]]; do 
-            sleep 200
-            XPID=$((squeue -u chengsukun) | grep -o chengsuk |wc -l) # number of current running jobs 
-
-            echo '    '$[$XPID-$XPID0] 'jobs are running'             
-        done        
-        
-        [[ ${Nruns} == 0 ]] && break
-        
+        done     
+        sleep 300   
+        echo '  '$[${ESIZE}-${Nfinished}] 'jobs are running'  
     done
     echo "Ensemble forecast done" 
 fi
@@ -67,7 +47,7 @@ if [ ${UPDATE} -eq 1 ]; then
         cp -r /cluster/home/chengsukun/src/IO_nextsim/prior ${FILTER}
     else
         for (( mem=1; mem<=${ESIZE}; mem++ )); do
-            mv  ${ENSPATH}/${ENSEMBLE[${mem}]}/prior.nc \
+            [ -f ${ENSPATH}/${ENSEMBLE[${mem}]}/prior.nc ] && mv  ${ENSPATH}/${ENSEMBLE[${mem}]}/prior.nc \
                 ${FILTER}/prior/${ENSEMBLE[${mem}]}'.nc' # use `ln -sf` in docker cannot link correctly with data on host machine
             if [[ -f ${ENSPATH}/${ENSEMBLE[${mem}]}/*.00 ]];then
                 rm ${ENSPATH}/${ENSEMBLE[${mem}]}/*.00 ${ENSPATH}/${ENSEMBLE[${mem}]}/*.01
@@ -78,10 +58,9 @@ if [ ${UPDATE} -eq 1 ]; then
 
     cd $FILTER
     echo "  link observations to ENSPATH/filter/obs, and obs.prm"
-    A1=${duration} # 
-    A2=`echo "(${duration}+6)"|bc`
+    A1=1 # 
+    A2=`expr "(${A1}+6)"|bc`
     SMOSOBS=${OBSNAME_PREFIX}$(date +%Y%m%d -d "${time_init} + $A1 day")_$(date +%Y%m%d -d "${time_init} + $A2 day")${OBSNAME_SUFFIX}.nc
-    echo '  '${time_init} '   '  ${tind} '   ' $duration 
     if [ -f ${SMOSOBS} ]; then
         sed -i "s;^.*FILE.*$;FILE ="${SMOSOBS}";g"  obs.prm 
     else
@@ -93,7 +72,7 @@ if [ ${UPDATE} -eq 1 ]; then
     #    make enkf  ########$NEXTSIMDIR/data:/data##### change data address in .prm files
     ./enkf_prep --no-superobing enkf.prm 2>&1 | tee prep.out
     ./enkf_calc --use-rmsd-for-obsstats enkf.prm 2>&1 | tee calc.out
-    ./enkf_update --calculate-spread  enkf.prm 2>&1 | tee update.out  
+    ./enkf_update --calculate-spread  enkf.prm 2>&1 | tee update.out    
 
     #
     echo "  project *.nc.analysis on reference_grid.nc, save to /NEXTSIMDIR/data/ for ensemble forecasting in the next cycle"
@@ -104,7 +83,7 @@ if [ ${UPDATE} -eq 1 ]; then
         # note  enkf and cdo depend on the path of reference_grid.nc
     done
     echo "Enkf done"
-   #matlab -nosplash -nodesktop  -nojvm  -softwareopengl  -batch  "create_plots;quit"
+    #matlab -nosplash -nodesktop  -nojvm  -softwareopengl  -batch  "create_plots;quit"
 fi #UPDATE 
 
 
@@ -113,3 +92,11 @@ fi #UPDATE
 #    1 - copy nextsim.exec from NEXTSIMDIR/model/bin to current path
 #   -t test run without submit to fram
 #   -e ~/nextsim.ensemble.src      # envirmonental variables
+
+#   #Wait for all jobs to finish, or check "squeue -u chengsukun | grep -q ${JOBID[$mem]}"          
+#         XPID=$(squeue -u chengsukun | grep -o chengsuk |wc -l) 	
+#         while [[ $XPID -gt $XPID0 ]]; do 
+#             sleep 200
+#             XPID=$(squeue -u chengsukun | grep -o chengsuk |wc -l) # number of current running jobs 
+#             echo '    '$[$XPID-$XPID0] 'jobs are running'             
+#         done 

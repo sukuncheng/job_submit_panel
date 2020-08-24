@@ -13,31 +13,25 @@ trap 'err_report $LINENO' ERR
 #     capping of inflation: inflation = 1+inflation*( std_f/std_a-1)
 # 4. localisation radii defines the impact area size of observation. Increasing it increases the number of local observations
 
+>nohup.out  # empty this file
+
 INFLATIONs=("1" "1.5" "2")
-LOCRADs=("100" "400" "800")
+LOCRADs=("100" "300" "600")
 RFACTORs=("1" "1.5" "2")
 KFACTORs=("1" "500" "1000")
-# INFLATION=${INFLATIONs[0]}
-# LOCRAD=${LOCRADs[0]}
-# RFACTOR=${RFACTORs[0]}
-# KFACTOR=${KFACTORs[0]}    
-# source main_job_submit.sh
 #
-for (( i=0; i<${#INFLATIONs[@]}; i++ )); do
-for (( j=0; j<${#LOCRADs[@]};    j++ )); do
-for (( k=0; k<${#RFACTORs[@]};   k++ )); do
-for (( m=0; m<${#KFACTORs[@]};   m++ )); do
-    INFLATION=${INFLATIONs[$i]}
-    LOCRAD=${LOCRADs[$j]}
-    RFACTOR=${RFACTORs[$k]}
-    KFACTOR=${KFACTORs[$m]}    
+RUNPATH=$(cd `dirname $0`;pwd)       # path of this.sh
+for (( m1=0; m1<${#KFACTORs[@]};   m1++ )); do
+for (( k1=0; k1<${#RFACTORs[@]};   k1++ )); do
+for (( j1=0; j1<${#LOCRADs[@]};    j1++ )); do
+for (( i1=0; i1<${#INFLATIONs[@]}; i1++ )); do
+    INFLATION=${INFLATIONs[$i1]}
+    LOCRAD=${LOCRADs[$j1]}
+    RFACTOR=${RFACTORs[$k1]}
+    KFACTOR=${KFACTORs[$m1]}  
+    echo "========= " $m1 $k1 $j1 $i1 
+    cd ${RUNPATH}
     source main_job_submit.sh
-    
-    # wait for all jobs to finish
-    while [[ $Nruns -ge 1 ]]; do 
-        sleep 200
-        XPID=$((squeue -u chengsukun) | grep -o chengsuk |wc -l) # number of current running jobs 
-    done   
 done
 done
 done

@@ -23,16 +23,23 @@
   latitude: N 40.137 to 90 
 
 ## Tune factors (refer to Todo 9)
-1. Incresing R-factor decreases the impact of observation. Ensemble spread/sqrt(R-factor)
-2. Incresing K-factor increases the impact of ensemble spread. background check. 2.7.3. 
+1. R-factor: Incresing R-factor decreases the impact of observation. Ensemble spread/sqrt(R-factor)
+2. K-factor: Incresing K-factor increases the impact of ensemble spread. background check. 2.7.3. 
    Modifies observation error so that the increment for this observation would not exceed KFACTOR * <ensemble spread> (all in observation space) after assimilating this observation only.
-3. Inflation . The ensemble anomalies (A=E-x.1') for any model state element will be inflated to avoid collapses. 
+3. Inflation: The ensemble anomalies (A=E-x.1') for any model state element will be inflated to avoid collapses. 
     (x_a - x\bar)*inflation + x\bar
     capping of inflation: inflation = 1+inflation*( std_f/std_a-1)
-4. localisation radii defines the impact area size of observation. Increasing it increases the number of local observations
+4. Localization radius: it defines the impact area size of observation. Increasing it increases the number of local observations
 
 # knowledges
 divergence of the Kalman filter: if the ensemble collapses, the Kalman gain tends to zero and the assimilation system behaves as one – expensive – free run.
+# 21-8 
+task lost on Fram that nohup *.sh is not in the job list, thus it cannot be terminated. While the job is running.
+Task Crashs more freuqenctly in the later periods. For example, in the ensemble size test, 3/4 tasks are failed in the fourth period.
+
+
+# 17-8
+The cost of running a neXtSIM instance is reduced to 25 mins due to using binary format IO (60->40) in wind perturbation and using 32 cpus instead of 16 cpus in the debug mode (40 mins-> 25mins).
 
 # 12-8
 data in SIDNEPx buoy project is included in IABP. Thus, IABP dataset is used as an observation source to valid the simulation.

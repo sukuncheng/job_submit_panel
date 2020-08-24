@@ -27,41 +27,40 @@ set -e
 # 7. ln -sf /cluster/projects/nn2993k/sim/data/ECMWF_forecast_arctic/* /nextsim/data/ECMWF_forecast_arctic ,  not use INPUT_DATA_DIR includes too many data
 #   same for /cluster/projects/nn2993k/sim/data/CS2_SMOS_v2.2, TOPAZ4RC_daily/20181*, 20190* .
 # CS2_SMOS_v2.2 is weekly data, and variables are different.
-#---------  Confirm working/data/ouput directories ----
-    RUNFILE=$(basename $0)               # name of this .sh
-    RUNPATH=$(cd `dirname $0`;pwd)       # path of this .sh 
-    ENVFRAM=/cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun 
-    source $ENVFRAM/nextsim.src
-    source $ENVFRAM/nextsim.ensemble.src
-    #
-    OBSNAME_PREFIX=$NEXTSIMDIR/data/CS2_SMOS_v2.2/W_XX-ESA,SMOS_CS2,NH_25KM_EASE2_ 
-    OBSNAME_SUFFIX=_r_v202_01_l4sit
-
+#---------  Confirm working,data,ouput directories --------
+RUNFILE=$(basename $0)               # name of this .sh
+RUNPATH=$(cd `dirname $0`;pwd)       # path of this .sh 
+ENVFRAM=/cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun 
+#source $ENVFRAM/nextsim.src
+#source $ENVFRAM/nextsim.ensemble.src
+# observation CS2SMOS data discription
+OBSNAME_PREFIX=$NEXTSIMDIR/data/CS2_SMOS_v2.2/W_XX-ESA,SMOS_CS2,NH_25KM_EASE2_ 
+OBSNAME_SUFFIX=_r_v202_01_l4sit
 #--------  experiment settings ------------
-    time_init=2018-11-11   # starting date of simulation
-    duration=7    # forecast duration,#   tduration*duration is the total simulation time in days
-    tduration=4   # number of forecast-analysis cycle. 
-    ESIZE=2       # ensemble size
-    maximum_instants=100   # max instants (submitted jobs)
-    OUTPUTPATH=${IO_nextsim}/test3_Ne${ESIZE}_T${tduration}_D${duration}/I${INFLATION}_L${LOCRAD}_R${RFACTOR}_K${KFACTOR}   # output path
-    OUTPUTPATH=${OUTPUTPATH//./p}
-    echo 'work path:' $OUTPUTPATH
-    [ -d $OUTPUTPATH ] && rm -r $OUTPUTPATH    
-    mkdir -p $OUTPUTPATH    
-    > nohup.out  # empty this file
-#
-    UPDATE=1 # 1: active assimilation
+time_init=2018-11-11   # starting date of simulation
+duration=7    # forecast duration,#   tduration*duration is the total simulation time in days
+tduration=4   # number of forecast-analysis cycle. 
+ESIZE=40      # ensemble size
+UPDATE=1 # 1: active assimilation
+maximum_instants=200   # max instants (submitted jobs)
+OUTPUTPATH=${IO_nextsim}/test3_Ne${ESIZE}_T${tduration}_D${duration}/I${INFLATION}_L${LOCRAD}_R${RFACTOR}_K${KFACTOR}   # output path
+# OUTPUTPATH=${IO_nextsim}/test3_Ne${ESIZE}_T${tduration}_D${duration}/
+OUTPUTPATH=${OUTPUTPATH//./p}
+echo 'work path:' $OUTPUTPATH 
+#[ -d $OUTPUTPATH ] && rm -r $OUTPUTPATH  && mkdir -p $OUTPUTPATH    
+#>nohup.out  # empty this file
+
 #-------------------------------------------
 # execute ensemble runs
-for (( i=1; i<=${tduration}; i++ )); do
-    if [ $i -eq 1 ]; then 
+for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
+    if [ $iperiod -eq 1 ]; then 
         restart_from_analysis=false
     else 
         restart_from_analysis=true
         time_init=$(date +%Y-%m-%d -d "${time_init} + ${duration} day")        
     fi
-    echo "=========start period ${time_init}"
-    ENSPATH=$OUTPUTPATH/date${i}  
+    echo "      start period ${time_init}"
+    ENSPATH=$OUTPUTPATH/date${iperiod}  
     mkdir -p $ENSPATH        
 # create ensemble directories and files
     source $RUNPATH/part1_initialization.sh   
@@ -69,5 +68,5 @@ for (( i=1; i<=${tduration}; i++ )); do
     source $RUNPATH/part2_core.sh  
 done
 cp ${RUNPATH}/*.sh ${OUTPUTPATH}
-mv $RUNPATH/nohup.out $OUTPUTPATH/log.txt
-echo "enkf done"
+cp $RUNPATH/nohup.out $OUTPUTPATH/nohup.log
+echo 'Simulation ' I${INFLATION}_L${LOCRAD}_R${RFACTOR}_K${KFACTOR} ' is done'
