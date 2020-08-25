@@ -20,12 +20,11 @@ else
         for (( mem=1; mem<=${ESIZE}; mem++ )); do        
             cd ${ENSPATH}/${ENSEMBLE[${mem}]}  #MEMPATH              
             # check members tasks fullfillment.
-            if grep -q -s "Simulation done" nextsim.log; then
-        #        echo 'member'$mem 'is finished.'
+            if grep -q -s "Simulation done" nextsim.log; then #        echo 'member'$mem 'is finished.'         
                 Nfinished=$(( $Nfinished+1 ))
             else # submit jobs
                 if ! squeue -u chengsukun | grep -q ${JOBID[$mem]}; then
-                    #rm *.bin *.dat *.nc *.msh
+                    rm -f *.bin *.dat *.nc *.msh || true
                     source $ENVFRAM/run.fram.sh ./nextsim.cfg 1 -e $ENVFRAM/nextsim.src   
                     JOBID[$mem]=$PID                                 
                     echo '  submit member '$mem' as ID: '${JOBID[$mem]} 
@@ -50,7 +49,7 @@ if [ ${UPDATE} -eq 1 ]; then
             [ -f ${ENSPATH}/${ENSEMBLE[${mem}]}/prior.nc ] && mv  ${ENSPATH}/${ENSEMBLE[${mem}]}/prior.nc \
                 ${FILTER}/prior/${ENSEMBLE[${mem}]}'.nc' # use `ln -sf` in docker cannot link correctly with data on host machine
             if [[ -f ${ENSPATH}/${ENSEMBLE[${mem}]}/*.00 ]];then
-                rm ${ENSPATH}/${ENSEMBLE[${mem}]}/*.00 ${ENSPATH}/${ENSEMBLE[${mem}]}/*.01
+                rm -f ${ENSPATH}/${ENSEMBLE[${mem}]}/*.00 ${ENSPATH}/${ENSEMBLE[${mem}]}/*.01
             fi
         done
     fi

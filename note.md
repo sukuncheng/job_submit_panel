@@ -33,6 +33,13 @@
 
 # knowledges
 divergence of the Kalman filter: if the ensemble collapses, the Kalman gain tends to zero and the assimilation system behaves as one – expensive – free run.
+
+# 24-8
+Encountered failed cases are all due to hitting the wall time after a long stuck time. In those cases, output information in nextsim.log file stoped at 96%. The reason is unknown. 
+to save computational time, we willonly output prior.nc   
+mooring is turned off, and only be turned.on when utput fonal result.
+Thus, in nextsim.cfg, output_per_day=0 & use_moorings=false
+
 # 21-8 
 task lost on Fram that nohup *.sh is not in the job list, thus it cannot be terminated. While the job is running.
 Task Crashs more freuqenctly in the later periods. For example, in the ensemble size test, 3/4 tasks are failed in the fourth period.
@@ -370,3 +377,5 @@ Small_arctic_10km.msh
 
 - same name:output_timestep is in moorings and statevector
 - restart data is recognized by basename=final  (field_basename.bin/dat)
+ In this study, we will use prior.nc to study variables' spatial distribution, which data resolution is higher. 
+mooring is turned off.

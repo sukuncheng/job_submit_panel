@@ -38,10 +38,14 @@ OBSNAME_PREFIX=$NEXTSIMDIR/data/CS2_SMOS_v2.2/W_XX-ESA,SMOS_CS2,NH_25KM_EASE2_
 OBSNAME_SUFFIX=_r_v202_01_l4sit
 #--------  experiment settings ------------
 time_init=2018-11-11   # starting date of simulation
-duration=7    # forecast duration,#   tduration*duration is the total simulation time in days
-tduration=4   # number of forecast-analysis cycle. 
-ESIZE=40      # ensemble size
-UPDATE=1 # 1: active assimilation
+# duration=7    # forecast duration,#   tduration*duration is the total simulation time in days
+# tduration=4   # number of forecast-analysis cycle. 
+# ESIZE=40      # ensemble size
+# UPDATE=1 # 1: active assimilation
+duration=1    # forecast duration,#   tduration*duration is the total simulation time in days
+tduration=2   # number of forecast-analysis cycle. 
+ESIZE=1      # ensemble size
+UPDATE=0 # 1: active assimilation
 maximum_instants=200   # max instants (submitted jobs)
 OUTPUTPATH=${IO_nextsim}/test3_Ne${ESIZE}_T${tduration}_D${duration}/I${INFLATION}_L${LOCRAD}_R${RFACTOR}_K${KFACTOR}   # output path
 # OUTPUTPATH=${IO_nextsim}/test3_Ne${ESIZE}_T${tduration}_D${duration}/
@@ -59,7 +63,7 @@ for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
         restart_from_analysis=true
         time_init=$(date +%Y-%m-%d -d "${time_init} + ${duration} day")        
     fi
-    echo "      start period ${time_init}"
+    echo "start period ${time_init}"
     ENSPATH=$OUTPUTPATH/date${iperiod}  
     mkdir -p $ENSPATH        
 # create ensemble directories and files
