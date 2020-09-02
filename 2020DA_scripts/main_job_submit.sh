@@ -1,5 +1,6 @@
 #!/bin/bash
 set -e
+# source ${NEXTSIM_ENV_ROOT_DIR}/run.fram.sh ./nextsim.cfg 1 -e ${NEXTSIM_ENV_ROOT_DIR}/nextsim.src   
 # main job submitting script
 # - core.sh includes 1) nextsim, 2) enkf. 
 # results are saved in ENSPATH/filter/prior/***.nc.analysis,linked in NEXTSIM_DATA_DIR/...
@@ -30,28 +31,27 @@ set -e
 #---------  Confirm working,data,ouput directories --------
 RUNFILE=$(basename $0)               # name of this .sh
 RUNPATH=$(cd `dirname $0`;pwd)       # path of this .sh 
-ENVFRAM=/cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun 
-#source $ENVFRAM/nextsim.src
-#source $ENVFRAM/nextsim.ensemble.src
+
+#source ${NEXTSIM_ENV_ROOT_DIR}/nextsim.ensemble.intel.src is applied in .bashrc
 # observation CS2SMOS data discription
 OBSNAME_PREFIX=$NEXTSIMDIR/data/CS2_SMOS_v2.2/W_XX-ESA,SMOS_CS2,NH_25KM_EASE2_ 
 OBSNAME_SUFFIX=_r_v202_01_l4sit
 #--------  experiment settings ------------
 time_init=2018-11-11   # starting date of simulation
-# duration=7    # forecast duration,#   tduration*duration is the total simulation time in days
-# tduration=4   # number of forecast-analysis cycle. 
-# ESIZE=40      # ensemble size
-# UPDATE=1 # 1: active assimilation
-duration=1    # forecast duration,#   tduration*duration is the total simulation time in days
-tduration=2   # number of forecast-analysis cycle. 
+duration=7    # forecast duration,#   tduration*duration is the total simulation time in days
+tduration=4   # number of forecast-analysis cycle. 
 ESIZE=1      # ensemble size
 UPDATE=0 # 1: active assimilation
+# duration=1    # forecast duration,#   tduration*duration is the total simulation time in days
+# tduration=2   # number of forecast-analysis cycle. 
+# ESIZE=1      # ensemble size
+# UPDATE=0 # 1: active assimilation
 maximum_instants=200   # max instants (submitted jobs)
-OUTPUTPATH=${IO_nextsim}/test3_Ne${ESIZE}_T${tduration}_D${duration}/I${INFLATION}_L${LOCRAD}_R${RFACTOR}_K${KFACTOR}   # output path
-# OUTPUTPATH=${IO_nextsim}/test3_Ne${ESIZE}_T${tduration}_D${duration}/
+OUTPUTPATH=${IO_nextsim}/test_Ne${ESIZE}_T${tduration}_D${duration}/I${INFLATION}_L${LOCRAD}_R${RFACTOR}_K${KFACTOR}   # output path
 OUTPUTPATH=${OUTPUTPATH//./p}
 echo 'work path:' $OUTPUTPATH 
-#[ -d $OUTPUTPATH ] && rm -r $OUTPUTPATH  && mkdir -p $OUTPUTPATH    
+[ -d $OUTPUTPATH ] && rm -r $OUTPUTPATH  
+mkdir -p $OUTPUTPATH    
 #>nohup.out  # empty this file
 
 #-------------------------------------------

@@ -12,7 +12,7 @@ else
     done 
     #
     echo "Ensemble runs start"
-    declare -a JOBID=( $(for i in {1..100}; do echo nan; done) )        
+    declare -a JOBID=( $(for ix in {1..100}; do echo nan; done) )        
     Nfinished=0
     while [[ ${Nfinished} -lt ${ESIZE} ]]; do  # It's to submit jobs and resubmit crashed jobs.
         Nfinished=0 # it is reset to 0 in loop
@@ -25,7 +25,7 @@ else
             else # submit jobs
                 if ! squeue -u chengsukun | grep -q ${JOBID[$mem]}; then
                     rm -f *.bin *.dat *.nc *.msh || true
-                    source $ENVFRAM/run.fram.sh ./nextsim.cfg 1 -e $ENVFRAM/nextsim.src   
+                    source ${NEXTSIM_ENV_ROOT_DIR}/run.fram.sh ./nextsim.cfg 1 -e ${NEXTSIM_ENV_ROOT_DIR}/nextsim.src   
                     JOBID[$mem]=$PID                                 
                     echo '  submit member '$mem' as ID: '${JOBID[$mem]} 
                 fi
@@ -43,7 +43,7 @@ if [ ${UPDATE} -eq 1 ]; then
     echo "Start EnKF assimilation" 
     echo "  link mem00*/prior.nc to /filter/prior/mem00*.nc"
     if [ ${time_init} == "2018-11-11" ]; then
-        cp -r /cluster/home/chengsukun/src/IO_nextsim/prior ${FILTER}
+        cp -r ${IO_nextsim}/prior ${FILTER}
     else
         for (( mem=1; mem<=${ESIZE}; mem++ )); do
             [ -f ${ENSPATH}/${ENSEMBLE[${mem}]}/prior.nc ] && mv  ${ENSPATH}/${ENSEMBLE[${mem}]}/prior.nc \

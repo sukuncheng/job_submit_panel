@@ -169,7 +169,7 @@ then
     exit 1
 fi
 
-cmd="cp $ENVFRAM/slurm.template.sh $script"
+cmd="cp ${NEXTSIM_ENV_ROOT_DIR}/slurm.template.sh $script"
 echo $cmd
 $cmd
 

@@ -123,7 +123,7 @@ Reading nextsim.cfg...
 pseudo-random forcing is active for ensemble generation
  Using FFTW for Fourier transform
  Feel the power of the Fastest Fourier Transform in the West!
---------------------------------------------------------------------------
+--------------------------------------------------------------------å------
 A process has executed an operation involving a call to the
 "fork()" system call to create a child process.  Open MPI is currently
 operating in a condition that could result in memory corruption or
