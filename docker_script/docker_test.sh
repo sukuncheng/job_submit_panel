@@ -70,4 +70,3 @@ docker run --rm -d \   -d 后台运行, --rm 结束后删除容器， > ./log.tx
         mpirun --allow-run-as-root -np $NPROC nextsim.exec \
         -mat_mumps_icntl_23 1000 \
         --config-files=/docker_io/nextsim.cfg > ./log.txt 2>&1 " 
-        
