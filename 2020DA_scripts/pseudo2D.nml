@@ -8,7 +8,7 @@ debug = .false.
 /
 
 &pseudo2D
-randf    = .false.
+randf    = .true.
 seed     = 11
 vslp     =  10
 vtaux    =  0.001

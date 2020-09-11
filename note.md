@@ -9,6 +9,8 @@
 8. discard: add damage to Moorings.nc
 9. Tune factors (R, K, inflation, localisation radii) in enkf
 10. implement Ali's changes
+11. change step 5 to online data transfer with save/read on at the end/beginning of simulations.
+12. retrieve subdomain charged by each processor by index, to apply the correct perturbation
 
 
 
@@ -33,6 +35,38 @@
 
 # knowledges
 divergence of the Kalman filter: if the ensemble collapses, the Kalman gain tends to zero and the assimilation system behaves as one – expensive – free run.
+
+# 6-9
+Due to structure change in nextsim, the wind perturbation interface needs to be adjusted accordingly. THe main issue is the change of wind input mesh size. 
+In the latest version, the procedure is 
+  1. read in the raw wind field
+  2. truncate or interpolate into a subdomain
+  3. split the sbudomain with mutiple processors
+  4. create perturbations of the raw wind field domain by the root processor 
+  5. save perturbations to file for backup and read in again by the root processor.
+  6. broadcast perturbations to all processors by the root processor.
+   The error occurs at step 6 while the underlying reason is due to step2. (I guess step2 was after step 6 in the previous version)
+ToDO: 1. change step 5 to online data transfer with save/read on at the end/beginning of simulations.
+      2. retrieve subdomain charged by each processor by index, to apply the correct perturbation
+
+# 2-9
+In externaldata.cpp The size of matrix of wind velocity is M_full*N_full=1803600, but after iterator>273600, either u or v components of the velocity becomes zeros, very large, which implies only the first 273600 values are useful.
+
+# 31-8 
+compiled nextsim program crashed in wind perturbation part. Try to location the error in code
+
+*** Error in `/cluster/work/jobs/736388/bin/nextsim.exec': corrupted double-linked list: 0x00000000048ae7b0 ***
+*** Error in `/cluster/work/jobs/736388/bin/nextsim.exec': malloc(): memory corruption: 0x000000000224f400 ***
+The errors are actived at by code in externaldata.cpp:
+boost::mpi::broadcast(M_comm, & M_dataset->variables[ii].loaded_data[jj][0], MN_full, 0);
+
+# 28-8
+writing work about experiment plan, literature reivew, etc 
+
+
+# 27-8
+fixed errors in loading compilers. Merged enkf branch with develop branch again.
+new errors in submitting jobs. root files are copied to job path. It needs to solve now.
 
 # 24-8
 Encountered failed cases are all due to hitting the wall time after a long stuck time. In those cases, output information in nextsim.log file stoped at 96%. The reason is unknown. 
@@ -379,3 +413,43 @@ Small_arctic_10km.msh
 - restart data is recognized by basename=final  (field_basename.bin/dat)
  In this study, we will use prior.nc to study variables' spatial distribution, which data resolution is higher. 
 mooring is turned off.
+
+
+-----------------------
+cd ~/src/nextsim
+
+make fresh -j32
+
+cp ./model/bin/nextsim.exec /cluster/home/chengsukun/src/IO_nextsim/test_Ne1_T4_D7/I1_L100_R1_K1/date2/mem001/bin
+
+cd /cluster/home/chengsukun/src/IO_nextsim/test_Ne1_T4_D7/I1_L100_R1_K1/date2/mem001/
+
+rm -f *.log
+
+source ${NEXTSIM_ENV_ROOT_DIR}/run.fram.sh ./nextsim.cfg 1 -e ${NEXTSIM_ENV_ROOT_DIR}/nextsim.src
+
+sq
+
+
+
+
+
+Fatal error in PMPI_Bcast: Other MPI error, error stack:
+PMPI_Bcast(2667)................: MPI_Bcast(buf=0x14034700, count=1803600, MPI_DOUBLE, root=0, MPI_COMM_WORLD) failed
+MPIR_Bcast_impl(1804)...........: fail failed
+MPIR_Bcast(1832)................: fail failed
+I_MPIR_Bcast_intra(2056)........: Failure during collective
+MPIR_Bcast_intra(1599)..........: fail failed
+MPIR_Bcast_binomial(247)........: fail failed
+MPIC_Recv(419)..................: fail failed
+MPIC_Wait(270)..................: fail failed
+PMPIDI_CH3I_Progress(623).......: fail failed
+pkt_RTS_handler(317)............: fail failed
+do_cts(662).....................: fail failed
+MPID_nem_lmt_dcp_start_recv(302): fail failed
+dcp_recv(165)...................: Internal MPI error!  Cannot read from remote process
+ Two workarounds have been identified for this issue:
+ 1) Enable ptrace for non-root users with:
+    echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
+ 2) Or, use:
+    I_MPI_SHM_LMT=shm
