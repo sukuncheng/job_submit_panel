@@ -2,6 +2,8 @@
 
 &setup
 iopath = '.'
+xdim     = 3600
+ydim     = 501
 debug = .false.
 /
 
