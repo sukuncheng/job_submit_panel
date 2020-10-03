@@ -14,7 +14,7 @@
 #                     -- obs  (link observations from NEXTIM_DATA_DIR)
 #                     -- prior 
 echo "Part1 initialize files system"
-#   create a namelist of ensemble member directories
+#   create a namelist of ensemble member directories,ENSEMBLE is used in part2.sh, thus don't merge the two loops below. 
     ENSEMBLE=()             
     for (( mem=1; mem<=${ESIZE}; mem++ )); do
         MEMBER=$(printf "%03d" $mem)
@@ -25,7 +25,7 @@ echo "Part1 initialize files system"
 #   prepare forecast files
     for (( mem=1; mem<=${ESIZE}; mem++ )); do
         MEMPATH=${ENSPATH}/${ENSEMBLE[${mem}]}
-	mkdir -p ${MEMPATH}
+	    mkdir -p ${MEMPATH}
         cd ${MEMPATH}       
         # pseudo2D.nml
         exporter_path=${MEMPATH}

@@ -8,7 +8,8 @@ else
         cd ${ENSPATH}/${ENSEMBLE[${mem}]}  #MEMPATH
         # update time_init per time step
         sed -i "s;^time_init=.*$;time_init="${time_init}";g" ./nextsim.cfg
-        sed -i "s;^restart_from_analysis=.*$;restart_from_analysis="${restart_from_analysis}";g" ./nextsim.cfg       
+        sed -i "s;^restart_from_analysis=.*$;restart_from_analysis="${restart_from_analysis}";g" ./nextsim.cfg 
+        sed -i "s;^start_from_restart=.*$;start_from_restart="${start_from_restart}";g" ./nextsim.cfg       
     done 
     #
     echo "Ensemble runs start"
@@ -39,7 +40,7 @@ fi
 
 
 #-------  PART 2: enkf - UPDATE ENSEMBLE  ---------
-if [ ${UPDATE} -eq 1 ]; then
+if [[ ${UPDATE} -eq 1 ]]; then
     echo "Start EnKF assimilation" 
     echo "  link mem00*/prior.nc to /filter/prior/mem00*.nc"
     if [ ${time_init} == "2018-11-11" ]; then
