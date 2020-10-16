@@ -12,21 +12,22 @@ spinup_duration=1
 output_per_day=0
 # exporter_path is redefined in SBMT_ENSEMBLE_RUN.sh
 exporter_path=/cluster/work/users/chengsukun/src/IO_nextsim/neXtSIM_test09_04_winter_step5_cohesion_perturbation/date3/ENS1
-datetime_in_filename=true
+
 # section for mesh options
 [mesh]
 filename=small_arctic_10km.msh
-partitioner-fileformat=binary
+partitioner-fileformat=ascii #binary
 partitioner=metis
 partitioner-space=disk #memory
 
 # restart options
 [restart]
 start_from_restart=true
-input_path=/nird/projects/nird/NS2993K/NORSTORE_OSL_DISK/NS2993K/chengsukun/ensemble_prediction_2019/neXtSIM_test09_01_winter_step2/restart
+input_path=/cluster/work/users/chengsukun/src/IO_nextsim/neXtSIM_test09_01_winter_step2/restart
 basename=20080119T000000Z
-write_final_restart=false
-write_interval_restart=false
+# write_final_restart=false
+# write_interval_restart=true
+# write_initial_restart=false
 # output_interval=7
 # datetime_in_filename=true
 # section for forcing and initialisation options
@@ -59,8 +60,6 @@ use_equally_spaced_drifters=true
 use_moorings=true
 spacing=50
 output_timestep=1
-[debugging]
-check_fields_fast=false
 
 [numerics]
 regrid_angle=10.
