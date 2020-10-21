@@ -2,34 +2,29 @@
 # section for simulation options
 # instruction of setting parameters can be found in nextsim/model/ options.cpp
 [simul]
-time_init=2007-01-02
+time_init=2007-01-01
 duration=365
 timestep=200
 spinup_duration=1
 
 [output]
-# cannot be 0,default is 4 times/day. If nagative, then it outputs time step times per day.
 output_per_day=0
-# exporter_path is redefined in SBMT_ENSEMBLE_RUN.sh
-exporter_path=/cluster/work/users/chengsukun/src/IO_nextsim/neXtSIM_test08_29_winter_step1
+exporter_path= # defined in .sh
+datetime_in_filename=true
 
 # section for mesh options
 [mesh]
 filename=small_arctic_10km.msh
-partitioner-fileformat=ascii #binary
+partitioner-fileformat=binary #ascii
 partitioner=metis
 partitioner-space=disk #memory
 
 # restart options
 [restart]
-#start_from_restart=true
-#input_path=/cluster/work/users/chengsukun/src/IO_nextsim/neXtSIM_test07_02_fall_step2/restart
+start_from_restart=false
 #basename=20081123T000000Z
- write_final_restart=true
- write_interval_restart=true
- write_initial_restart=false
- output_interval=30
-datetime_in_filename=true
+write_final_restart=true
+input_path=
 # section for forcing and initialisation options
 [setup]
 ice-type=topaz
@@ -45,6 +40,8 @@ newice_type=4
 
 # dynamics
 [dynamics]
+C_lab=3e+6
+compression_factor=10e3
 alea_factor=0.
 use_coriolis=true
 ASR_quad_drag_coef_air=0.0049
@@ -78,6 +75,6 @@ constant_wind_u=0.
 constant_wind_v=-10.
 
 [debugging]
-# gmsh_verbose=6
+# gmsh_verbose=1
 # log-all=true
 # log-level=debug

@@ -3,20 +3,20 @@ source ./fram_sukun/nextsim.src
 
 # set io （basic and restart） in nextsim.cfg，output directoru is defined below
 # set evironmetnal variables
-# IO_nextsim=/cluster/work/users/chengsukun/src/IO_nextsim
-# Job_sub_dir=~/src/fram_job_submit_panel
+Job_sub_dir=$(cd `dirname $0`;pwd)       # path of this .sh 
+cp $Job_sub_dir/nextsim.cfg step1a_deterministic_no_restart $Job_sub_dir/nextsim.cfg
 config=$Job_sub_dir/nextsim.cfg
-run_script=$Job_sub_dir/run.fram.sh  # link of $NEXTSIM_ENV_ROOT_DIR/machines/fram_sukun/run.fram.sh
+run_script=${NEXTSIM_ENV_ROOT_DIR}/run.fram.sh  # link of $NEXTSIM_ENV_ROOT_DIR/machines/fram_sukun/run.fram.sh
 pseudo2D=$Job_sub_dir/pseudo2D.nml  # link of $NEXTSIMDIR/modules/enkf/perturbation/nml/pseudo2D.nml
+opened_script=$Job_sub_dir/`basename $0`  
 sed -i --follow-symlinks 's/^iopath.*$/iopath   = "."/g' $pseudo2D
 sed -i --follow-symlinks "s;^randf.*$;randf = .false.;g" $pseudo2D
 
-opened_script=$Job_sub_dir/`basename $0`  
 # set output directories  in nextsim.cfg, as well as restart settings
-# step 1
-outdir=$IO_nextsim/neXtSIM_test09_30_winter_step1_2
-# step 2
-#outdir=$IO_nextsim/neXtSIM_test09_01_winter_step2
+# 01.01.2007-31.12.2007
+outdir=$IO_nextsim/neXtSIM_step1_deterministic_run_1
+# 01.01.2008-28.04.2008, restart=true
+#outdir=$IO_nextsim/neXtSIM_step1_deterministic_run_2
 sed -i "s|^exporter_path.*$|exporter_path=$outdir|g"  $config               
 
 #-------------------------------------

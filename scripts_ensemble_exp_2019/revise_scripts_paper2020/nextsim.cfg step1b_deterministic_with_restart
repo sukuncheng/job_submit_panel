@@ -2,8 +2,8 @@
 # section for simulation options
 # instruction of setting parameters can be found in nextsim/model/ options.cpp
 [simul]
-time_init=2007-10-29
-duration=64
+time_init=2008-1-1
+duration=119
 timestep=200
 spinup_duration=1
 
@@ -78,6 +78,6 @@ constant_wind_u=0.
 constant_wind_v=-10.
 
 [debugging]
-#  gmsh_verbose=6
-#  log-all=true
-#  log-level=debug
+# gmsh_verbose=6
+# log-all=true
+# log-level=debug
