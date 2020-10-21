@@ -1,21 +1,21 @@
 # add switches for perturbations of wind and cohesion, thus, this script can cover step4,5,6
 # by turning on/off wind/cohesion perturbation in the setting part below
 #!/bin/bash
-source ./fram_sukun/nextsim.src 
 # 
 rm nohup.out
-dir_list=("20080101T000000Z" "20080110T000000Z" "20080119T000000Z" "20080128T000000Z" "20080206T000000Z" \
-           "20080215T000000Z" "20080224T000000Z" "20080304T000000Z" "20080313T000000Z" \
-           "20080322T000000Z" "20080331T000000Z" "20080409T000000Z" "20080418T000000Z" ) # "20080427T000000Z"
-time_init_list=("2008-01-01" "2008-01-10" "2008-01-19" "2008-01-28" "2008-02-06" \
-                "2008-02-15" "2008-02-24" "2008-03-04" "2008-03-13" \
-                "2008-03-22" "2008-03-31" "2008-04-09" "2008-04-18" )
-#dir_list="20080110T000000Z"
-#time_init_list="2008-01-10"
+#dir_list=("20080101T000000Z" "20080110T000000Z" "20080119T000000Z" "20080128T000000Z" "20080206T000000Z" \
+#           "20080215T000000Z" "20080224T000000Z" "20080304T000000Z" "20080313T000000Z" \
+#           "20080322T000000Z" "20080331T000000Z" "20080409T000000Z" "20080418T000000Z" ) # "20080427T000000Z"
+#time_init_list=("2008-01-01" "2008-01-10" "2008-01-19" "2008-01-28" "2008-02-06" \
+#                "2008-02-15" "2008-02-24" "2008-03-04" "2008-03-13" \
+#                "2008-03-22" "2008-03-31" "2008-04-09" "2008-04-18" )
+dir_list="20080101T000000Z"
+time_init_list="2008-01-01"
 # set evironmetnal variables
-cp ./nextsim.cfg_step456 ./nextsim.cfg
+Job_sub_dir=$(cd `dirname $0`;pwd)       # path of this .sh 
+cp $Job_sub_dir/nextsim.cfg_step456 $Job_sub_dir/nextsim.cfg
 config=$Job_sub_dir/nextsim.cfg
-run_script=$Job_sub_dir/run.fram.sh  # link of $NEXTSIM_ENV_ROOT_DIR/machines/fram_sukun/run.fram.sh
+run_script=${NEXTSIM_ENV_ROOT_DIR}/run.fram.sh  # link of $NEXTSIM_ENV_ROOT_DIR/machines/fram_sukun/run.fram.sh
 pseudo2D=$Job_sub_dir/pseudo2D.nml  # link of $NEXTSIMDIR/modules/enkf/perturbation/nml/pseudo2D.nml
 opened_script=$Job_sub_dir/`basename $0`  
 # restart files io
@@ -55,11 +55,12 @@ fi
 
 #############################################################################
 for (( i_date=1; i_date<=${#dir_list[@]}; i_date++ )); do #
-      if [ $i_date == 1]
+      if [ $i_date == 1 ]
             Ne=80
       then
             Ne=20 # ensemble size
       fi
+	Ne=1
       for (( i_ens =1; i_ens <=$Ne; i_ens++ )); do 
             # # make the output directories L2
             ENSdir=$IO_nextsim$Output_dir/date$i_date/ENS$i_ens
@@ -82,12 +83,12 @@ for (( i_date=1; i_date<=${#dir_list[@]}; i_date++ )); do #
             cfg=$ENSdir/`basename $config`  
             cp $config $cfg          
             # submit job        
-            . $run_script $cfg 1 -e ~/nextsim.ensemble.src       
+            . $run_script $cfg 1 -e ${NEXTSIM_ENV_ROOT_DIR}/nextsim.src      
             # a block code to enable sequence job-submitting
             job_list=$(squeue -u chengsukun)
             XPID=$(grep -o chengsuk <<<$job_list |wc -l)  # number of current running jobs
             echo $XPID    
-            while [[ $XPID -ge 10 ]]; do # set the maximum of simultaneous running jobs, don't have to be Ne
+            while [[ $XPID -ge 20 ]]; do # set the maximum of simultaneous running jobs, don't have to be Ne
                   sleep 20
                   job_list=$(squeue -u chengsukun)
                   XPID=$(grep -o chengsuk <<<$job_list |wc -l)  # number of current running jobs
