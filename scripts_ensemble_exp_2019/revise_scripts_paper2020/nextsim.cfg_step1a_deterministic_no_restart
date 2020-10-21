@@ -4,7 +4,7 @@
 [simul]
 time_init=2007-01-01
 duration=365
-timestep=200
+timestep=800
 spinup_duration=1
 
 [output]
