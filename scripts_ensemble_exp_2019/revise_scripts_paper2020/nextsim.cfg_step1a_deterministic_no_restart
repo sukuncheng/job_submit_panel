@@ -2,9 +2,9 @@
 # section for simulation options
 # instruction of setting parameters can be found in nextsim/model/ options.cpp
 [simul]
-time_init=2007-01-01
+time_init=2007-01-02
 duration=365
-timestep=800
+timestep=900
 spinup_duration=1
 
 [output]
@@ -24,7 +24,7 @@ partitioner-space=disk #memory
 start_from_restart=false
 #basename=20081123T000000Z
 write_final_restart=true
-input_path=
+#input_path=
 # section for forcing and initialisation options
 [setup]
 ice-type=topaz
