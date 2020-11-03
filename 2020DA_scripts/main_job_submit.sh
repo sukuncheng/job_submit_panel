@@ -38,11 +38,11 @@ OBSNAME_PREFIX=$NEXTSIMDIR/data/CS2_SMOS_v2.2/W_XX-ESA,SMOS_CS2,NH_25KM_EASE2_
 OBSNAME_SUFFIX=_r_v202_01_l4sit
 #--------  experiment settings ------------
 time_init=2018-11-11   # starting date of simulation
-# duration=7    # forecast duration,#   tduration*duration is the total simulation time in days
-# tduration=4   # number of forecast-analysis cycle. 
+duration=7    # forecast duration,#   tduration*duration is the total simulation time in days
+tduration=4   # number of forecast-analysis cycle. 
 
-duration=1    # forecast duration,#   tduration*duration is the total simulation time in days
-tduration=2   # number of forecast-analysis cycle. 
+#duration=1    # forecast duration,#   tduration*duration is the total simulation time in days
+#tduration=2   # number of forecast-analysis cycle. 
 ESIZE=1      # ensemble size
 UPDATE=0 # 1: active assimilation
 maximum_instants=200   # max instants (submitted jobs)

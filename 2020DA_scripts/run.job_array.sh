@@ -208,7 +208,7 @@ then
 #    gvim $script
 fi
 jobid=$( awk '{print $NF}' sjob.id)
-exit 1
+
 ######################################################################
 # submit enkf after finishing the ensemble simulations 
 ######################################################################

@@ -31,8 +31,8 @@ for (( i1=0; i1<${#INFLATIONs[@]}; i1++ )); do
     KFACTOR=${KFACTORs[$m1]}  
     echo "========= " $m1 $k1 $j1 $i1 
     cd ${RUNPATH}
-    #source jobs_array_submit.sh
-    source main_job_submit.sh
+    source jobs_array_submit.sh
+    #source main_job_submit.sh
 	exit 1
 done
 done
