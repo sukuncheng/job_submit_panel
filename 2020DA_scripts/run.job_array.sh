@@ -164,14 +164,14 @@ then
 fi
 
 # get slurm template
-script=slurm.${JOB_NAME}.sh
+script=slurm.jobarray.${JOB_NAME}.sh
 if [ -z "$NEXTSIM_ENV_ROOT_DIR" ]
 then
     echo "please define NEXTSIM_ENV_ROOT_DIR environment variable in order to find slurm.template.sh"
     exit 1
 fi
 
-cmd="cp $NEXTSIM_ENV_ROOT_DIR/slurm.template.sh $script"
+cmd="cp $NEXTSIM_ENV_ROOT_DIR/slurm.jobarray.template.sh $script"
 echo $cmd
 $cmd
 
