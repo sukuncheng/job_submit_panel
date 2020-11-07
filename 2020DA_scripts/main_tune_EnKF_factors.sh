@@ -1,5 +1,5 @@
 #!/bin/bash
-set -eux
+#set -eux
 err_report() {
     echo "Error on line $1"
 }

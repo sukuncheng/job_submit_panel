@@ -1,5 +1,6 @@
-#!/bin/bash -x
-set -uex
+#!/bin/bash 
+#set -uex
+set -e
 #
     XPID0=$(squeue -u chengsukun | grep -o chengsuk |wc -l) 	
 #-------  Confirm working,data,ouput directories --------
@@ -10,11 +11,12 @@ set -uex
 
     # experiment settings
     time_init=2018-11-11   # starting date of simulation
-    duration=1    # forecast days   tduration*duration is the total simulation time
-    tduration=2   # number of forecast-analysis cycle. 
-    ESIZE=2      # ensemble size
+    duration=1    # tduration*duration is the total simulation time
+    tduration=3   # number of forecast-analysis cycle. 
+    ENSSIZE=2     # ensemble size
+    
     # $OUTPUT_DIR
-    OUTPUT_DIR=${IO_nextsim}/test_Ne${ESIZE}_T${tduration}_D${duration}/I${INFLATION}_L${LOCRAD}_R${RFACTOR}_K${KFACTOR}   
+    OUTPUT_DIR=${IO_nextsim}/test_Ne${ENSSIZE}_T${tduration}_D${duration}/I${INFLATION}_L${LOCRAD}_R${RFACTOR}_K${KFACTOR}   
     OUTPUT_DIR=${OUTPUT_DIR//./p}  ## what does it mean？
     echo 'work path:' $OUTPUT_DIR 
     [ -d $OUTPUT_DIR ] && rm -r $OUTPUT_DIR  
@@ -36,20 +38,25 @@ for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
     # create files strucure, copy and modify configuration files inside
     source ${ENSPATH}/part1_create_file_system.sh
     # note slurm.template.sh (later script) only use name of $config - nextsim.cfg
-    source ${ENSPATH}/run.job_array.sh ${JOB_SETUP_DIR}/nextsim.cfg 1 -ne $ESIZE -e $HOME/src/nextsim-env/machines/fram_sukun/nextsim.src
-exit 1
+cd  ${ENSPATH}
+    source ${ENSPATH}/run.job_array.sh ${ENSPATH}/nextsim.cfg 1 -ne $ENSSIZE -e $HOME/src/nextsim-env/machines/fram_sukun/nextsim.src
+    # wait the completeness in this cycle.
     XPID=$(squeue -u chengsukun | grep -o chengsuk |wc -l) 	
     while [[ $XPID -gt $XPID0 ]]; do 
         sleep 200
         XPID=$(squeue -u chengsukun | grep -o chengsuk |wc -l) # number of running jobs 
-    done 
+    done
+    # 
     echo "  project *.nc.analysis on reference_grid.nc, save to /NEXTSIMDIR/data/ for ensemble forecasting in the next cycle"
+#<<'COMMENT'
     rm -f ${NEXTSIMDIR}/data/*.nc.analysis    
-    for (( mem=1; mem<=${ESIZE}; mem++ )); do
-        [ ! -f ${FILTER}/prior/${ENSEMBLE[${mem}]}.nc.analysis  ] && sleep 5
-        cdo merge ${FILTER}/reference_grid.nc  ${FILTER}/prior/${ENSEMBLE[${mem}]}.nc.analysis ${NEXTSIMDIR}/data/${ENSEMBLE[${mem}]}.nc.analysis 
+    for (( mem=1; mem<=${ENSSIZE}; mem++ )); do
+	memname=$(printf "mem%.3d" ${mem})
+        [ ! -f ${FILTER}/prior/${memname} ] && sleep 5
+        cdo merge ${FILTER}/reference_grid.nc  ${FILTER}/prior/${memname}.nc ${NEXTSIMDIR}/data/${memname}.nc.analysis 
         # note  enkf and cdo depend on the path of reference_grid.nc
     done
+#COMMENT
 done
 
 #    . run.fram.sh $cfg 1 -e ~/nextsim.ensemble.src                  
@@ -68,7 +75,7 @@ done
 
 # #   create a namelist of ensemble member directories
 #     ENSEMBLE=()             
-#     for (( mem=1; mem<=${ESIZE}; mem++ )); do
+#     for (( mem=1; mem<=${ENSSIZE}; mem++ )); do
 #         MEMBER=$(printf "%03d" $mem)
 #         MEMNAME=mem${MEMBER}
 #         ENSEMBLE+=([${mem}]=${MEMNAME})  
