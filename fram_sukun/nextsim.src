@@ -1,1 +1,36 @@
-/cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.src
+# Environment for compiling and running neXtSIM on fram
+source /etc/bashrc
+
+# Load the right modules
+module --force purge
+ml load StdEnv
+ml load CMake/3.12.1 
+ml load Boost/1.68.0-intel-2018b-Python-3.6.6
+ml load netCDF-C++4/4.3.0-intel-2018b
+
+# ncview/nco (compatible with our intel compiler)
+ml ncview/2.1.7-intel-2018b
+ml load NCO/4.7.9-intel-2018b
+
+# Linking module and neXtSIM envinronment variables
+CLUSTER_ROOT_DIR=/cluster/projects/nn2993k/sim
+export PETSC_DIR=$CLUSTER_ROOT_DIR/packages/petsc-intel/
+
+# GMSH related variables
+export GMSH_DIR=$CLUSTER_ROOT_DIR/packages/gmsh-intel/
+export PATH=$PATH:$GMSH_DIR/bin
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$GMSH_DIR/lib
+
+# machine libraries
+export BOOST_INCDIR=$EBROOTBOOST/include
+export BOOST_LIBDIR=$EBROOTBOOST/lib
+export NETCDF_DIR=$EBROOTNETCDFMINCPLUSPLUS4
+
+# User or use-case specific directories
+export NEXTSIM_REPOS=
+export NEXTSIMDIR=$HOME/src/nextsim
+export NEXTSIM_MESH_DIR=$CLUSTER_ROOT_DIR/mesh
+export NEXTSIM_DATA_DIR=
+
+# short-cuts
+alias cdn="cd $NEXTSIMDIR"

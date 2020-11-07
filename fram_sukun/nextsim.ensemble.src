@@ -1,1 +1,7 @@
-/cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.src
+# Environment for compiling and running neXtSIM on fram
+source $HOME/src/nextsim-env/machines/fram_sukun/nextsim.src
+
+# now set USE_ENSEMBLE=1 and set FFTW_DIR
+export USE_ENSEMBLE=1
+ml load FFTW/3.3.8-intel-2018b
+export FFTW_DIR=${EBROOTFFTW}

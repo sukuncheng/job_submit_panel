@@ -1,23 +1,23 @@
 #!/bin/bash -x
 ## Project:
-#SBATCH --account=nn2993k
+#SBATCH --account=ACCOUNT_NUMBER
 ## Job name:
-#SBATCH --job-name=nextsim
+#SBATCH --job-name=JOB_NAME
 ## Wall time limit:
-#SBATCH --time=0-0:50:0
+#SBATCH --time=WALL_TIME_DAYS-WALL_TIME_HOURS:WALL_TIME_MINUTES:0
 ## Number of nodes:
-#SBATCH --nodes=1
+#SBATCH --nodes=NUM_NODES
 ## Number of tasks to start on each node:
-#SBATCH --ntasks-per-node=32
+#SBATCH --ntasks-per-node=NUM_TASKS
 ## Set OMP_NUM_THREADS
 #SBATCH --cpus-per-task=1
 ## uncomment for debug queue
-#SBATCH --qos=preproc
+##SBATCH --qos=preproc
 
 #SBATCH --mail-type=ALL                       # Mail events (NONE, BEGIN, END, FAIL, ALL)
-#SBATCH --mail-user=sukun.cheng@nersc.no # email to the user
-#SBATCH --output=slurm.nextsim.%j.log         # Stdout
-#SBATCH --error=slurm.nextsim.%j.log          # Stderr
+#SBATCH --mail-user=SLURM_EMAIL # email to the user
+#SBATCH --output=slurm.JOB_NAME.%j.log         # Stdout
+#SBATCH --error=slurm.JOB_NAME.%j.log          # Stderr
 
 # ======================================================
 # * Use absolute file path for config file since in slurm
@@ -127,7 +127,8 @@ do
 done
 progdir=$SCRATCH/bin
 cp -a $config $SCRATCH
-pseudo2D=$NEXTSIMDIR/modules/enkf/perturbation/nml/pseudo2D.nml
+#pseudo2D=$NEXTSIMDIR/modules/enkf/perturbation/nml/pseudo2D.nml
+pseudo2D=./pseudo2D.nml # same path as nextsim.cfg set by user
 cp -a $pseudo2D $SCRATCH
 cp -a $SLURM_SUBMIT_DIR/bin/nextsim.exec $progdir
 cp -a $NEXTSIMDIR/data/*  $NEXTSIM_DATA_DIR/*  $SCRATCH/data  # the order allow overwritten of files in different directories, but I don;t know the order

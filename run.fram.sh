@@ -48,7 +48,7 @@ NUM_CORES=1
 NUM_TASKS=32
 WALL_TIME_DAYS=0
 WALL_TIME_HOURS=0
-WALL_TIME_MINUTES=59
+WALL_TIME_MINUTES=50
 
 # passed in as options to slurm script
 SLURM_SCRIPT_OPTS=()
@@ -147,7 +147,7 @@ then
         exit 1
     fi
     cmd="cp -r $NEXTSIMDIR/model/bin ."
-    #echo $cmd
+    echo $cmd
     $cmd
 fi
 
@@ -170,7 +170,7 @@ then
 fi
 
 cmd="cp ${NEXTSIM_ENV_ROOT_DIR}/slurm.template.sh $script"
-#echo $cmd
+echo $cmd
 $cmd
 
 # modify the required fields
@@ -200,10 +200,6 @@ if [ $NUM_CORES -eq 1 ]
 then
     # uncomment the line asking to go into the debug queue
     sed -i 's/##SBATCH --qos=preproc/#SBATCH --qos=preproc/g' $script
-
-    # sed -i 's/##SBATCH --partition=bigmem/#SBATCH --partition=bigmem/g' $script
-    # sed -i 's/##SBATCH --mem-per-cpu/#SBATCH --mem-per-cpu/g' $script
-    # sed -i 's/##SBATCH --ntasks/#SBATCH --ntasks/g' $script
 else 
     if [ $NUM_CORES -lt 4 ]
     then
@@ -212,14 +208,14 @@ else
     fi
 fi
 
-# echo "Finished modifying $script"
+echo "Finished modifying $script"
 
 # submit the script
-#cmd="sbatch $script `readlink -f $CONFIG` ${SLURM_SCRIPT_OPTS[@]}"
-
+cmd="sbatch $script `readlink -f $CONFIG` ${SLURM_SCRIPT_OPTS[@]}"
+echo $cmd
 if [ "$TEST" == "false" ]
 then
-    #$cmd
-    RES=$(sbatch $script `readlink -f $CONFIG` ${SLURM_SCRIPT_OPTS[@]})
-    PID=${RES##* }
+    $cmd
+#else
+#    gvim $script
 fi
