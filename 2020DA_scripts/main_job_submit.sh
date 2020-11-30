@@ -60,7 +60,7 @@ for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
         start_from_restart=true
         restart_from_analysis=false
     else
-        start_from_restart=false
+        start_from_restart=true
         restart_from_analysis=true
         time_init=$(date +%Y-%m-%d -d "${time_init} + ${duration} day")        
     fi

@@ -29,13 +29,6 @@ echo "Part1 initialize files system"
     sed -e "s;^iopath.*$;iopath = '.';g" \
         -e "s;^randf.*$;randf    = .true.;g" \
         ${JOB_SETUP_DIR}/pseudo2D.nml > ${ENSPATH}/pseudo2D.nml  
-    # for (( mem=1; mem<=${ESIZE}; mem++ )); do
-    #     MEMPATH=${ENSPATH}/${ENSEMBLE[${mem}]}
-	#     mkdir -p ${MEMPATH}  
-    # sed -e "s;^iopath.*$;iopath = '.';g" \
-    #     -e "s;^randf.*$;randf    = .true.;g" \
-    #     ${JOB_SETUP_DIR}/pseudo2D.nml > ${MEMPATH}/pseudo2D.nml  
-    # done
 
 #2. prepare analysis files
     FILTER=$ENSPATH/filter
@@ -44,7 +37,7 @@ echo "Part1 initialize files system"
     #
     echo "  cd ENSPATH/filter & get a copy of reference_grid.nc "
     cd $FILTER  
-    cp ${JOB_SETUP_DIR}/reference_grid.nc .
+    cp ${JOB_SETUP_DIR}/reference_grid.nc ${FILTER}
     #    
     echo "  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm"
     cp ${JOB_SETUP_DIR}/enkf_cfg/* .  #from ${NEXTSIMDIR}/modules/enkf/enkf-c/cfg/* # except stats.prm and enoi.prm
@@ -55,7 +48,7 @@ echo "Part1 initialize files system"
     sed -i "s;^INFLATION.*$;INFLATION = 1.;g"  enkf.prm
     sed -i "s;^LOCRAD.*$;LOCRAD = 300;g"  enkf.prm
     sed -i "s;^RFACTOR.*$;RFACTOR = 1;g"  enkf.prm
-
+    #
     echo "  add observations path to $FILTER/obs.prm"
     A1=1 
     A2=`expr "(${A1}+6)"|bc`

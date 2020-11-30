@@ -1,5 +1,5 @@
 # Environment for compiling and running neXtSIM + EnKF on fram
-source /etc/bashrc
+#source /etc/bashrc
 # 
 # email for slurm jobs
 export MY_EMAIL="sukun.cheng@nersc.no"
@@ -19,7 +19,7 @@ ml load NCO/4.7.9-intel-2018b
 
 ml load FFTW/3.3.8-intel-2018b
 ml load PETSc/3.10.1-intel-2018b
-#ml load OpenBLAS/0.3.1-GCC-7.3.0-2.30
+ml load OpenBLAS/0.3.1-GCC-7.3.0-2.30
 ml load imkl/2018.3.222-iimpi-2018b
 #ml load ifort/2018.3.222-GCC-7.3.0-2.30
 # Linking module and neXtSIM envinronment variables
@@ -27,8 +27,7 @@ CLUSTER_ROOT_DIR=/cluster/projects/nn2993k/sim
 export PETSC_DIR=$CLUSTER_ROOT_DIR/packages/petsc-intel/
 #export PETSC_DIR=${EBROOTPETSC}
 # machine libraries
-export BOOST_INCDIR=$EBROOTBOOST/include
-export BOOST_LIBDIR=$EBROOTBOOST/lib
+export BOOST_DIR=$EBROOTBOOST
 export NETCDF_DIR=$EBROOTNETCDFMINCPLUSPLUS4
 
 export FFTW_DIR=${EBROOTFFTW}
@@ -48,17 +47,18 @@ export NEXTSIM_DATA_DIR=
 export INPUT_OBS_DATA_DIR=
 #GMSH related variables
 export GMSH_DIR=$CLUSTER_ROOT_DIR/packages/gmsh-intel/
-export PATH=$PATH:$GMSH_DIR/bin
 export XSIMCOMP_VERBOSE=no
 export USE_NEXTWIM=0
 #export NEXTSIM_BUILD_TYPE=
 
 # ======== LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=$NETCDF_DIR/lib:$LD_LIBRARY_PATH
 export LD_LIBRARY_PATH=$BOOST_DIR/lib:$LD_LIBRARY_PATH
-#export LD_LIBRARY_PATH=$PETSC_DIR/lib:$LD_LIBRARY_PATH
-#export LD_LIBRARY_PATH=$FFTW_DIR/lib:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=$PETSC_DIR/lib:$LD_LIBRARY_PATH#
+export LD_LIBRARY_PATH=$FFTW_DIR/lib:$LD_LIBRARY_PATH
 export LD_LIBRARY_PATH=$BLAS_DIR/lib:$LD_LIBRARY_PATH
 export LD_LIBRARY_PATH=$NEXTSIMDIR/lib:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$GMSH_DIR/lib
 #export LD_LIBRARY_PATH=$NEXTSIMDIR/modules/enkf/gridutils-c/libgu.so:$LD_LIBRARY_PATH
 # ============== paths
 #export PATH=$PATH:$NEXTSIM_ROOT_DIR/model/bin

@@ -59,7 +59,7 @@ if [[ ${UPDATE} -eq 1 ]]; then
     cd $FILTER
     echo "  link observations to ENSPATH/filter/obs, and obs.prm"
     A1=1 # 
-    A2=`expr "(${A1}+6)"|bc`
+    A2=`expr "(${A1}+${duration}-1)"|bc`
     SMOSOBS=${OBSNAME_PREFIX}$(date +%Y%m%d -d "${time_init} + $A1 day")_$(date +%Y%m%d -d "${time_init} + $A2 day")${OBSNAME_SUFFIX}.nc
     if [ -f ${SMOSOBS} ]; then
         sed -i "s;^.*FILE.*$;FILE ="${SMOSOBS}";g"  obs.prm 

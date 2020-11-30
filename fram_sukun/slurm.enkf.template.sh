@@ -1,4 +1,5 @@
 #!/bin/bash -x
+# set -uex
 ## Project:
 #SBATCH --account=ACCOUNT_NUMBER
 ## Job name:
@@ -43,9 +44,10 @@ function usage {
 
 #defaults for options
 MUMPS_MEM=400 # Reserved memory for the solver
-ENV_FILE=$HOME/nextsim.ensemble.intel.src
+ENV_FILE=$HOME/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src
 DEBUG=false
 TEST=false
+echo $@
 
 # parse optional parameters
 POSITIONAL=()
@@ -141,7 +143,7 @@ else
 fi
 
 #
-cp -rf $SCRATCH/. $SLURM_SUBMIT_DIR/
+cp -rf $SCRATCH/. $SLURM_SUBMIT_DIR/filter
 # Save the log (copy from SCRATCH back to submitting directory)
 # - this is done at end of job, even if script stopped due to errors, but not if wall
 #   time is reached

@@ -117,7 +117,7 @@ if [ -f "$CONFIG" ]
 then
     config=$member_dir/`basename $CONFIG`
     cp $CONFIG $config
-    sed -i "s|^id.*$|id=${memname}|g" $config  
+    sed -i "s|^id.*$|id=$(printf "%.3d" ${SLURM_ARRAY_TASK_ID})|g" $config  
     sed -i "s|^exporter_path.*$|exporter_path=$member_dir|g" $config
 else
     echo "Can't find config file $CONFIG"

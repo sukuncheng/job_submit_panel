@@ -1,4 +1,5 @@
 #!/bin/bash
+#set -uex
 function usage {
     echo "Usage:"
     echo "run.fram CONFIG_FILE GET_EXECUTABLE [options] [slurm script options]"
@@ -53,6 +54,7 @@ WALL_TIME_MINUTES=0
 # passed in as options to slurm script
 SLURM_SCRIPT_OPTS=()
 # parse optional parameters
+echo $@
 POSITIONAL=()
 while [[ $# -gt 0 ]]
 do
@@ -114,8 +116,6 @@ do
             ;;
     esac
 done
-echo ${POSITIONAL[@]}
-
 # restore positional parameters
 set -- "${POSITIONAL[@]}"    # do not treat "${POSITIONAL[@]}" as options, https://unix.stackexchange.com/questions/308260/what-does-set-do-in-this-dockerfile-entrypoint/308263
 
@@ -210,13 +210,9 @@ echo "Finished modifying $script"
 # submit the script
 cmd="sbatch --array=1-${NUM_ENS_MEM} $script `readlink -f $CONFIG` ${SLURM_SCRIPT_OPTS[@]}"
 echo $cmd
-if [ "$TEST" == "false" ]
-then
-    $cmd > sjob.id
-#else
-#    gvim $script
-fi
+$cmd | tee sjob.id
 jobid=$( awk '{print $NF}' sjob.id)
+
 
 ######################################################################
 # submit enkf after finishing the ensemble simulations 
@@ -227,6 +223,13 @@ cmd="cp $NEXTSIM_ENV_ROOT_DIR/slurm.enkf.template.sh $script"
 echo $cmd
 $cmd
 
+JOB_NAME=nextsim
+ACCOUNT_NUMBER=nn2993k
+NUM_CORES=1
+NUM_TASKS=1
+WALL_TIME_DAYS=0
+WALL_TIME_HOURS=0
+WALL_TIME_MINUTES=20
 # modify the required fields
 sed -i "s/JOB_NAME/$JOB_NAME/g" $script
 sed -i "s/ACCOUNT_NUMBER/$ACCOUNT_NUMBER/g" $script
@@ -251,5 +254,14 @@ else
 fi
 
 # submit enkf after ensemble is done.
-cmd="sbatch --dependency=afterok:${jobid} $script enkf "
+cmd="sbatch --dependency=afterok:${jobid} $script log_enkf ${SLURM_SCRIPT_OPTS[@]}"
+echo $cmd
 $cmd
+
+# ${FILTER}
+#     echo "  run enkf, outputs: $filter/prior/*.nc.analysis, $filter/enkf.out" 
+#     make clean #must clean previous results like observation*.nc
+#     #    make enkf  ########$NEXTSIMDIR/data:/data##### change data address in .prm files
+#     ./enkf_prep --no-superobing enkf.prm 2>&1 | tee prep.out
+#     ./enkf_calc --use-rmsd-for-obsstats enkf.prm 2>&1 | tee calc.out
+#     ./enkf_update --calculate-spread  enkf.prm 2>&1 | tee update.out    
