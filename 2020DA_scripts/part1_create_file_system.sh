@@ -5,7 +5,7 @@
 #   - copy EnKF package to ENSPATH/filter
 #
 # Directory structure:
-# ENSPATH -- mem001
+# ENSPATH->MEMPATH: mem001
 #         -- mem002
 #         -- ...
 #         -- mem***
@@ -15,16 +15,14 @@
 echo "Part1 initialize files system"
 #1. prepare forecast files
 # nextsim.cfg
-    sed -e "s;^duration=.*$;duration="${duration}";g" \
+    sed -e "s;^time_init=.*$;time_init="${time_init}";g" \
+        -e "s;^duration=.*$;duration="${duration}";g" \
         -e "s;^output_timestep=.*$;output_timestep="${duration}";g" \
-        -e "s;^start_from_restart=.*$;start_from_restart=true;g" \
-        -e "s;^input_path=.*$;input_path=${JOB_SETUP_DIR}/restart;g" \
-        -e "s;^basename.*$;basename=20181111T000000Z;g" \
-        -e "s;^time_init=.*$;time_init="${time_init}";g" \
-        -e "s;^restart_from_analysis=.*$;restart_from_analysis="${restart_from_analysis}";g" \
         -e "s;^start_from_restart=.*$;start_from_restart="${start_from_restart}";g" \
+        -e "s;^write_final_restart=.*$;write_final_restart=true;g" \
+        -e "s;^restart_from_analysis=.*$;restart_from_analysis="${restart_from_analysis}";g" \
         ${JOB_SETUP_DIR}/nextsim.cfg > ${ENSPATH}/nextsim.cfg
-
+        
     # pseudo2D.nml      
     sed -e "s;^iopath.*$;iopath = '.';g" \
         -e "s;^randf.*$;randf    = .true.;g" \

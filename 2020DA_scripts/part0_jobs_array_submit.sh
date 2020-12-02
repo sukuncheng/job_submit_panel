@@ -1,10 +1,8 @@
 #!/bin/bash 
-##set -uex
-#set -e
-#source in .bashrc to define $path $HOME/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src
-#
-	
-#-------  Confirm working,data,ouput directories --------
+set -uex
+ENV_FILE=${NEXTSIM_ENV_ROOT_DIR}/nextsim.ensemble.intel.src
+
+##-------  Confirm working,data,ouput directories --------
     JOB_SETUP_DIR=$(cd `dirname $0`;pwd)       
     # observation CS2SMOS data discription
     OBSNAME_PREFIX=$NEXTSIMDIR/data/CS2_SMOS_v2.2/W_XX-ESA,SMOS_CS2,NH_25KM_EASE2_ 
@@ -19,47 +17,63 @@
     OUTPUT_DIR=${IO_nextsim}/test_Ne${ENSSIZE}_T${tduration}_D${duration}/I${INFLATION}_L${LOCRAD}_R${RFACTOR}_K${KFACTOR}   
     OUTPUT_DIR=${OUTPUT_DIR//./p}  ## replace . with p
     echo 'work path:' $OUTPUT_DIR 
-    # [ -d $OUTPUT_DIR ] && rm -rf $OUTPUT_DIR  
-    # mkdir $OUTPUT_DIR
-# ----------- execute ensemble runs ----------
+    [ -d $OUTPUT_DIR ] && rm -rf $OUTPUT_DIR  
+    mkdir -p ${OUTPUT_DIR}
+
+## ----------- execute ensemble runs ----------
 for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
     if [ $iperiod -eq 1 ]; then 
-        start_from_restart=true
+        start_from_restart=false
         restart_from_analysis=false
     else
         start_from_restart=true
         restart_from_analysis=true
-        time_init=$(date +%Y-%m-%d -d "${time_init} + ${duration} day")        
+        time_init=$(date +%Y-%m-%d -d "${time_init} + ${duration} day")
     fi
     echo "period ${time_init} to $(date +%Y%m%d -d "${time_init} + ${duration}-1 day")"
     ENSPATH=${OUTPUT_DIR}/date${iperiod}  
-    mkdir -p ${ENSPATH}  
-    cp ${JOB_SETUP_DIR}/{part0_jobs_array_submit.sh,part1_create_file_system.sh,part2_run.job_array.sh} ${ENSPATH} 
-    # create files strucure, copy and modify configuration files inside
-    XPID0=$(squeue -u chengsukun | grep -o chengsuk |wc -l) 
-    source ${ENSPATH}/part1_create_file_system.sh
-    # note slurm.template.sh (later script) only use name of $config - nextsim.cfg
-    cd  ${ENSPATH}
-    # source ${ENSPATH}/part2_run.job_array.sh ${ENSPATH}/nextsim.cfg 1 -ne $ENSSIZE -e $HOME/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src
+    mkdir -p ${ENSPATH} 
     
-    # wait the completeness in this cycle.
+    ## ----------------------------------------------
+    # 0. create files strucure, copy and modify configuration files inside
+        cp ${JOB_SETUP_DIR}/{part0_jobs_array_submit.sh,part1_create_file_system.sh}  ${ENSPATH} 
+        source ${ENSPATH}/part1_create_file_system.sh
+
+    XPID0=$(squeue -u chengsukun | grep -o chengsuk |wc -l) 
+        
+    # 1. submit the script for ensemble forecasts
+        script=${ENSPATH}/slurm.jobarray.nextsim.sh
+        cp $NEXTSIM_ENV_ROOT_DIR/slurm.jobarray.template.sh $script
+        cmd="sbatch --array=1-${ENSSIZE} $script $ENSPATH $ENV_FILE "
+        $cmd 2>&1 | tee sjob.id
+        jobid=$( awk '{print $NF}' sjob.id)
+
+    # 2.submit enkf after finishing the ensemble simulations 
+        script=${ENSPATH}/slurm.enkf.nextsim.sh
+        cp ${NEXTSIM_ENV_ROOT_DIR}/slurm.enkf.template.sh $script
+        cmd="sbatch --dependency=afterok:${jobid} $script $FILTER $ENV_FILE"
+        $cmd    
+
+    # ------ wait the completeness in this cycle.
     XPID=$(squeue -u chengsukun | grep -o chengsuk |wc -l) 	
     while [[ $XPID -gt $XPID0 ]]; do 
         sleep 60
         XPID=$(squeue -u chengsukun | grep -o chengsuk |wc -l) # number of running jobs 
     done
-    # 
-    echo "  project *.nc.analysis on reference_grid.nc, save to /NEXTSIMDIR/data/ for ensemble forecasting in the next cycle"
+    # ----------------------------------------------
+
+    echo "  project *.nc.analysis on reference_grid.nc, move it and restart file to $NEXTSIMDIR/data/ for ensemble forecasts in the next cycle"
 #<<'COMMENT'
-    # rm -f ${NEXTSIMDIR}/data/*.nc.analysis   
+    rm -f ${NEXTSIMDIR}/data/*.nc.analysis   
+    [ -d $OUTPUT_DIR ] && rm -rf ${NEXTSIMDIR}/data/restart
+    mkdir -p ${NEXTSIMDIR}/data/restart
+    cd $ENSPATH
     for (( i=1; i<=${ENSSIZE}; i++ )); do
 	    memname=$(printf "mem%.3d" ${i})
-        echo ${memname}
-        [ ! -f ${FILTER}/prior/${memname} ] && sleep 5
         cdo merge ${FILTER}/reference_grid.nc  ${FILTER}/prior/${memname}.nc.analysis  ${NEXTSIMDIR}/data/${memname}.nc.analysis 
-        # note  enkf and cdo depend on the path of reference_grid.nc
-        cp -f ${NEXTSIMDIR}/data/${memname}.nc.analysis ${ENSPATH}
+        cp -f ${NEXTSIMDIR}/data/${memname}.nc.analysis ${ENSPATH} #backup
+        # 
+        cp -f ${ENSPATH}/${memname}/{field_*,mesh_*}  ${NEXTSIMDIR}/data/restart
     done   
-    exit 1
 #COMMENT
 done

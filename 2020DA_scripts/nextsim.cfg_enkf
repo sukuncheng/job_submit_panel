@@ -2,7 +2,7 @@
 [simul]
 time_init=2018-11-12
 duration=1
-timestep=200
+timestep=900
 spinup_duration=1
 
 [output]
@@ -20,7 +20,7 @@ partitioner-space=disk #memory
 ## restart options
 [restart]
 start_from_restart=true
-write_final_restart=false
+write_final_restart=true
 write_initial_restart=false
 basename=20181111T000000Z
 input_path=/cluster/home/chengsukun/src/fram_job_submit_panel/2020DA_scripts/restart
@@ -60,8 +60,8 @@ output_timestep=1
 
 [statevector]
 use_statevector=true
-restart_from_analysis=true
-id=002
+restart_from_analysis=false
+id=
 grid_type=reference
 snapshot=true
 output_timestep=1
@@ -89,6 +89,6 @@ constant_wind_u=0.
 constant_wind_v=-10.
 
 [debugging]
-bamg_verbose=1
+#bamg_verbose=1
 log-level=debug
 #maxiteration=400
