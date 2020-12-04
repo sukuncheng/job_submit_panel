@@ -15,10 +15,12 @@ trap 'err_report $LINENO' ERR
 
 >nohup.out  # empty this file
 
-INFLATIONs=("1" "1.5" "2")
-LOCRADs=("100" "300" "600")
-RFACTORs=("1" "1.5" "2")
-KFACTORs=("1" "500" "1000")
+KFACTORs=("2" "1")  # default as 2 in topaz
+RFACTORs=("2" )   #1
+INFLATIONs=("1" "1.03" "1.09")  # <1.1 for 100 members
+LOCRADs=("100" "300" "600")  # meaning, radius 2.3*
+
+#start ensemble from sep.
 #
 RUNPATH=$(cd `dirname $0`;pwd)       # path of this.sh
 for (( m1=0; m1<${#KFACTORs[@]};   m1++ )); do
@@ -33,7 +35,6 @@ for (( i1=0; i1<${#INFLATIONs[@]}; i1++ )); do
     cd ${RUNPATH}
     source part0_jobs_array_submit.sh
     #source main_job_submit.sh
-    exit 1
 done
 done
 done

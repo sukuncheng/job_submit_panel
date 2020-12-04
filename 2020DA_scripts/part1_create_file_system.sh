@@ -20,6 +20,8 @@ echo "Part1 initialize files system"
         -e "s;^output_timestep=.*$;output_timestep="${duration}";g" \
         -e "s;^start_from_restart=.*$;start_from_restart="${start_from_restart}";g" \
         -e "s;^write_final_restart=.*$;write_final_restart=true;g" \
+        -e "s;^input_path=.*$;input_path=;g" \
+        -e "s;^basename.*$;basename=;g" \
         -e "s;^restart_from_analysis=.*$;restart_from_analysis="${restart_from_analysis}";g" \
         ${JOB_SETUP_DIR}/nextsim.cfg > ${ENSPATH}/nextsim.cfg
         
@@ -27,6 +29,18 @@ echo "Part1 initialize files system"
     sed -e "s;^iopath.*$;iopath = '.';g" \
         -e "s;^randf.*$;randf    = .true.;g" \
         ${JOB_SETUP_DIR}/pseudo2D.nml > ${ENSPATH}/pseudo2D.nml  
+
+    # cd ${ENSPATH}
+    # for (( i=1; i<=${ENSSIZE}; i++ )); do
+	#     memname=mem${i}
+    #     MEMPATH=${ENSPATH}/${memname}
+    #     mkdir -p $MEMPATH
+    #     sed -e "s;^id.*$;id=$i;g" \
+    #         -e "s;^basename.*$;basename=${memname};g" \
+    #         ${ENSPATH}/nextsim.cfg > ${MEMPATH}/nextsim.cfg  
+    
+    #     cp ${ENSPATH}/pseudo2D.nml $MEMPATH 
+    # done   
 
 #2. prepare analysis files
     FILTER=$ENSPATH/filter
