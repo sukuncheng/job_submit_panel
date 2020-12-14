@@ -4,40 +4,47 @@ ENV_FILE=${NEXTSIM_ENV_ROOT_DIR}/nextsim.ensemble.intel.src
 
 >nohup.out  # empty this file
 ##-------  Confirm working,data,ouput directories --------
-    JOB_SETUP_DIR=$(cd `dirname $0`;pwd)       
-    # observation CS2SMOS data discription
-    OBSNAME_PREFIX=$NEXTSIMDIR/data/CS2_SMOS_v2.2/W_XX-ESA,SMOS_CS2,NH_25KM_EASE2_ 
-    OBSNAME_SUFFIX=_r_v202_01_l4sit  # backup data is in NEXTSIM_DATA_DIR
-
+    JOB_SETUP_DIR=$(cd `dirname $0`;pwd)      
     # experiment settings
     time_init=2018-11-11   # starting date of simulation
     duration=7    # tduration*duration is the total simulation time
     tduration=4   # number of DA cycles. 
     ENSSIZE=30     # ensemble size  
-    # $OUTPUT_DIR
-    OUTPUT_DIR=${IO_nextsim}/test_Ne${ENSSIZE}_T${tduration}_D${duration}/I${INFLATION}_L${LOCRAD}_R${RFACTOR}_K${KFACTOR}   
-    OUTPUT_DIR=${OUTPUT_DIR//./p}  ## replace . with p
+    
+    # pseudo2D.nml, whether do perturbation
+    [[ $ENSSIZE > 1 ]] && randf=true || randf=false 
+
+    # OUTPUT_DIR
+    OUTPUT_DIR=${IO_nextsim}/test_Ne${ENSSIZE}_T${tduration}_D${duration}/I${INFLATION}_L${LOCRAD}_R${RFACTOR}_K${KFACTOR}  
     echo 'work path:' $OUTPUT_DIR 
     [ -d $OUTPUT_DIR ] && rm -rf $OUTPUT_DIR  
     mkdir -p ${OUTPUT_DIR}
-
+    #
     restart_path=$NEXTSIMDIR/data    #be consist with restart path defined in slurm.jobarray.template.sh
-    [ ! -d $restart_path ] && mkdir -p ${restart_path}
+    #[ ! -d $restart_path ] && mkdir -p ${restart_path}
+
+#   # do data assimilation using EnKF
+    UPDATE=0 # 1: active assimilation
+
+    # observation CS2SMOS data discription
+    OBSNAME_PREFIX=$NEXTSIMDIR/data/CS2_SMOS_v2.2/W_XX-ESA,SMOS_CS2,NH_25KM_EASE2_ 
+    OBSNAME_SUFFIX=_r_v202_01_l4sit  # backup data is in NEXTSIM_DATA_DIR
+
 ## ----------- execute ensemble runs ----------
-for (( iperiod=1; iperiod<=3; iperiod++ )); do  #${tduration}
+for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
     ENSPATH=${OUTPUT_DIR}/date${iperiod}  
     mkdir -p ${ENSPATH}     
     # --- edit nextsim.cfg ---------------------
     if [ $iperiod -eq 1 ]; then 
-        start_from_restart=false
-        restart_from_analysis=false
-        basename=20181111T000000Z
+        start_from_restart=true
+        restart_from_analysis=true
+        basename=?????
         for (( i=1; i<=${ENSSIZE}; i++ )); do
             memname=mem${i}
-            ln -sf ${JOB_SETUP_DIR}/restart/field_${basename}.bin  $restart_path/field_${memname}.bin
-            ln -sf ${JOB_SETUP_DIR}/restart/field_${basename}.dat  $restart_path/field_${memname}.dat
-            ln -sf ${JOB_SETUP_DIR}/restart/mesh_${basename}.bin   $restart_path/mesh_${memname}.bin
-            ln -sf ${JOB_SETUP_DIR}/restart/mesh_${basename}.dat   $restart_path/mesh_${memname}.dat
+            ln -sf $?????/field_${basename}.bin  $restart_path/field_${memname}.bin
+            ln -sf $?????/field_${basename}.dat  $restart_path/field_${memname}.dat
+            ln -sf $?????/mesh_${basename}.bin   $restart_path/mesh_${memname}.bin
+            ln -sf $?????/mesh_${basename}.dat   $restart_path/mesh_${memname}.dat
         done  
     else
         start_from_restart=true
@@ -58,13 +65,14 @@ for (( iperiod=1; iperiod<=3; iperiod++ )); do  #${tduration}
         $cmd 2>&1 | tee sjob.id
         jobid=$( awk '{print $NF}' sjob.id)
 
+    if [ ${UPDATE} -eq 1 ]; then
     # 2.submit enkf after finishing the ensemble simulations 
         cd ${ENSPATH}
         script=${ENSPATH}/slurm.enkf.nextsim.sh
         cp ${NEXTSIM_ENV_ROOT_DIR}/slurm.enkf.template.sh $script
         cmd="sbatch --dependency=afterok:${jobid} $script $ENSPATH $ENV_FILE"
         $cmd    
-
+    fi
     # ------ wait the completeness in this cycle.
     XPID=$(squeue -u chengsukun | grep -o chengsuk |wc -l) 	
     while [[ $XPID -gt $XPID0 ]]; do 
@@ -77,15 +85,16 @@ for (( iperiod=1; iperiod<=3; iperiod++ )); do  #${tduration}
 #<<'COMMENT'
     for (( i=1; i<=${ENSSIZE}; i++ )); do
 	    memname=mem${i}
-        cd  ${FILTER}
-        cdo merge reference_grid.nc  prior/$(printf "mem%.3d" $i).nc.analysis  ${memname}.nc.analysis         
-        # 
-        ln -sf ${FILTER}/${memname}.nc.analysis               $restart_path/${memname}.nc.analysis 
         ln -sf ${ENSPATH}/${memname}/restart/field_final.bin  $restart_path/field_${memname}.bin
         ln -sf ${ENSPATH}/${memname}/restart/field_final.dat  $restart_path/field_${memname}.dat
         ln -sf ${ENSPATH}/${memname}/restart/mesh_final.bin   $restart_path/mesh_${memname}.bin
         ln -sf ${ENSPATH}/${memname}/restart/mesh_final.dat   $restart_path/mesh_${memname}.dat
-        cp ${ENSPATH}/${memname}/WindPerturbation_${memname}.nc $restart_path/WindPerturbation_${memname}.nc  # must use copy, it will be copied again to work path. The one in work path will be updated by the program.
+        if [ ${UPDATE} -eq 1 ]; then
+            cd  ${FILTER}
+            cdo merge reference_grid.nc  prior/$(printf "mem%.3d" $i).nc.analysis  ${memname}.nc.analysis         
+            ln -sf ${FILTER}/${memname}.nc.analysis               $restart_path/${memname}.nc.analysis 
+            cp ${ENSPATH}/${memname}/WindPerturbation_${memname}.nc $restart_path/WindPerturbation_${memname}.nc  # must use copy, it will be copied again to work path. The one in work path will be updated by the program.
+        fi  
     done  
 #COMMENT
 done

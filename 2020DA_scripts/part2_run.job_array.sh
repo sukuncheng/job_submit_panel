@@ -217,51 +217,53 @@ jobid=$( awk '{print $NF}' sjob.id)
 ######################################################################
 # submit enkf after finishing the ensemble simulations 
 ######################################################################
-script=slurm.enkf.${JOB_NAME}.sh
+if [ ${UPDATE} -eq 1 ]; then
+    script=slurm.enkf.${JOB_NAME}.sh
 
-cmd="cp $NEXTSIM_ENV_ROOT_DIR/slurm.enkf.template.sh $script"
-echo $cmd
-$cmd
+    cmd="cp $NEXTSIM_ENV_ROOT_DIR/slurm.enkf.template.sh $script"
+    echo $cmd
+    $cmd
 
-JOB_NAME=nextsim
-ACCOUNT_NUMBER=nn2993k
-NUM_CORES=1
-NUM_TASKS=1
-WALL_TIME_DAYS=0
-WALL_TIME_HOURS=0
-WALL_TIME_MINUTES=20
-# modify the required fields
-sed -i "s/JOB_NAME/$JOB_NAME/g" $script
-sed -i "s/ACCOUNT_NUMBER/$ACCOUNT_NUMBER/g" $script
-sed -i "s/NUM_NODES/$NUM_CORES/g" $script
-sed -i "s/NUM_TASKS/$NUM_TASKS/g" $script
-sed -i "s/WALL_TIME_DAYS/$WALL_TIME_DAYS/g" $script
-sed -i "s/WALL_TIME_HOURS/$WALL_TIME_HOURS/g" $script
-sed -i "s/WALL_TIME_MINUTES/$WALL_TIME_MINUTES/g" $script
+    JOB_NAME=nextsim
+    ACCOUNT_NUMBER=nn2993k
+    NUM_CORES=1
+    NUM_TASKS=1
+    WALL_TIME_DAYS=0
+    WALL_TIME_HOURS=0
+    WALL_TIME_MINUTES=20
+    # modify the required fields
+    sed -i "s/JOB_NAME/$JOB_NAME/g" $script
+    sed -i "s/ACCOUNT_NUMBER/$ACCOUNT_NUMBER/g" $script
+    sed -i "s/NUM_NODES/$NUM_CORES/g" $script
+    sed -i "s/NUM_TASKS/$NUM_TASKS/g" $script
+    sed -i "s/WALL_TIME_DAYS/$WALL_TIME_DAYS/g" $script
+    sed -i "s/WALL_TIME_HOURS/$WALL_TIME_HOURS/g" $script
+    sed -i "s/WALL_TIME_MINUTES/$WALL_TIME_MINUTES/g" $script
 
 
-# number of cores: if 1 set qos=preproc for debug queue; exit if 2 or 3
-if [ $NUM_CORES -eq 1 ]
-then
-    # uncomment the line asking to go into the debug queue
-    sed -i 's/##SBATCH --qos=preproc/#SBATCH --qos=preproc/g' $script
-else 
-    if [ $NUM_CORES -lt 4 ]
+    # number of cores: if 1 set qos=preproc for debug queue; exit if 2 or 3
+    if [ $NUM_CORES -eq 1 ]
     then
-        echo "NUM_CORES=$NUM_CORES: should be 1 (debug) or >=4"
-        exit 1
+        # uncomment the line asking to go into the debug queue
+        sed -i 's/##SBATCH --qos=preproc/#SBATCH --qos=preproc/g' $script
+    else 
+        if [ $NUM_CORES -lt 4 ]
+        then
+            echo "NUM_CORES=$NUM_CORES: should be 1 (debug) or >=4"
+            exit 1
+        fi
     fi
-fi
 
-# submit enkf after ensemble is done.
-cmd="sbatch --dependency=afterok:${jobid} $script log_enkf ${SLURM_SCRIPT_OPTS[@]}"
-echo $cmd
-$cmd
+    # submit enkf after ensemble is done.
+    cmd="sbatch --dependency=afterok:${jobid} $script log_enkf ${SLURM_SCRIPT_OPTS[@]}"
+    echo $cmd
+    $cmd
 
-# ${FILTER}
-#     echo "  run enkf, outputs: $filter/prior/*.nc.analysis, $filter/enkf.out" 
-#     make clean #must clean previous results like observation*.nc
-#     #    make enkf  ########$NEXTSIMDIR/data:/data##### change data address in .prm files
-#     ./enkf_prep --no-superobing enkf.prm 2>&1 | tee prep.out
-#     ./enkf_calc --use-rmsd-for-obsstats enkf.prm 2>&1 | tee calc.out
-#     ./enkf_update --calculate-spread  enkf.prm 2>&1 | tee update.out    
+    # ${FILTER}
+    #     echo "  run enkf, outputs: $filter/prior/*.nc.analysis, $filter/enkf.out" 
+    #     make clean #must clean previous results like observation*.nc
+    #     #    make enkf  ########$NEXTSIMDIR/data:/data##### change data address in .prm files
+    #     ./enkf_prep --no-superobing enkf.prm 2>&1 | tee prep.out
+    #     ./enkf_calc --use-rmsd-for-obsstats enkf.prm 2>&1 | tee calc.out
+    #     ./enkf_update --calculate-spread  enkf.prm 2>&1 | tee update.out   
+fi 

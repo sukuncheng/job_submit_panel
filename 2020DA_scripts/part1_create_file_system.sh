@@ -27,7 +27,7 @@ echo "Part1 initialize files system"
         
     # pseudo2D.nml      
     sed -e "s;^iopath.*$;iopath = '.';g" \
-        -e "s;^randf.*$;randf    = .true.;g" \
+        -e "s;^randf.*$;randf    = .$randf.;g" \
         ${JOB_SETUP_DIR}/pseudo2D.nml > ${ENSPATH}/pseudo2D.nml  
 
     # cd ${ENSPATH}
@@ -42,6 +42,7 @@ echo "Part1 initialize files system"
     #     cp ${ENSPATH}/pseudo2D.nml $MEMPATH 
     # done   
 
+if [ ${UPDATE} -eq 1 ]; then
 #2. prepare analysis files
     FILTER=$ENSPATH/filter
     mkdir -p ${FILTER}/prior  # create directory to store prior states
@@ -70,3 +71,4 @@ echo "Part1 initialize files system"
     else
         echo "Error: ${SMOSOBS} is not found. "
     fi
+fi

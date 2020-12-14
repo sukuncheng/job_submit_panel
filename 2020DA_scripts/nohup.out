@@ -1,8 +1,12 @@
-work path: /cluster/home/chengsukun/src/IO_nextsim/test_Ne30_T4_D7/I1_L300_R1_K1
-period 2018-11-11 to 20181117
+work path: /cluster/home/chengsukun/src/IO_nextsim/ensemble_forecast_long_2019-08-14_7days_x_8cycles
+period 2019-08-14 to 20190820
 Part1 initialize files system
-  cd ENSPATH/filter & get a copy of reference_grid.nc 
-  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm
-  add observations path to /cluster/home/chengsukun/src/IO_nextsim/test_Ne30_T4_D7/I1_L300_R1_K1/date1/filter/obs.prm
-Submitted batch job 1134470
-Submitted batch job 1134471
+Submitted batch job 1313577
+  project *.nc.analysis on reference_grid.nc, move it and restart file to /cluster/home/chengsukun/src/nextsim/data for ensemble forecasts in the next cycle
+period 2019-08-21 to 20190827
+Part1 initialize files system
+Submitted batch job 1315429
+  project *.nc.analysis on reference_grid.nc, move it and restart file to /cluster/home/chengsukun/src/nextsim/data for ensemble forecasts in the next cycle
+period 2019-08-28 to 20190903
+Part1 initialize files system
+Submitted batch job 1317495
