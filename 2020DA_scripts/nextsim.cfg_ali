@@ -3,11 +3,11 @@
 time_init=2018-11-12
 duration=1
 timestep=900
-spinup_duration=1
+spinup_duration=0
 
 [output]
 output_per_day=0   # =0 turns off moorings.nc although mooring drift=ture below.
-exporter_path=/cluster/work/users/chengsukun/src/IO_nextsim/test_24_06_test1_sit_weekly/mem001
+exporter_path=
 datetime_in_filename=true
 
 # section for mesh options
@@ -23,8 +23,8 @@ start_from_restart=true
 write_final_restart=true
 write_initial_restart=false
 basename=20181111T000000Z
-input_path=/cluster/home/chengsukun/src/fram_job_submit_panel/2020DA_scripts/restart
-##debugging=false
+input_path=
+datetime_in_filename=false
 
 # section for forcing and initialisation options
 [setup]
@@ -41,7 +41,7 @@ newice_type=4
 
 # dynamics
 [dynamics]
-C_lab=3e+6
+C_lab=1.5e6
 compression_factor=10e3
 use_coriolis=true
 
@@ -67,9 +67,6 @@ snapshot=true
 output_timestep=1
 reference_grid_file=reference_grid.nc
 
-[debugging]
-check_fields_fast=false
-
 [numerics]
 regrid_angle=10.
 
@@ -89,6 +86,7 @@ constant_wind_u=0.
 constant_wind_v=-10.
 
 [debugging]
+check_fields_fast=false
 #bamg_verbose=1
-log-level=debug
+#log-level=debug
 #maxiteration=400

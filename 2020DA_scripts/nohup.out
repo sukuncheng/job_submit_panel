@@ -1,12 +1,21 @@
-work path: /cluster/home/chengsukun/src/IO_nextsim/ensemble_forecast_long_2019-08-14_7days_x_8cycles
-period 2019-08-14 to 20190820
+work path: /cluster/home/chengsukun/src/IO_nextsim/ensemble_forecasts_2019-09-03_7days_x_5cycles_memsize100
+period 2019-09-03 to 20190910
 Part1 initialize files system
-Submitted batch job 1313577
+Submitted batch job 1331603
   project *.nc.analysis on reference_grid.nc, move it and restart file to /cluster/home/chengsukun/src/nextsim/data for ensemble forecasts in the next cycle
-period 2019-08-21 to 20190827
+period 2019-09-10 to 20190917
 Part1 initialize files system
-Submitted batch job 1315429
+Submitted batch job 1332049
   project *.nc.analysis on reference_grid.nc, move it and restart file to /cluster/home/chengsukun/src/nextsim/data for ensemble forecasts in the next cycle
-period 2019-08-28 to 20190903
+period 2019-09-17 to 20190924
 Part1 initialize files system
-Submitted batch job 1317495
+Submitted batch job 1332432
+  project *.nc.analysis on reference_grid.nc, move it and restart file to /cluster/home/chengsukun/src/nextsim/data for ensemble forecasts in the next cycle
+period 2019-09-24 to 20191001
+Part1 initialize files system
+Submitted batch job 1332920
+  project *.nc.analysis on reference_grid.nc, move it and restart file to /cluster/home/chengsukun/src/nextsim/data for ensemble forecasts in the next cycle
+period 2019-10-01 to 20191008
+Part1 initialize files system
+Submitted batch job 1333344
+  project *.nc.analysis on reference_grid.nc, move it and restart file to /cluster/home/chengsukun/src/nextsim/data for ensemble forecasts in the next cycle

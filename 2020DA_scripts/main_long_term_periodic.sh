@@ -6,27 +6,31 @@ ENV_FILE=${NEXTSIM_ENV_ROOT_DIR}/nextsim.ensemble.intel.src
 ##-------  Confirm working,data,ouput directories --------
     JOB_SETUP_DIR=$(cd `dirname $0`;pwd)      
     # experiment settings
-    # 1-year deterministic run
-    time_init=2019-08-14   # starting date of simulation
-    basename=20190814T000000Z # set this variable, if the first run is from restart
-    first_restart_path=$HOME/src/restart
-    duration=7    # tduration*duration is the total simulation time
-    tduration=8   # number of DA cycles. 
-    ENSSIZE=100     # ensemble size  
+    # time_init=2019-08-14   # starting date of simulation
+    # basename=20190814T000000Z # set this variable, if the first run is from restart
+    # duration=7    # tduration*duration is the total simulation time
+    # tduration=8   # number of DA cycles. 
 
-    # pseudo2D.nml, whether do perturbation
+    time_init=2019-09-03   # starting date of simulation
+    basename=20190903T000000Z # set this variable, if the first run is from restart
+    duration=7    # tduration*duration is the total simulation time
+    tduration=5    # number of DA cycles. 
+    ENSSIZE=100    # ensemble size  
+    block=1
+    jobsize=$((${ENSSIZE}/${block}))
+    first_restart_path=$HOME/src/restart
+    # randf in pseudo2D.nml, whether do perturbation
     [[ $ENSSIZE > 1 ]] && randf=true || randf=false 
 
     # OUTPUT_DIR
-    OUTPUT_DIR=${IO_nextsim}/ensemble_forecast_long_${time_init}_${duration}days_x_${tduration}cycles
-    echo 'work path:' $OUTPUT_DIR 
-    [ -d $OUTPUT_DIR ] && rm -rf $OUTPUT_DIR  
-    mkdir -p ${OUTPUT_DIR}
+    OUTPUT_DIR=${IO_nextsim}/ensemble_forecasts_${time_init}_${duration}days_x_${tduration}cycles_memsize${ENSSIZE}
+    echo 'work path:' $OUTPUT_DIR
+    # [ -d $OUTPUT_DIR ] && rm -rf $OUTPUT_DIR  
+    # mkdir -p ${OUTPUT_DIR}
     #
-    restart_path=$NEXTSIMDIR/data    #be consist with restart path defined in slurm.jobarray.template.sh
-    #[ ! -d $restart_path ] && mkdir -p ${restart_path}
+    restart_path=$NEXTSIMDIR/data    #be consistent with restart path defined in slurm.jobarray.template.sh
 
-#   # do data assimilation using EnKF
+## ---------- do data assimilation using EnKF
     UPDATE=0 # 1: active assimilation
 
     # observation CS2SMOS data discription
@@ -53,7 +57,7 @@ for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
         restart_from_analysis=false
         time_init=$(date +%Y-%m-%d -d "${time_init} + ${duration} day")
     fi
-    echo "period ${time_init} to $(date +%Y%m%d -d "${time_init} + $((${duration}-1)) day")"
+    echo "period ${time_init} to $(date +%Y%m%d -d "${time_init} + $((${duration})) day")"
     # 0. create files strucure, copy and modify configuration files inside
         cp ${JOB_SETUP_DIR}/{main_long_term_periodic.sh,part1_create_file_system.sh}  ${ENSPATH} 
         source ${ENSPATH}/part1_create_file_system.sh
@@ -62,11 +66,11 @@ for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
     # 1. submit the script for ensemble forecasts
         cd $ENSPATH
         script=${ENSPATH}/slurm.jobarray.nextsim.sh
-        cp $NEXTSIM_ENV_ROOT_DIR/slurm.jobarray.template.sh $script
-        cmd="sbatch --array=1-${ENSSIZE} $script $ENSPATH $ENV_FILE "
+        cp $NEXTSIM_ENV_ROOT_DIR/slurm.jobarray.template.sh $script 
+        cmd="sbatch --array=1-${jobsize} $script $ENSPATH $ENV_FILE ${block}"
         $cmd 2>&1 | tee sjob.id
         jobid=$( awk '{print $NF}' sjob.id)
-
+        
     if [ ${UPDATE} -eq 1 ]; then
     # 2.submit enkf after finishing the ensemble simulations 
         cd ${ENSPATH}
