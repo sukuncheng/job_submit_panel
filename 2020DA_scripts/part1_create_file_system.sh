@@ -46,7 +46,7 @@ if [ ${UPDATE} -eq 1 ]; then
 #2. prepare analysis files
     FILTER=$ENSPATH/filter
     mkdir -p ${FILTER}/prior  # create directory to store prior states
-    mkdir -p ${FILTER}/obs    # observation directory
+    # mkdir -p ${FILTER}/obs    # observation directory
     #
     echo "  cd ENSPATH/filter & get a copy of reference_grid.nc "
     cd $FILTER  
@@ -58,12 +58,13 @@ if [ ${UPDATE} -eq 1 ]; then
     # modifications in enkf configurations
     sed -i "s;mpirun;mpirun --allow-run-as-root;g" Makefile
     sed -i "s;^ENSSIZE.*$;ENSSIZE = "${ENSSIZE}";g"  enkf.prm
-    sed -i "s;^INFLATION.*$;INFLATION = 1.;g"  enkf.prm
-    sed -i "s;^LOCRAD.*$;LOCRAD = 300;g"  enkf.prm
-    sed -i "s;^RFACTOR.*$;RFACTOR = 1;g"  enkf.prm
+    sed -i "s;^INFLATION.*$;INFLATION = ${INFLATION};g"  enkf.prm
+    sed -i "s;^LOCRAD.*$;LOCRAD = ${LOCRAD};g"  enkf.prm
+    sed -i "s;^RFACTOR.*$;RFACTOR = ${RFACTOR};g"  enkf.prm
+    sed -i "s;^KFACTOR.*$;KFACTOR = ${KFACTOR};g"  enkf.prm
     #
     echo "  add observations path to $FILTER/obs.prm"
-    A1=1 
+    A1=${duration} 
     A2=`expr "(${A1}+6)"|bc`
     SMOSOBS=${OBSNAME_PREFIX}$(date +%Y%m%d -d "${time_init} + $A1 day")_$(date +%Y%m%d -d "${time_init} + $A2 day")${OBSNAME_SUFFIX}.nc
     if [ -f ${SMOSOBS} ]; then

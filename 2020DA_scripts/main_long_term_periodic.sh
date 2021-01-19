@@ -67,16 +67,25 @@ for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
         cd $ENSPATH
         script=${ENSPATH}/slurm.jobarray.nextsim.sh
         cp $NEXTSIM_ENV_ROOT_DIR/slurm.jobarray.template.sh $script 
-        cmd="sbatch --array=1-${jobsize} $script $ENSPATH $ENV_FILE ${block}"
-        $cmd 2>&1 | tee sjob.id
-        jobid=$( awk '{print $NF}' sjob.id)
-        
+
+        ### option1
+        # cmd="sbatch --array=1-${jobsize} $script $ENSPATH $ENV_FILE ${block}"
+        # $cmd 2>&1 | tee sjob.id
+        # jobid=$( awk '{print $NF}' sjob.id)
+
+        ### option2 skip completed runs
+        for (( i=1; i<=${ENSSIZE}; i++ )); do
+            grep -q -s "Simulation done" ${ENSPATH}/mem${i}/task.log && continue
+            ls ${ENSPATH}/mem${i}/task.log
+            cmd="sbatch $script $ENSPATH $ENV_FILE ${block} $i"  # change slurm.jobarray.template.sh: SLURM_ARRAY_TASK_ID=$4   #if not use jobarray
+            $cmd 2>&1 | tee sjob.id
+        done
+    # 2.submit enkf after finishing the ensemble simulations     
     if [ ${UPDATE} -eq 1 ]; then
-    # 2.submit enkf after finishing the ensemble simulations 
         cd ${ENSPATH}
         script=${ENSPATH}/slurm.enkf.nextsim.sh
         cp ${NEXTSIM_ENV_ROOT_DIR}/slurm.enkf.template.sh $script
-        cmd="sbatch --dependency=afterok:${jobid} $script $ENSPATH $ENV_FILE"
+        cmd="sbatch --dependency=afterok:${jobid} $script $ENSPATH"
         $cmd    
     fi
     # ------ wait the completeness in this cycle.

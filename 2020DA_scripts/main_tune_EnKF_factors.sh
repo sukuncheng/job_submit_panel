@@ -1,5 +1,5 @@
 #!/bin/bash
-##set -eux
+set -eux
 err_report() {
     echo "Error on line $1"
 }
@@ -17,8 +17,8 @@ trap 'err_report $LINENO' ERR
 
 KFACTORs=("2" "1")  # default as 2 in topaz
 RFACTORs=("2" )   #1
-INFLATIONs=("1" "1.03" "1.09")  # <1.1 for 100 members
 LOCRADs=("100" "300" "600")  # meaning, radius 2.3*
+INFLATIONs=("1" "1.03" "1.09")  # <1.1 for 100 members
 
 #start ensemble from sep.
 #
@@ -33,7 +33,7 @@ for (( i1=0; i1<${#INFLATIONs[@]}; i1++ )); do
     KFACTOR=${KFACTORs[$m1]}  
     echo "========= " $m1 $k1 $j1 $i1 
     cd ${RUNPATH}
-    source part0_weekly_runs.sh
+    source part0_forecast_from_reanalysis.sh
 done
 done
 done
