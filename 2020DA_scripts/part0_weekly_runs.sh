@@ -18,7 +18,7 @@ ENV_FILE=${NEXTSIM_ENV_ROOT_DIR}/nextsim.ensemble.intel.src
     time_init=2019-10-8   # starting date of simulation
     duration=7    # tduration*duration is the total simulation time
     tduration=4   # number of DA cycles. 
-    ENSSIZE=40    # ensemble size  
+    ENSSIZE=100    # ensemble size  
     block=1
     jobsize=$((${ENSSIZE}/${block}))
 
@@ -51,7 +51,7 @@ for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
         basename=final
         for (( i=1; i<=${ENSSIZE}; i++ )); do
             memname=mem${i}
-            first_restart_path=/cluster/work/users/chengsukun/src/IO_nextsim/ensemble_forecasts_2019-09-03_7days_x_5cycles_memsize100/date5/${memname}
+            first_restart_path=/nird/projects/nird/NS2993K/NORSTORE_OSL_DISK/NS2993K/chengsukun/ensemble_forecasts_2019-09-03_7days_x_5cycles_memsize100/date5/${memname}
             ln -sf ${first_restart_path}/restart/field_${basename}.bin  $restart_path/field_${memname}.bin
             ln -sf ${first_restart_path}/restart/field_${basename}.dat  $restart_path/field_${memname}.dat
             ln -sf ${first_restart_path}/restart/mesh_${basename}.bin   $restart_path/mesh_${memname}.bin
