@@ -1,5 +1,5 @@
 #!/bin/bash 
-#set -uex  # uncomment for debugging
+set -uex  # uncomment for debugging
 ENV_FILE=${NEXTSIM_ENV_ROOT_DIR}/nextsim.ensemble.intel.src
 
 >nohup.out  # empty this file
@@ -13,8 +13,8 @@ ENV_FILE=${NEXTSIM_ENV_ROOT_DIR}/nextsim.ensemble.intel.src
 
     time_init=2019-09-03   # starting date of simulation
     basename=20190903T000000Z # set this variable, if the first run is from restart
-    duration=7    # tduration*duration is the total simulation time
-    tduration=5    # number of DA cycles. 
+    duration=42    # tduration*duration is the total simulation time
+    tduration=1    # number of DA cycles. 
     ENSSIZE=1    # ensemble size  
     block=1
     jobsize=$((${ENSSIZE}/${block}))
@@ -25,11 +25,11 @@ ENV_FILE=${NEXTSIM_ENV_ROOT_DIR}/nextsim.ensemble.intel.src
     # OUTPUT_DIR
     OUTPUT_DIR=${IO_nextsim}/ensemble_forecasts_${time_init}_${duration}days_x_${tduration}cycles_memsize${ENSSIZE}
     echo 'work path:' $OUTPUT_DIR
-    # [ -d $OUTPUT_DIR ] && rm -rf $OUTPUT_DIR  
-    # mkdir -p ${OUTPUT_DIR}
+    [ -d $OUTPUT_DIR ] && rm -rf $OUTPUT_DIR  
+    mkdir -p ${OUTPUT_DIR}
     #
     restart_path=$NEXTSIMDIR/data    #be consistent with restart path defined in slurm.jobarray.template.sh
-
+    rm -f   $restart_path/{field_mem* mesh_mem* WindPerturbation_mem* *.nc.analysis}
 ## ---------- do data assimilation using EnKF
     UPDATE=0 # 1: active assimilation
 
@@ -38,20 +38,23 @@ ENV_FILE=${NEXTSIM_ENV_ROOT_DIR}/nextsim.ensemble.intel.src
     OBSNAME_SUFFIX=_r_v202_01_l4sit  # backup data is in NEXTSIM_DATA_DIR
 
 ## ----------- execute ensemble runs ----------
+
 for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
     ENSPATH=${OUTPUT_DIR}/date${iperiod}  
     mkdir -p ${ENSPATH}     
     # --- edit nextsim.cfg ---------------------
     if [ $iperiod -eq 1 ]; then 
-        start_from_restart=true
         restart_from_analysis=false
-        for (( i=1; i<=${ENSSIZE}; i++ )); do
-            memname=mem${i}
-            ln -sf ${first_restart_path}/field_${basename}.bin  $restart_path/field_${memname}.bin
-            ln -sf ${first_restart_path}/field_${basename}.dat  $restart_path/field_${memname}.dat
-            ln -sf ${first_restart_path}/mesh_${basename}.bin   $restart_path/mesh_${memname}.bin
-            ln -sf ${first_restart_path}/mesh_${basename}.dat   $restart_path/mesh_${memname}.dat
-        done  
+        start_from_restart=false        
+        if start_from_restart; then
+            for (( i=1; i<=${ENSSIZE}; i++ )); do
+                memname=mem${i}
+                ln -sf ${first_restart_path}/field_${basename}.bin  $restart_path/field_${memname}.bin
+                ln -sf ${first_restart_path}/field_${basename}.dat  $restart_path/field_${memname}.dat
+                ln -sf ${first_restart_path}/mesh_${basename}.bin   $restart_path/mesh_${memname}.bin
+                ln -sf ${first_restart_path}/mesh_${basename}.dat   $restart_path/mesh_${memname}.dat
+            done  
+        fi
     else
         start_from_restart=true
         restart_from_analysis=false
@@ -76,7 +79,6 @@ for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
         ### option2 skip completed runs
         for (( i=1; i<=${ENSSIZE}; i++ )); do
             grep -q -s "Simulation done" ${ENSPATH}/mem${i}/task.log && continue
-            ls ${ENSPATH}/mem${i}/task.log
             cmd="sbatch $script $ENSPATH $ENV_FILE ${block} $i"  # change slurm.jobarray.template.sh: SLURM_ARRAY_TASK_ID=$4   #if not use jobarray
             $cmd 2>&1 | tee sjob.id
         done
@@ -98,6 +100,7 @@ for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
 
     echo "  project *.nc.analysis on reference_grid.nc, move it and restart file to $restart_path for ensemble forecasts in the next cycle"
 #<<'COMMENT'
+    rm -f   $restart_path/{field_mem* mesh_mem* WindPerturbation_mem* *.nc.analysis}
     for (( i=1; i<=${ENSSIZE}; i++ )); do
 	    memname=mem${i}
         ln -sf ${ENSPATH}/${memname}/restart/field_final.bin  $restart_path/field_${memname}.bin
