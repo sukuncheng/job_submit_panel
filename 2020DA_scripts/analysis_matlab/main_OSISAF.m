@@ -5,7 +5,7 @@ function [] = main_OSISAF()
     dbstop if error
     format short g
     % ---------------------- settings ---------------------------
-    periods_list = ["2019-10-1" ];  % d = day(t,'dayofyear')
+    periods_list = ["2019-09-10" ];  % d = day(t,'dayofyear')
     N_periods = length(periods_list);                     
     Duration = 7; % duration days set in nextsim.cfg    
     Ne = 100;     % ensemble_size

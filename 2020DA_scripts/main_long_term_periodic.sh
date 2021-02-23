@@ -11,9 +11,9 @@ ENV_FILE=${NEXTSIM_ENV_ROOT_DIR}/nextsim.ensemble.intel.src
     # duration=7    # tduration*duration is the total simulation time
     # tduration=8   # number of DA cycles. 
 
-    time_init=2019-09-03   # starting date of simulation
-    basename=20190903T000000Z # set this variable, if the first run is from restart
-    duration=42    # tduration*duration is the total simulation time
+    time_init=2019-11-03   # starting date of simulation
+    basename=20191103T000000Z # set this variable, if the first run is from restart
+    duration=2   # tduration*duration is the total simulation time
     tduration=1    # number of DA cycles. 
     ENSSIZE=1    # ensemble size  
     block=1
@@ -46,7 +46,7 @@ for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
     if [ $iperiod -eq 1 ]; then 
         restart_from_analysis=false
         start_from_restart=false        
-        if start_from_restart; then
+        if $start_from_restart; then
             for (( i=1; i<=${ENSSIZE}; i++ )); do
                 memname=mem${i}
                 ln -sf ${first_restart_path}/field_${basename}.bin  $restart_path/field_${memname}.bin

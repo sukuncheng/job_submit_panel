@@ -6,23 +6,25 @@ function [] = main_moorings()
     format short g
     % ---------------------- settings ---------------------------
     periods_list = ["2019-9-3" "2019-9-10" "2019-9-17" "2019-9-24" "2019-10-1" "2019-10-8" ];  % d = day(t,'dayofyear')
-    % periods_list = ["2019-9-3" ]; 
+    periods_list = ["2019-11-03"]; 
+    Duration = 2; % duration days set in nextsim.cfg    %
+    row = 1;
+    col = 1;
+    Var = 'damage';
     N_periods = length(periods_list);                     
-    Duration = 7; % duration days set in nextsim.cfg    
     Ne = 1;     % ensemble_size   
 %    mnt_dir  = '/nird/projects/nird/NS2993K/NORSTORE_OSL_DISK/NS2993K/chengsukun'; 
     mnt_dir='/cluster/home/chengsukun/src/IO_nextsim'; 
     % mnt_dir = '/Users/sukeng/Desktop/nird'; % mac;     %    mnt_dir = 'Z:\';  % window  
     % simul_dir = '/ensemble_forecasts_2019-09-03_7days_x_6cycles_memsize1'; 
-    simul_dir = '/ensemble_forecasts_2019-09-03_42days_x_1cycles_memsize1'; 
+    % simul_dir = '/ensemble_forecasts_2019-09-03_42days_x_1cycles_memsize1'; 
+    simul_dir = ['/ensemble_forecasts_' periods_list{1} '_' num2str(Duration) 'days_x_1cycles_memsize1'];
+    
     simul_dir = [mnt_dir simul_dir];   
 
-    row = 2;
-    col = 3;
+
 %% ------------------------------------------------------------------------
 for j = 1
-    close all
-    Var = 'sit';
     check_a_member = 1; %Ne; % check_member=Ne presents ensemble average
     n = 0;
     figure(1)
@@ -33,11 +35,11 @@ for j = 1
         data_dir = [ simul_dir '/date1' ];
         t = datetime(periods_list(it))+Duration;
     % moorings
-        filename = ['Moorings_2019d' num2str(day(t-1,'dayofyear')) '.nc'];
+        filename = ['Moorings_2019d' num2str(day(t-1,'dayofyear')) '.nc']
         clear data
         m = 0;
         for ie = j %:check_a_member   
-            file_dir = [data_dir '/mem' num2str(ie) '/' filename];
+            file_dir = [data_dir '/mem' num2str(ie) '/' filename]
             % ncdisp(file_dir)
             data_tmp = ncread(file_dir,Var); 
             m = m +1;
@@ -52,10 +54,10 @@ for j = 1
         lat = ncread(file_dir,'latitude');
         % save spread plot
         subplot(row,col,n)
-        m_pcolor(lon,lat,X); shading flat; caxis([0 1])
+        m_pcolor(lon,lat,X); shading flat; % caxis([0 1])
         m_grid('color','k'); % 'linestyle','-'
         m_coast('patch',0.7*[1 1 1]);  
-        colormap(bluewhitered);
+        % colormap(bluewhitered);
         set(gca,'Visible','off')
             % % add text on plot    
             % TEXT=datestr(t);
@@ -92,7 +94,7 @@ for j = 1
     %
     set(findall(gcf,'-property','FontSize'),'FontSize',20); 
     if check_a_member==1
-        saveas(figure(1),[ Var '_mem' num2str(j-1) '_free_drift_develop_main_moorings.png'],'png')
+        saveas(figure(1),[ Var '_mem' num2str(j-1) '.png'],'png')
     else
         saveas(figure(1),['spread_' Var '_' datestr(t) '_main_moorings.png'],'png')
         figure(2)

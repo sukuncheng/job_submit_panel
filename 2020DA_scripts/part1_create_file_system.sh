@@ -14,10 +14,9 @@
 #                     -- prior 
 echo "Part1 initialize files system"
 #1. prepare forecast files
-# nextsim.cfg
+# nextsim.cfg   "${duration}"
     sed -e "s;^time_init=.*$;time_init="${time_init}";g" \
         -e "s;^duration=.*$;duration="${duration}";g" \
-        -e "s;^output_timestep=.*$;output_timestep="${duration}";g" \
         -e "s;^start_from_restart=.*$;start_from_restart="${start_from_restart}";g" \
         -e "s;^write_final_restart=.*$;write_final_restart=true;g" \
         -e "s;^input_path=.*$;input_path=;g" \
