@@ -13,11 +13,14 @@ function WaitforTaskFinish(){
     done
 }
 
-JOB_SETUP_DIR=$(cd `dirname $0`;pwd)      
+##-------  Confirm working,data,ouput directories --------
+JOB_SETUP_DIR=$(cd `dirname $0`;pwd)   
 ENV_FILE=${NEXTSIM_ENV_ROOT_DIR}/nextsim.ensemble.intel.src
 cd $NEXTSIMDIR/data
 rm -f WindPerturbation_mem* mesh_mem* field_mem* mem*.nc.analysis 
-##-------  Confirm working,data,ouput directories --------
+
+>nohup.out  # empty this file
+
     # experiment settings
     time_init=2019-10-15   # starting date of simulation
     duration=7    # tduration*duration is the total simulation time
@@ -30,7 +33,7 @@ rm -f WindPerturbation_mem* mesh_mem* field_mem* mem*.nc.analysis
     [[ ${ENSSIZE} > 1 ]] && randf=true || randf=false 
 
     # OUTPUT_DIR
-    OUTPUT_DIR=${IO_nextsim}/run_${time_init}_Ne${ENSSIZE}_T${tduration}_D${duration}/I${INFLATION}_L${LOCRAD}_R${RFACTOR}_K${KFACTOR}  
+    OUTPUT_DIR=${simulations}/run_${time_init}_Ne${ENSSIZE}_T${tduration}_D${duration}/I${INFLATION}_L${LOCRAD}_R${RFACTOR}_K${KFACTOR}  
     echo 'work path:' $OUTPUT_DIR 
    [ -d $OUTPUT_DIR ] && rm -rf $OUTPUT_DIR  
     [ ! -d $OUTPUT_DIR ] && mkdir -p ${OUTPUT_DIR}
@@ -49,7 +52,6 @@ for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
     mkdir -p ${ENSPATH}     
     start_from_restart=true
     restart_from_analysis=true
-    
 
     if [ $iperiod -eq 1 ]; then
         # prepare and link restart files
@@ -57,7 +59,7 @@ for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
             memname=mem${i}
             echo "UPDATE=1, project *.nc.analysis on reference_grid.nc, move it and restart file to $restart_path for ensemble forecasts"
             # 
-            restart_source=/cluster/work/users/chengsukun/src/IO_nextsim/ensemble_forecasts_2019-09-03_7days_x_6cycles_memsize100/date6
+            restart_source=/cluster/work/users/chengsukun/src/simulations/ensemble_forecasts_2019-09-03_7days_x_6cycles_memsize100/date6
             # restart_source=/nird/projects/nird/NS2993K/NORSTORE_OSL_DISK/NS2993K/chengsukun/ensemble_forecasts_2019-09-03_7days_x_6cycles_memsize100/date6
             #
             cd  ${restart_source}/filter/size40_I${INFLATION}_L${LOCRAD}_R${RFACTOR}_K${KFACTOR}
@@ -102,7 +104,7 @@ for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
             done            
             WaitforTaskFinish $XPID0   
         done
-        # sbatch /cluster/work/users/chengsukun/src/IO_nextsim/run_Ne40_T1_D7/date1/slurm.jobarray.nextsim.sh /cluster/work/users/chengsukun/src/IO_nextsim/run_Ne40_T1_D7/date1 ${NEXTSIM_ENV_ROOT_DIR}/nextsim.ensemble.intel.src 1 1
+        # sbatch /cluster/work/users/chengsukun/src/simulations/run_Ne40_T1_D7/date1/slurm.jobarray.nextsim.sh /cluster/work/users/chengsukun/src/simulations/run_Ne40_T1_D7/date1 ${NEXTSIM_ENV_ROOT_DIR}/nextsim.ensemble.intel.src 1 1
 
     ## 2.submit enkf after finishing the ensemble simulations 
         if [ ${UPDATE} -eq 1 ]; then

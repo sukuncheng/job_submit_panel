@@ -24,10 +24,11 @@ JOB_SETUP_DIR=$(cd `dirname $0`;pwd)
 >${JOB_SETUP_DIR}/nohup.out  # empty this file
 # >${JOB_SETUP_DIR}/result.md
 
-ENSPATH=/cluster/work/users/chengsukun/src/IO_nextsim/ensemble_forecasts_2019-09-03_7days_x_6cycles_memsize100/date6
+ENSPATH=/cluster/work/users/chengsukun/src/simulations/ensemble_forecasts_2019-09-03_7days_x_6cycles_memsize100/date6
 # ENSPATH=/nird/projects/nird/NS2993K/NORSTORE_OSL_DISK/NS2993K/chengsukun/ensemble_forecasts_2019-09-03_7days_x_6cycles_memsize100/date6
 #
 FILTER=${ENSPATH}/filter
+mkdir
 cp ~/src/nextsim/modules/enkf/enkf-c/bin/* ${FILTER}/
 #
 script=${ENSPATH}/slurm.enkf.nextsim.sh
@@ -50,7 +51,7 @@ else
     LOCRADs=("10"  "50" "100" "300" "600")  # meaning, radius 2.3*
     INFLATIONs=("1" )  # <1.1 for 100 members
     ENSSIZE=40
-    # ENSPATH=/cluster/work/users/chengsukun/src/IO_nextsim/run_Ne40_T4_D7/I1_L100_R2_K2/date1
+    # ENSPATH=/cluster/work/users/chengsukun/src/simulations/run_Ne40_T4_D7/I1_L100_R2_K2/date1
 fi
 
 #

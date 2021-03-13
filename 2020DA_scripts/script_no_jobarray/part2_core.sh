@@ -44,7 +44,7 @@ if [[ ${UPDATE} -eq 1 ]]; then
     echo "Start EnKF assimilation" 
     echo "  link mem00*/prior.nc to /filter/prior/mem00*.nc"
     if [ ${time_init} == "2018-11-11" ]; then
-        cp -r ${IO_nextsim}/prior ${FILTER}
+        cp -r ${simulations}/prior ${FILTER}
     else
         for (( mem=1; mem<=${ESIZE}; mem++ )); do
             [ -f ${ENSPATH}/${ENSEMBLE[${mem}]}/prior.nc ] && mv  ${ENSPATH}/${ENSEMBLE[${mem}]}/prior.nc \

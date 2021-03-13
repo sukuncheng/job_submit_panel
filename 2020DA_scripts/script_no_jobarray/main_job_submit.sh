@@ -21,7 +21,7 @@ set -e
 # Important modifications for Fram  
 # 1. comment NEXTSIMDIR path
 # 2. cp reference_grid.nc to data/ 
-# 3. set RUNPATH to IO_nextsim on fram
+# 3. set RUNPATH to simulations on fram
 # 4. path of CS2SMOS, check ~/src/data
 # 5. put nextsim/bin/nextsim.exec in path
 # 6. ln -s enkf-c/bin/enkf* to 
@@ -46,7 +46,7 @@ tduration=4   # number of forecast-analysis cycle.
 ESIZE=1      # ensemble size
 UPDATE=0 # 1: active assimilation
 maximum_instants=200   # max instants (submitted jobs)
-OUTPUTPATH=${IO_nextsim}/test_Ne${ESIZE}_T${tduration}_D${duration}/I${INFLATION}_L${LOCRAD}_R${RFACTOR}_K${KFACTOR}   # output path
+OUTPUTPATH=${simulations}/test_Ne${ESIZE}_T${tduration}_D${duration}/I${INFLATION}_L${LOCRAD}_R${RFACTOR}_K${KFACTOR}   # output path
 OUTPUTPATH=${OUTPUTPATH//./p}
 echo 'work path:' $OUTPUTPATH 
 [ -d $OUTPUTPATH ] && rm -r $OUTPUTPATH  

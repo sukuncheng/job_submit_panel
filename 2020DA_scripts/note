@@ -1,0 +1,17 @@
+spinup test                     main_long_term_periodic.sh
+                                    part1_create_file_system.sh
+first assimilation analysis     main_tune_EnKF_factors_from_forecasts.sh
+
+
+wind
+ longwaves:
+snow rate, wait for Laurent to convert snow accumulation perturbation to snow rate perturbation
+
+ask einar double check
+
+ecmwf forecast higher resolution, forecast is better than reanlaysis for operational purpose
+
+perturb cohesion
+
+cs2smos is low resolution, hihg uncertainty
+    sit-drift of ice ,large scale pattern, 

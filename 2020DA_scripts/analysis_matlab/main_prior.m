@@ -10,7 +10,7 @@ function [] = main_priors()
     Duration = 7; % duration days set in nextsim.cfg    
     Ne = 40;     % ensemble_size   
    mnt_dir  = '/nird/projects/nird/NS2993K/NORSTORE_OSL_DISK/NS2993K/chengsukun'; 
-    % mnt_dir='/cluster/home/chengsukun/src/IO_nextsim'; 
+    % mnt_dir='/cluster/home/chengsukun/src/simulations'; 
     % mnt_dir = '/Users/sukeng/Desktop/nird'; % mac;     %    mnt_dir = 'Z:\';  % window  
     simul_dir = '/ensemble_forecasts_2019-09-03_7days_x_6cycles_memsize100'; 
     simul_dir = [mnt_dir simul_dir];   

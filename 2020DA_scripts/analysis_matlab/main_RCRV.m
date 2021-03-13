@@ -6,7 +6,7 @@ function [] = main_RCRV()
     format short g
     % display results after executing  main_tune_EnKF_factors_from_forecasts.sh
 %     mnt_dir = '/Users/sukeng/Desktop/fram';
-    mnt_dir = '/cluster/work/users/chengsukun/src/IO_nextsim';
+    mnt_dir = '/cluster/work/users/chengsukun/src/simulations';
     Ne100_path = '/ensemble_forecasts_2019-09-03_7days_x_6cycles_memsize100/date6/filter';
  
     % using 40 members

@@ -5,34 +5,29 @@ function [] = main_moorings()
     dbstop if error
     format short g
     % ---------------------- settings ---------------------------
-    periods_list = ["2019-9-3" "2019-9-10" "2019-9-17" "2019-9-24" "2019-10-1" "2019-10-8" ];  % d = day(t,'dayofyear')
-    periods_list = ["2019-11-03"]; 
-    Duration = 2; % duration days set in nextsim.cfg    %
-    row = 1;
-    col = 1;
-    Var = 'damage';
+    periods_list = ["2019-09-03" "2019-9-10" "2019-9-17" "2019-9-24" "2019-10-1" "2019-10-8" ];  % d = day(t,'dayofyear')
+    % periods_list = ["2019-11-03"]; 
+    Duration = 7; % duration days set in nextsim.cfg    %
+    row = 2;
+    col = 3;
+    Var = 'sit';
     N_periods = length(periods_list);                     
-    Ne = 1;     % ensemble_size   
+    Ne = 40;     % ensemble_size   
 %    mnt_dir  = '/nird/projects/nird/NS2993K/NORSTORE_OSL_DISK/NS2993K/chengsukun'; 
-    mnt_dir='/cluster/home/chengsukun/src/IO_nextsim'; 
+    mnt_dir='/cluster/home/chengsukun/src/simulations'; 
     % mnt_dir = '/Users/sukeng/Desktop/nird'; % mac;     %    mnt_dir = 'Z:\';  % window  
-    % simul_dir = '/ensemble_forecasts_2019-09-03_7days_x_6cycles_memsize1'; 
-    % simul_dir = '/ensemble_forecasts_2019-09-03_42days_x_1cycles_memsize1'; 
-    simul_dir = ['/ensemble_forecasts_' periods_list{1} '_' num2str(Duration) 'days_x_1cycles_memsize1'];
+    simul_dir = ['/ensemble_forecasts_' periods_list{1} '_' num2str(Duration) 'days_x_' num2str(length(periods_list)) 'cycles_memsize' num2str(Ne)];
     
     simul_dir = [mnt_dir simul_dir];   
-
 
 %% ------------------------------------------------------------------------
 for j = 1
     check_a_member = 1; %Ne; % check_member=Ne presents ensemble average
-    n = 0;
     figure(1)
     m_proj('Stereographic','lon',-45,'lat',90,'radius',20);
     for it = 1:length(periods_list)
-        n = n+1;
         % data_dir = [ simul_dir '/date' num2str(it) ];
-        data_dir = [ simul_dir '/date1' ];
+        data_dir = [ simul_dir '/date' num2str(it) ];
         t = datetime(periods_list(it))+Duration;
     % moorings
         filename = ['Moorings_2019d' num2str(day(t-1,'dayofyear')) '.nc']
@@ -53,7 +48,7 @@ for j = 1
         lon = ncread(file_dir,'longitude');
         lat = ncread(file_dir,'latitude');
         % save spread plot
-        subplot(row,col,n)
+        subplot(row,col,it)
         m_pcolor(lon,lat,X); shading flat; % caxis([0 1])
         m_grid('color','k'); % 'linestyle','-'
         m_coast('patch',0.7*[1 1 1]);  
@@ -61,16 +56,16 @@ for j = 1
         set(gca,'Visible','off')
             % % add text on plot    
             % TEXT=datestr(t);
-            % Ylim=get(subplot(row,col,n),'Ylim');
-            % Xlim=get(subplot(row,col,n),'Xlim');
+            % Ylim=get(subplot(row,col,it),'Ylim');
+            % Xlim=get(subplot(row,col,it),'Xlim');
             % tx = Xlim(2) - 0.85*(Xlim(2)-Xlim(1));
             % ty = Ylim(1) + 0.8*(Ylim(2)-Ylim(1));
             % text(double(tx),double(ty),TEXT,'color','k');
         title(['                      ' datestr(t)])
         %
         X = reshape(X,1,[]);
-        meanspread(n) = nanmean(X);
-        dates(n) = t;
+        meanspread(it) = nanmean(X);
+        dates(it) = t;
     end
     h=colorbar; 
     title(h,'(m)')

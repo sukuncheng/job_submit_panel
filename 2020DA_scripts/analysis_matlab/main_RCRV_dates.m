@@ -5,7 +5,7 @@ function [] = main_RCRV()
     dbstop if error
     format short g
 %     mnt_dir = '/Users/sukeng/Desktop/fram';
-    mnt_dir = '/cluster/work/users/chengsukun/src/IO_nextsim';
+    mnt_dir = '/cluster/work/users/chengsukun/src/simulations';
     run_dir = '/run_2019-10-15_Ne30_T12_D7/I1_L600_R2_K2';
  
     % 
