@@ -15,3 +15,12 @@ perturb cohesion
 
 cs2smos is low resolution, hihg uncertainty
     sit-drift of ice ,large scale pattern, 
+
+
+## set up datasets
+cd ~/src/nextsim/data
+ln -sf /cluster/projects/nn2993k/sim/data/CS2_SMOS_v2.2/ .
+ln -sf /cluster/work/users/chengsukun/nextsim_data_dir/TOPAZ4RC_daily/ .
+ln -sf /cluster/projects/nn2993k/sim/data/ECMWF_forecast_arctic_stereographic/ GENERIC_ATM
+
+rm -rf CS2_SMOS_v2.2 TOPAZ4RC_daily GENERIC_ATM

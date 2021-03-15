@@ -1,5 +1,5 @@
 #!/bin/bash 
-# set -uex  # uncomment for debugging
+set -uex  # uncomment for debugging
 err_report() {
     echo "Error on line $1"
 }
@@ -16,7 +16,7 @@ function WaitforTaskFinish(){
 ##-------  Confirm working,data,ouput directories --------
 JOB_SETUP_DIR=$(cd `dirname $0`;pwd)  
 ENV_FILE=${NEXTSIM_ENV_ROOT_DIR}/nextsim.ensemble.intel.src
-slurm_file=slurm.jobarray.template.sh
+slurm_file=slurm.ensemble.template.sh
 # ENV_FILE=${NEXTSIM_ENV_ROOT_DIR}/pynextsim.sing.src
 # slurm_file=slurm.singularity.template.sh
 
@@ -25,9 +25,9 @@ slurm_file=slurm.jobarray.template.sh
     # experiment settings
     time_init=2019-09-03   # starting date of simulation
     basename=20190903T000000Z # set this variable, if the first run is from restart
-    duration=1   # tduration*duration is the total simulation time
+    duration=2   # tduration*duration is the total simulation time
     tduration=1    # number of DA cycles. 
-    ENSSIZE=1    # ensemble size  
+    ENSSIZE=2    # ensemble size  
     block=1        # number of forecasts in a job
     jobsize=$((${ENSSIZE}/${block})) #number of nodes requested 
     first_restart_path=$HOME/src/restart  
@@ -39,7 +39,7 @@ slurm_file=slurm.jobarray.template.sh
     [ -d $OUTPUT_DIR ] && rm -rf $OUTPUT_DIR  
     mkdir -p ${OUTPUT_DIR}
     #
-    restart_path=$NEXTSIMDIR/data    # select a folder for exchange restart data
+    restart_path=$NEXTSIM_DATA_DIR   # select a folder for exchange restart data
     rm -f   $restart_path/{field_mem* mesh_mem* WindPerturbation_mem* *.nc.analysis}
 
     # observations data for assimilation using EnKF
@@ -77,11 +77,11 @@ for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
     # jobid=$( awk '{print $NF}' sjob.id)
     # WaitforTaskFinish $XPID0
 
-    ### option2 resubmit failed task in jobarray
+    ### option2 
     for (( j=1; j<=1; j++ )); do
         for (( i=1; i<=${ENSSIZE}; i++ )); do
             grep -q -s "Simulation done" ${ENSPATH}/mem${i}/task.log && continue
-            cmd="sbatch $script $ENSPATH $ENV_FILE ${block} $i"  # change slurm.jobarray.template.sh: SLURM_ARRAY_TASK_ID=$4   #if not use jobarray
+            cmd="sbatch $script $ENSPATH $ENV_FILE ${block} $i"  # change slurm.ensemble.template.sh: SLURM_ARRAY_TASK_ID=$4   #i is member_id, set $i=-1 if not use ensemble
             $cmd 2>&1 
         done
         WaitforTaskFinish $XPID0 
