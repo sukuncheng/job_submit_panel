@@ -12,23 +12,28 @@
 #         -- filter (include EnKF package)
 #                     -- obs  (link observations from NEXTIM_DATA_DIR)
 #                     -- prior 
-echo "Part1 initialize files system"
+echo "Part1 initialize files system, write nextsim.cfg, pseudo2D.nml to workpath"
 #1. prepare forecast files
-# nextsim.cfg,  #"${duration}"
-    sed -e "s;^time_init=.*$;time_init="${time_init}";g" \
-        -e "s;^duration=.*$;duration="${duration}";g" \
-        -e "s;^output_timestep=.*$;output_timestep=1;g" \
-        -e "s;^start_from_restart=.*$;start_from_restart="${start_from_restart}";g" \
-        -e "s;^write_final_restart=.*$;write_final_restart=true;g" \
-        -e "s;^input_path=.*$;input_path=;g" \
-        -e "s;^basename.*$;basename=;g" \
-        -e "s;^restart_from_analysis=.*$;restart_from_analysis="${restart_from_analysis}";g" \
-        ${JOB_SETUP_DIR}/nextsim.cfg > ${ENSPATH}/nextsim.cfg
+# nextsim.cfg,  #"${duration}" # input_path, basename are defined in slurm.*.template.sh
+    sed -i "s/^time_init=.*$/time_init=${time_init}/g; \
+         s/^duration=.*$/duration=${duration}/g; \
+         s/^output_timestep=.*$/output_timestep=1/g; \
+         s/^start_from_restart=.*$/start_from_restart=${start_from_restart}/g; \
+         s/^write_final_restart=.*$/write_final_restart=true/g; \
+         s/^input_path=.*$/input_path=/g; \
+         s/^basename.*$/basename=/g; \
+         s/^restart_from_analysis=.*$/restart_from_analysis="${restart_from_analysis}"/g" \
+        ${JOB_SETUP_DIR}/nextsim.cfg 
+        cp ${JOB_SETUP_DIR}/nextsim.cfg  ${ENSPATH}/nextsim.cfg
         
-    # pseudo2D.nml      
-    sed -e "s;^iopath.*$;iopath = '.';g" \
-        -e "s;^randf.*$;randf    = .$randf.;g" \
-        ${JOB_SETUP_DIR}/pseudo2D.nml > ${ENSPATH}/pseudo2D.nml  
+    # pseudo2D.nml, perturb cohesion C_lab=1.5e6 [±33%]  # s/^alea_factor.*$/alea_factor=0.33/g" 
+    sed -i "s/^iopath.*$/iopath = '.'/g; \
+            s/^randf.*$/randf    = .$randf./g; \
+            s/^scorr_grid_resolution.*$/scorr_grid_resolution=30/g; \
+            s/^C_lab.*$/C_lab=1.5e6/g;" \
+            ${JOB_SETUP_DIR}/pseudo2D.nml 
+            
+    cp ${JOB_SETUP_DIR}/pseudo2D.nml  ${ENSPATH}/pseudo2D.nml  
 
     # cd ${ENSPATH}
     # for (( i=1; i<=${ENSSIZE}; i++ )); do

@@ -13,7 +13,7 @@ vwndspd  =  3
 vsnowfall=  1
 vdwlongw =  50
 scorr    =  1000
-scorr_grid_resolution=10
+scorr_grid_resolution=30
 tcorr    =  2
 prsflg   =  2
 /

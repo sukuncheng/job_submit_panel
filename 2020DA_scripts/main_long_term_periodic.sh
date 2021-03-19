@@ -1,4 +1,9 @@
 #!/bin/bash 
+# create workpath
+# link restart file
+# call part1_create_file_system.sh to modify nextsim.cfg and pseudo2D.nml and enkf settings to workpath
+# submit jobs to queue by slurm_file from workpath
+# link restart file
 set -uex  # uncomment for debugging
 err_report() {
     echo "Error on line $1"
@@ -25,20 +30,21 @@ slurm_file=slurm.ensemble.template.sh
     # experiment settings
     time_init=2019-09-03   # starting date of simulation
     basename=20190903T000000Z # set this variable, if the first run is from restart
-    duration=2   # tduration*duration is the total simulation time
+    duration=1   # tduration*duration is the total simulation time
     tduration=1    # number of DA cycles. 
-    ENSSIZE=2    # ensemble size  
+    ENSSIZE=1    # ensemble size  
     block=1        # number of forecasts in a job
     jobsize=$((${ENSSIZE}/${block})) #number of nodes requested 
     first_restart_path=$HOME/src/restart  
     # randf in pseudo2D.nml, whether do perturbation
-    [[ $ENSSIZE > 1 ]] && randf=true || randf=false  
-
-    OUTPUT_DIR=${simulations}/ensemble_forecasts_${time_init}_${duration}days_x_${tduration}cycles_memsize${ENSSIZE}
+    [[ $ENSSIZE > 1 ]] && randf=true || randf=false    
+    randf=true
+       
+    OUTPUT_DIR=${simulations}/test_${time_init}_${duration}days_x_${tduration}cycles_memsize${ENSSIZE}
     echo 'work path:' $OUTPUT_DIR
     [ -d $OUTPUT_DIR ] && rm -rf $OUTPUT_DIR  
     mkdir -p ${OUTPUT_DIR}
-    #
+    
     restart_path=$NEXTSIM_DATA_DIR   # select a folder for exchange restart data
     rm -f   $restart_path/{field_mem* mesh_mem* WindPerturbation_mem* *.nc.analysis}
 
@@ -47,6 +53,7 @@ slurm_file=slurm.ensemble.template.sh
     OBSNAME_SUFFIX=_r_v202_01_l4sit  
 
 ## ----------- execute ensemble runs ----------
+rm -f $restart_path/{field_mem* mesh_mem* WindPerturbation_mem* *.nc.analysis}
 for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
     ENSPATH=${OUTPUT_DIR}/date${iperiod}  
     mkdir -p ${ENSPATH}     
@@ -86,15 +93,5 @@ for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
         done
         WaitforTaskFinish $XPID0 
     done
-    echo " link restart files to $restart_path for next-period nsemble forecasts"
-#
-    rm -f $restart_path/{field_mem* mesh_mem* WindPerturbation_mem* *.nc.analysis}
-    for (( i=1; i<=${ENSSIZE}; i++ )); do
-	    memname=mem${i}
-        ln -sf ${ENSPATH}/${memname}/restart/field_final.bin  $restart_path/field_${memname}.bin
-        ln -sf ${ENSPATH}/${memname}/restart/field_final.dat  $restart_path/field_${memname}.dat
-        ln -sf ${ENSPATH}/${memname}/restart/mesh_final.bin   $restart_path/mesh_${memname}.bin
-        ln -sf ${ENSPATH}/${memname}/restart/mesh_final.dat   $restart_path/mesh_${memname}.dat
-    done  
 done
 cp ${JOB_SETUP_DIR}/{main_long_term_periodic.sh,part1_create_file_system.sh,nohup.out}  ${OUTPUT_DIR} 
