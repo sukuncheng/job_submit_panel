@@ -30,17 +30,17 @@ slurm_file=slurm.ensemble.template.sh
     # experiment settings
     time_init=2019-09-03   # starting date of simulation
     basename=20190903T000000Z # set this variable, if the first run is from restart
-    duration=1   # tduration*duration is the total simulation time
+    duration=42    # tduration*duration is the total simulation time
     tduration=1    # number of DA cycles. 
-    ENSSIZE=1    # ensemble size  
+    ENSSIZE=40     # ensemble size  
     block=1        # number of forecasts in a job
     jobsize=$((${ENSSIZE}/${block})) #number of nodes requested 
     first_restart_path=$HOME/src/restart  
     # randf in pseudo2D.nml, whether do perturbation
     [[ $ENSSIZE > 1 ]] && randf=true || randf=false    
-    randf=true
+    # randf=true
        
-    OUTPUT_DIR=${simulations}/test_${time_init}_${duration}days_x_${tduration}cycles_memsize${ENSSIZE}
+    OUTPUT_DIR=${simulations}/test_windcohesion_${time_init}_${duration}days_x_${tduration}cycles_memsize${ENSSIZE}
     echo 'work path:' $OUTPUT_DIR
     [ -d $OUTPUT_DIR ] && rm -rf $OUTPUT_DIR  
     mkdir -p ${OUTPUT_DIR}
@@ -53,7 +53,6 @@ slurm_file=slurm.ensemble.template.sh
     OBSNAME_SUFFIX=_r_v202_01_l4sit  
 
 ## ----------- execute ensemble runs ----------
-rm -f $restart_path/{field_mem* mesh_mem* WindPerturbation_mem* *.nc.analysis}
 for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
     ENSPATH=${OUTPUT_DIR}/date${iperiod}  
     mkdir -p ${ENSPATH}     
@@ -85,7 +84,7 @@ for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
     # WaitforTaskFinish $XPID0
 
     ### option2 
-    for (( j=1; j<=1; j++ )); do
+    for (( j=1; j<=3; j++ )); do
         for (( i=1; i<=${ENSSIZE}; i++ )); do
             grep -q -s "Simulation done" ${ENSPATH}/mem${i}/task.log && continue
             cmd="sbatch $script $ENSPATH $ENV_FILE ${block} $i"  # change slurm.ensemble.template.sh: SLURM_ARRAY_TASK_ID=$4   #i is member_id, set $i=-1 if not use ensemble

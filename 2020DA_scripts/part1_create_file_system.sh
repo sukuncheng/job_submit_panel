@@ -26,11 +26,12 @@ echo "Part1 initialize files system, write nextsim.cfg, pseudo2D.nml to workpath
         ${JOB_SETUP_DIR}/nextsim.cfg 
         cp ${JOB_SETUP_DIR}/nextsim.cfg  ${ENSPATH}/nextsim.cfg
         
-    # pseudo2D.nml, perturb cohesion C_lab=1.5e6 [±33%]  # s/^alea_factor.*$/alea_factor=0.33/g" 
+    # pseudo2D.nml, perturb cohesion C_lab=1.5e6 [±33%]  # s/^C_perturb.*$/C_perturb=0.33/g" 
     sed -i "s/^iopath.*$/iopath = '.'/g; \
             s/^randf.*$/randf    = .$randf./g; \
-            s/^scorr_grid_resolution.*$/scorr_grid_resolution=30/g; \
-            s/^C_lab.*$/C_lab=1.5e6/g;" \
+            s/^scorr_dx.*$/scorr_dx=10/g; \
+            s/^C_lab.*$/C_lab=1.5e6/g; \
+            s/^C_perturb.*$/C_perturb=0.33/g;" \
             ${JOB_SETUP_DIR}/pseudo2D.nml 
             
     cp ${JOB_SETUP_DIR}/pseudo2D.nml  ${ENSPATH}/pseudo2D.nml  
@@ -54,9 +55,9 @@ echo "Part1 initialize files system, write nextsim.cfg, pseudo2D.nml to workpath
     #
     echo "  cd ENSPATH/filter & get a copy of reference_grid.nc "
     cd $FILTER  
-    cp ${JOB_SETUP_DIR}/reference_grid.nc ${FILTER}
+    cp ${JOB_SETUP_DIR}/reference_grid.nc .
     #    
-    echo "  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm"
+    echo "  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files"
     cp ${JOB_SETUP_DIR}/enkf_cfg/* .  #from ${NEXTSIMDIR}/modules/enkf/enkf-c/cfg/* # except stats.prm and enoi.prm
     cp ${NEXTSIMDIR}/modules/enkf/enkf-c/bin/enkf_* .
     # modifications in enkf configurations

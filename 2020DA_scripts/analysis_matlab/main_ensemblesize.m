@@ -6,15 +6,18 @@ function [] = main_ensemblesize()
     format short g
     % ---------------------- settings ---------------------------
     periods_list = ["2019-09-03" "2019-9-10" "2019-9-17" "2019-9-24" "2019-10-1" "2019-10-8" ]; %
+    periods_list = "2019-09-03";
     % d = day(t,'dayofyear')
     N_periods = length(periods_list);                     
-    Duration = 7; % duration days set in nextsim.cfg    
+    Duration = 42; % duration days set in nextsim.cfg    
     Ne = 40;      
     Radius = 6378.273; % radius of earth
     % mnt_dir  = '/nird/projects/nird/NS2993K/NORSTORE_OSL_DISK/NS2993K/chengsukun'; % fram  
     % mnt_dir = '/Users/sukeng/Desktop/nird'; % mac;     %    mnt_dir = 'Z:\';  % window  
-    mnt_dir='/cluster/work/users/chengsukun/src/simulations'; 
-    simul_dir = ['/ensemble_forecasts_2019-09-03_7days_x_' num2str(length(periods_list)) 'cycles_memsize' num2str(Ne)]; 
+    mnt_dir='/cluster/work/users/chengsukun/simulations'; 
+%    simul_dir = ['/ensemble_forecasts_2019-09-03_7days_x_' num2str(length(periods_list)) 'cycles_memsize' num2str(Ne)]; 
+    simul_dir = '/test_2019-09-03_42days_x_1cycles_memsize40';
+    % simul_dir = '/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40';
     simul_dir = [mnt_dir simul_dir];   
     
 %   path of output data
@@ -31,8 +34,9 @@ function [] = main_ensemblesize()
     
     fun_load_moorings(filename)
     fun_sensitivity_ensemble_size_moorings(filename)  
-    fun_load_prior(filename)
-    fun_sensitivity_ensemble_size_prior(filename)  
+    % fun_load_prior(filename)
+    % fun_sensitivity_ensemble_size_prior(filename)  
+    
 end
 
 %%
@@ -203,7 +207,8 @@ function fun_sensitivity_ensemble_size_moorings(filename)
     ylabel('spread of sit (m)')
     set(findall(gcf,'-property','FontSize'),'FontSize',16);
 %     set(gcf,'Position',[100,150,600,300])  
-    saveas(gcf,'ensemble_analysis_sit_main_ensemblesize.png','png')
+    legend('From Moorings.nc')
+    saveas(gcf,'Sit-ensemblesize_main_ensemblesize.png','png')
 end
 
 %%
@@ -222,6 +227,7 @@ function fun_sensitivity_ensemble_size_prior(filename)
     ylabel('spread of sit (m)')
     set(findall(gcf,'-property','FontSize'),'FontSize',16);
 %     set(gcf,'Position',[100,150,600,300])  
+    legend('From prior.nc')
     saveas(gcf,'ensemble_analysis_sit_main_ensemblesize.png','png')
 end
 

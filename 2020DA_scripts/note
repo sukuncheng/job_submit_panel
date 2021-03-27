@@ -3,9 +3,10 @@ spinup test                     main_long_term_periodic.sh
 first assimilation analysis     main_tune_EnKF_factors_from_forecasts.sh
 
 
-wind
- longwaves:
-snow rate, wait for Laurent to convert snow accumulation perturbation to snow rate perturbation
+perturbation module
+    wind speed u,v
+    longwaves dewelling raditation rate
+    snow rate 
 
 ask einar double check
 

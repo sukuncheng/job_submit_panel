@@ -6,41 +6,48 @@ function [] = main_moorings()
     format short g
     % ---------------------- settings ---------------------------
     periods_list = ["2019-09-03" "2019-9-10" "2019-9-17" "2019-9-24" "2019-10-1" "2019-10-8" ];  % d = day(t,'dayofyear')
-    % periods_list = ["2019-11-03"]; 
-    Duration = 7; % duration days set in nextsim.cfg    %
+    periods_list = ["2019-09-03"]; 
+    Duration = 42; % duration days set in nextsim.cfg    %
     row = 2;
     col = 3;
     Var = 'sit';
     N_periods = length(periods_list);                     
     Ne = 40;     % ensemble_size   
 %    mnt_dir  = '/nird/projects/nird/NS2993K/NORSTORE_OSL_DISK/NS2993K/chengsukun'; 
-    mnt_dir='/cluster/home/chengsukun/src/simulations'; 
+    mnt_dir='/cluster/work/users/chengsukun/simulations'; 
     % mnt_dir = '/Users/sukeng/Desktop/nird'; % mac;     %    mnt_dir = 'Z:\';  % window  
-    simul_dir = ['/ensemble_forecasts_' periods_list{1} '_' num2str(Duration) 'days_x_' num2str(length(periods_list)) 'cycles_memsize' num2str(Ne)];
+    simul_dir = ['/test_' periods_list{1} '_' num2str(Duration) 'days_x_' num2str(length(periods_list)) 'cycles_memsize' num2str(Ne)];
     
     simul_dir = [mnt_dir simul_dir];   
 
 %% ------------------------------------------------------------------------
-for j = 1
-    check_a_member = 1; %Ne; % check_member=Ne presents ensemble average
+
+    check_a_member = 0; % check_member=0 presents ensemble average
     figure(1)
-    m_proj('Stereographic','lon',-45,'lat',90,'radius',20);
-    for it = 1:length(periods_list)
+    m_proj('Stereographic','lon',-45,'lat',90,'radius',15);
+    % for it = 1:length(periods_list)
         % data_dir = [ simul_dir '/date' num2str(it) ];
-        data_dir = [ simul_dir '/date' num2str(it) ];
-        t = datetime(periods_list(it))+Duration;
+        % t = datetime(periods_list(it))+it;
+    data_dir = [ simul_dir '/date1' ];
+    for it = 1:6
+        t = datetime(periods_list(1))+it*7;
     % moorings
         filename = ['Moorings_2019d' num2str(day(t-1,'dayofyear')) '.nc']
         clear data
         m = 0;
-        for ie = j %:check_a_member   
+        if check_a_member==0
+            id = 1:Ne;
+        else
+            id = check_a_member;
+        end
+        for ie = id
             file_dir = [data_dir '/mem' num2str(ie) '/' filename]
             % ncdisp(file_dir)
             data_tmp = ncread(file_dir,Var); 
             m = m +1;
             data(m,:,:) = data_tmp(:,:,1);
         end   
-        if check_a_member==1
+        if check_a_member>0
             X = squeeze(data);   
         else 
             X = squeeze(std(data,1));
@@ -52,7 +59,7 @@ for j = 1
         m_pcolor(lon,lat,X); shading flat; % caxis([0 1])
         m_grid('color','k'); % 'linestyle','-'
         m_coast('patch',0.7*[1 1 1]);  
-        % colormap(bluewhitered);
+        colormap(bluewhitered);
         set(gca,'Visible','off')
             % % add text on plot    
             % TEXT=datestr(t);
@@ -61,7 +68,7 @@ for j = 1
             % tx = Xlim(2) - 0.85*(Xlim(2)-Xlim(1));
             % ty = Ylim(1) + 0.8*(Ylim(2)-Ylim(1));
             % text(double(tx),double(ty),TEXT,'color','k');
-        title(['                      ' datestr(t)])
+        title([datestr(t) '                      '])
         %
         X = reshape(X,1,[]);
         meanspread(it) = nanmean(X);
@@ -88,8 +95,8 @@ for j = 1
     % end
     %
     set(findall(gcf,'-property','FontSize'),'FontSize',20); 
-    if check_a_member==1
-        saveas(figure(1),[ Var '_mem' num2str(j-1) '.png'],'png')
+    if check_a_member>0
+        saveas(figure(1),[ Var '_mem' num2str(check_a_member) '.png'],'png')
     else
         saveas(figure(1),['spread_' Var '_' datestr(t) '_main_moorings.png'],'png')
         figure(2)
@@ -98,7 +105,6 @@ for j = 1
         set(findall(gcf,'-property','FontSize'),'FontSize',16); 
         saveas(figure(2),'ensemble mean of ice thickness_main_moorings.png','png')
     end
-end
 end
 
 

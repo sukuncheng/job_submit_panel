@@ -16,7 +16,7 @@ vclouds  =  0.005
 vairtmp  =  9.0
 vprecip  =  1.0
 vrelhum  =  1.0
-scorr    =  1000
+scorr    =  250
 tcorr    =  2
 prsflg   =  2
 /

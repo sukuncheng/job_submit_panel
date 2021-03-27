@@ -1,0 +1,1098 @@
++ time_init=2019-09-03
++ basename=20190903T000000Z
++ duration=42
++ tduration=1
++ ENSSIZE=40
++ block=1
++ jobsize=40
++ first_restart_path=/cluster/home/chengsukun/src/restart
++ [[ 40 > 1 ]]
++ randf=true
++ OUTPUT_DIR=/cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40
++ echo 'work path:' /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40
+work path: /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40
++ '[' -d /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40 ']'
++ rm -rf /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40
++ mkdir -p /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40
++ restart_path=/cluster/home/chengsukun/src/nextsim_data_dir
++ rm -f '/cluster/home/chengsukun/src/nextsim_data_dir/{field_mem*' 'mesh_mem*' 'WindPerturbation_mem*' '*.nc.analysis}'
++ OBSNAME_PREFIX=/cluster/home/chengsukun/src/nextsim/data/CS2_SMOS_v2.2/W_XX-ESA,SMOS_CS2,NH_25KM_EASE2_
++ OBSNAME_SUFFIX=_r_v202_01_l4sit
++ (( iperiod=1 ))
++ (( iperiod<=1 ))
++ ENSPATH=/cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1
++ mkdir -p /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1
++ restart_from_analysis=false
++ start_from_restart=true
++ true
++ (( i=1 ))
++ (( i<=40 ))
++ memname=mem1
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem1.bin
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem1.dat
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem1.bin
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem1.dat
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem2
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem2.bin
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem2.dat
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem2.bin
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem2.dat
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem3
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem3.bin
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem3.dat
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem3.bin
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem3.dat
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem4
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem4.bin
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem4.dat
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem4.bin
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem4.dat
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem5
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem5.bin
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem5.dat
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem5.bin
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem5.dat
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem6
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem6.bin
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem6.dat
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem6.bin
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem6.dat
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem7
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem7.bin
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem7.dat
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem7.bin
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem7.dat
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem8
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem8.bin
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem8.dat
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem8.bin
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem8.dat
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem9
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem9.bin
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem9.dat
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem9.bin
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem9.dat
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem10
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem10.bin
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem10.dat
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem10.bin
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem10.dat
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem11
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem11.bin
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem11.dat
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem11.bin
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem11.dat
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem12
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem12.bin
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem12.dat
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem12.bin
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem12.dat
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem13
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem13.bin
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem13.dat
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem13.bin
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem13.dat
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem14
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem14.bin
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem14.dat
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem14.bin
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem14.dat
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem15
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem15.bin
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem15.dat
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem15.bin
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem15.dat
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem16
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem16.bin
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem16.dat
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem16.bin
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem16.dat
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem17
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem17.bin
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem17.dat
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem17.bin
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem17.dat
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem18
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem18.bin
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem18.dat
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem18.bin
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem18.dat
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem19
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem19.bin
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem19.dat
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem19.bin
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem19.dat
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem20
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem20.bin
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem20.dat
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem20.bin
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem20.dat
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem21
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem21.bin
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem21.dat
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem21.bin
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem21.dat
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem22
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem22.bin
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem22.dat
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem22.bin
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem22.dat
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem23
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem23.bin
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem23.dat
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem23.bin
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem23.dat
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem24
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem24.bin
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem24.dat
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem24.bin
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem24.dat
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem25
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem25.bin
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem25.dat
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem25.bin
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem25.dat
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem26
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem26.bin
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem26.dat
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem26.bin
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem26.dat
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem27
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem27.bin
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem27.dat
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem27.bin
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem27.dat
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem28
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem28.bin
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem28.dat
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem28.bin
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem28.dat
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem29
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem29.bin
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem29.dat
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem29.bin
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem29.dat
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem30
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem30.bin
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem30.dat
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem30.bin
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem30.dat
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem31
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem31.bin
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem31.dat
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem31.bin
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem31.dat
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem32
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem32.bin
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem32.dat
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem32.bin
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem32.dat
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem33
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem33.bin
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem33.dat
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem33.bin
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem33.dat
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem34
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem34.bin
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem34.dat
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem34.bin
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem34.dat
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem35
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem35.bin
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem35.dat
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem35.bin
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem35.dat
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem36
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem36.bin
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem36.dat
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem36.bin
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem36.dat
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem37
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem37.bin
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem37.dat
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem37.bin
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem37.dat
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem38
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem38.bin
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem38.dat
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem38.bin
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem38.dat
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem39
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem39.bin
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem39.dat
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem39.bin
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem39.dat
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem40
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem40.bin
++ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem40.dat
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem40.bin
++ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem40.dat
++ (( i++  ))
++ (( i<=40 ))
+++ date +%Y%m%d -d '2019-09-03 + 42 day'
++ echo 'period 2019-09-03 to 20191015'
+period 2019-09-03 to 20191015
++ source /cluster/home/chengsukun/src/fram_job_submit_panel/2020DA_scripts/part1_create_file_system.sh
+++ echo 'Part1 initialize files system, write nextsim.cfg, pseudo2D.nml to workpath'
+Part1 initialize files system, write nextsim.cfg, pseudo2D.nml to workpath
+++ sed -i 's/^time_init=.*$/time_init=2019-09-03/g;          s/^duration=.*$/duration=42/g;          s/^output_timestep=.*$/output_timestep=1/g;          s/^start_from_restart=.*$/start_from_restart=true/g;          s/^write_final_restart=.*$/write_final_restart=true/g;          s/^input_path=.*$/input_path=/g;          s/^basename.*$/basename=/g;          s/^restart_from_analysis=.*$/restart_from_analysis=false/g' /cluster/home/chengsukun/src/fram_job_submit_panel/2020DA_scripts/nextsim.cfg
+++ cp /cluster/home/chengsukun/src/fram_job_submit_panel/2020DA_scripts/nextsim.cfg /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/nextsim.cfg
+++ sed -i 's/^iopath.*$/iopath = '\''.'\''/g;             s/^randf.*$/randf    = .true./g;             s/^scorr_dx.*$/scorr_dx=10/g;             s/^C_lab.*$/C_lab=1.5e6/g;             s/^C_perturb.*$/C_perturb=0.33/g;' /cluster/home/chengsukun/src/fram_job_submit_panel/2020DA_scripts/pseudo2D.nml
+++ cp /cluster/home/chengsukun/src/fram_job_submit_panel/2020DA_scripts/pseudo2D.nml /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/pseudo2D.nml
+++ FILTER=/cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/filter
+++ mkdir -p /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/filter/prior
+++ echo '  cd ENSPATH/filter & get a copy of reference_grid.nc '
+  cd ENSPATH/filter & get a copy of reference_grid.nc 
+++ cd /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/filter
+++ cp /cluster/home/chengsukun/src/fram_job_submit_panel/2020DA_scripts/reference_grid.nc .
+++ echo '  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files'
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+++ cp /cluster/home/chengsukun/src/fram_job_submit_panel/2020DA_scripts/enkf_cfg/enkf.prm /cluster/home/chengsukun/src/fram_job_submit_panel/2020DA_scripts/enkf_cfg/grid.prm /cluster/home/chengsukun/src/fram_job_submit_panel/2020DA_scripts/enkf_cfg/Makefile /cluster/home/chengsukun/src/fram_job_submit_panel/2020DA_scripts/enkf_cfg/model.prm /cluster/home/chengsukun/src/fram_job_submit_panel/2020DA_scripts/enkf_cfg/obs.prm /cluster/home/chengsukun/src/fram_job_submit_panel/2020DA_scripts/enkf_cfg/obstypes.prm .
+++ cp /cluster/home/chengsukun/src/nextsim/modules/enkf/enkf-c/bin/enkf_calc /cluster/home/chengsukun/src/nextsim/modules/enkf/enkf-c/bin/enkf_prep /cluster/home/chengsukun/src/nextsim/modules/enkf/enkf-c/bin/enkf_update .
+++ sed -i 's;mpirun;mpirun --allow-run-as-root;g' Makefile
+++ echo '  add observations path to /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/filter/obs.prm'
+  add observations path to /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/filter/obs.prm
+++ A1=42
++++ expr '(42+6)'
++++ bc
+++ A2=48
++++ date +%Y%m%d -d '2019-09-03 + 42 day'
++++ date +%Y%m%d -d '2019-09-03 + 48 day'
+++ SMOSOBS=/cluster/home/chengsukun/src/nextsim/data/CS2_SMOS_v2.2/W_XX-ESA,SMOS_CS2,NH_25KM_EASE2_20191015_20191021_r_v202_01_l4sit.nc
+++ '[' -f /cluster/home/chengsukun/src/nextsim/data/CS2_SMOS_v2.2/W_XX-ESA,SMOS_CS2,NH_25KM_EASE2_20191015_20191021_r_v202_01_l4sit.nc ']'
+++ echo '[Waring] /cluster/home/chengsukun/src/nextsim/data/CS2_SMOS_v2.2/W_XX-ESA,SMOS_CS2,NH_25KM_EASE2_20191015_20191021_r_v202_01_l4sit.nc is not found. '
+[Waring] /cluster/home/chengsukun/src/nextsim/data/CS2_SMOS_v2.2/W_XX-ESA,SMOS_CS2,NH_25KM_EASE2_20191015_20191021_r_v202_01_l4sit.nc is not found. 
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID0=0
++ cd /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1
++ script=/cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh
++ cp /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh
++ (( j=1 ))
++ (( j<=3 ))
++ (( i=1 ))
++ (( i<=40 ))
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/mem1/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 1'
++ sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 1
+Submitted batch job 2350976
++ (( i++  ))
++ (( i<=40 ))
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/mem2/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 2'
++ sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 2
+Submitted batch job 2350977
++ (( i++  ))
++ (( i<=40 ))
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/mem3/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 3'
++ sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 3
+Submitted batch job 2350978
++ (( i++  ))
++ (( i<=40 ))
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/mem4/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 4'
++ sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 4
+Submitted batch job 2350979
++ (( i++  ))
++ (( i<=40 ))
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/mem5/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 5'
++ sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 5
+Submitted batch job 2350980
++ (( i++  ))
++ (( i<=40 ))
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/mem6/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 6'
++ sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 6
+Submitted batch job 2350981
++ (( i++  ))
++ (( i<=40 ))
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/mem7/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 7'
++ sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 7
+Submitted batch job 2350982
++ (( i++  ))
++ (( i<=40 ))
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/mem8/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 8'
++ sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 8
+Submitted batch job 2350983
++ (( i++  ))
++ (( i<=40 ))
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/mem9/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 9'
++ sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 9
+Submitted batch job 2350984
++ (( i++  ))
++ (( i<=40 ))
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/mem10/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 10'
++ sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 10
+Submitted batch job 2350985
++ (( i++  ))
++ (( i<=40 ))
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/mem11/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 11'
++ sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 11
+Submitted batch job 2350986
++ (( i++  ))
++ (( i<=40 ))
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/mem12/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 12'
++ sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 12
+Submitted batch job 2350987
++ (( i++  ))
++ (( i<=40 ))
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/mem13/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 13'
++ sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 13
+Submitted batch job 2350988
++ (( i++  ))
++ (( i<=40 ))
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/mem14/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 14'
++ sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 14
+Submitted batch job 2350989
++ (( i++  ))
++ (( i<=40 ))
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/mem15/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 15'
++ sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 15
+Submitted batch job 2350990
++ (( i++  ))
++ (( i<=40 ))
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/mem16/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 16'
++ sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 16
+Submitted batch job 2350991
++ (( i++  ))
++ (( i<=40 ))
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/mem17/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 17'
++ sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 17
+Submitted batch job 2350992
++ (( i++  ))
++ (( i<=40 ))
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/mem18/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 18'
++ sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 18
+Submitted batch job 2350993
++ (( i++  ))
++ (( i<=40 ))
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/mem19/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 19'
++ sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 19
+Submitted batch job 2350994
++ (( i++  ))
++ (( i<=40 ))
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/mem20/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 20'
++ sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 20
+Submitted batch job 2350995
++ (( i++  ))
++ (( i<=40 ))
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/mem21/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 21'
++ sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 21
+Submitted batch job 2350996
++ (( i++  ))
++ (( i<=40 ))
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/mem22/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 22'
++ sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 22
+Submitted batch job 2350997
++ (( i++  ))
++ (( i<=40 ))
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/mem23/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 23'
++ sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 23
+Submitted batch job 2350998
++ (( i++  ))
++ (( i<=40 ))
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/mem24/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 24'
++ sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 24
+Submitted batch job 2350999
++ (( i++  ))
++ (( i<=40 ))
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/mem25/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 25'
++ sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 25
+Submitted batch job 2351000
++ (( i++  ))
++ (( i<=40 ))
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/mem26/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 26'
++ sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 26
+Submitted batch job 2351001
++ (( i++  ))
++ (( i<=40 ))
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/mem27/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 27'
++ sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 27
+Submitted batch job 2351002
++ (( i++  ))
++ (( i<=40 ))
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/mem28/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 28'
++ sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 28
+Submitted batch job 2351003
++ (( i++  ))
++ (( i<=40 ))
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/mem29/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 29'
++ sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 29
+Submitted batch job 2351004
++ (( i++  ))
++ (( i<=40 ))
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/mem30/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 30'
++ sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 30
+Submitted batch job 2351005
++ (( i++  ))
++ (( i<=40 ))
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/mem31/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 31'
++ sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 31
+Submitted batch job 2351006
++ (( i++  ))
++ (( i<=40 ))
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/mem32/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 32'
++ sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 32
+Submitted batch job 2351007
++ (( i++  ))
++ (( i<=40 ))
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/mem33/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 33'
++ sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 33
+Submitted batch job 2351008
++ (( i++  ))
++ (( i<=40 ))
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/mem34/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 34'
++ sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 34
+Submitted batch job 2351009
++ (( i++  ))
++ (( i<=40 ))
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/mem35/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 35'
++ sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 35
+Submitted batch job 2351010
++ (( i++  ))
++ (( i<=40 ))
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/mem36/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 36'
++ sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 36
+Submitted batch job 2351011
++ (( i++  ))
++ (( i<=40 ))
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/mem37/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 37'
++ sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 37
+Submitted batch job 2351012
++ (( i++  ))
++ (( i<=40 ))
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/mem38/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 38'
++ sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 38
+Submitted batch job 2351013
++ (( i++  ))
++ (( i<=40 ))
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/mem39/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 39'
++ sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 39
+Submitted batch job 2351014
++ (( i++  ))
++ (( i<=40 ))
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/mem40/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 40'
++ sbatch /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 40
+Submitted batch job 2351015
++ (( i++  ))
++ (( i<=40 ))
++ WaitforTaskFinish 0
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=40
++ [[ 40 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=40
++ [[ 40 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=39
++ [[ 39 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=38
++ [[ 38 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=37
++ [[ 37 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=36
++ [[ 36 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=36
++ [[ 36 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=35
++ [[ 35 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=34
++ [[ 34 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=33
++ [[ 33 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=32
++ [[ 32 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=32
++ [[ 32 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=31
++ [[ 31 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=30
++ [[ 30 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=30
++ [[ 30 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=29
++ [[ 29 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=28
++ [[ 28 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=27
++ [[ 27 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=27
++ [[ 27 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=26
++ [[ 26 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=26
++ [[ 26 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=26
++ [[ 26 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=26
++ [[ 26 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=26
++ [[ 26 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=26
++ [[ 26 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=26
++ [[ 26 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=26
++ [[ 26 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=25
++ [[ 25 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=25
++ [[ 25 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=25
++ [[ 25 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=25
++ [[ 25 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=25
++ [[ 25 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=25
++ [[ 25 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=25
++ [[ 25 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=24
++ [[ 24 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=23
++ [[ 23 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=23
++ [[ 23 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=22
++ [[ 22 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=21
++ [[ 21 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=21
++ [[ 21 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=21
++ [[ 21 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=21
++ [[ 21 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=21
++ [[ 21 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=21
++ [[ 21 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=21
++ [[ 21 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=21
++ [[ 21 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=21
++ [[ 21 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=21
++ [[ 21 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=21
++ [[ 21 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=21
++ [[ 21 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=21
++ [[ 21 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=21
++ [[ 21 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=21
++ [[ 21 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=21
++ [[ 21 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=20
++ [[ 20 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=19
++ [[ 19 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=19
++ [[ 19 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=18
++ [[ 18 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=18
++ [[ 18 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=17
++ [[ 17 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=16
++ [[ 16 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=15
++ [[ 15 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=15
++ [[ 15 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=14
++ [[ 14 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=13
++ [[ 13 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=12
++ [[ 12 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ wc -l
+++ grep -o chengsuk
++ XPID=12
++ [[ 12 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=12
++ [[ 12 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=12
++ [[ 12 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=12
++ [[ 12 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=12
++ [[ 12 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=12
++ [[ 12 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=12
++ [[ 12 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=11
++ [[ 11 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=10
++ [[ 10 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=10
++ [[ 10 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=9
++ [[ 9 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=8
++ [[ 8 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=7
++ [[ 7 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=7
++ [[ 7 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=7
++ [[ 7 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=7
++ [[ 7 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=7
++ [[ 7 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=7
++ [[ 7 -gt 0 ]]
++ sleep 60
