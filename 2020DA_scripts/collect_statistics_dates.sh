@@ -12,9 +12,9 @@ JOB_SETUP_DIR=$(cd `dirname $0`;pwd)
 >${JOB_SETUP_DIR}/result.md
 echo "              type  NumberofObs.  [for.inn.]  [an.inn.]   for.inn.   an.inn.  for.spread    an.spread" > result.md
 
-ENSPATH=/cluster/work/users/chengsukun/src/simulations/run_2019-10-15_Ne30_T12_D7/I1_L600_R2_K2
+ENSPATH=/cluster/work/users/chengsukun/simulations/test_windcohesion_2019-10-15_7days_x_12cycles_memsize40
 #
-for (( k=1; k<=8;   k++ )); do
+for (( k=1; k<=12;   k++ )); do
     path=${ENSPATH}/date${k}/filter
     string=$( tail -3 ${path}/calc.out|head -1 )
     echo "$string" >> ${JOB_SETUP_DIR}/result.md

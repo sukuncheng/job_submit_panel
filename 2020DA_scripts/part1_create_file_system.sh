@@ -50,24 +50,27 @@ echo "Part1 initialize files system, write nextsim.cfg, pseudo2D.nml to workpath
 
 # if [ ${UPDATE} -eq 1 ]; then
 #2. prepare analysis files
+    # observations data for assimilation using EnKF
+    OBSNAME_PREFIX=$NEXTSIM_DATA_DIR/CS2_SMOS_v2.2/W_XX-ESA,SMOS_CS2,NH_25KM_EASE2_ 
+    OBSNAME_SUFFIX=_r_v202_01_l4sit  
     FILTER=$ENSPATH/filter
     mkdir -p ${FILTER}/prior  # create directory to store prior states
     #
-    echo "  cd ENSPATH/filter & get a copy of reference_grid.nc "
-    cd $FILTER  
-    cp ${JOB_SETUP_DIR}/reference_grid.nc .
-    #    
+    cd $FILTER      
     echo "  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files"
     cp ${JOB_SETUP_DIR}/enkf_cfg/* .  #from ${NEXTSIMDIR}/modules/enkf/enkf-c/cfg/* # except stats.prm and enoi.prm
     cp ${NEXTSIMDIR}/modules/enkf/enkf-c/bin/enkf_* .
     # modifications in enkf configurations
     sed -i "s;mpirun;mpirun --allow-run-as-root;g" Makefile
-    # sed -i "s;^ENSSIZE.*$;ENSSIZE = ${ENSSIZE};g"  enkf.prm
-    # sed -i "s;^INFLATION.*$;INFLATION = ${INFLATION};g"  enkf.prm
-    # sed -i "s;^LOCRAD.*$;LOCRAD = ${LOCRAD};g"  enkf.prm
-    # sed -i "s;^RFACTOR.*$;RFACTOR = ${RFACTOR};g"  enkf.prm
-    # sed -i "s;^KFACTOR.*$;KFACTOR = ${KFACTOR};g"  enkf.prm
+    sed -i "s;^ENSSIZE.*$;ENSSIZE = ${ENSSIZE};g"  enkf.prm
+
+    sed -i "s/^INFLATION.*$/INFLATION = ${INFLATION}/g; \
+            s/^LOCRAD.*$/LOCRAD = ${LOCRAD}/g; \
+            s/^RFACTOR.*$/RFACTOR = ${RFACTOR}/g; \
+            s/^KFACTOR.*$/KFACTOR = ${KFACTOR}/g"  enkf.prm
     #
+    sed -i "s;^DATA.*$;DATA =${NEXTSIM_DATA_DIR}/reference_grid.nc;g"  grid.prm
+    ln -sf ${NEXTSIM_DATA_DIR}/reference_grid_coast.nc   ${FILTER}/reference_grid_coast.nc   # this file is used by enkf_prep, reader_cs2smos.c
     echo "  add observations path to $FILTER/obs.prm"
     A1=${duration} 
     A2=`expr "(${A1}+6)"|bc`

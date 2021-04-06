@@ -25,3 +25,4 @@ ln -sf /cluster/work/users/chengsukun/nextsim_data_dir/TOPAZ4RC_daily/ .
 ln -sf /cluster/projects/nn2993k/sim/data/ECMWF_forecast_arctic_stereographic/ GENERIC_ATM
 
 rm -rf CS2_SMOS_v2.2 TOPAZ4RC_daily GENERIC_ATM
+

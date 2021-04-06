@@ -4,26 +4,28 @@ function [] = main_RCRV()
     close all
     dbstop if error
     format short g
-%     mnt_dir = '/Users/sukeng/Desktop/fram';
-    mnt_dir = '/cluster/work/users/chengsukun/src/simulations';
-    run_dir = '/run_2019-10-15_Ne30_T12_D7/I1_L600_R2_K2';
- 
-    % 
+    mnt_dir = '/Users/sukeng/Desktop/fram';
+    % mnt_dir = '/cluster/work/users/chengsukun/src/simulations';
+    run_dir = '/test_2019-09-03_42days_x_1cycles_memsize40';
+
+    %
     Duration = 7;
-    for i = 1:7
+    for i = 1:1
         [b(i), d(i)] = fun_get_RCRV_statistics([ mnt_dir run_dir '/date' num2str(i) '/filter'])
-        dates(i) = datetime(2019,10,15 + i*Duration);
+        dates(i) = datetime(2019,10,15 + (i-1)*Duration);
     end
 
     %%
-    figure()
+    figure(1)
     plot(dates,b,'-o','linewidth',1.5)
     hold on
     plot(dates,d,'-o','linewidth',1.5)
     ylabel('\mu_q, \sigma_q');
     legend('\mu_q','\sigma_q','location','best')
     set(findall(gcf,'-property','FontSize'),'FontSize',16); 
-    saveas(gcf,'q_dates_main_RCRV','png')
+    saveas(figure(1),'q_dates_main_RCRV','png')
+    %
+    saveas(figure(2),'sit_main_RCRV','png')
 end
 
 % calcualte the mean and std (b & d) of reduced centered random variable (RCRV) at the assimilation time. https://os.copernicus.org/articles/13/123/2017/os-13-123-2017.pdf 
@@ -43,29 +45,28 @@ function [b, d] = fun_get_RCRV_statistics(filepath)
     b = mean(q);
     d = std(q);
     %
-%     lon = ncread(filename,'lon'); 
-%     lat = ncread(filename,'lat'); 
+    lon = ncread(filename,'lon'); 
+    lat = ncread(filename,'lat'); 
     
-%     m_proj('Stereographic','lon',-45,'lat',90,'radius',15);
-% %    
-%     figure(1); 
-%     clf
-%     subplot(131); m_scatter(lon(id),lat(id),8,y(id)-Hx(id),'.');title('y-Hx');
-%     subplot(132); m_scatter(lon(id),lat(id),8,sqrt(std_e(id).^2+std_o(id).^2),'.');title('sqrt(\sigma_{ens}^2+\sigma_{obs}^2)');
-%     subplot(133); m_scatter(lon(id),lat(id),8,q,'.');title('q')
-%     for i=1:3
-%         colormap(subplot(1,3,i),bluewhitered);
-%         h = colorbar;
-%         if i<3
-%             title(h,'(m)')
-%         end
-%         m_coast('patch',0.7*[1 1 1]);   
-%         set(subplot(1,3,i), 'box','off','XTickLabel',[],'XTick',[],'YTickLabel',[],'YTick',[])
-        
-%     end
-%     set(findall(gcf,'-property','FontSize'),'FontSize',16); 
-%     set(gcf,'Position',[100,150,1100,250], 'color','w')
-%     saveas(gcf,'innovation_uncertainties_main_RCRV.png','png')
+    m_proj('Stereographic','lon',-45,'lat',90,'radius',15);
+%    
+    figure(2); 
+    clf
+    subplot(131); m_scatter(lon(id),lat(id),8,y(id)-Hx(id),'.');title('y-Hx');
+    subplot(132); m_scatter(lon(id),lat(id),8,sqrt(std_e(id).^2 + std_o(id).^2),'.');title('sqrt(\sigma_{ens}^2+\sigma_{obs}^2)');
+    subplot(133); m_scatter(lon(id),lat(id),8,q,'.');title('q')
+    for i=1:3
+        colormap(subplot(1,3,i),bluewhitered);
+        h = colorbar;
+        if i<3
+            title(h,'(m)')
+        end
+        m_coast('patch',0.7*[1 1 1]);   
+        set(subplot(1,3,i), 'box','off','XTickLabel',[],'XTick',[],'YTickLabel',[],'YTick',[])
+    end
+    set(findall(gcf,'-property','FontSize'),'FontSize',16); 
+    set(gcf,'Position',[100,150,1100,250], 'color','w')
+    saveas(gcf,'innovation_uncertainties_main_RCRV.png','png')
     %
     % figure(10)
     % subplot(311);plot(y(id) - Hx(id));title('y-Hx');hold on;

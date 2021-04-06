@@ -9,7 +9,7 @@ OBS = obs.prm
 DATE = 6565.5 days since 1990-01-01
 
 ENSDIR = prior
-ENSSIZE = 2
+ENSSIZE = 40
 
 INFLATION = 1.0
 RFACTOR = 1

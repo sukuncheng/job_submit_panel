@@ -16,8 +16,8 @@ function [] = main_moorings()
 %    mnt_dir  = '/nird/projects/nird/NS2993K/NORSTORE_OSL_DISK/NS2993K/chengsukun'; 
     mnt_dir='/cluster/work/users/chengsukun/simulations'; 
     % mnt_dir = '/Users/sukeng/Desktop/nird'; % mac;     %    mnt_dir = 'Z:\';  % window  
-    simul_dir = ['/test_' periods_list{1} '_' num2str(Duration) 'days_x_' num2str(length(periods_list)) 'cycles_memsize' num2str(Ne)];
-    
+    % simul_dir = ['/test_' periods_list{1} '_' num2str(Duration) 'days_x_' num2str(length(periods_list)) 'cycles_memsize' num2str(Ne)];
+    simul_dir = '/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40';
     simul_dir = [mnt_dir simul_dir];   
 
 %% ------------------------------------------------------------------------

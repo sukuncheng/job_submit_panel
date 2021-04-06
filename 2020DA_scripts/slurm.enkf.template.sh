@@ -1,0 +1,1 @@
+/cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/slurm.enkf.template.sh
