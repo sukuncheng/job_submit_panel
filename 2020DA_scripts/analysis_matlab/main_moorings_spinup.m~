@@ -1,0 +1,110 @@
+function [] = main_moorings_spinup()
+    clc
+    clear
+    close all
+    dbstop if error
+    
+    load('test_inform.mat')
+    Var = 'sic';
+    method = 'mean'; %'mean': ensemble ensemble, std: ensemble spread
+    check_a_member = 0; % check_a_member=0 presents ensemble average
+%% ------------------------------------------------------------------------ 
+    figure(1)
+    m_proj('Stereographic','lon',-45,'lat',90,'radius',20);  
+    colormap(jet)
+    fname = [ 'Spinup_' Var '.gif'];
+    for i = 1:42
+        t = dates(1)+i;  
+%         continue
+        data_dir = [ simul_dir '/date1' ];
+        filename = ['Moorings_' num2str(year(t-1)) 'd' num2str(day(t-1,'dayofyear'),'%03d') '.nc']
+        clear data
+        if check_a_member==0
+            id = 1:Ne;
+        else
+            id = check_a_member;
+        end
+        for ie = id
+            file_dir = [data_dir '/mem' num2str(ie) '/' filename]
+%             ncdisp(file_dir)
+            data_tmp = ncread(file_dir,Var);
+            data(ie,:,:) = data_tmp(:,:,1);
+        end   
+%         data(data==0) = nan;   % exclude open water from nextsim.Moorings
+        if check_a_member>0
+            X = squeeze(data);              
+        else 
+            if strcmp(method,'std')==1
+                X = squeeze(std(data,1));
+            elseif strcmp(method,'mean')==1
+                X = squeeze(mean(data,1)); 
+            end
+        end
+        
+        % -------- plot ------------------------------     
+        lon = ncread(file_dir,'longitude');
+        lat = ncread(file_dir,'latitude');
+
+        m_pcolor(lon,lat,X); shading flat; 
+        if strcmp(Var,'sic')
+            caxis([0 1])
+        elseif strcmp(Var,'sit')
+            caxis([0 6]);
+        end
+        if strcmp(method,'std')
+        end
+        m_grid('color','k'); % 'linestyle','-'
+        m_coast('patch',0.7*[1 1 1]);  
+
+        h=colorbar; 
+        if strcmp(Var,'sit')
+            title(h,'(m)')
+        end
+        
+        title(datestr(t),'fontweight','normal','HorizontalAlignment','right');
+        set(findall(gcf,'-property','FontSize'),'FontSize',18);
+        
+        % -------- animation -------------------------------------
+        f = getframe(gcf);
+        im=frame2im(f);
+        [I,map] = rgb2ind(im,256);
+        if i==1  
+            imwrite(I,map,filename,'gif','loopcount',inf,'Delaytime',.5)
+        else
+            imwrite(I,map,filename,'gif','writemode','append','Delaytime',.5)
+        end
+        % ---------------------------------------------------------
+        X = reshape(X,1,[]);
+        meanspread(i) = nanmean(X);
+    end
+%     if check_a_member>0
+%         saveas(figure(1),[ Var '_mem' num2str(check_a_member) '.png'],'png')
+%     else
+%         if strcmp(method,'std')==1
+%             saveas(figure(1),['spread_' Var '_' datestr(t) '_main_moorings.png'],'png')
+%         elseif strcmp(method,'mean')==1
+%             saveas(figure(1),['EnsembleMean_' Var '_' datestr(t) '_main_moorings.png'],'png')
+%         end
+%     end
+    
+    figure(2)
+    set(figure(2),'Position',[100,200,550,400], 'color','w')
+    plot(dates, meanspread,'.-'); 
+    if strcmp(Var,'sit')
+        ylabel('sit spread (m)','location','best');
+    else
+        ylabel('sic spread','location','best');
+    end
+%     axis([dates(1)-1 dates(end)+1 0 0.2]);
+    set(findall(gcf,'-property','FontSize'),'FontSize',18); 
+    saveas(figure(2),['Spatial_spread_' Var 'main_moorings.png'],'png')
+end
+
+
+
+% convergen of filter. 
+% spread. 
+% srf.  spread reduction 1 is the devision by 2, 
+% dfs.  <=30
+% R reflexision,     a matrix of ensemble mean
+% square root filter apply inflation on anormalies

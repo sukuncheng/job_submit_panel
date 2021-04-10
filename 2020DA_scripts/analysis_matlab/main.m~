@@ -1,0 +1,30 @@
+function [] = main()
+    format short g
+%% ----------------directory settings -----------------
+%     periods_list = ["2019-09-03" "2019-9-10" "2019-9-17" "2019-9-24" "2019-10-1" "2019-10-8" ]; %
+%     periods_list = "2019-09-03";
+    start_date = "2019-10-15";
+    Duration = 7; % duration days set in nextsim.cfg    
+    N_periods = 12;
+    for i = 1:N_periods
+        periods_list(i) = datetime(start_date) + (i)*Duration;    
+        t = periods_list(i);  
+        dates(i) = datenum(t);
+    end
+    
+    Ne = 40;      
+    Radius = 6378.273; % radius of earth
+    % mnt_dir  = '/nird/projects/nird/NS2993K/NORSTORE_OSL_DISK/NS2993K/chengsukun'; % fram  
+    % mnt_dir = '/Users/sukeng/Desktop/nird'; % mac;     %    mnt_dir = 'Z:\';  % window  
+    mnt_dir = '/Users/sukeng/Desktop/fram';
+%     mnt_dir='/cluster/work/users/chengsukun/simulations'; 
+%     simul_dir = ['/ensemble_forecasts_2019-09-03_7days_x_' num2str(N_periods) 'cycles_memsize' num2str(Ne)]; 
+%     simul_dir = '/test_2019-09-03_42days_x_1cycles_memsize40';
+%     simul_dir = '/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40';
+    simul_dir = '/test_windcohesion_2019-10-15_7days_x_12cycles_memsize40';
+    simul_dir = [mnt_dir simul_dir];
+    
+    save('test_inform.mat','periods_list','N_periods','dates','Ne','simul_dir','Duration')
+%%
+%     main_ensemblesize
+%     main_moorings   % plot temporal average and spatial averages of spread of sit 

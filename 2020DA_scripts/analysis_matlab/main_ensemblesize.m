@@ -3,44 +3,22 @@ function [] = main_ensemblesize()
     clear
     close all
     dbstop if error
-    format short g
-    % ---------------------- settings ---------------------------
-    periods_list = ["2019-09-03" "2019-9-10" "2019-9-17" "2019-9-24" "2019-10-1" "2019-10-8" ]; %
-    periods_list = "2019-09-03";
-    % d = day(t,'dayofyear')
-    N_periods = length(periods_list);                     
-    Duration = 42; % duration days set in nextsim.cfg    
-    Ne = 40;      
-    Radius = 6378.273; % radius of earth
-    % mnt_dir  = '/nird/projects/nird/NS2993K/NORSTORE_OSL_DISK/NS2993K/chengsukun'; % fram  
-    % mnt_dir = '/Users/sukeng/Desktop/nird'; % mac;     %    mnt_dir = 'Z:\';  % window  
-    mnt_dir='/cluster/work/users/chengsukun/simulations'; 
-%    simul_dir = ['/ensemble_forecasts_2019-09-03_7days_x_' num2str(length(periods_list)) 'cycles_memsize' num2str(Ne)]; 
-    simul_dir = '/test_2019-09-03_42days_x_1cycles_memsize40';
-    % simul_dir = '/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40';
-    simul_dir = [mnt_dir simul_dir];   
-    
-%   path of output data
-    filename='ensemblesize.mat';
-    if ~exist(filename)
-        save(filename)
-    else
-        save(filename,'periods_list','N_periods','Ne','simul_dir','Duration','-append');
-    end  
 
-    % fun0_buoy_post_processing(filename)
-    % fun_sensitivity_ensemble_size_drifters(filename,0); % equally spaced drifter=0, also can try iabp=1
-    % fun_plots_drifters(filename) 
-    
+% ------------
+filename = 'test_inform.mat';
     fun_load_moorings(filename)
     fun_sensitivity_ensemble_size_moorings(filename)  
     % fun_load_prior(filename)
     % fun_sensitivity_ensemble_size_prior(filename)  
     
+% -------------
+    % fun0_buoy_post_processing(filename)
+    % fun_sensitivity_ensemble_size_drifters(filename,0); % equally spaced drifter=0, also can try iabp=1
+    % fun_plots_drifters(filename) 
 end
 
 %%
-function fun0_buoy_post_processing(filename)
+function fun0_buoy_post_processing()
     load(filename)
     disp('load data of IABP drifter and equal spaced drifters, and exact drifters trajactories'); 
     for i = 1:N_periods
@@ -170,8 +148,7 @@ function fun_load_moorings(filename)
         data = ncread(moorings_file,'sit');
         moorings(ie,:,:) = squeeze(data(:,:,end));               
     end
-    dates = start_time + Duration;
-    save(filename,'moorings','dates','-append')
+    save(filename,'moorings','-append')
 end
 
 %%
@@ -188,8 +165,7 @@ function fun_load_prior(filename)
         data = ncread(filepath,'sit');
         prior(ie,:,:) = squeeze(data(:,:,end));               
     end
-    dates = start_time + Duration;
-    save(filename,'prior','dates','-append')
+    save(filename,'prior','-append')
 end
 
 function fun_sensitivity_ensemble_size_moorings(filename)
@@ -206,8 +182,8 @@ function fun_sensitivity_ensemble_size_moorings(filename)
     xlabel('ensemble size'); 
     ylabel('spread of sit (m)')
     set(findall(gcf,'-property','FontSize'),'FontSize',16);
-%     set(gcf,'Position',[100,150,600,300])  
-    legend('From Moorings.nc')
+    set(gcf,'Position',[100,150,550,400],'color','w')  
+%     legend('From Moorings.nc')
     saveas(gcf,'Sit-ensemblesize_main_ensemblesize.png','png')
 end
 
