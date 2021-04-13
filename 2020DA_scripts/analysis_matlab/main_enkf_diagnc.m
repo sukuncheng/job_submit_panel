@@ -26,6 +26,8 @@ function statistics = fun_process_enkf_diag(path)
     namelist = {'dfs','srf','nlobs','pdfs','psrf','pnlobs'};
     filename = [path '/enkf_diag.nc'];
     ncdisp(filename)
+    lon    = ncread(filename,'lon');
+    lat    = ncread(filename,'lat');
     dfs    = ncread(filename,'dfs');     % degrees of freedom of signal 
     srf    = ncread(filename,'srf');     % spread reduction factor
     nlobs  = ncread(filename,'nlobs');
@@ -42,30 +44,48 @@ function statistics = fun_process_enkf_diag(path)
     
     %
     figure(); set(gcf,'Position',[100,150,1100,850], 'color','w')
-    filename = '../reference_grid.nc';
-    lon = ncread(filename,'plon'); 
-    lat = ncread(filename,'plat'); 
+
+%     fileID = fopen([path '/gridnodes-0.txt'],'r');
+%     data = textscan(fileID,'%f %f','HeaderLines',1) ;
+%     data = cell2mat(data);
+%     fclose(fileID);
+%     size(data)
+%     xlon = data(:,1);
+%     xlat = data(:,2);
     %
     unit = '(m)';
-    subplot(231); fun_geo_plot(lon,lat,   dfs',' dfs',unit); 
-    subplot(232); fun_geo_plot(lon,lat,   srf',' srf',unit); 
-    subplot(233); fun_geo_plot(lon,lat, nlobs',' nlobs',unit); 
-    subplot(234); fun_geo_plot(lon,lat,  pdfs','pdfs',unit); 
-    subplot(235); fun_geo_plot(lon,lat,  psrf','psrf',unit); 
-    subplot(236); fun_geo_plot(lon,lat,pnlobs','pnlobs',unit); 
+    n = 10;
+    subplot(231); fun_geo_plot(lon,lat, dfs,' dfs',unit); 
+    subplot(232); fun_geo_plot(lon,lat, srf,' srf',unit); 
+    subplot(233); fun_geo_plot(lon,lat, nlobs,' nlobs',unit); 
+    subplot(234); fun_geo_plot(lon,lat,  pdfs,'pdfs',unit); 
+    subplot(235); fun_geo_plot(lon,lat,  psrf,'psrf',unit); 
+    subplot(236); fun_geo_plot(lon,lat,pnlobs,'pnlobs',unit); 
     set(findall(gcf,'-property','FontSize'),'FontSize',16);    
+    
+   
+   
 end
 
 function fun_geo_plot(lon,lat,Var,Title, unit)
     Var(Var==0) = nan;
     m_proj('Stereographic','lon',-45,'lat',90,'radius',50);
-    m_pcolor(lon, lat, Var); shading flat; 
+    
+    if 0
+        m_pcolor(lon, lat, Var); shading flat; 
+    else
+        x = reshape(lon,1,[]);
+        y = reshape(lat,1,[]);
+        z = reshape(Var,1,[]);
+        m_scatter(x,y,20,z,'.');
+    end
+    
     h = colorbar;
     title(h, unit);
     m_grid();
-    m_coast('color','r'); 
+    m_coast('color','k'); 
 %     m_coast('patch',0.7*[1 1 1]);    
     set(gca,'XTickLabel',[],'YTickLabel',[]);
-    title(Title)
+    title({Title,''},'fontweight','normal');
     colormap(gca,bluewhitered);
 end

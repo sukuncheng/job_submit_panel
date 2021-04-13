@@ -21,32 +21,35 @@ x = [    3327       0.405      0.312     -0.042     -0.021      0.071      0.039
 load('test_inform.mat')
 %% spread
 subplot(211)
-plot(periods_list,x(:,6),'-o','linewidth',1.5)
+plot(dates,x(:,6),'-o','linewidth',1.5)
 hold on
-plot(periods_list,x(:,7),'-o','linewidth',1.5)
+plot(dates,x(:,7),'-o','linewidth',1.5)
 ylabel('spread of SIT (m)')
-xlim([periods_list(1) periods_list(end)])
+xlim([dates(1) dates(end)])
+ylim([ 0 0.1]);
 legend('background','analysis','location','best')
 ax = gca;
-ax.XAxis.TickValues = periods_list';
+ax.XAxis.TickValues = dates';
 ax.XAxis.TickLabelFormat = 'dd-MMM-yy';
 %
 subplot(212)
 % innovation
-plot(periods_list,x(:,4),'-o','linewidth',1.5)
+plot(dates,x(:,4),'-o','linewidth',1.5)
 hold on;
-plot(periods_list,x(:,5),'-o','linewidth',1.5)
+plot(dates,x(:,5),'-o','linewidth',1.5)
 % rmsd
-plot(periods_list,x(:,2),'-o','linewidth',1.5)
-plot(periods_list,x(:,3),'-o','linewidth',1.5)
+plot(dates,x(:,2),'-o','linewidth',1.5)
+plot(dates,x(:,3),'-o','linewidth',1.5)
 % ylim([0.0 0.2]);
-xlim([periods_list(1) periods_list(end)])
+plot(dates,x(:,5)*0,'--','color','k','linewidth',1.5)
+xlim([dates(1) dates(end)])
 ylabel('innovation of SIT (m)')
 ax = gca;
-ax.XAxis.TickValues = periods_list';
+ax.XAxis.TickValues = dates';
 ax.XAxis.TickLabelFormat = 'dd-MMM-yy';
 legend('background','analysis','RMSD of background','RMSD of analysis','location','best')
+
 set(findall(gcf,'-property','FontSize'),'FontSize',18); 
-set (gcf,'Position',[100,200,1100,450], 'color','w')
+set (gcf,'Position',[100,200,1400,550], 'color','w')
 %    
 saveas(gcf,'spread_dates.png')    

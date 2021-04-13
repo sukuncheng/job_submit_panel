@@ -27,10 +27,11 @@ ln -sf /cluster/projects/nn2993k/sim/data/ECMWF_forecast_arctic_stereographic/ G
 rm -rf CS2_SMOS_v2.2 TOPAZ4RC_daily GENERIC_ATM
 
 
-DIR=/cluster/work/users/chengsukun/simulations/test_windcohesion_2019-10-15_7days_x_12cycles_memsize40/date1/filter
+DIR=/cluster/work/users/chengsukun/simulations/test_windcohesion_2019-10-15_7days_x_12cycles_memsize40/date1/FILTER
 ss; make fresh -j8; 
 cd $DIR;
+rm -f enkf_*
 cp ~/src/nextsim/modules/enkf/enkf-c/bin/* .;make clean; 
 ./enkf_prep --no-superobing enkf.prm 2>&1 | tee prep.out
-./enkf_calc --use-rmsd-for-obsstats --ignore-no-obs enkf.prm 2>&1 | tee calc.out
+mpirun -np 8 ./enkf_calc --use-rmsd-for-obsstats --ignore-no-obs enkf.prm 2>&1 | tee calc.out
 ./enkf_update --calculate-spread enkf.prm 2>&1 | tee update.out
