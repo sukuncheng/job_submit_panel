@@ -30,12 +30,12 @@ slurm_nextsim=slurm.ensemble.template.sh
     # experiment settings
     time_init=2019-09-03   # starting date of simulation
     basename=20190903T000000Z # set this variable, if the first run is from restart
-    duration=42    # tduration*duration is the total simulation time
+    duration=260    # tduration*duration is the total simulation time
     tduration=1    # number of DA cycles. 
-    ENSSIZE=40     # ensemble size  
+    ENSSIZE=1     # ensemble size  
     block=1        # number of forecasts in a job
     jobsize=$((${ENSSIZE}/${block})) #number of nodes requested 
-    UPDATE=1
+    UPDATE=0
     first_restart_path=$HOME/src/restart  
     # randf in pseudo2D.nml, whether do perturbation
     [[ ${ENSSIZE} > 1 ]] && randf=true || randf=false 
@@ -79,13 +79,13 @@ for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
     # WaitforTaskFinish $XPID0
 
     ### option2 can resubmit failed task in jobarray
-    for (( j=1; j<=3; j++ )); do
+    # for (( j=1; j<=3; j++ )); do
         for (( i=1; i<=${ENSSIZE}; i++ )); do
             grep -q -s "Simulation done" ${ENSPATH}/mem${i}/task.log && continue
             cmd="sbatch $script $ENSPATH $ENV_FILE ${block} $i"  # change slurm.ensemble.template.sh: SLURM_ARRAY_TASK_ID=$4   #i is member_id, specifying member to run or rerun
             $cmd 2>&1 
         done
-        WaitforTaskFinish $XPID0
-    done
+    #     WaitforTaskFinish $XPID0
+    # done
 done
 cp ${JOB_SETUP_DIR}/{main_spinup_exp.sh,part1_create_file_system.sh,nohup.out}  ${OUTPUT_DIR} 

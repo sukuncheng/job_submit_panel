@@ -40,7 +40,7 @@ function [] = main_enkf_fieldstates()
     lon = ncread(filename,'longitude');
     lat = ncread(filename,'latitude');
     %% load observation
-    t = datetime(periods_list(it))+Duration;
+    t = dates(it)+Duration;
     temp1 = strrep(datestr(t,26),'/','');
     temp2 = strrep(datestr(t+Duration-1,26),'/','');
     filename = [ mnt_CS2SMOS_dir '/W_XX-ESA,SMOS_CS2,NH_25KM_EASE2_' temp1 '_' temp2 '_r_v202_01_l4sit.nc' ]
@@ -52,10 +52,12 @@ function [] = main_enkf_fieldstates()
     figure();
     set(gcf,'Position',[100,150,1100,850], 'color','w')
     unit = '(m)';
-    subplot(221); fun_geo_plot(lon,lat,forecast_data,' background',unit); caxis([0 6]); 
-    subplot(222); fun_geo_plot(lon,lat,analysis_data,' analysis',unit); caxis([0 6]); 
+    subplot(221); fun_geo_plot(lon,lat,forecast_data,' background',unit); caxis([0 6]); colormap(gca,bluewhitered);
+    subplot(222); fun_geo_plot(lon,lat,analysis_data,' analysis',unit); caxis([0 6]); colormap(gca,bluewhitered);
     subplot(223); fun_geo_plot(lon,lat,analysis_data-forecast_data,'analysis - background',unit);  %caxis([-2 2]); 
-    subplot(224); fun_geo_plot(lon_obs,lat_obs, data_obs,['observation ' temp1],unit); caxis([0 6]);
+    colormap(gca,jet);
+    subplot(224); fun_geo_plot(lon_obs,lat_obs, data_obs,['observation ' temp1],unit); %caxis([0 6]);
+    colormap(gca,jet);
     set(findall(gcf,'-property','FontSize'),'FontSize',16); 
     %
     % filename = [ simul_dir '/filter/observations.nc'];
@@ -81,6 +83,5 @@ function fun_geo_plot(lon,lat,Var,Title, unit)
     m_coast('patch',0.7*[1 1 1]);    
     set(gca,'XTickLabel',[],'YTickLabel',[]);
     title(Title)
-    colormap(gca,bluewhitered);
     m_grid('linest',':');
 end

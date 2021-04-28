@@ -48,7 +48,7 @@ echo "Part1 initialize files system, write nextsim.cfg, pseudo2D.nml to workpath
     #     cp ${ENSPATH}/pseudo2D.nml $MEMPATH 
     # done   
 
-# if [ ${UPDATE} -eq 1 ]; then
+if [ ${UPDATE} -eq 1 ]; then
 #2. prepare analysis files
     # observations data for assimilation using EnKF
     OBSNAME_PREFIX=$NEXTSIM_DATA_DIR/CS2_SMOS_v2.2/W_XX-ESA,SMOS_CS2,NH_25KM_EASE2_ 
@@ -80,4 +80,4 @@ echo "Part1 initialize files system, write nextsim.cfg, pseudo2D.nml to workpath
     else
         echo "[Waring] ${SMOSOBS} is not found. "
     fi
-# fi
+fi

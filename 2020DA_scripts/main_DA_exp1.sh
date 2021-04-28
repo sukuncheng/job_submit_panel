@@ -31,7 +31,7 @@ slurm_enkf=slurm.enkf.template.sh
     basename=     # set this variable, if the first run is from restart
     duration=7     # tduration*duration is the total simulation time
     tduration=12   # number of DA cycles. 
-    ENSSIZE=40     # ensemble size  
+    ENSSIZE=2     # ensemble size  
     block=1        # number of forecasts in a job
     jobsize=$((${ENSSIZE}/${block})) #number of nodes requested 
     UPDATE=1 # 1: active assimilation -- do data assimilation using EnKF
@@ -101,7 +101,8 @@ for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
         done
         WaitforTaskFinish $XPID0
     done
-
+    cd ${FILTER}
+    make clean
     ## 2.submit enkf after finishing the ensemble simulations 
     if [ ${UPDATE} -eq 1 ]; then
         cd ${ENSPATH}

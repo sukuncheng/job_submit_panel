@@ -13,7 +13,7 @@ function WaitforTaskFinish(){
     done
 }
 ## Tune factors (refer to Todo 9)
-# 1. Incresing R-factor decreases the impact of observation. Ensemble spread/sqrt(R-factor)
+# 1. Incresing R-factor decreases the impact of observation. Ensemble spread/sqrt(R-factor). Specifying R-factor equal k produces the same increment as reducing the ensemble spread by k1/2 times.
 # 2. Incresing K-factor increases the impact of ensemble spread. background check. 2.7.3. 
 #    Modifies observation error so that the increment for this observation would not exceed KFACTOR * <ensemble spread> (all in observation space) after assimilating this observation only.
 # 3. Inflation . The ensemble anomalies (A=E-x.1') for any model state element will be inflated to avoid collapses. 
@@ -45,8 +45,10 @@ echo "parameters combination     type  NumberofObs.  [for.inn.]  [an.inn.]   for
 
 #set 2 loop enkf parameters
 KFACTORs=("2")  # default as 2 in topaz
-RFACTORs=("2")   #1
-LOCRADs=("10"  "50" "100" "300" "600")  # meaning, radius 2.3*
+# RFACTORs=("1" "1.2" "1.4" "1.6" "1.8" "2")   #1
+LOCRADs=( "100" "300" "600")  # meaning, radius 2.3*
+RFACTORs=("2") #("1" "1.2" "1.4" "1.6" "1.8" "2" "2.2" "2.4" "3") 
+LOCRADs=( "300" )  # meaning, radius 2.3*
 INFLATIONs=("1" )  # <1.1 for 100 members
 ENSSIZE=40
 #
@@ -74,8 +76,8 @@ for (( i1=0; i1<${#INFLATIONs[@]}; i1++ )); do
     string=$( tail -3 ${FILTER}/calc.out|head -1 )
     echo "I${INFLATION}_L${LOCRAD}_R${RFACTOR}_K${KFACTOR}  $string" >> ${JOB_SETUP_DIR}/result.md
     OUTPUT_DIR=${FILTER}/size${ENSSIZE}_I${INFLATION}_L${LOCRAD}_R${RFACTOR}_K${KFACTOR}
-    
-    [ ! -d $OUTPUT_DIR ] && mkdir $OUTPUT_DIR
+    [ -d $OUTPUT_DIR ] &&  rm -r  $OUTPUT_DIR
+    mkdir $OUTPUT_DIR   # [ ! -d $OUTPUT_DIR ] && 
     mv ${FILTER}/*.out ${OUTPUT_DIR}
     mv ${FILTER}/prior/*.analysis ${OUTPUT_DIR}
     mv ${FILTER}/*.nc  ${OUTPUT_DIR}

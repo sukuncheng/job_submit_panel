@@ -4,7 +4,7 @@ function [] = main_moorings_spinup()
     close all
     dbstop if error
     
-    for Var = {'SIC','SIT'}
+    for Var = {'damage'}; %{'SIC','SIT'}
         for method = {'Spread','mean'}  %mean: ensemble ensemble, spread: ensemble spread
             fun_moorings(char(Var),char(method));
         end
@@ -42,8 +42,10 @@ function fun_moorings(Var,method);
     %             ncdisp(file_dir)
                 if strcmp(Var,'SIC')
                     data_tmp = ncread(file_dir,'sic');
-                else
+                elseif strcmp(Var,'SIT')
                     data_tmp = ncread(file_dir,'sit');
+                elseif strcmp(Var,'damage')
+                    data_tmp = ncread(file_dir,'damage');
                 end
                 data(ie,:,:) = data_tmp(:,:,1);
             end   

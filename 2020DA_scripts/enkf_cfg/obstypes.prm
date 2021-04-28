@@ -1,11 +1,12 @@
-name = sea_ice_thickness
+name = SIT
 issurface = 1
 var = sit
 hfunction = standard
 minvalue = 0
 maxvalue = 10
 
-# name = sea_ice_concentration
+
+# name = SIC
 # issurface = 1
 # var = sic
 # hfunction = standard
