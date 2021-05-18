@@ -81,7 +81,7 @@ for (( i1=0; i1<${#INFLATIONs[@]}; i1++ )); do
     mv ${FILTER}/*.out ${OUTPUT_DIR}
     mv ${FILTER}/prior/*.analysis ${OUTPUT_DIR}
     mv ${FILTER}/*.nc  ${OUTPUT_DIR}
-    mv ${OUTPUT_DIR}/reference_grid_coast.nc ${FILTER}
+    mv ${OUTPUT_DIR}/reference_grid.nc ${FILTER}
 
 done
 done

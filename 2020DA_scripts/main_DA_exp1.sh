@@ -28,10 +28,9 @@ slurm_enkf=slurm.enkf.template.sh
 ##-------  Confirm working,data,ouput directories --------
     # experiment settings
     time_init=2019-10-15   # starting date of simulation
-    basename=     # set this variable, if the first run is from restart
     duration=7     # tduration*duration is the total simulation time
     tduration=12   # number of DA cycles. 
-    ENSSIZE=2     # ensemble size  
+    ENSSIZE=40     # ensemble size  
     block=1        # number of forecasts in a job
     jobsize=$((${ENSSIZE}/${block})) #number of nodes requested 
     UPDATE=1 # 1: active assimilation -- do data assimilation using EnKF
@@ -46,7 +45,7 @@ slurm_enkf=slurm.enkf.template.sh
     # OUTPUT_DIR=${simulations}/run_${time_init}_Ne${ENSSIZE}_T${tduration}_D${duration}/I${INFLATION}_L${LOCRAD}_R${RFACTOR}_K${KFACTOR}  
     OUTPUT_DIR=${simulations}/test_windcohesion_${time_init}_${duration}days_x_${tduration}cycles_memsize${ENSSIZE}
     echo 'work path:' $OUTPUT_DIR
-    [ -d $OUTPUT_DIR ] && rm -rf $OUTPUT_DIR
+    #[ -d $OUTPUT_DIR ] && rm -rf $OUTPUT_DIR
     [ ! -d $OUTPUT_DIR ] && mkdir -p ${OUTPUT_DIR}
     cp ${JOB_SETUP_DIR}/{main_DA_exp1.sh,part1_create_file_system.sh}  ${OUTPUT_DIR}
 

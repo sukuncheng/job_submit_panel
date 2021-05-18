@@ -11,7 +11,7 @@ function [] = main_enkf_spreadnc()
     for i = 1:N_periods
         subplot(row,col,i)
         enkf_dir = [ simul_dir '/date' num2str(i) '/filter'];
-        fun_process_spreadnc(enkf_dir,datestr(periods_list(i)))
+        fun_process_spreadnc(enkf_dir,dates(i))
     end
     colorbar
     set(gcf,'Position',[100,200,1600,900], 'color','w')
@@ -52,7 +52,7 @@ function fun_process_spreadnc(path,date)
 %     figure();
 %     set(gcf,'Position',[100,150,1100,850], 'color','w')
     unit = '(m)';
-    fun_geo_plot(lon,lat,squeeze(sit_an - sit),date,unit);
+    fun_geo_plot(lon,lat,squeeze(sit_an - sit),char(date),unit);
 %     subplot(121); fun_geo_plot(lon,lat,squeeze(sit),' sit',unit); 
 %     subplot(122); fun_geo_plot(lon,lat,squeeze(sit_an),' sit analysis',unit); 
 %     set(findall(gcf,'-property','FontSize'),'FontSize',16); 
@@ -67,7 +67,7 @@ function fun_geo_plot(lon,lat,Var,Title, unit)
 %     title(h, unit);
 %     m_grid('xtick',6,'tickdir',3,'out','ytick',[70 88],'linest','-'); % replace set(gca,'Visible','off')
     m_grid('linest',':');
-    m_coast('patch',0.7*[1 1 1]);   
+    m_coast();   
     title(Title,'fontweight','normal','HorizontalAlignment','right');
     colormap(gca,bluewhitered);
     caxis([-0.9 0])

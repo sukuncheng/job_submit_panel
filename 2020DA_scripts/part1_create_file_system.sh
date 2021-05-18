@@ -70,7 +70,7 @@ if [ ${UPDATE} -eq 1 ]; then
             s/^KFACTOR.*$/KFACTOR = ${KFACTOR}/g"  enkf.prm
     #
     sed -i "s;^DATA.*$;DATA =${NEXTSIM_DATA_DIR}/reference_grid.nc;g"  grid.prm
-    ln -sf ${NEXTSIM_DATA_DIR}/reference_grid_coast.nc   ${FILTER}/reference_grid_coast.nc   # this file is used by enkf_prep, reader_cs2smos.c
+    ln -sf ${NEXTSIM_DATA_DIR}/reference_grid.nc   ${FILTER}/reference_grid.nc   # this file is used by enkf_prep, reader_cs2smos.c
     echo "  add observations path to $FILTER/obs.prm"
     A1=${duration} 
     A2=`expr "(${A1}+6)"|bc`
