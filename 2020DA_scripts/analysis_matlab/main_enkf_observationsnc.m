@@ -7,7 +7,6 @@ simul_dir = [simul_dir '/date1/filter'];
 m_proj('Stereographic','lon',-45,'lat',90,'radius',30); 
 mnt_dir = '..';
 filename = [mnt_dir '/reference_grid.nc'];
-% load plon plat
 lon = ncread(filename,'plon');
 lat = ncread(filename,'plat');
 mask = ncread(filename,'mask');

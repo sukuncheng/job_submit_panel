@@ -1,4 +1,4 @@
-function [] = main_priors()
+function [] = main_prior()
     clc
     clear
     close all

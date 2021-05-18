@@ -25,6 +25,8 @@ slurm_nextsim=slurm.ensemble.template.sh
 slurm_enkf=slurm.enkf.template.sh
 
 >nohup.out  # empty this file
+restart_path=$NEXTSIM_DATA_DIR   # select a folder for exchange restart data
+rm -f   $restart_path/{field_mem* mesh_mem* WindPerturbation_mem* *.nc.analysis}
 ##-------  Confirm working,data,ouput directories --------
     # experiment settings
     time_init=2019-10-15   # starting date of simulation
@@ -42,7 +44,6 @@ slurm_enkf=slurm.enkf.template.sh
     LOCRAD=300
     RFACTOR=2
     KFACTOR=2
-    # OUTPUT_DIR=${simulations}/run_${time_init}_Ne${ENSSIZE}_T${tduration}_D${duration}/I${INFLATION}_L${LOCRAD}_R${RFACTOR}_K${KFACTOR}  
     OUTPUT_DIR=${simulations}/test_windcohesion_${time_init}_${duration}days_x_${tduration}cycles_memsize${ENSSIZE}
     echo 'work path:' $OUTPUT_DIR
     #[ -d $OUTPUT_DIR ] && rm -rf $OUTPUT_DIR
@@ -51,13 +52,12 @@ slurm_enkf=slurm.enkf.template.sh
 
 ## ----------- execute ensemble runs ----------
 for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
-    ENSPATH=${OUTPUT_DIR}/date${iperiod}  
+    ENSPATH=${OUTPUT_DIR}/date${iperiod}
     mkdir -p ${ENSPATH}     
     restart_from_analysis=true   
     start_from_restart=true
+
     if [ $iperiod -eq 1 ] && [ restart_from_analysis ]; then  # prepare and link restart files
-        restart_path=$NEXTSIM_DATA_DIR   # select a folder for exchange restart data
-        rm -f   $restart_path/{field_mem* mesh_mem* WindPerturbation_mem* *.nc.analysis}
         for (( i=1; i<=${ENSSIZE}; i++ )); do
             memname=mem${i}
             echo "UPDATE=1, project *.nc.analysis on nextsim_data_dir/reference_grid.nc, move it and restart file to $restart_path for ensemble forecasts"
@@ -100,10 +100,12 @@ for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
         done
         WaitforTaskFinish $XPID0
     done
-    cd ${FILTER}
-    make clean
+
     ## 2.submit enkf after finishing the ensemble simulations 
     if [ ${UPDATE} -eq 1 ]; then
+        FILTER=${ENSPATH}/filter
+        cd ${FILTER}
+        make clean
         cd ${ENSPATH}
         script=${ENSPATH}/$slurm_enkf
         cp ${NEXTSIM_ENV_ROOT_DIR}/$slurm_enkf $script

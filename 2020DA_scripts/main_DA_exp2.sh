@@ -25,6 +25,8 @@ slurm_nextsim=slurm.ensemble.template.sh
 slurm_enkf=slurm.enkf.template.sh
 
 >nohup.out  # empty this file
+restart_path=$NEXTSIM_DATA_DIR   # select a folder for exchange restart data
+rm -f   $restart_path/{field_mem* mesh_mem* WindPerturbation_mem* *.nc.analysis}
 ##-------  Confirm working,data,ouput directories --------
     # experiment settings
     time_init=2020-01-07   # starting date of simulation
@@ -35,30 +37,31 @@ slurm_enkf=slurm.enkf.template.sh
     block=1        # number of forecasts in a job
     jobsize=$((${ENSSIZE}/${block})) #number of nodes requested 
     UPDATE=1 # 1: active assimilation -- do data assimilation using EnKF
-    # first_restart_path=/cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1
-    first_restart_path=/cluster/work/users/chengsukun/simulations/test_windcohesion_2019-10-15_7days_x_12cycles_memsize40/date12
+    first_restart_path=/cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1
+    # first_restart_path=/cluster/work/users/chengsukun/simulations/test_windcohesion_2019-10-15_7days_x_12cycles_memsize40/date12
     # randf in pseudo2D.nml, whether do perturbation
     [[ ${ENSSIZE} > 1 ]] && randf=true || randf=false 
     INFLATION=1
     LOCRAD=300
     RFACTOR=2
     KFACTOR=2
-    # OUTPUT_DIR=${simulations}/run_${time_init}_Ne${ENSSIZE}_T${tduration}_D${duration}/I${INFLATION}_L${LOCRAD}_R${RFACTOR}_K${KFACTOR}  
     OUTPUT_DIR=${simulations}/test_windcohesion_${time_init}_${duration}days_x_${tduration}cycles_memsize${ENSSIZE}
+    # OUTPUT_DIR=/cluster/work/users/chengsukun/simulations/test_windcohesion_2019-10-15_7days_x_12cycles_memsize40
     echo 'work path:' $OUTPUT_DIR
-    [ -d $OUTPUT_DIR ] && rm -rf $OUTPUT_DIR
-    [ ! -d $OUTPUT_DIR ] && mkdir -p ${OUTPUT_DIR}
+   # [ -d $OUTPUT_DIR ] && rm -rf $OUTPUT_DIR
+   [ ! -d $OUTPUT_DIR ] && mkdir -p ${OUTPUT_DIR}
     cp ${JOB_SETUP_DIR}/{main_DA_exp2.sh,part1_create_file_system.sh}  ${OUTPUT_DIR}
 
 ## ----------- execute ensemble runs ----------
-for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
-    ENSPATH=${OUTPUT_DIR}/date${iperiod}  
+# for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
+    # ENSPATH=${OUTPUT_DIR}/date$((iperiod+12))  
+for (( iperiod=16; iperiod<=${tduration}; iperiod++ )); do
+    ENSPATH=${OUTPUT_DIR}/date${iperiod}
     mkdir -p ${ENSPATH}     
     restart_from_analysis=true   
     start_from_restart=true
+
     if [ $iperiod -eq 1 ] && [ restart_from_analysis ]; then  # prepare and link restart files
-        restart_path=$NEXTSIM_DATA_DIR   # select a folder for exchange restart data
-        rm -f   $restart_path/{field_mem* mesh_mem* WindPerturbation_mem* *.nc.analysis}
         for (( i=1; i<=${ENSSIZE}; i++ )); do
             memname=mem${i}
             echo "UPDATE=1, project *.nc.analysis on nextsim_data_dir/reference_grid.nc, move it and restart file to $restart_path for ensemble forecasts"
@@ -104,6 +107,9 @@ for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
 
     ## 2.submit enkf after finishing the ensemble simulations 
     if [ ${UPDATE} -eq 1 ]; then
+        FILTER=${ENSPATH}/filter
+        cd ${FILTER}
+        make clean
         cd ${ENSPATH}
         script=${ENSPATH}/$slurm_enkf
         cp ${NEXTSIM_ENV_ROOT_DIR}/$slurm_enkf $script

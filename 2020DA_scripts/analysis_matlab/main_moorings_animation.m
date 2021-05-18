@@ -1,17 +1,17 @@
-function [] = main_moorings_spinup()
+function [] = main_moorings_animation()
     clc
     clear
     close all
     dbstop if error
     
-    for Var = {'damage'}; %{'SIC','SIT'}
+    for Var = {'SIC','SIT','damage'}
         for method = {'Spread','mean'}  %mean: ensemble ensemble, spread: ensemble spread
             fun_moorings(char(Var),char(method));
         end
     end
 end
 
-function fun_moorings(Var,method);
+function fun_moorings(Var,method)
     load('test_inform.mat')   % 
     check_a_member = 0; % check_a_member=0 presents ensemble average
 %% ------------------------------------------------------------------------ 
@@ -42,10 +42,8 @@ function fun_moorings(Var,method);
     %             ncdisp(file_dir)
                 if strcmp(Var,'SIC')
                     data_tmp = ncread(file_dir,'sic');
-                elseif strcmp(Var,'SIT')
+                else
                     data_tmp = ncread(file_dir,'sit');
-                elseif strcmp(Var,'damage')
-                    data_tmp = ncread(file_dir,'damage');
                 end
                 data(ie,:,:) = data_tmp(:,:,1);
             end   

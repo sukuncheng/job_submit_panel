@@ -1,7 +1,7 @@
 # add switches for perturbations of wind and cohesion, thus, this script can cover step4,5,6
 # by turning on/off wind/cohesion perturbation in the setting part below
 #!/bin/bash
-source ./fram_sukun/nextsim.src 
+source ./fram_sukun/nextsim.src
 # 
 rm nohup.out
 dir_list=("20080101T000000Z" "20080110T000000Z" "20080119T000000Z" "20080128T000000Z" "20080206T000000Z" \
