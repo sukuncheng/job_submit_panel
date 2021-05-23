@@ -1,12 +1,13 @@
 function fun3_OSISAF_analysis_figures(filename)
 global i
-    if i==10
-        figure(20);  fun_OSISAF_spatial_comparison(filename);
-    end
-%     figure(32); fun_OSISAF_errors_vs_days(filename,filename_freedrift);
-%     fun_OSISAF_corrcoef_scatter_plot
+    
+% figure(20);  fun_OSISAF_spatial_comparison(filename);
+
+    figure(32); fun_OSISAF_errors_vs_days(filename,filename_freedrift);
+    fun_OSISAF_corrcoef_scatter_plot(filename,filename_freedrift,variable_name)
 %     fun_ice_drift_scatter_plot
 end
+
 %-----------------------------------------------------------------------------
 function fun_OSISAF_errors_vs_days(filename,filename_freedrift)
     load(filename);
@@ -23,8 +24,7 @@ function fun_OSISAF_errors_vs_days(filename,filename_freedrift)
     %% plot
     subplot(311); fun_plot_error_vs_days(dates,bias, 'bias (km/day)');
     subplot(312); fun_plot_error_vs_days(dates,RMSE, 'RMSE (km/day)');
-    subplot(313); fun_plot_error_vs_days(dates,VRMSE,'VRMSE (km/day)');
-    subplot(311); legend(legend_info,'location','best');   
+    subplot(313); fun_plot_error_vs_days(dates,VRMSE,'VRMSE (km/day)'); 
     saveas(gcf,['sit_main_OSISAF.png'])           
 end
 %
@@ -58,7 +58,7 @@ function fun_OSISAF_spatial_comparison(filename)
         obs   =   data.osisaf_obs(iperiod).ensemble_mean(ie).short_term(iday); 
         Svelocity = [model.u] + 1i*[model.v];  Sspeed = abs(Svelocity);
         Mvelocity = [obs.u] + 1i*[obs.v];      Mspeed = abs(Mvelocity);
-        id = 1:length(Svelocity);   % id = find(Sspeed>=7 & Sspeed<=19 & Mspeed>=7 & Mspeed<=19);
+        id = 1:length(Svelocity);  
         % ----- filter data for free drift area --------------
         id = 1:length(Sspeed);
         id(isnan(Sspeed)) = [];
@@ -110,7 +110,6 @@ function fun_OSISAF_spatial_comparison(filename)
     %% add buoy trajectories
 
     [long,lat] = m_xy2ll(Xgrid,Ygrid);
-    
     m_pcolor(long,lat,Zgrid); 
 %     scatter(X,Y,[],Z/max(Z),'s','filled');
     hold on;
@@ -121,21 +120,13 @@ function fun_OSISAF_spatial_comparison(filename)
     caxis([0 10])
 %     caxis([0 threshold])
 %     title(data.legend_info{end})
-    title(['Number of occurrence of free drift events, ' data.legend_info{end}])
+    % title(['Number of occurrence of free drift events, ' data.legend_info{end}])
     set(gca,'XTickLabel',[],'YTickLabel',[])  
     set(findall(gcf,'-property','FontSize'),'FontSize',18);
-
-for i = 1:data.N_periods
-    X = reshape(data.IABP(i).Obs_pos_x,1,[])/Radius;
-    Y = reshape(data.IABP(i).Obs_pos_y,1,[])/Radius;
-    plot(X,Y,'.')    
-    hold on
-%     [x,y] = m_xy2ll(X,Y);
-%     m_plot(x,y,'.r')    
-end    
-
+    saveas(gcf,'fun_OSISAF_spatial_comparison.png','png');    
 end
 
+%
 function fun_ice_drift_scatter_plot(filename)    
     set(gcf,'Position',[100,100,900,350], 'color','w')    
     for i = 1:2 % loop for U,V components                    
@@ -160,7 +151,7 @@ function fun_ice_drift_scatter_plot(filename)
             xlabel('V_{model} (km/day)'); ylabel('V_{OSISAF} (km/day)');
         end                
         set(findall(figure(2),'-property','FontSize'),'FontSize',16); 
-        %                 saveas(gcf,'scatter plots of ice drift speed','fig');
+        saveas(gcf,'scatter plots of ice drift speed','fig');
     end
 end
 
@@ -244,5 +235,5 @@ function fun_OSISAF_corrcoef_scatter_plot(filename,filename_freedrift,variable_n
     ylabel('RMSE');    
     grid on
     set(findall(gcf,'-property','FontSize'),'FontSize',18); 
-%     saveas(gcf,'../plots/r_vs_drag_coef','fig');    
+    saveas(gcf,'r_vs_drag_coef.png','png');    
 end

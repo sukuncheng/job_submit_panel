@@ -73,7 +73,7 @@ for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
             ln -sf ${first_restart_path}/${memname}/restart/mesh_final.dat   $restart_path/mesh_${memname}.dat
         done
     else
-        time_init=$(date +%Y-%m-%d -d "${time_init} + ${duration} day")
+        time_init=$(date +%Y-%m-%d -d "${time_init} + ${duration}")
     fi
     echo "period ${time_init} to $(date +%Y%m%d -d "${time_init} + $((${duration})) day")"
 # a. create files strucure, copy and modify configuration files inside

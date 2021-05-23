@@ -1,48 +1,48 @@
 function fun2_OSISAF_process(filename)
-% if Ne_include, copy the only member to ensemble_mean
     load(filename)
-% average ice drift of ensemble members    
+% calculate averages of ice drift among ensemble members    
     for iperiod = 1:N_periods        
-    for iday = 1:OSISAF_FILE_NUMBER % assuming positions of pixels in ensemble members are different.       
-        % --------------------- ensemble mean -----------------------------
-        common_id = 1:1.e6;
+    for iday = 1:OSISAF_FILE_NUMBER 
+        % common_id indicates drifters/trackers in ice for all ensemble members during a given time period.
+        common_id = 1:1.e6; 
         for ie = 1:Ne_include
             common_id = intersect(osisaf_model(iperiod).ensemble(ie).short_term(iday).index,common_id);
         end
         %
         clear U V ice_con
+        % osisaf_model.ensemble
         for ie = 1:Ne_include
-            osisaf_model(iperiod).ensemble_mean.short_term(iday).index = common_id;
+            % osisaf_model(iperiod).ensemble_mean.short_term(iday).index = common_id;
             [~,id,~] = intersect(osisaf_model(iperiod).ensemble(ie).short_term(iday).index,common_id);
-            U(ie,:) = osisaf_model(iperiod).ensemble(ie).short_term(iday).u(id);
-            V(ie,:) = osisaf_model(iperiod).ensemble(ie).short_term(iday).v(id);
+            U(ie,:)       = osisaf_model(iperiod).ensemble(ie).short_term(iday).u(id);
+            V(ie,:)       = osisaf_model(iperiod).ensemble(ie).short_term(iday).v(id);
             ice_con(ie,:) = osisaf_model(iperiod).ensemble(ie).short_term(iday).ice_con(id);
         end
         
-        % save coordinates and indices of buoys
+        % osisaf_model.ensemble_mean 
         model_no1 = osisaf_model(iperiod).ensemble(1).short_term(iday);                    
         [~,id,~] = intersect(model_no1.index,common_id);
         osisaf_model(iperiod).ensemble_mean.short_term(iday).index = id;
         osisaf_model(iperiod).ensemble_mean.short_term(iday).day0_lon = model_no1.day0_lon(id);
         osisaf_model(iperiod).ensemble_mean.short_term(iday).day0_lat = model_no1.day0_lat(id);
         osisaf_model(iperiod).ensemble_mean.short_term(iday).date = model_no1.valid_date;
-        osisaf_model(iperiod).ensemble_mean.short_term(iday).u = mean(U,1); % save averaged values
+        osisaf_model(iperiod).ensemble_mean.short_term(iday).u = mean(U,1); % ensemble mean of u
         osisaf_model(iperiod).ensemble_mean.short_term(iday).v = mean(V,1);
         osisaf_model(iperiod).ensemble_mean.short_term(iday).ice_con = mean(ice_con,1);
+
         % obseration data
         obs_no1 = osisaf_obs(iperiod).ensemble(1).short_term(iday);        
         osisaf_obs(iperiod).ensemble_mean.short_term(iday).u = obs_no1.u(id);
         osisaf_obs(iperiod).ensemble_mean.short_term(iday).v = obs_no1.v(id);                                 
-        % --------------------- ensemble mean <<< -------------------------
         
-        % % --------------------- ice drift errors --------------------------
-        % freedrift = load(filename_freedrift);
-        % [corrcoef_xy,RMSE_xy,RMSE,VRMSE,bias] = fun_OSISAF_errors_analysis(osisaf_model,osisaf_obs,freedrift,iperiod,iday);
-        % osisaf_model(iperiod).ensemble_mean.short_term(iday).corrcoef_xy = corrcoef_xy;
-        % osisaf_model(iperiod).ensemble_mean.short_term(iday).RMSE_xy = RMSE_xy;
-        % osisaf_model(iperiod).ensemble_mean.short_term(iday).RMSE  = RMSE;
-        % osisaf_model(iperiod).ensemble_mean.short_term(iday).VRMSE = VRMSE;
-        % osisaf_model(iperiod).ensemble_mean.short_term(iday).bias  = bias;            
+        % --------------------- ice drift errors --------------------------
+        freedrift = load(filename_freedrift);
+        [corrcoef_xy,RMSE_xy,RMSE,VRMSE,bias] = fun_OSISAF_errors_analysis(osisaf_model,osisaf_obs,freedrift,iperiod,iday);
+        osisaf_model(iperiod).ensemble_mean.short_term(iday).corrcoef_xy = corrcoef_xy;
+        osisaf_model(iperiod).ensemble_mean.short_term(iday).RMSE_xy = RMSE_xy;
+        osisaf_model(iperiod).ensemble_mean.short_term(iday).RMSE  = RMSE;
+        osisaf_model(iperiod).ensemble_mean.short_term(iday).VRMSE = VRMSE;
+        osisaf_model(iperiod).ensemble_mean.short_term(iday).bias  = bias;            
     end
     end
     save(filename,'osisaf_model','osisaf_obs','-append')

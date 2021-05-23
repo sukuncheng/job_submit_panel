@@ -26,7 +26,11 @@ slurm_enkf=slurm.enkf.template.sh
 
 >nohup.out  # empty this file
 restart_path=$NEXTSIM_DATA_DIR   # select a folder for exchange restart data
-rm -f   $restart_path/{field_mem* mesh_mem* WindPerturbation_mem* *.nc.analysis}
+cd $restart_path
+rm -f field_mem* 
+rm -f mesh_mem* 
+rm -f WindPerturbation_mem* 
+rm -f *.nc.analysis
 ##-------  Confirm working,data,ouput directories --------
     # experiment settings
     time_init=2020-01-07   # starting date of simulation

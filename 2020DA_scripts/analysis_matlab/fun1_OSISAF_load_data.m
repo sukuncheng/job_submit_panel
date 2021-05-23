@@ -13,8 +13,7 @@ function fun1_OSISAF_load_data(filename)
         dates = start_time:end_time;            
         % load ensemble member
         for ie = 1:Ne
-            % data_dir = [simul_dir '/date' num2str(iperiod) '/mem' num2str(ie)];    % set file directory        
-            data_dir = [simul_dir '/date5/mem' num2str(ie)];    % set file directory        
+            data_dir = [simul_dir '/date' num2str(iperiod) '/mem' num2str(ie)];    % set file directory        
             [osisaf_model(iperiod).ensemble(ie).short_term,osisaf_obs(iperiod).ensemble(ie).short_term] = ...
                             fun_get_simulated_observed_OSISAF_ice_drift(data_dir,mnt_OSISAF_dir,dates);               
         end
@@ -25,6 +24,7 @@ end
 function  [model,obs] = fun_get_simulated_observed_OSISAF_ice_drift(data_dir,mnt_dir,dates)
 % load nextsim dir, indicated by S as first letter
 % load OSISAF_data, indicated by M as first letter
+
     Radius = 6378.273; 
     m_proj('Stereographic','lon',-45,'lat',90,'radius',25);    
 %
@@ -64,7 +64,7 @@ function  [model,obs] = fun_get_simulated_observed_OSISAF_ice_drift(data_dir,mnt
         index = squeeze(Sindex(1,:,2)); % index varies per file
         %
         sic = squeeze(Ssic(1,:,2));         % ice concentration
-        %% osisaf result
+        %% osisaf dataset
         [Mlat0,Mlon0,Mlat1,Mlon1] = fun_OSISAF_ice_drift(mnt_dir,DATE); % time format 2010-09-23:1200-2010-09-25:1200
         Mlat0 = reshape(Mlat0,1,[]); 
         Mlon0 = reshape(Mlon0,1,[]);  

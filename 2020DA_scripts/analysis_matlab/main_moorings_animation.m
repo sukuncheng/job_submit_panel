@@ -4,7 +4,7 @@ function [] = main_moorings_animation()
     close all
     dbstop if error
     
-    for Var = {'SIC','SIT','damage'}
+    for Var = {'sic','sit','damage'}
         for method = {'Spread','mean'}  %mean: ensemble ensemble, spread: ensemble spread
             fun_moorings(char(Var),char(method));
         end
@@ -40,11 +40,7 @@ function fun_moorings(Var,method)
             for ie = id
                 file_dir = [data_dir '/mem' num2str(ie) '/' filename]
     %             ncdisp(file_dir)
-                if strcmp(Var,'SIC')
-                    data_tmp = ncread(file_dir,'sic');
-                else
-                    data_tmp = ncread(file_dir,'sit');
-                end
+                data_tmp = ncread(file_dir,Var);
                 data(ie,:,:) = data_tmp(:,:,1);
             end   
     %         data(data==0) = nan;   % exclude open water from nextsim.Moorings
@@ -65,18 +61,22 @@ function fun_moorings(Var,method)
             m_pcolor(lon,lat,X); shading flat; 
             h=colorbar;
             if strcmp(method,'mean')
-                if strcmp(Var,'SIC')
+                if strcmp(Var,'sic')
                     caxis([0 1])
-                elseif strcmp(Var,'SIT')
+                elseif strcmp(Var,'sit')
                     caxis([0 6]);
                     title(h,'(m)')
+                elseif strcmp(Var,'damage')
+                    caxis([0 1])
                 end
             else
-                if strcmp(Var,'SIC')
+                if strcmp(Var,'sic')
                     caxis([0 0.5])
-                elseif strcmp(Var,'SIT')
+                elseif strcmp(Var,'sit')
                     caxis([0 1.8]);
                     title(h,'(m)')
+                elseif strcmp(Var,'damage')
+                    caxis([0 0.5])
                 end
             end
             
@@ -116,7 +116,7 @@ function fun_moorings(Var,method)
 
 %     axis([dates(1)-1 dates(end)+1 0 0.2]);
     set(findall(gcf,'-property','FontSize'),'FontSize',18); 
-    saveas(figure(2),['Spatial_' method '_' Var '_main_moorings_spinup.png'],'png')
+    saveas(figure(2),[ Exp_ID 'Spatial_' method '_' Var '_main_moorings.png'],'png')
 end
 
 
