@@ -7,12 +7,12 @@ ocean-type=topaz_forecast
 atmosphere-type=generic #ec2 
 bathymetry-type=etopo
 use_assimilation=false
-dynamics-type=bbm #free_drift #mevp # free_drift #bbm
+dynamics-type=bbm
 [simul]
 spinup_duration=0
 timestep=900
-time_init=2019-12-27
-duration=7
+time_init=2019-09-03
+duration=240
 
 [thermo]
 use_assim_flux=false
@@ -36,14 +36,15 @@ ECMWF_quad_drag_coef_air=0.0016
 start_from_restart=true
 type=extend
 write_initial_restart=false
-write_interval_restart=false
+write_interval_restart=true
+output_interval=9
 write_final_restart=true
-input_path=
-basename=
+input_path=/cluster/home/chengsukun/src/restart
+basename=20190903T000000Z
 [output]
 output_per_day=0
 datetime_in_filename=true
-exporter_path=/cluster/work/jobs/2640449/mem1
+exporter_path=/cluster/work/jobs/2693681
 [moorings]
 use_moorings=true
 grid_type=regular
@@ -58,13 +59,13 @@ variables=wind
 variables=tau
 variables=damage
 
-[statevector]
-use_statevector=true
-restart_from_analysis=true
-id=1
-grid_type=reference
-output_timestep=1
-reference_grid_file=reference_grid.nc
+# [statevector]
+# use_statevector=true
+# restart_from_analysis=false
+# id=1
+# grid_type=reference
+# output_timestep=1
+# reference_grid_file=reference_grid.nc
 
 [drifters]
 use_osisaf_drifters=true

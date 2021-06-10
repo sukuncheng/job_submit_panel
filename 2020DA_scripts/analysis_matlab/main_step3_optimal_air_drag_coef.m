@@ -213,7 +213,7 @@ function fun_OSISAF_corrcoef_taylor_scatter(filename,filename_freedrift,variable
         yyaxis left
         plot(ensemble_array,CORs(:,1),'o-'); hold on;
         plot(ensemble_array,CORs(:,2),'*:');
-        legend('U component','V component','location','ne');       
+        
         ylabel('correlation coefficient ');    
         grid on
         % ylim([0.9 1.1])
@@ -224,6 +224,8 @@ function fun_OSISAF_corrcoef_taylor_scatter(filename,filename_freedrift,variable
         ylabel('RMSE (km)');    
         % grid on
         xlabel('ECMWF forecast air drag coefficient');  
+
+        legend('U component','V component','location','se');       
         set(findall(gcf,'-property','FontSize'),'FontSize',18); 
         saveas(gcf,'corrcoef_vs_air_drag_coef.png','png');    
     end

@@ -48,36 +48,36 @@ echo "Part1 initialize files system, write nextsim.cfg, pseudo2D.nml to workpath
     #     cp ${ENSPATH}/pseudo2D.nml $MEMPATH 
     # done   
 
-if [ ${UPDATE} -eq 1 ]; then
+
+#-----------------------------------------------------------
 #2. prepare analysis files
     # observations data for assimilation using EnKF
-    OBSNAME_PREFIX=$NEXTSIM_DATA_DIR/CS2_SMOS_v2.2/W_XX-ESA,SMOS_CS2,NH_25KM_EASE2_ 
-    OBSNAME_SUFFIX=_r_v202_01_l4sit  
+    OBSNAME_PREFIX=$NEXTSIM_DATA_DIR/CS2_SMOS_v2.3/W_XX-ESA,SMOS_CS2,NH_25KM_EASE2_ 
+    OBSNAME_SUFFIX=_r_v203_01_l4sit  
     FILTER=$ENSPATH/filter
-    mkdir -p ${FILTER}/prior  # create directory to store prior states
-    #
-    cd $FILTER      
+    mkdir -p ${FILTER}/prior  # store prior states
+
     echo "  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files"
-    cp ${JOB_SETUP_DIR}/enkf_cfg/* .  #from ${NEXTSIMDIR}/modules/enkf/enkf-c/cfg/* # except stats.prm and enoi.prm
+    cd $FILTER  
+    cp ${JOB_SETUP_DIR}/enkf_cfg_$VAR/* .  #from ${NEXTSIMDIR}/modules/enkf/enkf-c/cfg/* # except stats.prm and enoi.prm
     cp ${NEXTSIMDIR}/modules/enkf/enkf-c/bin/enkf_* .
     # modifications in enkf configurations
     sed -i "s;mpirun;mpirun --allow-run-as-root;g" Makefile
-    sed -i "s;^ENSSIZE.*$;ENSSIZE = ${ENSSIZE};g"  enkf.prm
-
-    sed -i "s/^INFLATION.*$/INFLATION = ${INFLATION}/g; \
-            s/^LOCRAD.*$/LOCRAD = ${LOCRAD}/g; \
-            s/^RFACTOR.*$/RFACTOR = ${RFACTOR}/g; \
-            s/^KFACTOR.*$/KFACTOR = ${KFACTOR}/g"  enkf.prm
+    sed -i "s|^ENSSIZE.*$|ENSSIZE = ${ENSSIZE}|g; \
+            s|^INFLATION.*$|INFLATION = ${INFLATION}|g; \
+            s|^LOCRAD.*$|LOCRAD = ${LOCRAD}|g;\
+            s|^RFACTOR.*$|RFACTOR = ${RFACTOR}|g; \
+            s|^KFACTOR.*$|KFACTOR = ${KFACTOR}|g;"  enkf.prm
     #
     sed -i "s;^DATA.*$;DATA =${NEXTSIM_DATA_DIR}/reference_grid.nc;g"  grid.prm
     ln -sf ${NEXTSIM_DATA_DIR}/reference_grid.nc   ${FILTER}/reference_grid.nc   # this file is used by enkf_prep, reader_cs2smos.c
     echo "  add observations path to $FILTER/obs.prm"
-    A1=${duration} 
-    A2=`expr "(${A1}+6)"|bc`
+    A1=`expr "(${duration}-3)"|bc`
+    A2=`expr "(${duration}+3)"|bc`
     SMOSOBS=${OBSNAME_PREFIX}$(date +%Y%m%d -d "${time_init} + $A1 day")_$(date +%Y%m%d -d "${time_init} + $A2 day")${OBSNAME_SUFFIX}.nc
+
     if [ -f ${SMOSOBS} ]; then
         sed -i "s;^.*FILE.*$;FILE ="${SMOSOBS}";g"  obs.prm 
     else
         echo "[Waring] ${SMOSOBS} is not found. "
     fi
-fi

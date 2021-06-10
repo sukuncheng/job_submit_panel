@@ -6,7 +6,6 @@ function [] = main_enkf_fieldstates()
     format short g
     
     load('test_inform.mat')
-    simul_dir = '/cluster/work/users/chengsukun/simulations/test_windcohesion_2019-10-15_7days_x_12cycles_memsize40';
     simul_dir = [simul_dir '/date1'];
     
     take_mean = 1;
@@ -52,13 +51,13 @@ function [] = main_enkf_fieldstates()
     figure();
     set(gcf,'Position',[100,150,1100,850], 'color','w')
     unit = '(m)';
-    subplot(221); fun_geo_plot(lon,lat,forecast_data,' background',unit); caxis([0 6]); colormap(gca,bluewhitered);
-    subplot(222); fun_geo_plot(lon,lat,analysis_data,' analysis',unit); caxis([0 6]); colormap(gca,bluewhitered);
+    subplot(221); fun_geo_plot(lon,lat,forecast_data,' background',unit); caxis([0 6]); colormap(gca,parula);
+    subplot(222); fun_geo_plot(lon,lat,analysis_data,' analysis',unit); caxis([0 6]); colormap(gca,parula);
     subplot(223); fun_geo_plot(lon,lat,analysis_data-forecast_data,'analysis - background',unit);  %caxis([-2 2]); 
-    colormap(gca,jet);
+    colormap(gca,bluewhitered);
     subplot(224); fun_geo_plot(lon_obs,lat_obs, data_obs,['observation ' temp1],unit); %caxis([0 6]);
-    colormap(gca,jet);
-    set(findall(gcf,'-property','FontSize'),'FontSize',16); 
+    colormap(gca,parula);
+    set(findall(gcf,'-property','FontSize'),'FontSize',20); 
     %
     % filename = [ simul_dir '/filter/observations.nc'];
     % lon = ncread(filename,'lon'); 
@@ -75,13 +74,13 @@ function [] = main_enkf_fieldstates()
 end
 
 function fun_geo_plot(lon,lat,Var,Title, unit)
-    % Var(Var==0) = nan;
+    Var(Var==0) = nan;
     m_proj('Stereographic','lon',-45,'lat',90,'radius',25);
     m_pcolor(lon, lat, Var); shading flat; 
     h = colorbar;
     title(h, unit);
     m_coast('patch',0.7*[1 1 1]);    
     set(gca,'XTickLabel',[],'YTickLabel',[]);
-    title(Title)
+    title({Title,''})
     m_grid('linest',':');
 end

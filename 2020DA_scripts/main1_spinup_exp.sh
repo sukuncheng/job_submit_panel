@@ -19,7 +19,8 @@ function WaitforTaskFinish(){
 }
 
 ##-------  Confirm working,data,ouput directories --------
-JOB_SETUP_DIR=$(cd `dirname $0`;pwd)  
+JOB_SETUP_DIR=$(cd `dirname $BASH_SOURCE`;pwd)
+BaseName=$(basename $BASH_SOURCE)
 ENV_FILE=${NEXTSIM_ENV_ROOT_DIR}/nextsim.ensemble.intel.src
 slurm_nextsim=slurm.ensemble.template.sh
 # ENV_FILE=${NEXTSIM_ENV_ROOT_DIR}/pynextsim.sing.src
@@ -30,19 +31,21 @@ slurm_nextsim=slurm.ensemble.template.sh
     # experiment settings
     time_init=2019-09-03   # starting date of simulation
     basename=20190903T000000Z # set this variable, if the first run is from restart
-    duration=42    # tduration*duration is the total simulation time
+    duration=45    # tduration*duration is the total simulation time
     tduration=1    # number of DA cycles. 
     ENSSIZE=40     # ensemble size  
     block=1        # number of forecasts in a job
     jobsize=$((${ENSSIZE}/${block})) #number of nodes requested 
-    UPDATE=1
     first_restart_path=$HOME/src/restart  
     # randf in pseudo2D.nml, whether do perturbation
     [[ ${ENSSIZE} > 1 ]] && randf=true || randf=false 
-
-    OUTPUT_DIR=${simulations}/test_windcohesion_${time_init}_${duration}days_x_${tduration}cycles_memsize${ENSSIZE}
+    INFLATION=1
+    LOCRAD=300
+    RFACTOR=2
+    KFACTOR=2
+    OUTPUT_DIR=${simulations}/test_spinup_${time_init}_${duration}days_x_${tduration}cycles_memsize${ENSSIZE}
     echo 'work path:' $OUTPUT_DIR
-    [ -d $OUTPUT_DIR ] && rm -rf $OUTPUT_DIR
+    # [ -d $OUTPUT_DIR ] && rm -rf $OUTPUT_DIR
     [ ! -d $OUTPUT_DIR ] && mkdir -p ${OUTPUT_DIR}
 
 ## ----------- execute ensemble runs ----------
@@ -87,5 +90,11 @@ for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
         done
         WaitforTaskFinish $XPID0
     done
+
+    # for (( i=1; i<=$ENSSIZE; i++ )); do
+    #     mv ${ENSPATH}/mem${i}/prior.nc  ${ENSPATH}/filter/prior/$(printf "mem%.3d" ${i}).nc
+    # done
 done
-cp ${JOB_SETUP_DIR}/{main_spinup_exp.sh,part1_create_file_system.sh,nohup.out}  ${OUTPUT_DIR} 
+
+cp ${JOB_SETUP_DIR}/nohup.out  ${OUTPUT_DIR} 
+cp ${JOB_SETUP_DIR}/${BaseName}  ${OUTPUT_DIR} 

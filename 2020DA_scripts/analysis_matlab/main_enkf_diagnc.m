@@ -64,8 +64,8 @@ function statistics = fun_process_enkf_diag(enkf_dir)
     lat = ncread(filename,'plat');
     unit = '';
     figure(1);set(gcf,'Position',[100,150,1130,550], 'color','w'); clf
-    subplot(131); fun_geo_plot(lon,lat, dfs,[datestr(title_date) ' dfs'],unit); 
-    subplot(132); fun_geo_plot(lon,lat, srf,' srf',unit); %caxis([0 3])
+    subplot(131); fun_geo_plot(lon,lat, dfs,[datestr(title_date) ' dfs'],unit); caxis([0 18])
+    subplot(132); fun_geo_plot(lon,lat, srf,' srf',unit); caxis([0 3])
     subplot(133); fun_geo_plot(lon,lat, nlobs,' nlobs',unit); 
         % pdfs seems to be the average of multi-observations. for single observation, pdfs = dfs
 %         subplot(234); fun_geo_plot(lon,lat,  pdfs,'pdfs',unit); 

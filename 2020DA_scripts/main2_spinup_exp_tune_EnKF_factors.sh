@@ -30,23 +30,25 @@ function WaitforTaskFinish(){
 # INFLATIONs=("1" "1.03" "1.09")  # <1.1 for 100 members
 JOB_SETUP_DIR=$(cd `dirname $0`;pwd)
 >nohup.out  # empty this file
-# >${JOB_SETUP_DIR}/result.md
 
-# ENSPATH=/cluster/work/users/chengsukun/simulations/test_2019-09-03_42days_x_1cycles_memsize40/date1
-ENSPATH=/cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1
-# ENSPATH=/nird/projects/nird/NS2993K/NORSTORE_OSL_DISK/NS2993K/chengsukun/ensemble_forecasts_2019-09-03_7days_x_6cycles_memsize100/date6
+# ENSPATH=/cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_45days_x_1cycles_memsize40/date1
+ENSPATH=/cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1
 #
 FILTER=${ENSPATH}/filter
-cp ~/src/nextsim/modules/enkf/enkf-c/bin/* ${FILTER}/
+# mkdir $FILTER
+# cp ~/src/nextsim/modules/enkf/enkf-c/bin/* ${FILTER}/
 #
+VAR=sitsic
+cp $JOB_SETUP_DIR/enkf_cfg_$VAR/* $FILTER/
 script=${ENSPATH}/slurm.enkf.template.sh
 cp ${NEXTSIM_ENV_ROOT_DIR}/slurm.enkf.template.sh $script
-echo "parameters combination     type  NumberofObs.  [for.inn.]  [an.inn.]   for.inn.   an.inn.  for.spread    an.spread" > result.md
+# >${JOB_SETUP_DIR}/result.md
+# echo "parameters combination     type  NumberofObs.  [for.inn.]  [an.inn.]   for.inn.   an.inn.  for.spread    an.spread" > result.md
 
 #set 2 loop enkf parameters
 KFACTORs=("2")  # default as 2 in topaz
 # RFACTORs=("1" "1.2" "1.4" "1.6" "1.8" "2")   #1
-LOCRADs=( "100" "300" "600")  # meaning, radius 2.3*
+#LOCRADs=( "100" "300" "600")  # meaning, radius 2.3*
 RFACTORs=("2") #("1" "1.2" "1.4" "1.6" "1.8" "2" "2.2" "2.4" "3") 
 LOCRADs=( "300" )  # meaning, radius 2.3*
 INFLATIONs=("1" )  # <1.1 for 100 members
@@ -71,18 +73,25 @@ for (( i1=0; i1<${#INFLATIONs[@]}; i1++ )); do
     # run enkf
     XPID0=$(squeue -u chengsukun | grep -o chengsuk |wc -l) 
     sbatch $script $ENSPATH 
-    WaitforTaskFinish $XPID0 
-    # show results
-    string=$( tail -3 ${FILTER}/calc.out|head -1 )
-    echo "I${INFLATION}_L${LOCRAD}_R${RFACTOR}_K${KFACTOR}  $string" >> ${JOB_SETUP_DIR}/result.md
-    OUTPUT_DIR=${FILTER}/size${ENSSIZE}_I${INFLATION}_L${LOCRAD}_R${RFACTOR}_K${KFACTOR}
+    WaitforTaskFinish $XPID0
+    for (( i=1; i<=${ENSSIZE}; i++ )); do
+        memname=mem${i}
+        cdo merge ${NEXTSIM_DATA_DIR}/reference_grid.nc  ${FILTER}/prior/$(printf "mem%.3d" $i).nc.analysis  ${FILTER}/prior/${memname}.nc.analysis   
+    done
+    # # show results
+    # string=$( tail -3 ${FILTER}/calc.out|head -1 )
+    # echo "I${INFLATION}_L${LOCRAD}_R${RFACTOR}_K${KFACTOR}  $string" >> ${JOB_SETUP_DIR}/result.md
+    # OUTPUT_DIR=${FILTER}/size${ENSSIZE}_I${INFLATION}_L${LOCRAD}_R${RFACTOR}_K${KFACTOR}_DA_sit
+    OUTPUT_DIR=${FILTER}/size${ENSSIZE}_I${INFLATION}_L${LOCRAD}_R${RFACTOR}_K${KFACTOR}_DA$VAR
     [ -d $OUTPUT_DIR ] &&  rm -r  $OUTPUT_DIR
     mkdir $OUTPUT_DIR   # [ ! -d $OUTPUT_DIR ] && 
     mv ${FILTER}/*.out ${OUTPUT_DIR}
     mv ${FILTER}/prior/*.analysis ${OUTPUT_DIR}
     mv ${FILTER}/*.nc  ${OUTPUT_DIR}
+    mv ${FILTER}/*.prm ${OUTPUT_DIR}
+    mv ${FILTER}/slurm.*.log ${OUTPUT_DIR}
     mv ${OUTPUT_DIR}/reference_grid.nc ${FILTER}
-
+    
 done
 done
 done

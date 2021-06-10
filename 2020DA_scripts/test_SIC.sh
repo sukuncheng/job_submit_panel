@@ -23,42 +23,35 @@ JOB_SETUP_DIR=$(cd `dirname $0`;pwd)
 ENV_FILE=${NEXTSIM_ENV_ROOT_DIR}/nextsim.ensemble.intel.src
 slurm_nextsim=slurm.ensemble.template.sh
 slurm_enkf=slurm.enkf.template.sh
-
+cd ~/src/nextsim
+make -j8
 >nohup.out  # empty this file
 restart_path=$NEXTSIM_DATA_DIR   # select a folder for exchange restart data
-cd $restart_path
-rm -f field_mem* 
-rm -f mesh_mem* 
-rm -f WindPerturbation_mem* 
-rm -f *.nc.analysis
+rm -f   $restart_path/{field_mem* mesh_mem* WindPerturbation_mem* *.nc.analysis}
 ##-------  Confirm working,data,ouput directories --------
     # experiment settings
-    time_init=2020-01-07   # starting date of simulation
-    basename=final     # set this variable, if the first run is from restart
-    duration=7     # tduration*duration is the total simulation time
-    tduration=16   # number of DA cycles. 
-    ENSSIZE=40     # ensemble size  
+    time_init=2019-10-15   # starting date of simulation
+    duration=1     # tduration*duration is the total simulation time
+    tduration=1   # number of DA cycles. 
+    ENSSIZE=1     # ensemble size  
     block=1        # number of forecasts in a job
     jobsize=$((${ENSSIZE}/${block})) #number of nodes requested 
-    UPDATE=1 # 1: active assimilation -- do data assimilation using EnKF
+    UPDATE=0 # 1: active assimilation -- do data assimilation using EnKF
     first_restart_path=/cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40/date1
-    # first_restart_path=/cluster/work/users/chengsukun/simulations/test_windcohesion_2019-10-15_7days_x_12cycles_memsize40/date12
+
     # randf in pseudo2D.nml, whether do perturbation
     [[ ${ENSSIZE} > 1 ]] && randf=true || randf=false 
     INFLATION=1
     LOCRAD=300
     RFACTOR=2
     KFACTOR=2
-    OUTPUT_DIR=${simulations}/test_windcohesion_${time_init}_${duration}days_x_${tduration}cycles_memsize${ENSSIZE}
-    # OUTPUT_DIR=/cluster/work/users/chengsukun/simulations/test_windcohesion_2019-10-15_7days_x_12cycles_memsize40
+    OUTPUT_DIR=${simulations}/test_read_analysis_sic
     echo 'work path:' $OUTPUT_DIR
-   # [ -d $OUTPUT_DIR ] && rm -rf $OUTPUT_DIR
-   [ ! -d $OUTPUT_DIR ] && mkdir -p ${OUTPUT_DIR}
-    cp ${JOB_SETUP_DIR}/{main_DA_exp2.sh,part1_create_file_system.sh}  ${OUTPUT_DIR}
+    [ -d $OUTPUT_DIR ] && rm -rf $OUTPUT_DIR
+    [ ! -d $OUTPUT_DIR ] && mkdir -p ${OUTPUT_DIR}
+    cp ${JOB_SETUP_DIR}/{main_DA_exp1.sh,part1_create_file_system.sh}  ${OUTPUT_DIR}
 
 ## ----------- execute ensemble runs ----------
-# for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
-    # ENSPATH=${OUTPUT_DIR}/date$((iperiod+12))  
 for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
     ENSPATH=${OUTPUT_DIR}/date${iperiod}
     mkdir -p ${ENSPATH}     
@@ -70,8 +63,8 @@ for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
             memname=mem${i}
             echo "UPDATE=1, project *.nc.analysis on nextsim_data_dir/reference_grid.nc, move it and restart file to $restart_path for ensemble forecasts"
             cd ${first_restart_path}/filter
-            # analysis_path=${first_restart_path}/filter
-            # cdo merge $NEXTSIM_DATA_DIR/reference_grid.nc   ${analysis_path}/$(printf "mem%.3d" $i).nc.analysis  ${memname}.nc.analysis       
+            analysis_path=${first_restart_path}/filter/size40_I${INFLATION}_L${LOCRAD}_R${RFACTOR}_K${KFACTOR}
+            cdo merge $NEXTSIM_DATA_DIR/reference_grid.nc   ${analysis_path}/$(printf "mem%.3d" $i).nc.analysis  ${memname}.nc.analysis       
             ln -sf ${first_restart_path}/filter/${memname}.nc.analysis   ${restart_path}/${memname}.nc.analysis   
 
             ln -sf ${first_restart_path}/${memname}/WindPerturbation_${memname}.nc        ${restart_path}/WindPerturbation_${memname}.nc   
@@ -81,12 +74,12 @@ for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
             ln -sf ${first_restart_path}/${memname}/restart/mesh_final.dat   $restart_path/mesh_${memname}.dat
         done
     else
-        time_init=$(date +%Y-%m-%d -d "${time_init} + ${duration} day")
+        time_init=$(date +%Y-%m-%d -d "${time_init} + ${duration}")
     fi
     echo "period ${time_init} to $(date +%Y%m%d -d "${time_init} + $((${duration})) day")"
 # a. create files strucure, copy and modify configuration files inside
     source ${JOB_SETUP_DIR}/part1_create_file_system.sh
-    continue
+
     XPID0=$(squeue -u chengsukun | grep -o chengsuk |wc -l) 
 # b. submit the script for ensemble forecasts
     cd $ENSPATH
@@ -102,12 +95,13 @@ for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
     ### option2 can resubmit failed task in jobarray
     for (( j=1; j<=3; j++ )); do
         for (( i=1; i<=${ENSSIZE}; i++ )); do
-           grep -q -s "Simulation done" ${ENSPATH}/mem${i}/task.log && continue
+            grep -q -s "Simulation done" ${ENSPATH}/mem${i}/task.log && continue
             cmd="sbatch $script $ENSPATH $ENV_FILE ${block} $i"  # change slurm.ensemble.template.sh: SLURM_ARRAY_TASK_ID=$4   #i is member_id, specifying member to run or rerun
             $cmd 2>&1 
         done
         WaitforTaskFinish $XPID0
     done
+
     ## 2.submit enkf after finishing the ensemble simulations 
     if [ ${UPDATE} -eq 1 ]; then
         FILTER=${ENSPATH}/filter

@@ -11,8 +11,8 @@ rm -f enkf_*
 cp ~/src/nextsim/modules/enkf/enkf-c/bin/* .;make clean; 
 ./enkf_prep --log-all-obs --no-superobing enkf.prm 2>&1 | tee prep.out
 
-# mpirun --allow-run-as-root -np 8 ./enkf_calc --use-rmsd-for-obsstats --ignore-no-obs enkf.prm 2>&1 | tee calc.out
-# ./enkf_update --calculate-spreadls enkf.prm 2>&1 | tee update.out
+# mpirun  -np 8 ./enkf_calc --use-rmsd-for-obsstats --ignore-no-obs enkf.prm 2>&1 | tee calc.out   (--allow-run-as-root)
+# ./enkf_update --calculate-spread enkf.prm 2>&1 | tee update.out
 
 # cd $DIR/prior
 # for (( i=1; i<=40; i++ )); do

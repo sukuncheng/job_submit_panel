@@ -1,0 +1,6 @@
+name = SIC
+issurface = 1
+var = sic
+hfunction = standard
+minvalue = 0
+maxvalue = 1

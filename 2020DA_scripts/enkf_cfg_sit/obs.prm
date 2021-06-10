@@ -1,0 +1,7 @@
+#READER = xy_gridded
+#PARAMETER VARNAME = analysis_sea_ice_thickness
+#ERROR_STD = 0.2
+PRODUCT = CS2SMOS
+READER = standard
+TYPE = SIT
+FILE = 

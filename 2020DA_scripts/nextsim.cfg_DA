@@ -11,7 +11,7 @@ dynamics-type=bbm #free_drift #mevp # free_drift #bbm
 [simul]
 spinup_duration=0
 timestep=900
-time_init=2019-12-27
+time_init=2019-10-15
 duration=7
 
 [thermo]
@@ -38,8 +38,8 @@ type=extend
 write_initial_restart=false
 write_interval_restart=false
 write_final_restart=true
-input_path=
-basename=
+input_path=/cluster/home/chengsukun/src/nextsim_data_dir
+basename=mem1
 [output]
 output_per_day=0
 datetime_in_filename=true
