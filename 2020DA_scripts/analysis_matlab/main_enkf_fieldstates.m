@@ -8,7 +8,7 @@ function [] = main_enkf_fieldstates()
     load('test_inform.mat')
     simul_dir = [simul_dir '/date1'];
     
-    take_mean = 1;
+    take_mean = 0;
     if take_mean==1
         ID = 1:Ne;
     else
@@ -16,7 +16,7 @@ function [] = main_enkf_fieldstates()
     end
 %% % compare with CS2-SMOS, NOTE this dataset is from Oct.15 to April
     Var = 'sit';
-    mnt_CS2SMOS_dir = '~/src/nextsim_data_dir/CS2_SMOS_v2.2';
+    mnt_CS2SMOS_dir = '~/src/nextsim_data_dir/CS2_SMOS_v2.3';
 
     %% load **.nc.analysis
     it = 1;
@@ -42,7 +42,7 @@ function [] = main_enkf_fieldstates()
     t = dates(it)+Duration;
     temp1 = strrep(datestr(t,26),'/','');
     temp2 = strrep(datestr(t+Duration-1,26),'/','');
-    filename = [ mnt_CS2SMOS_dir '/W_XX-ESA,SMOS_CS2,NH_25KM_EASE2_' temp1 '_' temp2 '_r_v202_01_l4sit.nc' ]
+    filename = [ mnt_CS2SMOS_dir '/W_XX-ESA,SMOS_CS2,NH_25KM_EASE2_' temp1 '_' temp2 '_r_v203_01_l4sit.nc' ]
     data_obs = ncread(filename,'analysis_sea_ice_thickness');  
     % obs_data = ncread(filename,'sea_ice_concentration');
     lon_obs = ncread(filename,'lon');

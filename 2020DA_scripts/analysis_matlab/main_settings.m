@@ -16,11 +16,11 @@ function [] = main_settings()
             dates(i) = datetime(start_date) + i;    
             dates_num(i) = datenum(dates(i));
         end
-        simul_dir = '/test_windcohesion_2019-09-03_42days_x_1cycles_memsize40';
+        simul_dir = '/test_spinup_2019-09-03_45days_x_1cycles_memsize40';
     elseif exp==1
         %%
-        Exp_ID = 'Exp_15Oct2019';
-        start_date = "2019-10-15";
+        Exp_ID = 'Exp_18Oct2019';
+        start_date = "2019-10-18";
         N_periods = 12;
         Duration = 7; % duration days set in nextsim.cfg 
         
@@ -31,7 +31,7 @@ function [] = main_settings()
                 dates_num(n) = datenum(dates(n));
             end
         end
-        simul_dir = '/test_windcohesion_2019-10-15_7days_x_12cycles_memsize40';
+        simul_dir = '/test_DAsit_2019-10-18_7days_x_12cycles_memsize40';
     elseif exp==2
         Exp_ID = 'Exp_7Jan2020';
         start_date = "2020-1-7";

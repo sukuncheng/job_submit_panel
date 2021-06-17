@@ -4,6 +4,7 @@ function [] = main_moorings_animation()
     close all
     dbstop if error
     
+    main_settings
     for Var = {'sic','sit','damage'}
         for method = {'Spread','mean'}  %mean: ensemble ensemble, spread: ensemble spread
             fun_moorings(char(Var),char(method));

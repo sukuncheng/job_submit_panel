@@ -35,10 +35,10 @@ JOB_SETUP_DIR=$(cd `dirname $0`;pwd)
 ENSPATH=/cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1
 #
 FILTER=${ENSPATH}/filter
-# mkdir $FILTER
-# cp ~/src/nextsim/modules/enkf/enkf-c/bin/* ${FILTER}/
+[ ! -d $FILTER ] && mkdir $FILTER
+cp ~/src/nextsim/modules/enkf/enkf-c/bin/* ${FILTER}/
 #
-VAR=sitsic
+VAR=sic
 cp $JOB_SETUP_DIR/enkf_cfg_$VAR/* $FILTER/
 script=${ENSPATH}/slurm.enkf.template.sh
 cp ${NEXTSIM_ENV_ROOT_DIR}/slurm.enkf.template.sh $script
@@ -81,7 +81,7 @@ for (( i1=0; i1<${#INFLATIONs[@]}; i1++ )); do
     # # show results
     # string=$( tail -3 ${FILTER}/calc.out|head -1 )
     # echo "I${INFLATION}_L${LOCRAD}_R${RFACTOR}_K${KFACTOR}  $string" >> ${JOB_SETUP_DIR}/result.md
-    # OUTPUT_DIR=${FILTER}/size${ENSSIZE}_I${INFLATION}_L${LOCRAD}_R${RFACTOR}_K${KFACTOR}_DA_sit
+    # OUTPUT_DIR=${FILTER}/size${ENSSIZE}_I${INFLATION}_L${LOCRAD}_R${RFACTOR}_K${KFACTOR}_DA_sit_osisaf
     OUTPUT_DIR=${FILTER}/size${ENSSIZE}_I${INFLATION}_L${LOCRAD}_R${RFACTOR}_K${KFACTOR}_DA$VAR
     [ -d $OUTPUT_DIR ] &&  rm -r  $OUTPUT_DIR
     mkdir $OUTPUT_DIR   # [ ! -d $OUTPUT_DIR ] && 
@@ -96,3 +96,5 @@ done
 done
 done
 done
+cp ${JOB_SETUP_DIR}/nohup.out  ${OUTPUT_DIR} 
+echo "finished"

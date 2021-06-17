@@ -2,14 +2,14 @@
 
 &setup
 iopath = '.'
-debug = .false.
+debug = .true.
 /
 
 &pseudo2D
 randf    = .true.
 seed     =  11
 vslp     =  10
-vwndspd  =  1
+vwndspd=3
 vsnowfall=  1
 vdwlongw =  50
 scorr    =  250

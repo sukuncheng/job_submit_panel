@@ -17,6 +17,7 @@ echo "Part1 initialize files system, write nextsim.cfg, pseudo2D.nml to workpath
 # nextsim.cfg,  #"${duration}" # input_path, basename are defined in slurm.*.template.sh
     sed -i "s/^time_init=.*$/time_init=${time_init}/g; \
          s/^duration=.*$/duration=${duration}/g; \
+         s/^dynamics-type=.*$/dynamics-type=bbm/g; \
          s/^output_timestep=.*$/output_timestep=1/g; \
          s/^start_from_restart=.*$/start_from_restart=${start_from_restart}/g; \
          s/^write_final_restart=.*$/write_final_restart=true/g; \
@@ -29,6 +30,7 @@ echo "Part1 initialize files system, write nextsim.cfg, pseudo2D.nml to workpath
     # pseudo2D.nml, perturb cohesion C_lab=1.5e6 [±33%]  # s/^C_perturb.*$/C_perturb=0.33/g" 
     sed -i "s/^iopath.*$/iopath = '.'/g; \
             s/^randf.*$/randf    = .$randf./g; \
+            s/^vwndspd.*$/vwndspd=3/g; \
             s/^scorr_dx.*$/scorr_dx=10/g; \
             s/^C_lab.*$/C_lab=1.5e6/g; \
             s/^C_perturb.*$/C_perturb=0.33/g;" \
@@ -51,9 +53,7 @@ echo "Part1 initialize files system, write nextsim.cfg, pseudo2D.nml to workpath
 
 #-----------------------------------------------------------
 #2. prepare analysis files
-    # observations data for assimilation using EnKF
-    OBSNAME_PREFIX=$NEXTSIM_DATA_DIR/CS2_SMOS_v2.3/W_XX-ESA,SMOS_CS2,NH_25KM_EASE2_ 
-    OBSNAME_SUFFIX=_r_v203_01_l4sit  
+if [[ $UPDATE == 1 ]];then
     FILTER=$ENSPATH/filter
     mkdir -p ${FILTER}/prior  # store prior states
 
@@ -70,14 +70,26 @@ echo "Part1 initialize files system, write nextsim.cfg, pseudo2D.nml to workpath
             s|^KFACTOR.*$|KFACTOR = ${KFACTOR}|g;"  enkf.prm
     #
     sed -i "s;^DATA.*$;DATA =${NEXTSIM_DATA_DIR}/reference_grid.nc;g"  grid.prm
-    ln -sf ${NEXTSIM_DATA_DIR}/reference_grid.nc   ${FILTER}/reference_grid.nc   # this file is used by enkf_prep, reader_cs2smos.c
+    ln -sf ${NEXTSIM_DATA_DIR}/reference_grid.nc   ${FILTER}/reference_grid.nc   # this file is used by enkf_prep, reader_cs2smos.
+    
+#   specify observations data for assimilation using EnKF  
+    # cs2smos file
     echo "  add observations path to $FILTER/obs.prm"
     A1=`expr "(${duration}-3)"|bc`
     A2=`expr "(${duration}+3)"|bc`
-    SMOSOBS=${OBSNAME_PREFIX}$(date +%Y%m%d -d "${time_init} + $A1 day")_$(date +%Y%m%d -d "${time_init} + $A2 day")${OBSNAME_SUFFIX}.nc
+    OBSNAME_PREFIX=$NEXTSIM_DATA_DIR/CS2_SMOS_v2.3/W_XX-ESA,SMOS_CS2,NH_25KM_EASE2_ 
+    OBSNAME_SUFFIX=_r_v203_01_l4sit  
+    CS2SMOS_fname=${OBSNAME_PREFIX}$(date +%Y%m%d -d "${time_init} + $A1 day")_$(date +%Y%m%d -d "${time_init} + $A2 day")${OBSNAME_SUFFIX}.nc
 
-    if [ -f ${SMOSOBS} ]; then
-        sed -i "s;^.*FILE.*$;FILE ="${SMOSOBS}";g"  obs.prm 
-    else
-        echo "[Waring] ${SMOSOBS} is not found. "
+    OSISAF_fname = $NEXTSIM_DATA_DIR/OSISAF_ice_conc/polstere/$(date + %Y)_nh_polstere/ice_conc_nh_polstere-100_multi_$(date +%Y%m%d -d "${time_init} + ${duration} day")1200.nc
+    [ ! -f $CS2SMOS_fname ] && echo "error: ${CS2SMOS_fname} is missing" 
+    [ ! -f $OSISAF_fname ] && echo "error:  ${OSISAF_fname} is missing" 
+    if [[ "$DA_VAR" == "sit" ]]; then
+        sed -i "s;^.*FILE.*$;FILE ="${CS2SMOS_fname}";1"  obs.prm 
+    elif [[ "$DA_VAR" == "sic" ]]; then
+        sed -i "s;^.*FILE.*$;FILE ="${OSISAF_fname}";1"  obs.prm 
+    elif [[ "$DA_VAR" == "sitsic" ]]; then
+        sed -i "s;^.*FILE.*$;FILE ="${CS2SMOS_fname}";1"  obs.prm
+        sed -i "s;^.*FILE.*$;FILE ="${OSISAF_fname}";2"  obs.prm         
     fi
+fi
