@@ -8,20 +8,20 @@ function [] = main_settings()
     mnt_dir='/cluster/work/users/chengsukun/simulations'; 
 %     mnt_dir='/nird/projects/nird/NS2993K/NORSTORE_OSL_DISK/NS2993K/chengsukun';
     %%
-    exp=1; 
+    exp=0; 
     if  exp==0
         Exp_ID = 'Spinup';
-        start_date = "2019-09-03"; N_periods = 1; Duration = 42;
+        start_date = "2019-09-03"; N_periods = 1; Duration = 45;
         for i = 1:Duration
-            dates(i) = datetime(start_date) + i;    
+            dates(i) = datetime(start_date) + i-1;    
             dates_num(i) = datenum(dates(i));
         end
         simul_dir = '/test_spinup_2019-09-03_45days_x_1cycles_memsize40';
     elseif exp==1
         %%
         Exp_ID = 'Exp_18Oct2019';
-        start_date = "2019-10-18";
-        N_periods = 12;
+        start_date = '2019-10-18';
+        N_periods = 4;
         Duration = 7; % duration days set in nextsim.cfg 
         
         for i = 1:N_periods
@@ -31,7 +31,8 @@ function [] = main_settings()
                 dates_num(n) = datenum(dates(n));
             end
         end
-        simul_dir = '/test_DAsit_2019-10-18_7days_x_12cycles_memsize40';
+        simul_dir = ['/test_DAsit_' start_date '_' num2str(Duration) ...
+                     'days_x_' num2str(N_periods) 'cycles_memsize40'];
     elseif exp==2
         Exp_ID = 'Exp_7Jan2020';
         start_date = "2020-1-7";

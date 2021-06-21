@@ -31,14 +31,12 @@ function WaitforTaskFinish(){
 JOB_SETUP_DIR=$(cd `dirname $0`;pwd)
 >nohup.out  # empty this file
 
-# ENSPATH=/cluster/work/users/chengsukun/simulations/test_windcohesion_2019-09-03_45days_x_1cycles_memsize40/date1
 ENSPATH=/cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1
+VAR=sit
 #
 FILTER=${ENSPATH}/filter
 [ ! -d $FILTER ] && mkdir $FILTER
 cp ~/src/nextsim/modules/enkf/enkf-c/bin/* ${FILTER}/
-#
-VAR=sic
 cp $JOB_SETUP_DIR/enkf_cfg_$VAR/* $FILTER/
 script=${ENSPATH}/slurm.enkf.template.sh
 cp ${NEXTSIM_ENV_ROOT_DIR}/slurm.enkf.template.sh $script
@@ -58,6 +56,10 @@ for (( k1=0; k1<${#KFACTORs[@]};   k1++ )); do
 for (( r1=0; r1<${#RFACTORs[@]};   r1++ )); do
 for (( l1=0; l1<${#LOCRADs[@]};    l1++ )); do
 for (( i1=0; i1<${#INFLATIONs[@]}; i1++ )); do
+    # for (( i=1; i<=${ENSSIZE}; i++ )); do
+    #     memname=mem${i}
+    #     mv ${ENSPATH}/$memname/prior.nc  ${FILTER}/prior/$(printf "mem%.3d" ${i}).nc
+    # done
     cd ${FILTER}
     # edit enkf settings
     INFLATION=${INFLATIONs[$i1]}
@@ -91,7 +93,6 @@ for (( i1=0; i1<${#INFLATIONs[@]}; i1++ )); do
     mv ${FILTER}/*.prm ${OUTPUT_DIR}
     mv ${FILTER}/slurm.*.log ${OUTPUT_DIR}
     mv ${OUTPUT_DIR}/reference_grid.nc ${FILTER}
-    
 done
 done
 done

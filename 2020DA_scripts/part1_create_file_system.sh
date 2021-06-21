@@ -23,7 +23,7 @@ echo "Part1 initialize files system, write nextsim.cfg, pseudo2D.nml to workpath
          s/^write_final_restart=.*$/write_final_restart=true/g; \
          s/^input_path=.*$/input_path=/g; \
          s/^basename.*$/basename=/g; \
-         s/^restart_from_analysis=.*$/restart_from_analysis="${restart_from_analysis}"/g" \
+         s/^restart_from_analysis=.*$/restart_from_analysis=${restart_from_analysis}/g" \
         ${JOB_SETUP_DIR}/nextsim.cfg 
         cp ${JOB_SETUP_DIR}/nextsim.cfg  ${ENSPATH}/nextsim.cfg
         
@@ -59,7 +59,7 @@ if [[ $UPDATE == 1 ]];then
 
     echo "  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files"
     cd $FILTER  
-    cp ${JOB_SETUP_DIR}/enkf_cfg_$VAR/* .  #from ${NEXTSIMDIR}/modules/enkf/enkf-c/cfg/* # except stats.prm and enoi.prm
+    cp ${JOB_SETUP_DIR}/enkf_cfg_$DA_VAR/* .  #from ${NEXTSIMDIR}/modules/enkf/enkf-c/cfg/* # except stats.prm and enoi.prm
     cp ${NEXTSIMDIR}/modules/enkf/enkf-c/bin/enkf_* .
     # modifications in enkf configurations
     sed -i "s;mpirun;mpirun --allow-run-as-root;g" Makefile
@@ -77,11 +77,12 @@ if [[ $UPDATE == 1 ]];then
     echo "  add observations path to $FILTER/obs.prm"
     A1=`expr "(${duration}-3)"|bc`
     A2=`expr "(${duration}+3)"|bc`
+    
     OBSNAME_PREFIX=$NEXTSIM_DATA_DIR/CS2_SMOS_v2.3/W_XX-ESA,SMOS_CS2,NH_25KM_EASE2_ 
     OBSNAME_SUFFIX=_r_v203_01_l4sit  
     CS2SMOS_fname=${OBSNAME_PREFIX}$(date +%Y%m%d -d "${time_init} + $A1 day")_$(date +%Y%m%d -d "${time_init} + $A2 day")${OBSNAME_SUFFIX}.nc
-
-    OSISAF_fname = $NEXTSIM_DATA_DIR/OSISAF_ice_conc/polstere/$(date + %Y)_nh_polstere/ice_conc_nh_polstere-100_multi_$(date +%Y%m%d -d "${time_init} + ${duration} day")1200.nc
+    
+    OSISAF_fname=$NEXTSIM_DATA_DIR/OSISAF_ice_conc/polstere/$(date +%Y -d "${time_init} + ${duration} day")_nh_polstere/ice_conc_nh_polstere-100_multi_$(date +%Y%m%d -d "${time_init} + ${duration} day")1200.nc
     [ ! -f $CS2SMOS_fname ] && echo "error: ${CS2SMOS_fname} is missing" 
     [ ! -f $OSISAF_fname ] && echo "error:  ${OSISAF_fname} is missing" 
     if [[ "$DA_VAR" == "sit" ]]; then

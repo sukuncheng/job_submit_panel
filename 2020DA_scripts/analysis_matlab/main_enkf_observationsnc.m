@@ -2,10 +2,11 @@ clc
 clear
 close all
 
-load('test_inform.mat')
-simul_dir = [simul_dir '/date1/filter'];
+% load('test_inform.mat')
+% simul_dir = [simul_dir '/date1/filter'];
+simul_dir='/cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit';
 m_proj('Stereographic','lon',-45,'lat',90,'radius',30); 
-mnt_dir = '..';
+mnt_dir = '/cluster/home/chengsukun/src/nextsim_data_dir';
 filename = [mnt_dir '/reference_grid.nc'];
 lon = ncread(filename,'plon');
 lat = ncread(filename,'plat');
@@ -18,7 +19,7 @@ figure(1)
 subplot(121)
 m_pcolor(lon,lat,mask); hold on
 m_coast('color','k'); hold on;
-m_grid();
+% m_grid();
 title('modified mask in reference_grid.nc')
 % 
 %%
@@ -30,12 +31,12 @@ lat = ncread(filename,'lat');
 value = ncread(filename,'value');
 subplot(122); m_scatter(lon,lat,[],value,'.');
 m_coast('color','k'); hold on;
-m_grid();
+% m_grid();
 colorbar
 title('observations.nc SIT(m)')
 set(findall(gcf,'-property','FontSize'),'FontSize',18);
 set(gcf,'color','w')
-
+saveas(gcf,'observations.png','png')
 
 % % %%  ------------------------------
 % % figure(2)   

@@ -27,15 +27,10 @@ function link_restarts(){
     FILTER=$2/filter  
     restart_path=$3
     analysis_source=$4
-    rm -f  $restart_path/{field_mem* mesh_mem* WindPerturbation_mem* *.nc.analysis}
-    if [[ $analysis_source == 1 ]];then
-        for (( i=1; i<=${ENSSIZE}; i++ )); do
-            memname=mem${i}    
-            cdo merge ${NEXTSIM_DATA_DIR}/reference_grid.nc  ${analysis_source}/$(printf "mem%.3d" $i).nc.analysis  ${FILTER}/${memname}.nc.analysis         
-            ln -sf ${FILTER}/${memname}.nc.analysis          $restart_path/${memname}.nc.analysis
-        done
-    fi
-
+    rm -f $restart_path/field_mem* 
+    rm -f $restart_path/mesh_mem* 
+    rm -f $restart_path/WindPerturbation_mem* 
+    rm -f $restart_path/*.nc.analysis
     for (( i=1; i<=${ENSSIZE}; i++ )); do
         memname=mem${i}
         ln -sf ${ENSPATH}/${memname}/WindPerturbation_${memname}.nc         ${restart_path}/WindPerturbation_${memname}.nc  
@@ -44,6 +39,14 @@ function link_restarts(){
         ln -sf ${ENSPATH}/${memname}/restart/mesh_final.bin   $restart_path/mesh_${memname}.bin
         ln -sf ${ENSPATH}/${memname}/restart/mesh_final.dat   $restart_path/mesh_${memname}.dat
     done  
+
+    [ ! -d ${analysis_source} ] && return;
+    
+    for (( i=1; i<=${ENSSIZE}; i++ )); do
+        memname=mem${i}    
+        [ ! -d ${analysis_source}/${memname}.nc.analysis ] && cdo merge ${NEXTSIM_DATA_DIR}/reference_grid.nc  ${analysis_source}/$(printf "mem%.3d" $i).nc.analysis  ${analysis_source}/${memname}.nc.analysis         
+        ln -sf ${analysis_source}/${memname}.nc.analysis          $restart_path/${memname}.nc.analysis
+    done
 }
 
 # Instruction:
@@ -65,7 +68,7 @@ restart_path=$NEXTSIM_DATA_DIR   # select a folder for exchange restart data
     # experiment settings
     time_init0=2019-10-18   # starting date of simulation
     duration=7     # tduration*duration is the total simulation time
-    tduration=12   #25   # number of DA cycles. 
+    tduration=26   #25   # number of DA cycles. 
     ENSSIZE=40         # ensemble size  
     block=1            # number of forecasts in a job
     jobsize=$((${ENSSIZE}/${block})) #number of nodes requested 

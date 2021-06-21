@@ -6,7 +6,7 @@ function [] = main_moorings_animation()
     
     main_settings
     for Var = {'sic','sit','damage'}
-        for method = {'Spread','mean'}  %mean: ensemble ensemble, spread: ensemble spread
+        for method = {'mean', 'Spread'res}  %mean: ensemble ensemble, spread: ensemble spread
             fun_moorings(char(Var),char(method));
         end
     end
@@ -23,7 +23,6 @@ function fun_moorings(Var,method)
     else
         colormap(jet)
     end
-    
     gifname = [ Exp_ID '_' method '_' Var '.gif'];
     n = 0;
     for i = 1:N_periods
@@ -39,7 +38,7 @@ function fun_moorings(Var,method)
                 id = check_a_member;
             end
             for ie = id
-                file_dir = [data_dir '/mem' num2str(ie) '/' filename]
+                file_dir = [data_dir '/mem' num2str(ie) '/' filename];
     %             ncdisp(file_dir)
                 data_tmp = ncread(file_dir,Var);
                 data(ie,:,:) = data_tmp(:,:,1);
@@ -91,7 +90,8 @@ function fun_moorings(Var,method)
             im=frame2im(f);
             [I,map] = rgb2ind(im,256);
             gifname
-            if i==1  
+            
+            if n==1  
                 imwrite(I,map,gifname,'gif','loopcount',inf,'Delaytime',.5)
     %             imwrite(I,map,gifname,'gif');
             else

@@ -26,13 +26,14 @@ slurm_nextsim=slurm.ensemble.template.sh
 # ENV_FILE=${NEXTSIM_ENV_ROOT_DIR}/pynextsim.sing.src
 # slurm_nextsim=slurm.singularity.template.sh
 >nohup.out  # empty this file
+
 ##-------  Confirm working,data,ouput directories --------
     # experiment settings
     time_init=2019-09-03   # starting date of simulation
     basename=20190903T000000Z # set this variable, if the first run is from restart
-    duration=38    # tduration*duration is the total simulation time
+    duration=45    # tduration*duration is the total simulation time
     tduration=1    # number of DA cycles. 
-    ENSSIZE=40     # ensemble size  
+    ENSSIZE=1     # ensemble size  
     block=1        # number of forecasts in a job
     jobsize=$((${ENSSIZE}/${block})) #number of nodes requested 
     UPDATE=0
@@ -50,8 +51,6 @@ slurm_nextsim=slurm.ensemble.template.sh
 
 ## ----------- execute ensemble runs ----------
 for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
-    ENSPATH=${OUTPUT_DIR}/date${iperiod}  
-    mkdir -p ${ENSPATH}     
     restart_from_analysis=false
     start_from_restart=true
     if $start_from_restart; then
@@ -67,6 +66,8 @@ for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
     fi
     echo "period ${time_init} to $(date +%Y%m%d -d "${time_init} + $((${duration})) day")"
 # a. create files strucure, copy and modify configuration files inside
+    ENSPATH=${OUTPUT_DIR}/date${iperiod}
+    mkdir -p ${ENSPATH}   
     source ${JOB_SETUP_DIR}/part1_create_file_system.sh
 
     XPID0=$(squeue -u chengsukun | grep -o chengsuk |wc -l) 
@@ -81,11 +82,11 @@ for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
     # jobid=$( awk '{print $NF}' sjob.id)
     # WaitforTaskFinish $XPID0
 
-    ### option2 can resubmit failed task in jobarray
+    ### option2 can resubmit failed task in jobarray, $block>1 doesn't work fully in this way.
     for (( j=1; j<=3; j++ )); do
         for (( i=1; i<=${ENSSIZE}; i++ )); do
             grep -q -s "Simulation done" ${ENSPATH}/mem${i}/task.log && continue
-            cmd="sbatch $script $ENSPATH $ENV_FILE ${block} $i"  # change slurm.ensemble.template.sh: SLURM_ARRAY_TASK_ID=$4   #i is member_id, specifying member to run or rerun
+            cmd="sbatch $script $ENSPATH $ENV_FILE ${block} $i"  # change slurm.ensemble.template.sh: SLURM_ARRAY_TASK_ID=$4
             $cmd 2>&1 
         done
         WaitforTaskFinish $XPID0

@@ -1,576 +1,1023 @@
-+ time_init=2019-09-03
-+ basename=20190903T000000Z
-+ duration=45
-+ tduration=1
++ restart_path=/cluster/home/chengsukun/src/nextsim_data_dir
++ time_init0=2019-10-18
++ duration=7
++ tduration=26
 + ENSSIZE=40
 + block=1
 + jobsize=40
-+ UPDATE=0
-+ first_restart_path=/cluster/home/chengsukun/src/restart
++ UPDATE=1
++ first_restart_path=/cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1
 + [[ 40 > 1 ]]
 + randf=true
 + INFLATION=1
 + LOCRAD=300
 + RFACTOR=2
 + KFACTOR=2
-+ OUTPUT_DIR=/cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40
-+ echo 'work path:' /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40
-work path: /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40
-+ '[' -d /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40 ']'
-+ rm -rf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40
-+ '[' '!' -d /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40 ']'
-+ mkdir -p /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40
++ DA_VAR=sit
++ OUTPUT_DIR=/cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40
++ echo 'work path:' /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40
+work path: /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40
++ '[' -d /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40 ']'
++ '[' '!' -d /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40 ']'
++ mkdir -p /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40
 + (( iperiod=1 ))
-+ (( iperiod<=1 ))
-+ ENSPATH=/cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1
-+ mkdir -p /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1
-+ restart_from_analysis=false
++ (( iperiod<=26 ))
++ restart_from_analysis=true
 + start_from_restart=true
-+ true
++ '[' 1 -eq 1 ']'
++ analysis_source=/cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit
++ link_restarts 40 /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim_data_dir /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit
++ echo 'project *.nc.analysis on reference_grid.nc, links restart files to /cluster/home/chengsukun/src/nextsim_data_dir for next DA cycle'
+project *.nc.analysis on reference_grid.nc, links restart files to /cluster/home/chengsukun/src/nextsim_data_dir for next DA cycle
++ ENSSIZE=40
++ ENSPATH=/cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1
++ FILTER=/cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter
 + restart_path=/cluster/home/chengsukun/src/nextsim_data_dir
-+ rm -f '/cluster/home/chengsukun/src/nextsim_data_dir/{field_mem*' 'mesh_mem*' 'WindPerturbation_mem*' '*.nc.analysis}'
++ analysis_source=/cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit
++ rm -f /cluster/home/chengsukun/src/nextsim_data_dir/field_mem1.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem1.dat
++ rm -f /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem1.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem1.dat
++ rm -f /cluster/home/chengsukun/src/nextsim_data_dir/WindPerturbation_mem1.nc
++ rm -f '/cluster/home/chengsukun/src/nextsim_data_dir/*.nc.analysis'
 + (( i=1 ))
 + (( i<=40 ))
 + memname=mem1
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem1.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem1.dat
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem1.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem1.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem1/WindPerturbation_mem1.nc /cluster/home/chengsukun/src/nextsim_data_dir/WindPerturbation_mem1.nc
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem1/restart/field_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem1.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem1/restart/field_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem1.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem1/restart/mesh_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem1.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem1/restart/mesh_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem1.dat
 + (( i++  ))
 + (( i<=40 ))
 + memname=mem2
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem2.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem2.dat
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem2.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem2.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem2/WindPerturbation_mem2.nc /cluster/home/chengsukun/src/nextsim_data_dir/WindPerturbation_mem2.nc
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem2/restart/field_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem2.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem2/restart/field_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem2.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem2/restart/mesh_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem2.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem2/restart/mesh_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem2.dat
 + (( i++  ))
 + (( i<=40 ))
 + memname=mem3
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem3.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem3.dat
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem3.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem3.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem3/WindPerturbation_mem3.nc /cluster/home/chengsukun/src/nextsim_data_dir/WindPerturbation_mem3.nc
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem3/restart/field_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem3.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem3/restart/field_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem3.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem3/restart/mesh_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem3.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem3/restart/mesh_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem3.dat
 + (( i++  ))
 + (( i<=40 ))
 + memname=mem4
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem4.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem4.dat
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem4.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem4.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem4/WindPerturbation_mem4.nc /cluster/home/chengsukun/src/nextsim_data_dir/WindPerturbation_mem4.nc
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem4/restart/field_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem4.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem4/restart/field_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem4.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem4/restart/mesh_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem4.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem4/restart/mesh_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem4.dat
 + (( i++  ))
 + (( i<=40 ))
 + memname=mem5
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem5.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem5.dat
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem5.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem5.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem5/WindPerturbation_mem5.nc /cluster/home/chengsukun/src/nextsim_data_dir/WindPerturbation_mem5.nc
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem5/restart/field_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem5.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem5/restart/field_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem5.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem5/restart/mesh_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem5.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem5/restart/mesh_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem5.dat
 + (( i++  ))
 + (( i<=40 ))
 + memname=mem6
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem6.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem6.dat
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem6.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem6.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem6/WindPerturbation_mem6.nc /cluster/home/chengsukun/src/nextsim_data_dir/WindPerturbation_mem6.nc
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem6/restart/field_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem6.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem6/restart/field_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem6.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem6/restart/mesh_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem6.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem6/restart/mesh_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem6.dat
 + (( i++  ))
 + (( i<=40 ))
 + memname=mem7
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem7.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem7.dat
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem7.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem7.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem7/WindPerturbation_mem7.nc /cluster/home/chengsukun/src/nextsim_data_dir/WindPerturbation_mem7.nc
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem7/restart/field_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem7.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem7/restart/field_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem7.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem7/restart/mesh_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem7.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem7/restart/mesh_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem7.dat
 + (( i++  ))
 + (( i<=40 ))
 + memname=mem8
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem8.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem8.dat
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem8.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem8.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem8/WindPerturbation_mem8.nc /cluster/home/chengsukun/src/nextsim_data_dir/WindPerturbation_mem8.nc
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem8/restart/field_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem8.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem8/restart/field_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem8.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem8/restart/mesh_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem8.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem8/restart/mesh_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem8.dat
 + (( i++  ))
 + (( i<=40 ))
 + memname=mem9
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem9.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem9.dat
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem9.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem9.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem9/WindPerturbation_mem9.nc /cluster/home/chengsukun/src/nextsim_data_dir/WindPerturbation_mem9.nc
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem9/restart/field_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem9.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem9/restart/field_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem9.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem9/restart/mesh_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem9.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem9/restart/mesh_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem9.dat
 + (( i++  ))
 + (( i<=40 ))
 + memname=mem10
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem10.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem10.dat
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem10.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem10.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem10/WindPerturbation_mem10.nc /cluster/home/chengsukun/src/nextsim_data_dir/WindPerturbation_mem10.nc
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem10/restart/field_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem10.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem10/restart/field_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem10.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem10/restart/mesh_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem10.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem10/restart/mesh_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem10.dat
 + (( i++  ))
 + (( i<=40 ))
 + memname=mem11
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem11.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem11.dat
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem11.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem11.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem11/WindPerturbation_mem11.nc /cluster/home/chengsukun/src/nextsim_data_dir/WindPerturbation_mem11.nc
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem11/restart/field_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem11.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem11/restart/field_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem11.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem11/restart/mesh_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem11.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem11/restart/mesh_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem11.dat
 + (( i++  ))
 + (( i<=40 ))
 + memname=mem12
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem12.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem12.dat
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem12.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem12.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem12/WindPerturbation_mem12.nc /cluster/home/chengsukun/src/nextsim_data_dir/WindPerturbation_mem12.nc
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem12/restart/field_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem12.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem12/restart/field_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem12.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem12/restart/mesh_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem12.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem12/restart/mesh_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem12.dat
 + (( i++  ))
 + (( i<=40 ))
 + memname=mem13
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem13.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem13.dat
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem13.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem13.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem13/WindPerturbation_mem13.nc /cluster/home/chengsukun/src/nextsim_data_dir/WindPerturbation_mem13.nc
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem13/restart/field_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem13.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem13/restart/field_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem13.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem13/restart/mesh_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem13.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem13/restart/mesh_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem13.dat
 + (( i++  ))
 + (( i<=40 ))
 + memname=mem14
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem14.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem14.dat
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem14.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem14.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem14/WindPerturbation_mem14.nc /cluster/home/chengsukun/src/nextsim_data_dir/WindPerturbation_mem14.nc
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem14/restart/field_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem14.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem14/restart/field_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem14.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem14/restart/mesh_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem14.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem14/restart/mesh_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem14.dat
 + (( i++  ))
 + (( i<=40 ))
 + memname=mem15
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem15.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem15.dat
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem15.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem15.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem15/WindPerturbation_mem15.nc /cluster/home/chengsukun/src/nextsim_data_dir/WindPerturbation_mem15.nc
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem15/restart/field_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem15.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem15/restart/field_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem15.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem15/restart/mesh_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem15.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem15/restart/mesh_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem15.dat
 + (( i++  ))
 + (( i<=40 ))
 + memname=mem16
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem16.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem16.dat
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem16.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem16.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem16/WindPerturbation_mem16.nc /cluster/home/chengsukun/src/nextsim_data_dir/WindPerturbation_mem16.nc
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem16/restart/field_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem16.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem16/restart/field_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem16.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem16/restart/mesh_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem16.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem16/restart/mesh_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem16.dat
 + (( i++  ))
 + (( i<=40 ))
 + memname=mem17
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem17.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem17.dat
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem17.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem17.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem17/WindPerturbation_mem17.nc /cluster/home/chengsukun/src/nextsim_data_dir/WindPerturbation_mem17.nc
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem17/restart/field_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem17.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem17/restart/field_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem17.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem17/restart/mesh_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem17.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem17/restart/mesh_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem17.dat
 + (( i++  ))
 + (( i<=40 ))
 + memname=mem18
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem18.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem18.dat
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem18.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem18.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem18/WindPerturbation_mem18.nc /cluster/home/chengsukun/src/nextsim_data_dir/WindPerturbation_mem18.nc
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem18/restart/field_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem18.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem18/restart/field_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem18.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem18/restart/mesh_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem18.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem18/restart/mesh_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem18.dat
 + (( i++  ))
 + (( i<=40 ))
 + memname=mem19
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem19.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem19.dat
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem19.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem19.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem19/WindPerturbation_mem19.nc /cluster/home/chengsukun/src/nextsim_data_dir/WindPerturbation_mem19.nc
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem19/restart/field_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem19.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem19/restart/field_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem19.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem19/restart/mesh_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem19.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem19/restart/mesh_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem19.dat
 + (( i++  ))
 + (( i<=40 ))
 + memname=mem20
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem20.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem20.dat
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem20.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem20.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem20/WindPerturbation_mem20.nc /cluster/home/chengsukun/src/nextsim_data_dir/WindPerturbation_mem20.nc
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem20/restart/field_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem20.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem20/restart/field_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem20.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem20/restart/mesh_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem20.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem20/restart/mesh_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem20.dat
 + (( i++  ))
 + (( i<=40 ))
 + memname=mem21
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem21.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem21.dat
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem21.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem21.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem21/WindPerturbation_mem21.nc /cluster/home/chengsukun/src/nextsim_data_dir/WindPerturbation_mem21.nc
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem21/restart/field_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem21.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem21/restart/field_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem21.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem21/restart/mesh_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem21.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem21/restart/mesh_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem21.dat
 + (( i++  ))
 + (( i<=40 ))
 + memname=mem22
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem22.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem22.dat
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem22.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem22.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem22/WindPerturbation_mem22.nc /cluster/home/chengsukun/src/nextsim_data_dir/WindPerturbation_mem22.nc
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem22/restart/field_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem22.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem22/restart/field_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem22.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem22/restart/mesh_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem22.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem22/restart/mesh_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem22.dat
 + (( i++  ))
 + (( i<=40 ))
 + memname=mem23
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem23.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem23.dat
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem23.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem23.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem23/WindPerturbation_mem23.nc /cluster/home/chengsukun/src/nextsim_data_dir/WindPerturbation_mem23.nc
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem23/restart/field_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem23.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem23/restart/field_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem23.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem23/restart/mesh_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem23.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem23/restart/mesh_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem23.dat
 + (( i++  ))
 + (( i<=40 ))
 + memname=mem24
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem24.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem24.dat
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem24.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem24.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem24/WindPerturbation_mem24.nc /cluster/home/chengsukun/src/nextsim_data_dir/WindPerturbation_mem24.nc
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem24/restart/field_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem24.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem24/restart/field_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem24.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem24/restart/mesh_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem24.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem24/restart/mesh_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem24.dat
 + (( i++  ))
 + (( i<=40 ))
 + memname=mem25
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem25.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem25.dat
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem25.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem25.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem25/WindPerturbation_mem25.nc /cluster/home/chengsukun/src/nextsim_data_dir/WindPerturbation_mem25.nc
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem25/restart/field_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem25.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem25/restart/field_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem25.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem25/restart/mesh_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem25.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem25/restart/mesh_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem25.dat
 + (( i++  ))
 + (( i<=40 ))
 + memname=mem26
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem26.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem26.dat
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem26.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem26.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem26/WindPerturbation_mem26.nc /cluster/home/chengsukun/src/nextsim_data_dir/WindPerturbation_mem26.nc
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem26/restart/field_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem26.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem26/restart/field_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem26.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem26/restart/mesh_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem26.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem26/restart/mesh_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem26.dat
 + (( i++  ))
 + (( i<=40 ))
 + memname=mem27
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem27.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem27.dat
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem27.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem27.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem27/WindPerturbation_mem27.nc /cluster/home/chengsukun/src/nextsim_data_dir/WindPerturbation_mem27.nc
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem27/restart/field_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem27.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem27/restart/field_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem27.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem27/restart/mesh_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem27.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem27/restart/mesh_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem27.dat
 + (( i++  ))
 + (( i<=40 ))
 + memname=mem28
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem28.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem28.dat
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem28.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem28.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem28/WindPerturbation_mem28.nc /cluster/home/chengsukun/src/nextsim_data_dir/WindPerturbation_mem28.nc
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem28/restart/field_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem28.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem28/restart/field_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem28.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem28/restart/mesh_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem28.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem28/restart/mesh_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem28.dat
 + (( i++  ))
 + (( i<=40 ))
 + memname=mem29
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem29.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem29.dat
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem29.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem29.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem29/WindPerturbation_mem29.nc /cluster/home/chengsukun/src/nextsim_data_dir/WindPerturbation_mem29.nc
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem29/restart/field_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem29.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem29/restart/field_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem29.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem29/restart/mesh_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem29.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem29/restart/mesh_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem29.dat
 + (( i++  ))
 + (( i<=40 ))
 + memname=mem30
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem30.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem30.dat
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem30.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem30.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem30/WindPerturbation_mem30.nc /cluster/home/chengsukun/src/nextsim_data_dir/WindPerturbation_mem30.nc
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem30/restart/field_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem30.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem30/restart/field_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem30.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem30/restart/mesh_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem30.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem30/restart/mesh_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem30.dat
 + (( i++  ))
 + (( i<=40 ))
 + memname=mem31
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem31.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem31.dat
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem31.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem31.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem31/WindPerturbation_mem31.nc /cluster/home/chengsukun/src/nextsim_data_dir/WindPerturbation_mem31.nc
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem31/restart/field_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem31.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem31/restart/field_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem31.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem31/restart/mesh_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem31.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem31/restart/mesh_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem31.dat
 + (( i++  ))
 + (( i<=40 ))
 + memname=mem32
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem32.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem32.dat
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem32.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem32.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem32/WindPerturbation_mem32.nc /cluster/home/chengsukun/src/nextsim_data_dir/WindPerturbation_mem32.nc
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem32/restart/field_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem32.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem32/restart/field_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem32.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem32/restart/mesh_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem32.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem32/restart/mesh_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem32.dat
 + (( i++  ))
 + (( i<=40 ))
 + memname=mem33
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem33.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem33.dat
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem33.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem33.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem33/WindPerturbation_mem33.nc /cluster/home/chengsukun/src/nextsim_data_dir/WindPerturbation_mem33.nc
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem33/restart/field_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem33.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem33/restart/field_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem33.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem33/restart/mesh_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem33.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem33/restart/mesh_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem33.dat
 + (( i++  ))
 + (( i<=40 ))
 + memname=mem34
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem34.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem34.dat
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem34.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem34.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem34/WindPerturbation_mem34.nc /cluster/home/chengsukun/src/nextsim_data_dir/WindPerturbation_mem34.nc
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem34/restart/field_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem34.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem34/restart/field_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem34.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem34/restart/mesh_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem34.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem34/restart/mesh_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem34.dat
 + (( i++  ))
 + (( i<=40 ))
 + memname=mem35
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem35.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem35.dat
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem35.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem35.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem35/WindPerturbation_mem35.nc /cluster/home/chengsukun/src/nextsim_data_dir/WindPerturbation_mem35.nc
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem35/restart/field_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem35.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem35/restart/field_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem35.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem35/restart/mesh_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem35.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem35/restart/mesh_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem35.dat
 + (( i++  ))
 + (( i<=40 ))
 + memname=mem36
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem36.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem36.dat
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem36.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem36.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem36/WindPerturbation_mem36.nc /cluster/home/chengsukun/src/nextsim_data_dir/WindPerturbation_mem36.nc
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem36/restart/field_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem36.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem36/restart/field_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem36.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem36/restart/mesh_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem36.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem36/restart/mesh_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem36.dat
 + (( i++  ))
 + (( i<=40 ))
 + memname=mem37
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem37.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem37.dat
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem37.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem37.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem37/WindPerturbation_mem37.nc /cluster/home/chengsukun/src/nextsim_data_dir/WindPerturbation_mem37.nc
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem37/restart/field_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem37.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem37/restart/field_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem37.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem37/restart/mesh_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem37.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem37/restart/mesh_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem37.dat
 + (( i++  ))
 + (( i<=40 ))
 + memname=mem38
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem38.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem38.dat
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem38.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem38.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem38/WindPerturbation_mem38.nc /cluster/home/chengsukun/src/nextsim_data_dir/WindPerturbation_mem38.nc
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem38/restart/field_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem38.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem38/restart/field_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem38.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem38/restart/mesh_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem38.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem38/restart/mesh_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem38.dat
 + (( i++  ))
 + (( i<=40 ))
 + memname=mem39
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem39.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem39.dat
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem39.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem39.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem39/WindPerturbation_mem39.nc /cluster/home/chengsukun/src/nextsim_data_dir/WindPerturbation_mem39.nc
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem39/restart/field_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem39.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem39/restart/field_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem39.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem39/restart/mesh_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem39.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem39/restart/mesh_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem39.dat
 + (( i++  ))
 + (( i<=40 ))
 + memname=mem40
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem40.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/field_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem40.dat
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem40.bin
-+ ln -sf /cluster/home/chengsukun/src/restart/mesh_20190903T000000Z.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem40.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem40/WindPerturbation_mem40.nc /cluster/home/chengsukun/src/nextsim_data_dir/WindPerturbation_mem40.nc
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem40/restart/field_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/field_mem40.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem40/restart/field_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/field_mem40.dat
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem40/restart/mesh_final.bin /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem40.bin
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem40/restart/mesh_final.dat /cluster/home/chengsukun/src/nextsim_data_dir/mesh_mem40.dat
 + (( i++  ))
 + (( i<=40 ))
-++ date +%Y%m%d -d '2019-09-03 + 45 day'
-+ echo 'period 2019-09-03 to 20191018'
-period 2019-09-03 to 20191018
++ '[' '!' -d /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit ']'
++ (( i=1 ))
++ (( i<=40 ))
++ memname=mem1
++ '[' '!' -d /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem1.nc.analysis ']'
+++ printf mem%.3d 1
++ cdo merge /cluster/home/chengsukun/src/nextsim_data_dir/reference_grid.nc /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem001.nc.analysis /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem1.nc.analysis
+Warning (find_time_vars): Time variable >time< not found!
+cdo merge: Processed 8268481 values from 16 variables over 1 timestep [0.46s 61MB]
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem1.nc.analysis /cluster/home/chengsukun/src/nextsim_data_dir/mem1.nc.analysis
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem2
++ '[' '!' -d /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem2.nc.analysis ']'
+++ printf mem%.3d 2
++ cdo merge /cluster/home/chengsukun/src/nextsim_data_dir/reference_grid.nc /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem002.nc.analysis /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem2.nc.analysis
+Warning (find_time_vars): Time variable >time< not found!
+cdo merge: Processed 8268481 values from 16 variables over 1 timestep [0.36s 61MB]
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem2.nc.analysis /cluster/home/chengsukun/src/nextsim_data_dir/mem2.nc.analysis
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem3
++ '[' '!' -d /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem3.nc.analysis ']'
+++ printf mem%.3d 3
++ cdo merge /cluster/home/chengsukun/src/nextsim_data_dir/reference_grid.nc /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem003.nc.analysis /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem3.nc.analysis
+Warning (find_time_vars): Time variable >time< not found!
+cdo merge: Processed 8268481 values from 16 variables over 1 timestep [0.35s 61MB]
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem3.nc.analysis /cluster/home/chengsukun/src/nextsim_data_dir/mem3.nc.analysis
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem4
++ '[' '!' -d /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem4.nc.analysis ']'
+++ printf mem%.3d 4
++ cdo merge /cluster/home/chengsukun/src/nextsim_data_dir/reference_grid.nc /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem004.nc.analysis /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem4.nc.analysis
+Warning (find_time_vars): Time variable >time< not found!
+cdo merge: Processed 8268481 values from 16 variables over 1 timestep [0.35s 61MB]
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem4.nc.analysis /cluster/home/chengsukun/src/nextsim_data_dir/mem4.nc.analysis
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem5
++ '[' '!' -d /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem5.nc.analysis ']'
+++ printf mem%.3d 5
++ cdo merge /cluster/home/chengsukun/src/nextsim_data_dir/reference_grid.nc /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem005.nc.analysis /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem5.nc.analysis
+Warning (find_time_vars): Time variable >time< not found!
+cdo merge: Processed 8268481 values from 16 variables over 1 timestep [0.35s 61MB]
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem5.nc.analysis /cluster/home/chengsukun/src/nextsim_data_dir/mem5.nc.analysis
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem6
++ '[' '!' -d /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem6.nc.analysis ']'
+++ printf mem%.3d 6
++ cdo merge /cluster/home/chengsukun/src/nextsim_data_dir/reference_grid.nc /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem006.nc.analysis /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem6.nc.analysis
+Warning (find_time_vars): Time variable >time< not found!
+cdo merge: Processed 8268481 values from 16 variables over 1 timestep [0.35s 61MB]
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem6.nc.analysis /cluster/home/chengsukun/src/nextsim_data_dir/mem6.nc.analysis
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem7
++ '[' '!' -d /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem7.nc.analysis ']'
+++ printf mem%.3d 7
++ cdo merge /cluster/home/chengsukun/src/nextsim_data_dir/reference_grid.nc /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem007.nc.analysis /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem7.nc.analysis
+Warning (find_time_vars): Time variable >time< not found!
+cdo merge: Processed 8268481 values from 16 variables over 1 timestep [0.36s 61MB]
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem7.nc.analysis /cluster/home/chengsukun/src/nextsim_data_dir/mem7.nc.analysis
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem8
++ '[' '!' -d /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem8.nc.analysis ']'
+++ printf mem%.3d 8
++ cdo merge /cluster/home/chengsukun/src/nextsim_data_dir/reference_grid.nc /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem008.nc.analysis /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem8.nc.analysis
+Warning (find_time_vars): Time variable >time< not found!
+cdo merge: Processed 8268481 values from 16 variables over 1 timestep [0.35s 61MB]
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem8.nc.analysis /cluster/home/chengsukun/src/nextsim_data_dir/mem8.nc.analysis
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem9
++ '[' '!' -d /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem9.nc.analysis ']'
+++ printf mem%.3d 9
++ cdo merge /cluster/home/chengsukun/src/nextsim_data_dir/reference_grid.nc /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem009.nc.analysis /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem9.nc.analysis
+Warning (find_time_vars): Time variable >time< not found!
+cdo merge: Processed 8268481 values from 16 variables over 1 timestep [0.35s 63MB]
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem9.nc.analysis /cluster/home/chengsukun/src/nextsim_data_dir/mem9.nc.analysis
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem10
++ '[' '!' -d /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem10.nc.analysis ']'
+++ printf mem%.3d 10
++ cdo merge /cluster/home/chengsukun/src/nextsim_data_dir/reference_grid.nc /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem010.nc.analysis /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem10.nc.analysis
+Warning (find_time_vars): Time variable >time< not found!
+cdo merge: Processed 8268481 values from 16 variables over 1 timestep [0.35s 61MB]
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem10.nc.analysis /cluster/home/chengsukun/src/nextsim_data_dir/mem10.nc.analysis
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem11
++ '[' '!' -d /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem11.nc.analysis ']'
+++ printf mem%.3d 11
++ cdo merge /cluster/home/chengsukun/src/nextsim_data_dir/reference_grid.nc /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem011.nc.analysis /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem11.nc.analysis
+Warning (find_time_vars): Time variable >time< not found!
+cdo merge: Processed 8268481 values from 16 variables over 1 timestep [0.36s 61MB]
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem11.nc.analysis /cluster/home/chengsukun/src/nextsim_data_dir/mem11.nc.analysis
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem12
++ '[' '!' -d /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem12.nc.analysis ']'
+++ printf mem%.3d 12
++ cdo merge /cluster/home/chengsukun/src/nextsim_data_dir/reference_grid.nc /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem012.nc.analysis /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem12.nc.analysis
+Warning (find_time_vars): Time variable >time< not found!
+cdo merge: Processed 8268481 values from 16 variables over 1 timestep [0.34s 61MB]
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem12.nc.analysis /cluster/home/chengsukun/src/nextsim_data_dir/mem12.nc.analysis
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem13
++ '[' '!' -d /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem13.nc.analysis ']'
+++ printf mem%.3d 13
++ cdo merge /cluster/home/chengsukun/src/nextsim_data_dir/reference_grid.nc /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem013.nc.analysis /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem13.nc.analysis
+Warning (find_time_vars): Time variable >time< not found!
+cdo merge: Processed 8268481 values from 16 variables over 1 timestep [0.35s 61MB]
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem13.nc.analysis /cluster/home/chengsukun/src/nextsim_data_dir/mem13.nc.analysis
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem14
++ '[' '!' -d /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem14.nc.analysis ']'
+++ printf mem%.3d 14
++ cdo merge /cluster/home/chengsukun/src/nextsim_data_dir/reference_grid.nc /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem014.nc.analysis /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem14.nc.analysis
+Warning (find_time_vars): Time variable >time< not found!
+cdo merge: Processed 8268481 values from 16 variables over 1 timestep [0.35s 61MB]
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem14.nc.analysis /cluster/home/chengsukun/src/nextsim_data_dir/mem14.nc.analysis
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem15
++ '[' '!' -d /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem15.nc.analysis ']'
+++ printf mem%.3d 15
++ cdo merge /cluster/home/chengsukun/src/nextsim_data_dir/reference_grid.nc /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem015.nc.analysis /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem15.nc.analysis
+Warning (find_time_vars): Time variable >time< not found!
+cdo merge: Processed 8268481 values from 16 variables over 1 timestep [0.39s 61MB]
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem15.nc.analysis /cluster/home/chengsukun/src/nextsim_data_dir/mem15.nc.analysis
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem16
++ '[' '!' -d /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem16.nc.analysis ']'
+++ printf mem%.3d 16
++ cdo merge /cluster/home/chengsukun/src/nextsim_data_dir/reference_grid.nc /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem016.nc.analysis /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem16.nc.analysis
+Warning (find_time_vars): Time variable >time< not found!
+cdo merge: Processed 8268481 values from 16 variables over 1 timestep [0.35s 61MB]
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem16.nc.analysis /cluster/home/chengsukun/src/nextsim_data_dir/mem16.nc.analysis
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem17
++ '[' '!' -d /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem17.nc.analysis ']'
+++ printf mem%.3d 17
++ cdo merge /cluster/home/chengsukun/src/nextsim_data_dir/reference_grid.nc /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem017.nc.analysis /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem17.nc.analysis
+Warning (find_time_vars): Time variable >time< not found!
+cdo merge: Processed 8268481 values from 16 variables over 1 timestep [0.36s 61MB]
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem17.nc.analysis /cluster/home/chengsukun/src/nextsim_data_dir/mem17.nc.analysis
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem18
++ '[' '!' -d /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem18.nc.analysis ']'
+++ printf mem%.3d 18
++ cdo merge /cluster/home/chengsukun/src/nextsim_data_dir/reference_grid.nc /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem018.nc.analysis /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem18.nc.analysis
+Warning (find_time_vars): Time variable >time< not found!
+cdo merge: Processed 8268481 values from 16 variables over 1 timestep [0.42s 61MB]
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem18.nc.analysis /cluster/home/chengsukun/src/nextsim_data_dir/mem18.nc.analysis
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem19
++ '[' '!' -d /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem19.nc.analysis ']'
+++ printf mem%.3d 19
++ cdo merge /cluster/home/chengsukun/src/nextsim_data_dir/reference_grid.nc /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem019.nc.analysis /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem19.nc.analysis
+Warning (find_time_vars): Time variable >time< not found!
+cdo merge: Processed 8268481 values from 16 variables over 1 timestep [0.35s 61MB]
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem19.nc.analysis /cluster/home/chengsukun/src/nextsim_data_dir/mem19.nc.analysis
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem20
++ '[' '!' -d /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem20.nc.analysis ']'
+++ printf mem%.3d 20
++ cdo merge /cluster/home/chengsukun/src/nextsim_data_dir/reference_grid.nc /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem020.nc.analysis /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem20.nc.analysis
+Warning (find_time_vars): Time variable >time< not found!
+cdo merge: Processed 8268481 values from 16 variables over 1 timestep [0.36s 61MB]
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem20.nc.analysis /cluster/home/chengsukun/src/nextsim_data_dir/mem20.nc.analysis
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem21
++ '[' '!' -d /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem21.nc.analysis ']'
+++ printf mem%.3d 21
++ cdo merge /cluster/home/chengsukun/src/nextsim_data_dir/reference_grid.nc /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem021.nc.analysis /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem21.nc.analysis
+Warning (find_time_vars): Time variable >time< not found!
+cdo merge: Processed 8268481 values from 16 variables over 1 timestep [0.35s 61MB]
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem21.nc.analysis /cluster/home/chengsukun/src/nextsim_data_dir/mem21.nc.analysis
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem22
++ '[' '!' -d /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem22.nc.analysis ']'
+++ printf mem%.3d 22
++ cdo merge /cluster/home/chengsukun/src/nextsim_data_dir/reference_grid.nc /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem022.nc.analysis /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem22.nc.analysis
+Warning (find_time_vars): Time variable >time< not found!
+cdo merge: Processed 8268481 values from 16 variables over 1 timestep [0.36s 61MB]
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem22.nc.analysis /cluster/home/chengsukun/src/nextsim_data_dir/mem22.nc.analysis
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem23
++ '[' '!' -d /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem23.nc.analysis ']'
+++ printf mem%.3d 23
++ cdo merge /cluster/home/chengsukun/src/nextsim_data_dir/reference_grid.nc /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem023.nc.analysis /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem23.nc.analysis
+Warning (find_time_vars): Time variable >time< not found!
+cdo merge: Processed 8268481 values from 16 variables over 1 timestep [0.41s 61MB]
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem23.nc.analysis /cluster/home/chengsukun/src/nextsim_data_dir/mem23.nc.analysis
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem24
++ '[' '!' -d /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem24.nc.analysis ']'
+++ printf mem%.3d 24
++ cdo merge /cluster/home/chengsukun/src/nextsim_data_dir/reference_grid.nc /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem024.nc.analysis /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem24.nc.analysis
+Warning (find_time_vars): Time variable >time< not found!
+cdo merge: Processed 8268481 values from 16 variables over 1 timestep [0.35s 61MB]
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem24.nc.analysis /cluster/home/chengsukun/src/nextsim_data_dir/mem24.nc.analysis
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem25
++ '[' '!' -d /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem25.nc.analysis ']'
+++ printf mem%.3d 25
++ cdo merge /cluster/home/chengsukun/src/nextsim_data_dir/reference_grid.nc /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem025.nc.analysis /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem25.nc.analysis
+Warning (find_time_vars): Time variable >time< not found!
+cdo merge: Processed 8268481 values from 16 variables over 1 timestep [0.35s 61MB]
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem25.nc.analysis /cluster/home/chengsukun/src/nextsim_data_dir/mem25.nc.analysis
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem26
++ '[' '!' -d /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem26.nc.analysis ']'
+++ printf mem%.3d 26
++ cdo merge /cluster/home/chengsukun/src/nextsim_data_dir/reference_grid.nc /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem026.nc.analysis /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem26.nc.analysis
+Warning (find_time_vars): Time variable >time< not found!
+cdo merge: Processed 8268481 values from 16 variables over 1 timestep [0.36s 61MB]
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem26.nc.analysis /cluster/home/chengsukun/src/nextsim_data_dir/mem26.nc.analysis
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem27
++ '[' '!' -d /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem27.nc.analysis ']'
+++ printf mem%.3d 27
++ cdo merge /cluster/home/chengsukun/src/nextsim_data_dir/reference_grid.nc /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem027.nc.analysis /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem27.nc.analysis
+Warning (find_time_vars): Time variable >time< not found!
+cdo merge: Processed 8268481 values from 16 variables over 1 timestep [0.35s 61MB]
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem27.nc.analysis /cluster/home/chengsukun/src/nextsim_data_dir/mem27.nc.analysis
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem28
++ '[' '!' -d /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem28.nc.analysis ']'
+++ printf mem%.3d 28
++ cdo merge /cluster/home/chengsukun/src/nextsim_data_dir/reference_grid.nc /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem028.nc.analysis /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem28.nc.analysis
+Warning (find_time_vars): Time variable >time< not found!
+cdo merge: Processed 8268481 values from 16 variables over 1 timestep [0.35s 61MB]
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem28.nc.analysis /cluster/home/chengsukun/src/nextsim_data_dir/mem28.nc.analysis
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem29
++ '[' '!' -d /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem29.nc.analysis ']'
+++ printf mem%.3d 29
++ cdo merge /cluster/home/chengsukun/src/nextsim_data_dir/reference_grid.nc /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem029.nc.analysis /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem29.nc.analysis
+Warning (find_time_vars): Time variable >time< not found!
+cdo merge: Processed 8268481 values from 16 variables over 1 timestep [0.35s 61MB]
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem29.nc.analysis /cluster/home/chengsukun/src/nextsim_data_dir/mem29.nc.analysis
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem30
++ '[' '!' -d /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem30.nc.analysis ']'
+++ printf mem%.3d 30
++ cdo merge /cluster/home/chengsukun/src/nextsim_data_dir/reference_grid.nc /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem030.nc.analysis /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem30.nc.analysis
+Warning (find_time_vars): Time variable >time< not found!
+cdo merge: Processed 8268481 values from 16 variables over 1 timestep [0.40s 61MB]
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem30.nc.analysis /cluster/home/chengsukun/src/nextsim_data_dir/mem30.nc.analysis
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem31
++ '[' '!' -d /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem31.nc.analysis ']'
+++ printf mem%.3d 31
++ cdo merge /cluster/home/chengsukun/src/nextsim_data_dir/reference_grid.nc /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem031.nc.analysis /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem31.nc.analysis
+Warning (find_time_vars): Time variable >time< not found!
+cdo merge: Processed 8268481 values from 16 variables over 1 timestep [0.36s 61MB]
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem31.nc.analysis /cluster/home/chengsukun/src/nextsim_data_dir/mem31.nc.analysis
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem32
++ '[' '!' -d /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem32.nc.analysis ']'
+++ printf mem%.3d 32
++ cdo merge /cluster/home/chengsukun/src/nextsim_data_dir/reference_grid.nc /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem032.nc.analysis /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem32.nc.analysis
+Warning (find_time_vars): Time variable >time< not found!
+cdo merge: Processed 8268481 values from 16 variables over 1 timestep [0.35s 61MB]
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem32.nc.analysis /cluster/home/chengsukun/src/nextsim_data_dir/mem32.nc.analysis
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem33
++ '[' '!' -d /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem33.nc.analysis ']'
+++ printf mem%.3d 33
++ cdo merge /cluster/home/chengsukun/src/nextsim_data_dir/reference_grid.nc /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem033.nc.analysis /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem33.nc.analysis
+Warning (find_time_vars): Time variable >time< not found!
+cdo merge: Processed 8268481 values from 16 variables over 1 timestep [0.44s 61MB]
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem33.nc.analysis /cluster/home/chengsukun/src/nextsim_data_dir/mem33.nc.analysis
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem34
++ '[' '!' -d /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem34.nc.analysis ']'
+++ printf mem%.3d 34
++ cdo merge /cluster/home/chengsukun/src/nextsim_data_dir/reference_grid.nc /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem034.nc.analysis /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem34.nc.analysis
+Warning (find_time_vars): Time variable >time< not found!
+cdo merge: Processed 8268481 values from 16 variables over 1 timestep [0.42s 61MB]
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem34.nc.analysis /cluster/home/chengsukun/src/nextsim_data_dir/mem34.nc.analysis
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem35
++ '[' '!' -d /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem35.nc.analysis ']'
+++ printf mem%.3d 35
++ cdo merge /cluster/home/chengsukun/src/nextsim_data_dir/reference_grid.nc /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem035.nc.analysis /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem35.nc.analysis
+Warning (find_time_vars): Time variable >time< not found!
+cdo merge: Processed 8268481 values from 16 variables over 1 timestep [0.37s 61MB]
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem35.nc.analysis /cluster/home/chengsukun/src/nextsim_data_dir/mem35.nc.analysis
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem36
++ '[' '!' -d /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem36.nc.analysis ']'
+++ printf mem%.3d 36
++ cdo merge /cluster/home/chengsukun/src/nextsim_data_dir/reference_grid.nc /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem036.nc.analysis /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem36.nc.analysis
+Warning (find_time_vars): Time variable >time< not found!
+cdo merge: Processed 8268481 values from 16 variables over 1 timestep [0.37s 61MB]
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem36.nc.analysis /cluster/home/chengsukun/src/nextsim_data_dir/mem36.nc.analysis
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem37
++ '[' '!' -d /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem37.nc.analysis ']'
+++ printf mem%.3d 37
++ cdo merge /cluster/home/chengsukun/src/nextsim_data_dir/reference_grid.nc /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem037.nc.analysis /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem37.nc.analysis
+Warning (find_time_vars): Time variable >time< not found!
+cdo merge: Processed 8268481 values from 16 variables over 1 timestep [0.35s 61MB]
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem37.nc.analysis /cluster/home/chengsukun/src/nextsim_data_dir/mem37.nc.analysis
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem38
++ '[' '!' -d /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem38.nc.analysis ']'
+++ printf mem%.3d 38
++ cdo merge /cluster/home/chengsukun/src/nextsim_data_dir/reference_grid.nc /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem038.nc.analysis /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem38.nc.analysis
+Warning (find_time_vars): Time variable >time< not found!
+cdo merge: Processed 8268481 values from 16 variables over 1 timestep [0.41s 61MB]
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem38.nc.analysis /cluster/home/chengsukun/src/nextsim_data_dir/mem38.nc.analysis
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem39
++ '[' '!' -d /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem39.nc.analysis ']'
+++ printf mem%.3d 39
++ cdo merge /cluster/home/chengsukun/src/nextsim_data_dir/reference_grid.nc /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem039.nc.analysis /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem39.nc.analysis
+Warning (find_time_vars): Time variable >time< not found!
+cdo merge: Processed 8268481 values from 16 variables over 1 timestep [0.39s 61MB]
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem39.nc.analysis /cluster/home/chengsukun/src/nextsim_data_dir/mem39.nc.analysis
++ (( i++  ))
++ (( i<=40 ))
++ memname=mem40
++ '[' '!' -d /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem40.nc.analysis ']'
+++ printf mem%.3d 40
++ cdo merge /cluster/home/chengsukun/src/nextsim_data_dir/reference_grid.nc /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem040.nc.analysis /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem40.nc.analysis
+Warning (find_time_vars): Time variable >time< not found!
+cdo merge: Processed 8268481 values from 16 variables over 1 timestep [0.37s 61MB]
++ ln -sf /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit/mem40.nc.analysis /cluster/home/chengsukun/src/nextsim_data_dir/mem40.nc.analysis
++ (( i++  ))
++ (( i<=40 ))
+++ date +%Y-%m-%d -d '2019-10-18 + 0 day'
++ time_init=2019-10-18
+++ date +%Y%m%d -d '2019-10-18 + 7 day'
++ echo 'period 2019-10-18 to 20191025'
+period 2019-10-18 to 20191025
++ ENSPATH=/cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1
++ mkdir -p /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1
 + source /cluster/home/chengsukun/src/fram_job_submit_panel/2020DA_scripts/part1_create_file_system.sh
 ++ echo 'Part1 initialize files system, write nextsim.cfg, pseudo2D.nml to workpath'
 Part1 initialize files system, write nextsim.cfg, pseudo2D.nml to workpath
-++ sed -i 's/^time_init=.*$/time_init=2019-09-03/g;          s/^duration=.*$/duration=45/g;          s/^dynamics-type=.*$/dynamics-type=bbm/g;          s/^output_timestep=.*$/output_timestep=1/g;          s/^start_from_restart=.*$/start_from_restart=true/g;          s/^write_final_restart=.*$/write_final_restart=true/g;          s/^input_path=.*$/input_path=/g;          s/^basename.*$/basename=/g;          s/^restart_from_analysis=.*$/restart_from_analysis=false/g' /cluster/home/chengsukun/src/fram_job_submit_panel/2020DA_scripts/nextsim.cfg
-++ cp /cluster/home/chengsukun/src/fram_job_submit_panel/2020DA_scripts/nextsim.cfg /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/nextsim.cfg
+++ sed -i 's/^time_init=.*$/time_init=2019-10-18/g;          s/^duration=.*$/duration=7/g;          s/^dynamics-type=.*$/dynamics-type=bbm/g;          s/^output_timestep=.*$/output_timestep=1/g;          s/^start_from_restart=.*$/start_from_restart=true/g;          s/^write_final_restart=.*$/write_final_restart=true/g;          s/^input_path=.*$/input_path=/g;          s/^basename.*$/basename=/g;          s/^restart_from_analysis=.*$/restart_from_analysis=true/g' /cluster/home/chengsukun/src/fram_job_submit_panel/2020DA_scripts/nextsim.cfg
+++ cp /cluster/home/chengsukun/src/fram_job_submit_panel/2020DA_scripts/nextsim.cfg /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/nextsim.cfg
 ++ sed -i 's/^iopath.*$/iopath = '\''.'\''/g;             s/^randf.*$/randf    = .true./g;             s/^vwndspd.*$/vwndspd=3/g;             s/^scorr_dx.*$/scorr_dx=10/g;             s/^C_lab.*$/C_lab=1.5e6/g;             s/^C_perturb.*$/C_perturb=0.33/g;' /cluster/home/chengsukun/src/fram_job_submit_panel/2020DA_scripts/pseudo2D.nml
-++ cp /cluster/home/chengsukun/src/fram_job_submit_panel/2020DA_scripts/pseudo2D.nml /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/pseudo2D.nml
-++ [[ 0 == 1 ]]
+++ cp /cluster/home/chengsukun/src/fram_job_submit_panel/2020DA_scripts/pseudo2D.nml /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/pseudo2D.nml
+++ [[ 1 == 1 ]]
+++ FILTER=/cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/filter
+++ mkdir -p /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/filter/prior
+++ echo '  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files'
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+++ cd /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/filter
+++ cp /cluster/home/chengsukun/src/fram_job_submit_panel/2020DA_scripts/enkf_cfg_sit/enkf.prm /cluster/home/chengsukun/src/fram_job_submit_panel/2020DA_scripts/enkf_cfg_sit/grid.prm /cluster/home/chengsukun/src/fram_job_submit_panel/2020DA_scripts/enkf_cfg_sit/Makefile /cluster/home/chengsukun/src/fram_job_submit_panel/2020DA_scripts/enkf_cfg_sit/model.prm /cluster/home/chengsukun/src/fram_job_submit_panel/2020DA_scripts/enkf_cfg_sit/obs.prm /cluster/home/chengsukun/src/fram_job_submit_panel/2020DA_scripts/enkf_cfg_sit/obstypes.prm .
+++ cp /cluster/home/chengsukun/src/nextsim/modules/enkf/enkf-c/bin/enkf_calc /cluster/home/chengsukun/src/nextsim/modules/enkf/enkf-c/bin/enkf_prep /cluster/home/chengsukun/src/nextsim/modules/enkf/enkf-c/bin/enkf_update .
+++ sed -i 's;mpirun;mpirun --allow-run-as-root;g' Makefile
+++ sed -i 's|^ENSSIZE.*$|ENSSIZE = 40|g;             s|^INFLATION.*$|INFLATION = 1|g;             s|^LOCRAD.*$|LOCRAD = 300|g;            s|^RFACTOR.*$|RFACTOR = 2|g;             s|^KFACTOR.*$|KFACTOR = 2|g;' enkf.prm
+++ sed -i 's;^DATA.*$;DATA =/cluster/home/chengsukun/src/nextsim_data_dir/reference_grid.nc;g' grid.prm
+++ ln -sf /cluster/home/chengsukun/src/nextsim_data_dir/reference_grid.nc /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/filter/reference_grid.nc
+++ echo '  add observations path to /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/filter/obs.prm'
+  add observations path to /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/filter/obs.prm
++++ expr '(7-3)'
++++ bc
+++ A1=4
++++ bc
++++ expr '(7+3)'
+++ A2=10
+++ OBSNAME_PREFIX=/cluster/home/chengsukun/src/nextsim_data_dir/CS2_SMOS_v2.3/W_XX-ESA,SMOS_CS2,NH_25KM_EASE2_
+++ OBSNAME_SUFFIX=_r_v203_01_l4sit
++++ date +%Y%m%d -d '2019-10-18 + 4 day'
++++ date +%Y%m%d -d '2019-10-18 + 10 day'
+++ CS2SMOS_fname=/cluster/home/chengsukun/src/nextsim_data_dir/CS2_SMOS_v2.3/W_XX-ESA,SMOS_CS2,NH_25KM_EASE2_20191022_20191028_r_v203_01_l4sit.nc
++++ date +%Y -d '2019-10-18 + 7 day'
++++ date +%Y%m%d -d '2019-10-18 + 7 day'
+++ OSISAF_fname=/cluster/home/chengsukun/src/nextsim_data_dir/OSISAF_ice_conc/polstere/2019_nh_polstere/ice_conc_nh_polstere-100_multi_201910251200.nc
+++ '[' '!' -f /cluster/home/chengsukun/src/nextsim_data_dir/CS2_SMOS_v2.3/W_XX-ESA,SMOS_CS2,NH_25KM_EASE2_20191022_20191028_r_v203_01_l4sit.nc ']'
+++ '[' '!' -f /cluster/home/chengsukun/src/nextsim_data_dir/OSISAF_ice_conc/polstere/2019_nh_polstere/ice_conc_nh_polstere-100_multi_201910251200.nc ']'
+++ [[ sit == \s\i\t ]]
+++ sed -i 's;^.*FILE.*$;FILE =/cluster/home/chengsukun/src/nextsim_data_dir/CS2_SMOS_v2.3/W_XX-ESA,SMOS_CS2,NH_25KM_EASE2_20191022_20191028_r_v203_01_l4sit.nc;1' obs.prm
 ++ squeue -u chengsukun
 ++ grep -o chengsuk
 ++ wc -l
 + XPID0=0
-+ cd /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1
-+ script=/cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh
-+ cp /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh
++ cd /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1
++ script=/cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh
++ cp /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh
 + (( j=1 ))
 + (( j<=3 ))
 + (( i=1 ))
 + (( i<=40 ))
-+ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem1/task.log
-+ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 1'
-+ sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 1
-Submitted batch job 2914115
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/mem1/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 1'
++ sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 1
+Submitted batch job 2928563
 + (( i++  ))
 + (( i<=40 ))
-+ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem2/task.log
-+ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 2'
-+ sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 2
-Submitted batch job 2914116
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/mem2/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 2'
++ sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 2
+Submitted batch job 2928564
 + (( i++  ))
 + (( i<=40 ))
-+ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem3/task.log
-+ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 3'
-+ sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 3
-Submitted batch job 2914117
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/mem3/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 3'
++ sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 3
+Submitted batch job 2928565
 + (( i++  ))
 + (( i<=40 ))
-+ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem4/task.log
-+ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 4'
-+ sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 4
-Submitted batch job 2914118
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/mem4/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 4'
++ sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 4
+Submitted batch job 2928566
 + (( i++  ))
 + (( i<=40 ))
-+ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem5/task.log
-+ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 5'
-+ sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 5
-Submitted batch job 2914119
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/mem5/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 5'
++ sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 5
+Submitted batch job 2928567
 + (( i++  ))
 + (( i<=40 ))
-+ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem6/task.log
-+ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 6'
-+ sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 6
-Submitted batch job 2914120
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/mem6/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 6'
++ sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 6
+Submitted batch job 2928568
 + (( i++  ))
 + (( i<=40 ))
-+ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem7/task.log
-+ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 7'
-+ sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 7
-Submitted batch job 2914121
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/mem7/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 7'
++ sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 7
+Submitted batch job 2928569
 + (( i++  ))
 + (( i<=40 ))
-+ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem8/task.log
-+ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 8'
-+ sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 8
-Submitted batch job 2914122
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/mem8/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 8'
++ sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 8
+Submitted batch job 2928570
 + (( i++  ))
 + (( i<=40 ))
-+ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem9/task.log
-+ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 9'
-+ sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 9
-Submitted batch job 2914123
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/mem9/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 9'
++ sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 9
+Submitted batch job 2928571
 + (( i++  ))
 + (( i<=40 ))
-+ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem10/task.log
-+ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 10'
-+ sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 10
-Submitted batch job 2914124
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/mem10/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 10'
++ sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 10
+Submitted batch job 2928572
 + (( i++  ))
 + (( i<=40 ))
-+ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem11/task.log
-+ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 11'
-+ sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 11
-Submitted batch job 2914125
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/mem11/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 11'
++ sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 11
+Submitted batch job 2928573
 + (( i++  ))
 + (( i<=40 ))
-+ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem12/task.log
-+ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 12'
-+ sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 12
-Submitted batch job 2914126
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/mem12/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 12'
++ sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 12
+Submitted batch job 2928574
 + (( i++  ))
 + (( i<=40 ))
-+ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem13/task.log
-+ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 13'
-+ sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 13
-Submitted batch job 2914127
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/mem13/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 13'
++ sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 13
+Submitted batch job 2928575
 + (( i++  ))
 + (( i<=40 ))
-+ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem14/task.log
-+ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 14'
-+ sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 14
-Submitted batch job 2914128
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/mem14/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 14'
++ sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 14
+Submitted batch job 2928576
 + (( i++  ))
 + (( i<=40 ))
-+ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem15/task.log
-+ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 15'
-+ sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 15
-Submitted batch job 2914129
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/mem15/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 15'
++ sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 15
+Submitted batch job 2928577
 + (( i++  ))
 + (( i<=40 ))
-+ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem16/task.log
-+ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 16'
-+ sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 16
-Submitted batch job 2914130
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/mem16/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 16'
++ sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 16
+Submitted batch job 2928578
 + (( i++  ))
 + (( i<=40 ))
-+ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem17/task.log
-+ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 17'
-+ sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 17
-Submitted batch job 2914131
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/mem17/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 17'
++ sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 17
+Submitted batch job 2928579
 + (( i++  ))
 + (( i<=40 ))
-+ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem18/task.log
-+ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 18'
-+ sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 18
-Submitted batch job 2914132
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/mem18/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 18'
++ sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 18
+Submitted batch job 2928580
 + (( i++  ))
 + (( i<=40 ))
-+ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem19/task.log
-+ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 19'
-+ sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 19
-Submitted batch job 2914133
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/mem19/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 19'
++ sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 19
+Submitted batch job 2928581
 + (( i++  ))
 + (( i<=40 ))
-+ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem20/task.log
-+ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 20'
-+ sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 20
-Submitted batch job 2914134
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/mem20/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 20'
++ sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 20
+Submitted batch job 2928582
 + (( i++  ))
 + (( i<=40 ))
-+ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem21/task.log
-+ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 21'
-+ sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 21
-Submitted batch job 2914135
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/mem21/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 21'
++ sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 21
+Submitted batch job 2928583
 + (( i++  ))
 + (( i<=40 ))
-+ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem22/task.log
-+ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 22'
-+ sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 22
-Submitted batch job 2914136
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/mem22/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 22'
++ sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 22
+Submitted batch job 2928584
 + (( i++  ))
 + (( i<=40 ))
-+ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem23/task.log
-+ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 23'
-+ sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 23
-Submitted batch job 2914137
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/mem23/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 23'
++ sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 23
+Submitted batch job 2928585
 + (( i++  ))
 + (( i<=40 ))
-+ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem24/task.log
-+ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 24'
-+ sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 24
-Submitted batch job 2914138
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/mem24/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 24'
++ sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 24
+Submitted batch job 2928586
 + (( i++  ))
 + (( i<=40 ))
-+ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem25/task.log
-+ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 25'
-+ sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 25
-Submitted batch job 2914139
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/mem25/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 25'
++ sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 25
+Submitted batch job 2928587
 + (( i++  ))
 + (( i<=40 ))
-+ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem26/task.log
-+ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 26'
-+ sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 26
-Submitted batch job 2914140
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/mem26/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 26'
++ sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 26
+Submitted batch job 2928588
 + (( i++  ))
 + (( i<=40 ))
-+ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem27/task.log
-+ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 27'
-+ sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 27
-Submitted batch job 2914141
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/mem27/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 27'
++ sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 27
+Submitted batch job 2928589
 + (( i++  ))
 + (( i<=40 ))
-+ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem28/task.log
-+ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 28'
-+ sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 28
-Submitted batch job 2914142
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/mem28/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 28'
++ sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 28
+Submitted batch job 2928590
 + (( i++  ))
 + (( i<=40 ))
-+ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem29/task.log
-+ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 29'
-+ sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 29
-Submitted batch job 2914143
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/mem29/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 29'
++ sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 29
+Submitted batch job 2928591
 + (( i++  ))
 + (( i<=40 ))
-+ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem30/task.log
-+ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 30'
-+ sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 30
-Submitted batch job 2914144
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/mem30/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 30'
++ sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 30
+Submitted batch job 2928592
 + (( i++  ))
 + (( i<=40 ))
-+ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem31/task.log
-+ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 31'
-+ sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 31
-Submitted batch job 2914145
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/mem31/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 31'
++ sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 31
+Submitted batch job 2928593
 + (( i++  ))
 + (( i<=40 ))
-+ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem32/task.log
-+ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 32'
-+ sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 32
-Submitted batch job 2914146
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/mem32/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 32'
++ sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 32
+Submitted batch job 2928594
 + (( i++  ))
 + (( i<=40 ))
-+ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem33/task.log
-+ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 33'
-+ sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 33
-Submitted batch job 2914147
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/mem33/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 33'
++ sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 33
+Submitted batch job 2928595
 + (( i++  ))
 + (( i<=40 ))
-+ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem34/task.log
-+ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 34'
-+ sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 34
-Submitted batch job 2914148
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/mem34/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 34'
++ sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 34
+Submitted batch job 2928596
 + (( i++  ))
 + (( i<=40 ))
-+ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem35/task.log
-+ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 35'
-+ sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 35
-Submitted batch job 2914149
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/mem35/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 35'
++ sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 35
+Submitted batch job 2928597
 + (( i++  ))
 + (( i<=40 ))
-+ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem36/task.log
-+ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 36'
-+ sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 36
-Submitted batch job 2914150
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/mem36/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 36'
++ sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 36
+Submitted batch job 2928598
 + (( i++  ))
 + (( i<=40 ))
-+ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem37/task.log
-+ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 37'
-+ sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 37
-Submitted batch job 2914151
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/mem37/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 37'
++ sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 37
+Submitted batch job 2928599
 + (( i++  ))
 + (( i<=40 ))
-+ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem38/task.log
-+ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 38'
-+ sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 38
-Submitted batch job 2914152
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/mem38/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 38'
++ sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 38
+Submitted batch job 2928600
 + (( i++  ))
 + (( i<=40 ))
-+ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem39/task.log
-+ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 39'
-+ sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 39
-Submitted batch job 2914153
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/mem39/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 39'
++ sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 39
+Submitted batch job 2928601
 + (( i++  ))
 + (( i<=40 ))
-+ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/mem40/task.log
-+ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 40'
-+ sbatch /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 40
-Submitted batch job 2914154
++ grep -q -s 'Simulation done' /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/mem40/task.log
++ cmd='sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 40'
++ sbatch /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1/slurm.ensemble.template.sh /cluster/work/users/chengsukun/simulations/test_DAsit_2019-10-18_7days_x_26cycles_memsize40/date1 /cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/nextsim.ensemble.intel.src 1 40
+Submitted batch job 2928602
 + (( i++  ))
 + (( i<=40 ))
 + WaitforTaskFinish 0
@@ -585,4 +1032,346 @@ Submitted batch job 2914154
 ++ wc -l
 + XPID=40
 + [[ 40 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=40
++ [[ 40 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=40
++ [[ 40 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=40
++ [[ 40 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=40
++ [[ 40 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=40
++ [[ 40 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=40
++ [[ 40 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=40
++ [[ 40 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=40
++ [[ 40 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ wc -l
+++ grep -o chengsuk
++ XPID=40
++ [[ 40 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=40
++ [[ 40 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=40
++ [[ 40 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=40
++ [[ 40 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=40
++ [[ 40 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=40
++ [[ 40 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=40
++ [[ 40 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=40
++ [[ 40 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=40
++ [[ 40 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=40
++ [[ 40 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=40
++ [[ 40 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=40
++ [[ 40 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=40
++ [[ 40 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=40
++ [[ 40 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=40
++ [[ 40 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=40
++ [[ 40 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=40
++ [[ 40 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=40
++ [[ 40 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=40
++ [[ 40 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=40
++ [[ 40 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=40
++ [[ 40 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=40
++ [[ 40 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=40
++ [[ 40 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=40
++ [[ 40 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=40
++ [[ 40 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=40
++ [[ 40 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ wc -l
+++ grep -o chengsuk
++ XPID=40
++ [[ 40 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=40
++ [[ 40 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=40
++ [[ 40 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=40
++ [[ 40 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=40
++ [[ 40 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=40
++ [[ 40 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=39
++ [[ 39 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=39
++ [[ 39 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=37
++ [[ 37 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=37
++ [[ 37 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=35
++ [[ 35 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=35
++ [[ 35 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=35
++ [[ 35 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ wc -l
+++ grep -o chengsuk
++ XPID=33
++ [[ 33 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=33
++ [[ 33 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=33
++ [[ 33 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=30
++ [[ 30 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=30
++ [[ 30 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=30
++ [[ 30 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=30
++ [[ 30 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=30
++ [[ 30 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=30
++ [[ 30 -gt 0 ]]
++ sleep 60
+++ squeue -u chengsukun
+++ grep -o chengsuk
+++ wc -l
++ XPID=30
++ [[ 30 -gt 0 ]]
 + sleep 60
