@@ -44,7 +44,7 @@ function link_restarts(){
     
     for (( i=1; i<=${ENSSIZE}; i++ )); do
         memname=mem${i}    
-        [ ! -d ${analysis_source}/${memname}.nc.analysis ] && cdo merge ${NEXTSIM_DATA_DIR}/reference_grid.nc  ${analysis_source}/$(printf "mem%.3d" $i).nc.analysis  ${analysis_source}/${memname}.nc.analysis         
+        [ ! -f ${analysis_source}/${memname}.nc.analysis ] && cdo merge ${NEXTSIM_DATA_DIR}/reference_grid.nc  ${analysis_source}/$(printf "mem%.3d" $i).nc.analysis  ${analysis_source}/${memname}.nc.analysis         
         ln -sf ${analysis_source}/${memname}.nc.analysis          $restart_path/${memname}.nc.analysis
     done
 }
@@ -67,9 +67,9 @@ restart_path=$NEXTSIM_DATA_DIR   # select a folder for exchange restart data
 ##-------  Confirm working,data,ouput directories --------
     # experiment settings
     time_init0=2019-10-18   # starting date of simulation
-    duration=7     # tduration*duration is the total simulation time
-    tduration=26   #25   # number of DA cycles. 
-    ENSSIZE=40         # ensemble size  
+    duration=1     # tduration*duration is the total simulation time
+    tduration=1   #25   # number of DA cycles. 
+    ENSSIZE=1         # ensemble size  
     block=1            # number of forecasts in a job
     jobsize=$((${ENSSIZE}/${block})) #number of nodes requested 
     UPDATE=1 # 1: active EnKF assimilation 
@@ -81,10 +81,10 @@ restart_path=$NEXTSIM_DATA_DIR   # select a folder for exchange restart data
     LOCRAD=300
     RFACTOR=2
     KFACTOR=2
-    DA_VAR=sit    #sitsic, sit, sic
+    DA_VAR=sitsic    #sitsic, sit, sic
     OUTPUT_DIR=${simulations}/test_DA${DA_VAR}_${time_init0}_${duration}days_x_${tduration}cycles_memsize${ENSSIZE}
     echo 'work path:' $OUTPUT_DIR
-    [ -d $OUTPUT_DIR ] && rm -rf $OUTPUT_DIR
+    #[ -d $OUTPUT_DIR ] && rm -rf $OUTPUT_DIR
     [ ! -d $OUTPUT_DIR ] && mkdir -p ${OUTPUT_DIR}
 
 ## ----------- execute ensemble runs ----------
@@ -126,7 +126,7 @@ for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
         WaitforTaskFinish $XPID0
     done
     ## 2.submit enkf after finishing the ensemble simulations 
-    if [ ${UPDATE} == 1 ]; then
+    if [ ${UPDATE} == 1 ] && [ ! -f $ENSPATH/filter/update.out ]; then
         script=${ENSPATH}/$slurm_enkf
         cp ${NEXTSIM_ENV_ROOT_DIR}/$slurm_enkf $script
         cmd="sbatch $script $ENSPATH"  # --dependency=afterok:${jobid}

@@ -32,7 +32,7 @@ JOB_SETUP_DIR=$(cd `dirname $0`;pwd)
 >nohup.out  # empty this file
 
 ENSPATH=/cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1
-VAR=sit
+VAR=sitsic #sic
 #
 FILTER=${ENSPATH}/filter
 [ ! -d $FILTER ] && mkdir $FILTER

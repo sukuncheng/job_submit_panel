@@ -2,11 +2,11 @@
 
 &setup
 iopath = '.'
-debug = .true.
+debug = .false.
 /
 
 &pseudo2D
-randf    = .true.
+randf    = .false.
 seed     =  11
 vslp     =  10
 vwndspd=3

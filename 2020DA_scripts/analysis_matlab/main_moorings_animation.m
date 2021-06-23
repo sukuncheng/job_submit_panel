@@ -6,7 +6,7 @@ function [] = main_moorings_animation()
     
     main_settings
     for Var = {'sic','sit','damage'}
-        for method = {'mean', 'Spread'res}  %mean: ensemble ensemble, spread: ensemble spread
+        for method = {'mean', 'Spread'}  %mean: ensemble ensemble, spread: ensemble spread
             fun_moorings(char(Var),char(method));
         end
     end
