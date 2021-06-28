@@ -8,7 +8,7 @@ function [] = main_enkf_fieldstates()
     load('test_inform.mat')
     simul_dir = [simul_dir '/date1'];
     
-    take_mean = 0;
+    take_mean = 1;
     if take_mean==1
         ID = 1:Ne;
     else  
@@ -16,20 +16,10 @@ function [] = main_enkf_fieldstates()
     end
 %% % compare with CS2-SMOS, NOTE this dataset is from Oct.15 to April
     Var = 'sit';
-    cs2smosID='2.3';
+    cs2smosID='2.2';
     mnt_CS2SMOS_dir = ['~/src/nextsim_data_dir/CS2_SMOS_v' cs2smosID];
 
-    %% load **.nc.analysis
-    it = 1;
-    clear data data_tmp
-    for ie = ID
-        filename = [simul_dir '/filter/size40_I1_L300_R2_K2_DA' Var '/mem' num2str(ie) '.nc.analysis'];
-        data_tmp = ncread(filename,Var); 
-        data(ie,:,:) = data_tmp(:,:,it); %% change date index it =1
-    end
-    analysis_data = squeeze(mean(data,1));
-
-    %% load **.nc 
+    %% 1. load prior/**.nc 
     clear data data_tmp
     for ie = ID
         filename = [simul_dir '/filter/prior/mem' num2str(ie,'%03d') '.nc'];
@@ -39,7 +29,18 @@ function [] = main_enkf_fieldstates()
     forecast_data = squeeze(mean(data,1));
     lon = ncread(filename,'longitude');
     lat = ncread(filename,'latitude');
-    %% load observation
+
+    %% 2. load **.nc.analysis
+    it = 1;
+    clear data data_tmp
+    for ie = ID
+        filename = [simul_dir '/filter/size40_I1_L300_R2_K2_DA' Var '/mem' num2str(ie) '.nc.analysis'];
+        data_tmp = ncread(filename,Var); 
+        data(ie,:,:) = data_tmp(:,:,it); %% change date index it =1
+    end
+    analysis_data = squeeze(mean(data,1));
+    
+    %% 3. load observation
     t = dates(it)+Duration;
     temp1 = strrep(datestr(t-3,26),'/','');
     temp2 = strrep(datestr(t+3,26),'/','');
@@ -52,6 +53,17 @@ function [] = main_enkf_fieldstates()
     % obs_data = ncread(filename,'sea_ice_concentration');
     lon_obs = ncread(filename,'lon');
     lat_obs = ncread(filename,'lat');
+
+    % %% 4. load one day forecast
+    % %% load **.nc
+    % filename = '/cluster/work/users/chengsukun/simulations/test_DAsic_2019-10-18_1days_x_1cycles_memsize1/date1/mem1/Moorings_2019d291.nc';
+    % %  ncdisp(filename);
+    %  data = ncread(filename,Var);
+    %  lon = ncread(filename,'longitude');
+    %  lat = ncread(filename,'latitude');
+    %  unit = '(m)';
+    % %  data(data<1)=nan;
+    %  fun_geo_plot(lon,lat,data,['2019-10-18 nextsim ' Var],unit);  %colormap(jet);   
 %%
     figure();
     set(gcf,'Position',[100,150,1100,850], 'color','w')
@@ -60,7 +72,10 @@ function [] = main_enkf_fieldstates()
     subplot(222); fun_geo_plot(lon,lat,analysis_data,' analysis',unit); caxis([0 6]); colormap(gca,jet);
     subplot(223); fun_geo_plot(lon,lat,analysis_data-forecast_data,'analysis - background',unit);  %caxis([-2 2]); 
     colormap(gca,bluewhitered);
-    subplot(224); fun_geo_plot(lon_obs,lat_obs, data_obs,['observation ' (temp1+temp2)/2],unit); %caxis([0 6]);
+
+    subplot(224); 
+     
+    % fun_geo_plot(lon_obs,lat_obs, data_obs,['observation ' (temp1+temp2)/2],unit); %caxis([0 6]);
     colormap(gca,jet);
     set(findall(gcf,'-property','FontSize'),'FontSize',20); 
     %

@@ -4,27 +4,28 @@ function [] = main_enkf_spreadnc()
     close all
     dbstop if error
     format short g
-    % 
     global title_date
+
+    main_settings
     load('test_inform.mat')
-    figure(1);set(gcf,'Position',[100,200,1300,550], 'color','w')
-    gifname = 'enkf_spreadnc.gif';
+    % figure(1);set(gcf,'Position',[100,200,1300,550], 'color','w')
+    % gifname = 'enkf_spreadnc.gif';
     for i = 1:N_periods
         enkf_dir = [simul_dir '/date' num2str(i) '/filter'];
         n = (i-1)*Duration +1;
         title_date = dates(n);
         fun_process_spreadnc(enkf_dir);
 
-        % -------- animation -------------------------------------
-        f = getframe(gcf);
-        im=frame2im(f);
-        [I,map] = rgb2ind(im,256);
-        if i==1  
-            imwrite(I,map,gifname,'gif','loopcount',inf,'Delaytime',.5)
-        else
-            imwrite(I,map,gifname,'gif','writemode','append','Delaytime',.5)
-        end
-        % --------------------------------------------------------
+        % % -------- animation -------------------------------------
+        % f = getframe(gcf);
+        % im=frame2im(f);
+        % [I,map] = rgb2ind(im,256);
+        % if i==1  
+        %     imwrite(I,map,gifname,'gif','loopcount',inf,'Delaytime',.5)
+        % else
+        %     imwrite(I,map,gifname,'gif','writemode','append','Delaytime',.5)
+        % end
+        % % --------------------------------------------------------
     end
     
     set(findall(gcf,'-property','FontSize'),'FontSize',16);

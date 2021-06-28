@@ -67,9 +67,9 @@ restart_path=$NEXTSIM_DATA_DIR   # select a folder for exchange restart data
 ##-------  Confirm working,data,ouput directories --------
     # experiment settings
     time_init0=2019-10-18   # starting date of simulation
-    duration=1     # tduration*duration is the total simulation time
-    tduration=1   #25   # number of DA cycles. 
-    ENSSIZE=1         # ensemble size  
+    duration=7     # tduration*duration is the total simulation time
+    tduration=26   #25   # number of DA cycles. 
+    ENSSIZE=40         # ensemble size  
     block=1            # number of forecasts in a job
     jobsize=$((${ENSSIZE}/${block})) #number of nodes requested 
     UPDATE=1 # 1: active EnKF assimilation 
@@ -81,14 +81,14 @@ restart_path=$NEXTSIM_DATA_DIR   # select a folder for exchange restart data
     LOCRAD=300
     RFACTOR=2
     KFACTOR=2
-    DA_VAR=sitsic    #sitsic, sit, sic
+    DA_VAR=sit   #sitsic, sit, sic
     OUTPUT_DIR=${simulations}/test_DA${DA_VAR}_${time_init0}_${duration}days_x_${tduration}cycles_memsize${ENSSIZE}
     echo 'work path:' $OUTPUT_DIR
     #[ -d $OUTPUT_DIR ] && rm -rf $OUTPUT_DIR
     [ ! -d $OUTPUT_DIR ] && mkdir -p ${OUTPUT_DIR}
 
 ## ----------- execute ensemble runs ----------
-for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
+for (( iperiod=25; iperiod<=${tduration}; iperiod++ )); do
     restart_from_analysis=true   
     start_from_restart=true
 

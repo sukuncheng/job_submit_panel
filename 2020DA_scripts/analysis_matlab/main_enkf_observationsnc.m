@@ -4,7 +4,7 @@ close all
 
 % load('test_inform.mat')
 % simul_dir = [simul_dir '/date1/filter'];
-simul_dir='/cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsit';
+simul_dir='/cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1/filter/size40_I1_L300_R2_K2_DAsic';
 m_proj('Stereographic','lon',-45,'lat',90,'radius',30); 
 mnt_dir = '/cluster/home/chengsukun/src/nextsim_data_dir';
 filename = [mnt_dir '/reference_grid.nc'];

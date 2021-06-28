@@ -8,8 +8,9 @@ function [] = main_settings()
     mnt_dir='/cluster/work/users/chengsukun/simulations'; 
 %     mnt_dir='/nird/projects/nird/NS2993K/NORSTORE_OSL_DISK/NS2993K/chengsukun';
     %%
-    exp=1; 
+    exp=0; 
     if  exp==0
+        Var='spinup'
         Exp_ID = 'Spinup';
         start_date = "2019-09-03"; N_periods = 1; Duration = 45;
         for i = 1:Duration
@@ -19,6 +20,7 @@ function [] = main_settings()
         simul_dir = '/test_spinup_2019-09-03_45days_x_1cycles_memsize40';
     elseif exp==1
         %%
+        Var='sic';
         Exp_ID = 'Exp_18Oct2019';
         start_date = '2019-10-18';
         N_periods = 26;
@@ -26,7 +28,7 @@ function [] = main_settings()
         % simul_dir = ['/test_DAsit_' start_date '_' num2str(Duration) ...
         %              'days_x_' num2str(N_periods) 'cycles_memsize40'];
         % N_periods=20;
-        simul_dir = ['/test_DAsic_' start_date '_' num2str(Duration) ...
+        simul_dir = ['/test_DA' Var '_' start_date '_' num2str(Duration) ...
         'days_x_' num2str(N_periods) 'cycles_memsize40'];
         N_periods=5;
         for i = 1:N_periods
@@ -52,7 +54,7 @@ function [] = main_settings()
         simul_dir = '/test_windcohesion_2020-01-07_7days_x_16cycles_memsize40';   
     end        
     simul_dir = [mnt_dir simul_dir];   
-    save('test_inform.mat','Exp_ID','dates','N_periods','dates_num','Ne','simul_dir','Duration','Radius')
+    save('test_inform.mat','Exp_ID','dates','N_periods','dates_num','Ne','simul_dir','Duration','Radius','Var')
 %%
 %     main_ensemblesize
 % main_moorings_animation

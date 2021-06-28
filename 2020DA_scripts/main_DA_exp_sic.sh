@@ -84,7 +84,7 @@ restart_path=$NEXTSIM_DATA_DIR   # select a folder for exchange restart data
     DA_VAR=sic    #sitsic, sit, sic
     OUTPUT_DIR=${simulations}/test_DA${DA_VAR}_${time_init0}_${duration}days_x_${tduration}cycles_memsize${ENSSIZE}
     echo 'work path:' $OUTPUT_DIR
-    #[ -d $OUTPUT_DIR ] && rm -rf $OUTPUT_DIR
+    [ -d $OUTPUT_DIR ] && rm -rf $OUTPUT_DIR
     [ ! -d $OUTPUT_DIR ] && mkdir -p ${OUTPUT_DIR}
 
 ## ----------- execute ensemble runs ----------
