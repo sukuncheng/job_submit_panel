@@ -33,6 +33,15 @@ JOB_SETUP_DIR=$(cd `dirname $0`;pwd)
 
 ENSPATH=/cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1
 VAR=sic #sic
+#set enkf parameters
+KFACTORs=("1")  # default as 2 in topaz
+# RFACTORs=("1" "1.2" "1.4" "1.6" "1.8" "2")   #1
+#LOCRADs=( "100" "300" "600")  # meaning, radius 2.3*
+RFACTORs=("1") #("1" "1.2" "1.4" "1.6" "1.8" "2" "2.2" "2.4" "3") 
+LOCRADs=( "300" )  # meaning, radius 2.3*
+INFLATIONs=("2" )  # <1.1 for 100 members
+ENSSIZE=40
+
 cd /cluster/home/chengsukun/src/nextsim
 make -j8
 cd $JOB_SETUP_DIR
@@ -45,15 +54,6 @@ script=${ENSPATH}/slurm.enkf.template.sh
 cp ${NEXTSIM_ENV_ROOT_DIR}/slurm.enkf.template.sh $script
 # >${JOB_SETUP_DIR}/result.md
 # echo "parameters combination     type  NumberofObs.  [for.inn.]  [an.inn.]   for.inn.   an.inn.  for.spread    an.spread" > result.md
-
-#set 2 loop enkf parameters
-KFACTORs=("3")  # default as 2 in topaz
-# RFACTORs=("1" "1.2" "1.4" "1.6" "1.8" "2")   #1
-#LOCRADs=( "100" "300" "600")  # meaning, radius 2.3*
-RFACTORs=("3") #("1" "1.2" "1.4" "1.6" "1.8" "2" "2.2" "2.4" "3") 
-LOCRADs=( "300" )  # meaning, radius 2.3*
-INFLATIONs=("1" )  # <1.1 for 100 members
-ENSSIZE=40
 #
 for (( k1=0; k1<${#KFACTORs[@]};   k1++ )); do
 for (( r1=0; r1<${#RFACTORs[@]};   r1++ )); do

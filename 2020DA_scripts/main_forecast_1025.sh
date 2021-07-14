@@ -68,7 +68,7 @@ restart_path=$NEXTSIM_DATA_DIR   # select a folder for exchange restart data
     # experiment settings
     time_init0=2019-10-18   # starting date of simulation
     duration=7     # tduration*duration is the total simulation time
-    tduration=26   #25   # number of DA cycles. 
+    tduration=26   #26   # number of DA cycles. 
     ENSSIZE=40         # ensemble size  
     block=1            # number of forecasts in a job
     jobsize=$((${ENSSIZE}/${block})) #number of nodes requested 
@@ -84,16 +84,17 @@ restart_path=$NEXTSIM_DATA_DIR   # select a folder for exchange restart data
     DA_VAR=sic    #sitsic, sit, sic
     OUTPUT_DIR=${simulations}/test_DA${DA_VAR}_${time_init0}_${duration}days_x_${tduration}cycles_memsize${ENSSIZE}
     echo 'work path:' $OUTPUT_DIR
-    [ -d $OUTPUT_DIR ] && rm -rf $OUTPUT_DIR
+#    [ -d $OUTPUT_DIR ] && rm -rf $OUTPUT_DIR
     [ ! -d $OUTPUT_DIR ] && mkdir -p ${OUTPUT_DIR}
 
 ## ----------- execute ensemble runs ----------
-for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
+for (( iperiod=1; iperiod<=2; iperiod++ )); do
     restart_from_analysis=true   
     start_from_restart=true
 
     if [ $iperiod -eq 1 ]; then  
     # prepare and link restart files
+        restart_from_analysis=false
         analysis_source=${first_restart_path}/filter/size40_I${INFLATION}_L${LOCRAD}_R${RFACTOR}_K${KFACTOR}_DA${DA_VAR}
         link_restarts $ENSSIZE   $first_restart_path  $restart_path $analysis_source
     fi
@@ -103,7 +104,6 @@ for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
     ENSPATH=${OUTPUT_DIR}/date${iperiod}
     mkdir -p ${ENSPATH}   
     source ${JOB_SETUP_DIR}/part1_create_file_system.sh
-
     XPID0=$(squeue -u chengsukun | grep -o chengsuk |wc -l) 
 # b. submit the script for ensemble forecasts
     cd $ENSPATH
@@ -118,7 +118,8 @@ for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
 
     ### option2 can resubmit failed task in jobarray, $block>1 doesn't work fully in this way.
     for (( j=1; j<=3; j++ )); do
-        for (( i=1; i<=${ENSSIZE}; i++ )); do
+        for (( i=1; i<=1; i++ )); do        
+        #for (( i=1; i<=${ENSSIZE}; i++ )); do    
             grep -q -s "Simulation done" ${ENSPATH}/mem${i}/task.log && continue
             cmd="sbatch $script $ENSPATH $ENV_FILE ${block} $i"  # change slurm.ensemble.template.sh: SLURM_ARRAY_TASK_ID=$4
             $cmd 2>&1 
@@ -126,13 +127,13 @@ for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
         WaitforTaskFinish $XPID0
     done
     ## 2.submit enkf after finishing the ensemble simulations 
-    if [ ${UPDATE} == 1 ] && [ ! -f $ENSPATH/filter/update.out ]; then
-        script=${ENSPATH}/$slurm_enkf
-        cp ${NEXTSIM_ENV_ROOT_DIR}/$slurm_enkf $script
-        cmd="sbatch $script $ENSPATH"  # --dependency=afterok:${jobid}
-        $cmd 2>&1
-    fi
-    WaitforTaskFinish $XPID0
+    #if [ ${UPDATE} == 1 ] && [ ! -f $ENSPATH/filter/update.out ]; then
+    #    script=${ENSPATH}/$slurm_enkf
+    #    cp ${NEXTSIM_ENV_ROOT_DIR}/$slurm_enkf $script
+    #    cmd="sbatch $script $ENSPATH"  # --dependency=afterok:${jobid}
+    #    $cmd 2>&1
+    # fi
+    # WaitforTaskFinish $XPID0
     #
     analysis_source=$ENSPATH/filter/prior
     link_restarts $ENSSIZE   $ENSPATH  $restart_path $analysis_source

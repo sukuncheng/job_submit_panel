@@ -7,7 +7,7 @@ ocean-type=topaz_forecast
 atmosphere-type=generic #ec2 
 bathymetry-type=etopo
 use_assimilation=false
-dynamics-type=bbm #free_drift #mevp # free_drift #bbm
+dynamics-type=bbm
 [simul]
 spinup_duration=0
 timestep=900

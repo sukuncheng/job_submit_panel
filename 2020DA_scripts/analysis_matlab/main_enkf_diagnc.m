@@ -1,5 +1,5 @@
 function [] = main_enkf_diagnc()
-    % display data in enkf_diag.nc
+    % display data in enkf_diag.nc, dfs, srf
         clc
         clear
         close all

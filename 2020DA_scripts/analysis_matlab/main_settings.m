@@ -5,10 +5,10 @@ function [] = main_settings()
     Radius = 6378.273; % radius of earth
     % mnt_dir = '/Users/sukeng/Desktop/fram';
 %     mnt_dir = '/Users/sukeng/Desktop/nird';
-    mnt_dir='/cluster/work/users/chengsukun/simulations'; 
-%     mnt_dir='/nird/projects/nird/NS2993K/NORSTORE_OSL_DISK/NS2993K/chengsukun';
+    % mnt_dir='/cluster/work/users/chengsukun/simulations'; 
+    mnt_dir='/nird/projects/nird/NS2993K/NORSTORE_OSL_DISK/NS2993K/chengsukun';
     %%
-    exp=0; 
+    exp=1; 
     if  exp==0
         Var='spinup'
         Exp_ID = 'Spinup';
@@ -20,17 +20,26 @@ function [] = main_settings()
         simul_dir = '/test_spinup_2019-09-03_45days_x_1cycles_memsize40';
     elseif exp==1
         %%
+        % Var='sic';
+        % Exp_ID = 'Exp_18Oct2019';
+        % start_date = '2019-10-18';
+        % N_periods = 26;
+        % Duration = 7; % duration days set in nextsim.cfg 
+        % % simul_dir = ['/test_DAsit_' start_date '_' num2str(Duration) ...
+        % %              'days_x_' num2str(N_periods) 'cycles_memsize40'];
+        % % N_periods=20;
+        % simul_dir = ['/test_DA' Var '_' start_date '_' num2str(Duration) ...
+        % 'days_x_' num2str(N_periods) 'cycles_memsize40'];
+        % N_periods=5;
+        %%
         Var='sic';
         Exp_ID = 'Exp_18Oct2019';
         start_date = '2019-10-18';
         N_periods = 26;
         Duration = 7; % duration days set in nextsim.cfg 
-        % simul_dir = ['/test_DAsit_' start_date '_' num2str(Duration) ...
-        %              'days_x_' num2str(N_periods) 'cycles_memsize40'];
-        % N_periods=20;
         simul_dir = ['/test_DA' Var '_' start_date '_' num2str(Duration) ...
         'days_x_' num2str(N_periods) 'cycles_memsize40'];
-        N_periods=5;
+        N_periods=4;
         for i = 1:N_periods
             for j = 1:Duration
                 n = (i-1)*Duration +j;

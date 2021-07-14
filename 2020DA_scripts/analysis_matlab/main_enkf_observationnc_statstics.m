@@ -1,5 +1,5 @@
 function [] = main_observation_RCRV()
-% display RCRV_statistics in observation.nc
+% display statistics in observation.nc, Hx, std
 % for i = 1:length(id)
 %     j = id(i);
 %     q(i) = (y(j) - Hx(j))/sqrt(std_o(j)^2 + std_e(j)^2);
