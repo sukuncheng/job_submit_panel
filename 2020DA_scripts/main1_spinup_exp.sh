@@ -18,6 +18,12 @@ function WaitforTaskFinish(){
     done
 }
 
+# Instruction:
+# create workpath
+# link restart file
+# call part1_create_file_system.sh to modify nextsim.cfg and pseudo2D.nml and enkf settings to workpath
+# submit jobs to queue by slurm_nextsim from workpath
+# link restart file
 ##-------  Confirm working,data,ouput directories --------
 JOB_SETUP_DIR=$(cd `dirname $BASH_SOURCE`;pwd)
 BaseName=$(basename $BASH_SOURCE)
@@ -26,28 +32,40 @@ slurm_nextsim=slurm.ensemble.template.sh
 # ENV_FILE=${NEXTSIM_ENV_ROOT_DIR}/pynextsim.sing.src
 # slurm_nextsim=slurm.singularity.template.sh
 >nohup.out  # empty this file
-
+restart_path=$NEXTSIM_DATA_DIR   # select a folder for exchange restart data
 ##-------  Confirm working,data,ouput directories --------
-    # experiment settings
-    time_init=2019-09-03   # starting date of simulation
-    basename=20190903T000000Z # set this variable, if the first run is from restart
-    duration=45    # tduration*duration is the total simulation time
-    tduration=1    # number of DA cycles. 
-    ENSSIZE=40     # ensemble size  
-    block=1        # number of forecasts in a job
-    jobsize=$((${ENSSIZE}/${block})) #number of nodes requested 
-    UPDATE=0
-    first_restart_path=$HOME/src/restart
-    # randf in pseudo2D.nml, whether do perturbation
-    [[ ${ENSSIZE} > 1 ]] && randf=true || randf=false 
-    INFLATION=1
-    LOCRAD=300
-    RFACTOR=2
-    KFACTOR=2
-    OUTPUT_DIR=${simulations}/test_spinup_${time_init}_${duration}days_x_${tduration}cycles_memsize${ENSSIZE}
-    echo 'work path:' $OUTPUT_DIR
-    [ -d $OUTPUT_DIR ] && rm -rf $OUTPUT_DIR
-    [ ! -d $OUTPUT_DIR ] && mkdir -p ${OUTPUT_DIR}
+# experiment settings
+time_init=2019-09-03   # starting date of simulation
+basename=20190903T000000Z # set this variable, if the first run is from restart
+duration=45    # forecast length; tduration*duration is the total simulation time
+tduration=1    # number of DA cycles. 
+ENSSIZE=40     # ensemble size  
+block=1        # number of forecasts in a job
+jobsize=$((${ENSSIZE}/${block})) #number of nodes requested 
+UPDATE=0
+first_restart_path=$HOME/src/restart
+# randf in pseudo2D.nml, whether do perturbation
+[[ ${ENSSIZE} > 1 ]] && randf=true || randf=false 
+INFLATION=1
+LOCRAD=300
+RFACTOR=2
+KFACTOR=2
+OUTPUT_DIR=${simulations}/test_spinup_${time_init}_${duration}days_x_${tduration}cycles_memsize${ENSSIZE}_offline_perturbations
+echo 'work path:' $OUTPUT_DIR
+# [ -d $OUTPUT_DIR ] && rm -rf $OUTPUT_DIR
+[ ! -d $OUTPUT_DIR ] && mkdir -p ${OUTPUT_DIR}
+
+# link perturbations
+rm -f ${restart_path}/Perturbations/*.nc
+Perturbations_Dir=/cluster/work/users/chengsukun/offline_perturbations/result
+# Nseries=`ls ${Perturbations_Dir}/mem1/*.nc | wc -l`
+Nfiles=$(( $duration*4+1+4))
+for (( i=1; i<=${ENSSIZE}; i++ )); do
+    memname=mem${i}    
+    for (( j=0; j<${Nfiles}; j++ )); do
+        ln -sf ${Perturbations_Dir}/${memname}/synforc_${j}.nc  ${restart_path}/Perturbations/Perturbations_${memname}_series${j}.nc
+    done
+done
 
 ## ----------- execute ensemble runs ----------
 for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
@@ -64,7 +82,7 @@ for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
             ln -sf ${first_restart_path}/mesh_${basename}.dat   $restart_path/mesh_${memname}.dat
         done  
     fi
-    echo "period ${time_init} to $(date +%Y%m%d -d "${time_init} + $((${duration})) day")"
+    echo "period ${time_init} to $(date +%Y%m%d -d "${time_init} + ${duration} day")"
 # a. create files strucure, copy and modify configuration files inside
     ENSPATH=${OUTPUT_DIR}/date${iperiod}
     mkdir -p ${ENSPATH}   
@@ -91,12 +109,12 @@ for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
         done
         WaitforTaskFinish $XPID0
     done
-
-    # for (( i=1; i<=$ENSSIZE; i++ )); do
-    #     mv ${ENSPATH}/mem${i}/prior.nc  ${ENSPATH}/filter/prior/$(printf "mem%.3d" ${i}).nc
-    # done
+    # 
+    [ ! -d ${ENSPATH}/filter/prior ] && mkdir -p ${ENSPATH}/filter/prior
+    for (( i=1; i<=$ENSSIZE; i++ )); do
+        mv ${ENSPATH}/mem${i}/prior.nc  ${ENSPATH}/filter/prior/$(printf "mem%.3d" ${i}).nc
+    done
 done
-
-cp ${JOB_SETUP_DIR}/nohup.out  ${OUTPUT_DIR} 
+cp ${JOB_SETUP_DIR}/nohup.out  ${OUTPUT_DIR}
 cp ${JOB_SETUP_DIR}/${BaseName}  ${OUTPUT_DIR} 
 echo "finished"

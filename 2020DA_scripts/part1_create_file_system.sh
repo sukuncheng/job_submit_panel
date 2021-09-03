@@ -86,11 +86,11 @@ if [[ $UPDATE == 1 ]];then
     [ ! -f $CS2SMOS_fname ] && echo "error: ${CS2SMOS_fname} is missing" 
     [ ! -f $OSISAF_fname ] && echo "error:  ${OSISAF_fname} is missing" 
     if [[ "$DA_VAR" == "sit" ]]; then
-        sed -i "s;^.*FILE.*$;FILE ="${CS2SMOS_fname}";1"  obs.prm 
+        sed -i "s;^.*FILE.*$;FILE ="${CS2SMOS_fname}";"  obs.prm 
     elif [[ "$DA_VAR" == "sic" ]]; then
-        sed -i "s;^.*FILE.*$;FILE ="${OSISAF_fname}";1"  obs.prm 
+        sed -i "s;^.*FILE.*$;FILE ="${OSISAF_fname}";"  obs.prm 
     elif [[ "$DA_VAR" == "sitsic" ]]; then
-        sed -i "s;^.*FILE.*$;FILE ="${CS2SMOS_fname}";1"  obs.prm
-        sed -i "s;^.*FILE.*$;FILE ="${OSISAF_fname}";2"  obs.prm         
+        sed -i "s;^.*FILE.*$;FILE ="${CS2SMOS_fname}";"  obs.prm
+        sed -i ':a;N;$!ba;s|\(.*\)FILE.*|\1FILE ='${OSISAF_fname}'|'  obs.prm  #edit the last matched keyword        
     fi
 fi

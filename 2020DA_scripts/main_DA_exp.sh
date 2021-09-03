@@ -29,19 +29,18 @@ function link_restarts(){
     analysis_source=$4
     rm -f $restart_path/field_mem* 
     rm -f $restart_path/mesh_mem* 
-    rm -f $restart_path/WindPerturbation_mem* 
+    # rm -f $restart_path/WindPerturbation_mem* 
     rm -f $restart_path/*.nc.analysis
     for (( i=1; i<=${ENSSIZE}; i++ )); do
         memname=mem${i}
-        ln -sf ${ENSPATH}/${memname}/WindPerturbation_${memname}.nc         ${restart_path}/WindPerturbation_${memname}.nc  
+    #    ln -sf ${ENSPATH}/${memname}/WindPerturbation_${memname}.nc         ${restart_path}/WindPerturbation_${memname}.nc  
         ln -sf ${ENSPATH}/${memname}/restart/field_final.bin  $restart_path/field_${memname}.bin
         ln -sf ${ENSPATH}/${memname}/restart/field_final.dat  $restart_path/field_${memname}.dat
         ln -sf ${ENSPATH}/${memname}/restart/mesh_final.bin   $restart_path/mesh_${memname}.bin
         ln -sf ${ENSPATH}/${memname}/restart/mesh_final.dat   $restart_path/mesh_${memname}.dat
     done  
-
-    [ ! -d ${analysis_source} ] && return;
-    
+# link reanalysis
+    [ ! -d ${analysis_source} ] && return;    
     for (( i=1; i<=${ENSSIZE}; i++ )); do
         memname=mem${i}    
         [ ! -f ${analysis_source}/${memname}.nc.analysis ] && cdo merge ${NEXTSIM_DATA_DIR}/reference_grid.nc  ${analysis_source}/$(printf "mem%.3d" $i).nc.analysis  ${analysis_source}/${memname}.nc.analysis         
@@ -49,6 +48,24 @@ function link_restarts(){
     done
 }
 
+function link_perturbation(){
+    echo "links perturbation files to $restart_path/Perturbation using input file id"
+    # link perturbations. The number is calculated ahead as Nfiles
+    restart_path=$1
+    duration=$2
+    iperiod=$3
+    ENSSIZE=$4
+    rm -f ${restart_path}/Perturbations/*.nc
+    Perturbations_Dir=/cluster/work/users/chengsukun/offline_perturbations/result
+    # Nseries=`ls ${Perturbations_Dir}/mem1/*.nc | wc -l`
+    Nfiles=$(( $duration*4+1+4 ))  # number of perturbations to link
+    for (( i=1; i<=${ENSSIZE}; i++ )); do
+        memname=mem${i}    
+        for (( j=0; j<${Nfiles}; j++ )); do
+            ln -sf ${Perturbations_Dir}/${memname}/synforc_$((${j}+180 + ($iperiod-1)*($Nfiles-1))).nc  ${restart_path}/Perturbations/Perturbations_${memname}_series${j}.nc
+        done
+    done
+}
 # Instruction:
 # create workpath
 # link restart file
@@ -65,39 +82,42 @@ slurm_enkf=slurm.enkf.template.sh
 >nohup.out  # empty this file
 restart_path=$NEXTSIM_DATA_DIR   # select a folder for exchange restart data
 ##-------  Confirm working,data,ouput directories --------
-    # experiment settings
-    time_init0=2019-10-18   # starting date of simulation
-    duration=7     # tduration*duration is the total simulation time
-    tduration=26   #26   # number of DA cycles. 
-    ENSSIZE=40         # ensemble size  
-    block=1            # number of forecasts in a job
-    jobsize=$((${ENSSIZE}/${block})) #number of nodes requested 
-    UPDATE=1 # 1: active EnKF assimilation 
-    first_restart_path=/cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1
+# experiment settings
+time_init0=2019-10-18   # starting date of simulation
+duration=7     # forecast length; tduration*duration is the total simulation time
+tduration=26   #26   # number of DA cycles. 
+ENSSIZE=40         # ensemble size  
+block=1            # number of forecasts in a job
+jobsize=$((${ENSSIZE}/${block})) #number of nodes requested 
+UPDATE=1 # 1: active EnKF assimilation 
+# first_restart_path=/cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1
+first_restart_path=/cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40_offline_perturbations/date1
 
-    # randf in pseudo2D.nml, whether do perturbation
-    [[ ${ENSSIZE} > 1 ]] && randf=true || randf=false 
-    INFLATION=1
-    LOCRAD=300
-    RFACTOR=2
-    KFACTOR=2
-    DA_VAR=sic   #sitsic, sit, sic
+# randf in pseudo2D.nml, whether do perturbation
+[[ ${ENSSIZE} > 1 ]] && randf=true || randf=false 
+INFLATION=1
+LOCRAD=300
+RFACTOR=2
+KFACTOR=2
+DA_VAR=sic   #sitsic, sit, sic
 
-    OUTPUT_DIR=${simulations}/test_DA${DA_VAR}_${time_init0}_${duration}days_x_${tduration}cycles_memsize${ENSSIZE}
-    echo 'work path:' $OUTPUT_DIR
-    [ -d $OUTPUT_DIR ] && rm -rf $OUTPUT_DIR
-    [ ! -d $OUTPUT_DIR ] && mkdir -p ${OUTPUT_DIR}
+OUTPUT_DIR=${simulations}/test_DA${DA_VAR}_${time_init0}_${duration}days_x_26cycles_memsize${ENSSIZE}_offline_perturbations
+echo 'work path:' $OUTPUT_DIR
+[ -d $OUTPUT_DIR ] && rm -rf $OUTPUT_DIR
+[ ! -d $OUTPUT_DIR ] && mkdir -p ${OUTPUT_DIR}
+cp ${JOB_SETUP_DIR}/${BaseName}  ${OUTPUT_DIR} 
 
 ## ----------- execute ensemble runs ----------
-for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
-    restart_from_analysis=true   
+#for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
+for (( iperiod=1; iperiod<=2; iperiod++ )); do
+    restart_from_analysis=true
     start_from_restart=true
-
     if [ $iperiod -eq 1 ]; then  
     # prepare and link restart files
         analysis_source=${first_restart_path}/filter/size40_I${INFLATION}_L${LOCRAD}_R${RFACTOR}_K${KFACTOR}_DA${DA_VAR}
         link_restarts $ENSSIZE   $first_restart_path  $restart_path $analysis_source
     fi
+    link_perturbation $restart_path $duration $iperiod $ENSSIZE
     time_init=$(date +%Y-%m-%d -d "${time_init0} + $((($iperiod-1)*${duration})) day")
     echo "period ${time_init} to $(date +%Y%m%d -d "${time_init} + ${duration} day")"
 # a. create files strucure, copy and modify configuration files inside
@@ -138,6 +158,6 @@ for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
     analysis_source=$ENSPATH/filter/prior
     link_restarts $ENSSIZE   $ENSPATH  $restart_path $analysis_source
 done
-cp ${JOB_SETUP_DIR}/nohup.out  ${OUTPUT_DIR} 
+cp ${JOB_SETUP_DIR}/nohup.out  ${OUTPUT_DIR}
 cp ${JOB_SETUP_DIR}/${BaseName}  ${OUTPUT_DIR} 
 echo "finished"

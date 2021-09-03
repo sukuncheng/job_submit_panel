@@ -31,23 +31,24 @@ function WaitforTaskFinish(){
 JOB_SETUP_DIR=$(cd `dirname $0`;pwd)
 >nohup.out  # empty this file
 
-ENSPATH=/cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40/date1
-VAR=sic #sic
+ENSPATH=/cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40_offline_perturbations/date1
+VAR=sit #sic
 #set enkf parameters
-KFACTORs=("1")  # default as 2 in topaz
+KFACTORs=("2")  # default as 2 in topaz
 # RFACTORs=("1" "1.2" "1.4" "1.6" "1.8" "2")   #1
 #LOCRADs=( "100" "300" "600")  # meaning, radius 2.3*
-RFACTORs=("1") #("1" "1.2" "1.4" "1.6" "1.8" "2" "2.2" "2.4" "3") 
+RFACTORs=("2") #("1" "1.2" "1.4" "1.6" "1.8" "2" "2.2" "2.4" "3") 
 LOCRADs=( "300" )  # meaning, radius 2.3*
-INFLATIONs=("2" )  # <1.1 for 100 members
+INFLATIONs=("1" )  # <1.1 for 100 members
 ENSSIZE=40
 
 cd /cluster/home/chengsukun/src/nextsim
-make -j8
+# make -j8
 cd $JOB_SETUP_DIR
 #
 FILTER=${ENSPATH}/filter
 [ ! -d $FILTER ] && mkdir $FILTER
+cp -f ~/src/nextsim_data_dir/reference_grid.nc ${FILTER}/
 cp ~/src/nextsim/modules/enkf/enkf-c/bin/* ${FILTER}/
 cp $JOB_SETUP_DIR/enkf_cfg_$VAR/* $FILTER/
 script=${ENSPATH}/slurm.enkf.template.sh

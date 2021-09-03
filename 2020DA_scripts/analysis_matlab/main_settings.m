@@ -5,10 +5,10 @@ function [] = main_settings()
     Radius = 6378.273; % radius of earth
     % mnt_dir = '/Users/sukeng/Desktop/fram';
 %     mnt_dir = '/Users/sukeng/Desktop/nird';
-    % mnt_dir='/cluster/work/users/chengsukun/simulations'; 
-    mnt_dir='/nird/projects/nird/NS2993K/NORSTORE_OSL_DISK/NS2993K/chengsukun';
+    mnt_dir='/cluster/work/users/chengsukun/simulations'; 
+    % mnt_dir='/nird/projects/nird/NS2993K/NORSTORE_OSL_DISK/NS2993K/chengsukun';
     %%
-    exp=1; 
+    exp=2; 
     if  exp==0
         Var='spinup'
         Exp_ID = 'Spinup';
@@ -20,26 +20,14 @@ function [] = main_settings()
         simul_dir = '/test_spinup_2019-09-03_45days_x_1cycles_memsize40';
     elseif exp==1
         %%
-        % Var='sic';
-        % Exp_ID = 'Exp_18Oct2019';
-        % start_date = '2019-10-18';
-        % N_periods = 26;
-        % Duration = 7; % duration days set in nextsim.cfg 
-        % % simul_dir = ['/test_DAsit_' start_date '_' num2str(Duration) ...
-        % %              'days_x_' num2str(N_periods) 'cycles_memsize40'];
-        % % N_periods=20;
-        % simul_dir = ['/test_DA' Var '_' start_date '_' num2str(Duration) ...
-        % 'days_x_' num2str(N_periods) 'cycles_memsize40'];
-        % N_periods=5;
-        %%
         Var='sic';
         Exp_ID = 'Exp_18Oct2019';
         start_date = '2019-10-18';
         N_periods = 26;
         Duration = 7; % duration days set in nextsim.cfg 
         simul_dir = ['/test_DA' Var '_' start_date '_' num2str(Duration) ...
-        'days_x_' num2str(N_periods) 'cycles_memsize40'];
-        N_periods=4;
+        'days_x_' num2str(N_periods) 'cycles_memsize40_WithPostAssim'];
+        N_periods=6; 
         for i = 1:N_periods
             for j = 1:Duration
                 n = (i-1)*Duration +j;
@@ -49,9 +37,9 @@ function [] = main_settings()
         end
         
     elseif exp==2
-        Exp_ID = 'Exp_7Jan2020';
-        start_date = "2020-1-7";
-        N_periods = 16;                                         
+        Exp_ID = 'Exp_FreeRun';
+        start_date = "2019-10-18";
+        N_periods = 26;                                         
         Duration = 7; % duration days set in nextsim.cfg
         for i = 1:N_periods
             for j = 1:Duration
@@ -60,10 +48,10 @@ function [] = main_settings()
                 dates_num(n) = datenum(dates(n));
             end
         end
-        simul_dir = '/test_windcohesion_2020-01-07_7days_x_16cycles_memsize40';   
+        simul_dir = '/test_FreeRun_2019-10-18_7days_x_26cycles_memsize40';
     end        
     simul_dir = [mnt_dir simul_dir];   
-    save('test_inform.mat','Exp_ID','dates','N_periods','dates_num','Ne','simul_dir','Duration','Radius','Var')
+    save('test_inform.mat','Exp_ID','dates','N_periods','dates_num','Ne','simul_dir','Duration','Radius')
 %%
 %     main_ensemblesize
 % main_moorings_animation

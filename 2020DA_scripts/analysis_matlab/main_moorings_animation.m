@@ -5,17 +5,16 @@ function [] = main_moorings_animation()
     dbstop if error
     
     main_settings
-    for Var = {'sic','sit','damage'}
-        for method = {'mean', 'Spread'}  %mean: ensemble ensemble, spread: ensemble spread
-            fun_moorings(char(Var),char(method));
+    check_a_member = 0; % check_a_member=0 presents ensemble average
+    for method = {'mean', 'Spread'}  %mean: ensemble ensemble, spread: ensemble spread
+        for Var = {'sic','sit','damage'}
+            fun_moorings(char(Var),char(method),check_a_member);
         end
     end
 end
 
-function fun_moorings(Var,method)
+function fun_moorings(Var,method,check_a_member)
     load('test_inform.mat')   % 
-    check_a_member = 0; % check_a_member=0 presents ensemble average
-%% ------------------------------------------------------------------------ 
     figure(1); set(gcf,'color','w')
     m_proj('Stereographic','lon',-45,'lat',90,'radius',20);  
     if strcmp(method,'Spread')
@@ -23,15 +22,16 @@ function fun_moorings(Var,method)
     else
         colormap(jet)
     end
-    gifname = [ Exp_ID '_' method '_' Var '.gif'];
+    gifname = [ Exp_ID '_' method '_' Var '.gif']
     n = 0;
     for i = 1:N_periods
         for j = 1:Duration
             n = (i-1)*Duration +j;
-            t = dates(n)
+            t = dates(n);
             data_dir = [ simul_dir '/date' num2str(i) ];
-            filename = ['Moorings_' num2str(year(t)) 'd' num2str(day(t,'dayofyear'),'%03d') '.nc']
+            filename = ['Moorings_' num2str(year(t)) 'd' num2str(day(t,'dayofyear'),'%03d') '.nc'];
             clear data
+            [gifname '  ' datestr(t) '  ' filename]
             if check_a_member==0
                 id = 1:Ne;
             else
@@ -88,12 +88,9 @@ function fun_moorings(Var,method)
             % -------- animation -------------------------------------
             f = getframe(gcf);
             im=frame2im(f);
-            [I,map] = rgb2ind(im,256);
-            gifname
-            
+            [I,map] = rgb2ind(im,256);            
             if n==1  
                 imwrite(I,map,gifname,'gif','loopcount',inf,'Delaytime',.5)
-    %             imwrite(I,map,gifname,'gif');
             else
                 imwrite(I,map,gifname,'gif','writemode','append','Delaytime',.5)
             end
