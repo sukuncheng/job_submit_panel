@@ -1,1 +1,1 @@
-/cluster/home/chengsukun/src/nextsim-env/machines/fram_sukun/slurm.ensemble.template.sh
+/cluster/home/chengsukun/src/nextsim-env/machines/betzy_sukun/slurm.ensemble.template.sh

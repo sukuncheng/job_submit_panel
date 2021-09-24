@@ -1,9 +1,11 @@
 #!/bin/bash 
+# script for submitting an ensemble run without DA, restarting from a restart file.
+
 # create workpath
 # link restart file
-# call part1_create_file_system.sh to modify nextsim.cfg and pseudo2D.nml and enkf settings to workpath
+# call part1_create_file_system.sh to file nextsim.cfg and mkdir folder infrastruce
 # submit jobs to queue by slurm_nextsim from workpath
-# link restart file
+
 set -uex  # uncomment for debugging
 err_report() {
     echo "Error on line $1"
@@ -26,11 +28,9 @@ function WaitforTaskFinish(){
 # link restart file
 ##-------  Confirm working,data,ouput directories --------
 JOB_SETUP_DIR=$(cd `dirname $BASH_SOURCE`;pwd)
-BaseName=$(basename $BASH_SOURCE)
 ENV_FILE=${NEXTSIM_ENV_ROOT_DIR}/nextsim.ensemble.intel.src
 slurm_nextsim=slurm.ensemble.template.sh
-# ENV_FILE=${NEXTSIM_ENV_ROOT_DIR}/pynextsim.sing.src
-# slurm_nextsim=slurm.singularity.template.sh
+
 >nohup.out  # empty this file
 restart_path=$NEXTSIM_DATA_DIR   # select a folder for exchange restart data
 ##-------  Confirm working,data,ouput directories --------
@@ -40,20 +40,14 @@ basename=20190903T000000Z # set this variable, if the first run is from restart
 duration=45    # forecast length; tduration*duration is the total simulation time
 tduration=1    # number of DA cycles. 
 ENSSIZE=40     # ensemble size  
-block=1        # number of forecasts in a job
-jobsize=$((${ENSSIZE}/${block})) #number of nodes requested 
-UPDATE=0
+UPDATE=0       # 1: active EnKF assimilation 
 first_restart_path=$HOME/src/restart
-# randf in pseudo2D.nml, whether do perturbation
-[[ ${ENSSIZE} > 1 ]] && randf=true || randf=false 
-INFLATION=1
-LOCRAD=300
-RFACTOR=2
-KFACTOR=2
+
 OUTPUT_DIR=${simulations}/test_spinup_${time_init}_${duration}days_x_${tduration}cycles_memsize${ENSSIZE}_offline_perturbations
 echo 'work path:' $OUTPUT_DIR
-# [ -d $OUTPUT_DIR ] && rm -rf $OUTPUT_DIR
+#[ -d $OUTPUT_DIR ] && rm -rf $OUTPUT_DIR
 [ ! -d $OUTPUT_DIR ] && mkdir -p ${OUTPUT_DIR}
+cp ${JOB_SETUP_DIR}/$(basename $BASH_SOURCE)  ${OUTPUT_DIR} 
 
 # link perturbations
 rm -f ${restart_path}/Perturbations/*.nc
@@ -73,7 +67,7 @@ for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
     start_from_restart=true
     if $start_from_restart; then
         restart_path=$NEXTSIM_DATA_DIR   # select a folder for exchange restart data
-        rm -f   $restart_path/{field_mem* mesh_mem* WindPerturbation_mem* *.nc.analysis}
+        rm -f  $restart_path/{field_mem* mesh_mem* WindPerturbation_mem* *.nc.analysis}
         for (( i=1; i<=${ENSSIZE}; i++ )); do
             memname=mem${i}
             ln -sf ${first_restart_path}/field_${basename}.bin  $restart_path/field_${memname}.bin
@@ -94,27 +88,13 @@ for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
     script=${ENSPATH}/$slurm_nextsim
     cp $NEXTSIM_ENV_ROOT_DIR/$slurm_nextsim $script 
 
-    ### option1 use job array
-    # cmd="sbatch --array=1-${jobsize} $script $ENSPATH $ENV_FILE ${block}"
-    # $cmd 2>&1 | tee sjob.id
-    # jobid=$( awk '{print $NF}' sjob.id)
-    # WaitforTaskFinish $XPID0
-
-    ### option2 can resubmit failed task in jobarray, $block>1 doesn't work fully in this way.
-    for (( j=1; j<=3; j++ )); do
-        for (( i=1; i<=${ENSSIZE}; i++ )); do
-            grep -q -s "Simulation done" ${ENSPATH}/mem${i}/task.log && continue
-            cmd="sbatch $script $ENSPATH $ENV_FILE ${block} $i"  # change slurm.ensemble.template.sh: SLURM_ARRAY_TASK_ID=$4
-            $cmd 2>&1 
-        done
-        WaitforTaskFinish $XPID0
-    done
-    # 
-    [ ! -d ${ENSPATH}/filter/prior ] && mkdir -p ${ENSPATH}/filter/prior
-    for (( i=1; i<=$ENSSIZE; i++ )); do
-        mv ${ENSPATH}/mem${i}/prior.nc  ${ENSPATH}/filter/prior/$(printf "mem%.3d" ${i}).nc
-    done
+    sbatch --time=0-0:45:0   $script $ENSPATH $ENV_FILE ${ENSSIZE} 
+    WaitforTaskFinish $XPID0
+    
+    # [ ! -d ${ENSPATH}/filter/prior ] && mkdir -p ${ENSPATH}/filter/prior
+    # for (( i=1; i<=$ENSSIZE; i++ )); do
+    #     mv ${ENSPATH}/mem${i}/prior.nc  ${ENSPATH}/filter/prior/$(printf "mem%.3d" ${i}).nc
+    # done
 done
 cp ${JOB_SETUP_DIR}/nohup.out  ${OUTPUT_DIR}
-cp ${JOB_SETUP_DIR}/${BaseName}  ${OUTPUT_DIR} 
 echo "finished"

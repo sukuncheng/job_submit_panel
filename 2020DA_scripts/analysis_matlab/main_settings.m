@@ -9,7 +9,21 @@ function [] = main_settings()
     % mnt_dir='/nird/projects/nird/NS2993K/NORSTORE_OSL_DISK/NS2993K/chengsukun';
     %%
     exp=2; 
-    if  exp==0
+    if  exp=3
+        Var='sic';
+        Exp_ID = 'Exp_18Oct2019';
+        start_date = '2019-10-18';
+        N_periods = 84;
+        Duration = 1; % duration days set in nextsim.cfg 
+        simul_dir = '/test_DAsitsic_highfreq_2019-10-18_1days_x_84cycles_memsize40_offline_perturbations';
+        for i = 1:N_periods
+            for j = 1:Duration
+                n = (i-1)*Duration +j;
+                dates(n) = datetime(start_date) + n - 1;    
+                dates_num(n) = datenum(dates(n));
+            end
+        end
+    elseif exp==0
         Var='spinup'
         Exp_ID = 'Spinup';
         start_date = "2019-09-03"; N_periods = 1; Duration = 45;
@@ -19,7 +33,6 @@ function [] = main_settings()
         end
         simul_dir = '/test_spinup_2019-09-03_45days_x_1cycles_memsize40';
     elseif exp==1
-        %%
         Var='sic';
         Exp_ID = 'Exp_18Oct2019';
         start_date = '2019-10-18';
@@ -35,7 +48,6 @@ function [] = main_settings()
                 dates_num(n) = datenum(dates(n));
             end
         end
-        
     elseif exp==2
         Exp_ID = 'Exp_FreeRun';
         start_date = "2019-10-18";

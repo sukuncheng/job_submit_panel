@@ -1,4 +1,4 @@
 PRODUCT = OSISAF_ice_conc
 READER = standard
 TYPE = SIC
-FILE=/cluster/home/chengsukun/src/nextsim_data_dir/OSISAF_ice_conc/polstere/2019_nh_polstere/ice_conc_nh_polstere-100_multi_201910181200.nc
+FILE=/cluster/work/users/chengsukun/nextsim_data_dir/OSISAF_ice_conc/polstere/2019_nh_polstere/ice_conc_nh_polstere-100_multi_201910181200.nc

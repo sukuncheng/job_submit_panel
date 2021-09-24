@@ -37,10 +37,8 @@ function fun_moorings(Var,method,check_a_member)
             end
             for ie = id
                 file_dir = [data_dir '/mem' num2str(ie) '/prior.nc'];
-    %             ncdisp(file_dir)
                 data_tmp = ncread(file_dir,Var);
-                data(ie,:,:) = data_tmp(:,:,1);
-             
+                data(ie,:,:) = data_tmp(:,:,1);           
             end   
     %         data(data==0) = nan;   % exclude open water from nextsim.Moorings
             if check_a_member>0
@@ -51,8 +49,7 @@ function fun_moorings(Var,method,check_a_member)
                 elseif strcmp(method,'mean')==1
                     X = squeeze(mean(data,1)); 
                 end
-            end
-            
+            end            
             % -------- plot ------------------------------     
             lon = ncread(file_dir,'longitude');
             lat = ncread(file_dir,'latitude');
@@ -80,8 +77,7 @@ function fun_moorings(Var,method,check_a_member)
                 elseif strcmp(Var,'sst')
                     caxis([0 1])
                 end
-            end
-            
+            end            
             m_grid('color','k'); % 'linestyle','-'
             m_coast('patch',0.7*[1 1 1]);  
             title([datestr(t) ' ' method ' ' Var],'fontweight','normal','HorizontalAlignment','right');
@@ -91,7 +87,7 @@ function fun_moorings(Var,method,check_a_member)
             im=frame2im(f);
             [I,map] = rgb2ind(im,256);            
             if nfig==1  
-                imwrite(I,map,gifname,'gif'); %,'loopcount',inf,'Delaytime',.5)
+                imwrite(I,map,gifname,'gif','loopcount',inf,'Delaytime',.5)
             else
                 imwrite(I,map,gifname,'gif','writemode','append','Delaytime',.5)
             end

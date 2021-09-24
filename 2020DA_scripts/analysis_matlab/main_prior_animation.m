@@ -1,4 +1,4 @@
-function [] = main_moorings_animation()
+function [] = main_prior_animation()
     clc
     clear
     close all
@@ -15,17 +15,16 @@ function [] = main_moorings_animation()
     colormap(jet)
 
     gifname = [ Exp_ID '_prior.gif']
-    n = 1;
+    nfig = 1;
     for i = 1:N_periods
         t = dates(i*Duration);
         data_dir = [ simul_dir '/date' num2str(i) ];
-        
+        clear data
         if check_a_member==0
             id = 1:Ne;
         else
             id = check_a_member;
-        end
-        clear data
+        end        
         for k = 1:length(Vars)
             Var = char(Vars(k));
             for ie = id
@@ -43,9 +42,9 @@ function [] = main_moorings_animation()
                     X = squeeze(mean(data,1)); 
                 end
             end
+            % -------- plot ------------------------------  
             lon = ncread(file_dir,'longitude');
-            lat = ncread(file_dir,'latitude');
-            % -------- plot ------------------------------     
+            lat = ncread(file_dir,'latitude');   
             subplot(2,2,k)
             m_pcolor(lon,lat,X); shading flat; 
             h=colorbar;
@@ -55,6 +54,10 @@ function [] = main_moorings_animation()
                 elseif strcmp(Var,'sit')
                     caxis([0 6]);
                     title(h,'(m)')
+                elseif strcmp(Var,'sss')
+                    caxis([0 40])
+                elseif strcmp(Var,'sst')
+                    caxis([-10 5])
                 elseif strcmp(Var,'damage')
                     caxis([0 1])
                 end
@@ -64,6 +67,10 @@ function [] = main_moorings_animation()
                 elseif strcmp(Var,'sit')
                     caxis([0 1.8]);
                     title(h,'(m)')
+                elseif strcmp(Var,'sss')
+                    caxis([0 0.5])
+                elseif strcmp(Var,'sst')
+                    caxis([0 1])
                 elseif strcmp(Var,'damage')
                     caxis([0 0.5])
                 end
@@ -77,11 +84,12 @@ function [] = main_moorings_animation()
         f = getframe(gcf);
         im=frame2im(f);
         [I,map] = rgb2ind(im,256);            
-        if n==1  
+        if nfig==1  
             imwrite(I,map,gifname,'gif','loopcount',inf,'Delaytime',.5)
         else
             imwrite(I,map,gifname,'gif','writemode','append','Delaytime',.5)
         end
+        nfig = nfig + 1;
     end
 end
 
