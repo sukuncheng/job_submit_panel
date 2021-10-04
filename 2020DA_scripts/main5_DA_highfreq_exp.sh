@@ -6,7 +6,7 @@
 # call part1_create_file_system.sh to file nextsim.cfg and mkdir folder infrastruce
 # submit jobs to queue by slurm_nextsim from workpath
 
-# set -ux  # uncomment for debugging
+# set -ux  # uncomment for debugging, it causes error: unbounded variable https://www.coder.work/article/2569773
 err_report() {
     echo "Error on line $1"
 }
@@ -81,10 +81,9 @@ restart_path=$NEXTSIM_DATA_DIR   # select a folder for exchange restart data
 # experiment settings
 first_restart_path=/cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40_offline_perturbations/date1
 time_init0=2019-10-18   # starting date of simulation
-# duration=7      # forecast length; tduration*duration is the total simulation time
-# tduration=26    # number of DA cycles. 
+# comment #VAR = sit in enkf_cfg_sic/model.prm
 duration=1      # forecast length; tduration*duration is the total simulation time
-tduration=84    # number of DA cycles. 
+tduration=56    # number of DA cycles. 
 ENSSIZE=40         # ensemble size  
 
 UPDATE=1           # 1: active EnKF assimilation 
@@ -96,16 +95,16 @@ KFACTOR=2
 
 
     >nohup.out  # empty this file
-    OUTPUT_DIR=${simulations}/test_DAsitsic_highfreq_${time_init0}_${duration}days_x_${tduration}cycles_memsize${ENSSIZE}_offline_perturbations
+    OUTPUT_DIR=${simulations}/test_DAsitsic_sic1sit7_${time_init0}_${duration}days_x_${tduration}cycles_memsize${ENSSIZE}
     echo 'work path:' $OUTPUT_DIR
-    # [ -d $OUTPUT_DIR ] && rm -rf $OUTPUT_DIR
+#    [ -d $OUTPUT_DIR ] && rm -rf $OUTPUT_DIR
     [ ! -d $OUTPUT_DIR ] && mkdir -p ${OUTPUT_DIR}
     cp ${JOB_SETUP_DIR}/$(basename $BASH_SOURCE)  ${OUTPUT_DIR} 
 
     ## ----------- execute ensemble runs ----------
     DA_VAR=sic
-    for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
-        [ $(($iperiod%7)) -eq 1 ] && DA_VAR=sitsic  || DA_VAR=sic
+    for (( iperiod=27; iperiod<=${tduration}; iperiod++ )); do
+        [ $(($iperiod%7)) -eq 0 ] && DA_VAR=sitsic  || DA_VAR=sic
         start_from_restart=true
         if [ $iperiod -eq 1 ]; then  # prepare and link restart files
             analysis_source=${first_restart_path}/filter/size40_I${INFLATION}_L${LOCRAD}_R${RFACTOR}_K${KFACTOR}_DA${DA_VAR}
@@ -136,7 +135,8 @@ KFACTOR=2
             (( $count >0 )) && echo 'Try' $j ', date' $iperiod ', start calculating member(s):' ${list[*]} 
             #
             if (( $count>4 )); then
-	            sbatch -W --time=0-0:2:0 --nodes=$count $script $ENSPATH $ENV_FILE ${ENSSIZE} 
+	            #sbatch -W --time=0-0:2:0 --nodes=$count $script $ENSPATH $ENV_FILE ${ENSSIZE} 
+	            sbatch -W --time=0-0:20:0 --nodes=4 $script $ENSPATH $ENV_FILE ${ENSSIZE} 
             elif (( $count<=4)) && (( $count>0)); then
                 sbatch -W --time=0-0:5:0 --nodes=$count --qos=devel  $script $ENSPATH $ENV_FILE ${ENSSIZE}  
             fi
