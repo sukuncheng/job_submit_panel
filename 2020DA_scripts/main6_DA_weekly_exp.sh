@@ -82,8 +82,8 @@ restart_path=$NEXTSIM_DATA_DIR   # select a folder for exchange restart data
 first_restart_path=/cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40_offline_perturbations/date1
 time_init0=2019-10-18   # starting date of simulation
 # comment #VAR = sit in enkf_cfg_sic/model.prm
-duration=1      # forecast length; tduration*duration is the total simulation time
-tduration=182    # number of DA cycles. 
+duration=7      # forecast length; tduration*duration is the total simulation time
+tduration=26    # number of DA cycles. 
 ENSSIZE=40         # ensemble size  
 
 UPDATE=1           # 1: active EnKF assimilation 
@@ -93,24 +93,22 @@ LOCRAD=300
 RFACTOR=2
 KFACTOR=2
 
-
+for DA_VAR in sic sit sitsic; do #sic sit sitsic
     >nohup.out  # empty this file
-    OUTPUT_DIR=${simulations}/test_DAsitsic_sic1sit7_${time_init0}_${duration}days_x_${tduration}cycles_memsize${ENSSIZE}_option4
+    OUTPUT_DIR=${simulations}/test_DA${DA_VAR}_${time_init0}_${duration}days_x_${tduration}cycles_memsize${ENSSIZE}_offline_perturbations
     echo 'work path:' $OUTPUT_DIR
-    #[ -d $OUTPUT_DIR ] && rm -rf $OUTPUT_DIR
+    # [ -d $OUTPUT_DIR ] && rm -rf $OUTPUT_DIR
     [ ! -d $OUTPUT_DIR ] && mkdir -p ${OUTPUT_DIR}
     cp ${JOB_SETUP_DIR}/$(basename $BASH_SOURCE)  ${OUTPUT_DIR} 
 
     ## ----------- execute ensemble runs ----------
-    DA_VAR=sic
-    for (( iperiod=133; iperiod<=${tduration}; iperiod++ )); do
-        [ $(($iperiod%7)) -eq 0 ] && DA_VAR=sitsic  || DA_VAR=sic
+    for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
         start_from_restart=true
         if [ $iperiod -eq 1 ]; then  # prepare and link restart files
             analysis_source=${first_restart_path}/filter/size40_I${INFLATION}_L${LOCRAD}_R${RFACTOR}_K${KFACTOR}_DA${DA_VAR}
             link_restarts $ENSSIZE   $first_restart_path  $restart_path $analysis_source
         fi
-
+        
         time_init=$(date +%Y-%m-%d -d "${time_init0} + $((($iperiod-1)*${duration})) day")
         echo "period ${time_init} to $(date +%Y%m%d -d "${time_init} + ${duration} day")"
     # a. create files strucure, copy and modify configuration files inside
@@ -124,7 +122,7 @@ KFACTOR=2
         cp ${NEXTSIM_ENV_ROOT_DIR}/$slurm_nextsim $script 
     #------------------
         # check for crashed member and resubmit
-        for (( j=1; j<=3; j++ )); do
+        for (( j=1; j<=3; j++ )); do            
             count=0
             list=()
             for (( i=1; i<=$ENSSIZE; i++ )); do
@@ -134,23 +132,23 @@ KFACTOR=2
 		        echo 'Try' $j ', date' $iperiod ', start calculating member(s):' ${list[*]} 
                 # dynamically request nodes based on the number of idle node
                 idle_node=`sinfo --states=idle | grep normal | grep idle | awk '{print $4}'`
-                dt=2  # unit time cost of a member, in minutes
+            	dt=10  # unit time cost of a member, in minutes
                 if (( $count<=$idle_node )); then
                     Nnode=$count
                     Time=$dt
                 else
                     Numbers=(4 5 8 10 20 40)
                     for (( id=1; id<${#Numbers[@]}; id++ )); do
-                        if (( ${Numbers[id]}> $idle_node )); then                        
-                            Nnode=${Numbers[id-1]}
-                            break
-                        fi
+                    if (( ${Numbers[id]}> $idle_node )); then                        
+                        Nnode=${Numbers[id-1]}
+                        break
+                    fi
                     done
                     Time=$(( $dt*($count+$Nnode-1)/$Nnode ))
                 fi
-                (( $Nnode<4 )) && Nnode=4  
+		        (( $Nnode<4 )) && Nnode=4  
                 (( j==1 )) && link_perturbation $restart_path $duration $iperiod $ENSSIZE  # link perturbation files  
-                echo "request nodes and time/node: " $Nnode ", " $Time
+                echo "request nodes and time/node: " $Nnode ", " $Time   
                 sbatch -W --time=0-0:$Time:0 --nodes=$Nnode $script $ENSPATH ${ENSSIZE}  $Nnode
                 wait
             else
@@ -178,6 +176,7 @@ KFACTOR=2
     done
     cp ${JOB_SETUP_DIR}/nohup.out  ${OUTPUT_DIR}
     echo "finished"
+done # sic sit sitsic
 
 
 

@@ -23,7 +23,7 @@ echo " Initialize files system, write nextsim.cfg, pseudo2D.nml to workpath"
          s/^start_from_restart=.*$/start_from_restart=${start_from_restart}/g; \
          s/^write_final_restart=.*$/write_final_restart=true/g; \
          s/^basename.*$/basename=/g; \
-         s/^assimilated_variable.*$/assimilated_variable=${DA_VAR}/g; \
+         s/^DAtype.*$/DAtype=${DA_VAR}/g; \
          s/^restart_from_analysis=.*$/restart_from_analysis=${restart_from_analysis}/g" \
         ${JOB_SETUP_DIR}/nextsim.cfg 
         cp ${JOB_SETUP_DIR}/nextsim.cfg  ${ENSPATH}/nextsim.cfg

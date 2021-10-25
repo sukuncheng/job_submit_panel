@@ -71,8 +71,10 @@ function link_perturbation(){
 }
 
 ##-------  Confirm working,data,ouput directories --------
+# srun --nodes=40 --time=01:30:00  --account=nn2993k --pty /bin/bash -i
 JOB_SETUP_DIR=$(cd `dirname $BASH_SOURCE`;pwd)
-source ${NEXTSIM_ENV_ROOT_DIR}/nextsim.ensemble.intel.src
+ENV_FILE=${NEXTSIM_ENV_ROOT_DIR}/nextsim.ensemble.intel.src
+source $ENV_FILE
 slurm_nextsim=slurm.ensemble.template.sh
 slurm_enkf=slurm.enkf.template.sh
 
@@ -83,7 +85,7 @@ first_restart_path=/cluster/work/users/chengsukun/simulations/test_spinup_2019-0
 time_init0=2019-10-18   # starting date of simulation
 # comment #VAR = sit in enkf_cfg_sic/model.prm
 duration=1      # forecast length; tduration*duration is the total simulation time
-tduration=182    # number of DA cycles. 
+tduration=56    # number of DA cycles. 
 ENSSIZE=40         # ensemble size  
 
 UPDATE=1           # 1: active EnKF assimilation 
@@ -95,21 +97,23 @@ KFACTOR=2
 
 
     >nohup.out  # empty this file
-    OUTPUT_DIR=${simulations}/test_DAsitsic_sic1sit7_${time_init0}_${duration}days_x_${tduration}cycles_memsize${ENSSIZE}_option4
+    OUTPUT_DIR=${simulations}/test_DAsitsic_sic1sit7_${time_init0}_${duration}days_x_${tduration}cycles_memsize${ENSSIZE}_option2
     echo 'work path:' $OUTPUT_DIR
-    #[ -d $OUTPUT_DIR ] && rm -rf $OUTPUT_DIR
+    [ -d $OUTPUT_DIR ] && rm -rf $OUTPUT_DIR
     [ ! -d $OUTPUT_DIR ] && mkdir -p ${OUTPUT_DIR}
     cp ${JOB_SETUP_DIR}/$(basename $BASH_SOURCE)  ${OUTPUT_DIR} 
 
     ## ----------- execute ensemble runs ----------
     DA_VAR=sic
-    for (( iperiod=133; iperiod<=${tduration}; iperiod++ )); do
+    for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
         [ $(($iperiod%7)) -eq 0 ] && DA_VAR=sitsic  || DA_VAR=sic
         start_from_restart=true
         if [ $iperiod -eq 1 ]; then  # prepare and link restart files
             analysis_source=${first_restart_path}/filter/size40_I${INFLATION}_L${LOCRAD}_R${RFACTOR}_K${KFACTOR}_DA${DA_VAR}
             link_restarts $ENSSIZE   $first_restart_path  $restart_path $analysis_source
         fi
+        # link offline perturbations to ensemble members
+        link_perturbation $restart_path $duration $iperiod $ENSSIZE
 
         time_init=$(date +%Y-%m-%d -d "${time_init0} + $((($iperiod-1)*${duration})) day")
         echo "period ${time_init} to $(date +%Y%m%d -d "${time_init} + ${duration} day")"
@@ -123,43 +127,29 @@ KFACTOR=2
         script=${ENSPATH}/$slurm_nextsim
         cp ${NEXTSIM_ENV_ROOT_DIR}/$slurm_nextsim $script 
     #------------------
-        # check for crashed member and resubmit
         for (( j=1; j<=3; j++ )); do
             count=0
             list=()
             for (( i=1; i<=$ENSSIZE; i++ )); do
-                ! grep -q -s "Simulation done" $ENSPATH/mem$i/task.log && count=$(($count+1)) && list=(${list[*]} $i);
-            done
-            if (( $count >0 )); then
-		        echo 'Try' $j ', date' $iperiod ', start calculating member(s):' ${list[*]} 
-                # dynamically request nodes based on the number of idle node
-                idle_node=`sinfo --states=idle | grep normal | grep idle | awk '{print $4}'`
-                dt=2  # unit time cost of a member, in minutes
-                if (( $count<=$idle_node )); then
-                    Nnode=$count
-                    Time=$dt
-                else
-                    Numbers=(4 5 8 10 20 40)
-                    for (( id=1; id<${#Numbers[@]}; id++ )); do
-                        if (( ${Numbers[id]}> $idle_node )); then                        
-                            Nnode=${Numbers[id-1]}
-                            break
-                        fi
-                    done
-                    Time=$(( $dt*($count+$Nnode-1)/$Nnode ))
+                if ! grep -q -s "Simulation done" $ENSPATH/mem$i/task.log ; then
+                    count=$(($count+1)) && list=(${list[*]} $i);
+                    cd $ENSPATH/mem$i
+                    cp nextsim.cfg.backup nextsim.cfg
+                    rm -rf *.nc *.log *.bin *.dat restart
+                    srun --nodes=1 --mpi=pmi2 -n128 $NEXTSIMDIR/model/bin/nextsim.exec  --config-files=nextsim.cfg 2>&1 | tee task.log  &                   
+ #mpirun -ppn 128 -np 128 $NEXTSIMDIR/model/bin/nextsim.exec --config-files=nextsim.cfg
+                   # mpirun -perhost 128 -np 128 $NEXTSIMDIR/model/bin/nextsim.exec --config-files=nextsim.cfg 2>&1 | tee task.log  &    
+                   # (( $count%4==0 )) && wait    
+                    wait
+                    cp nextsim.cfg.backup nextsim.cfg
                 fi
-                (( $Nnode<4 )) && Nnode=4  
-                (( j==1 )) && link_perturbation $restart_path $duration $iperiod $ENSSIZE  # link perturbation files  
-                echo "request nodes and time/node: " $Nnode ", " $Time
-                sbatch -W --time=0-0:$Time:0 --nodes=$Nnode $script $ENSPATH ${ENSSIZE}  $Nnode
-                wait
-            else
-                break
-            fi
+            done
+            (( $count >0 )) && echo 'Try' $j ', date' $iperiod ', for member(s):' ${list[*]} 
+            wait
         done
         # check for crashed member, report error and exit
         for (( i=1; i<=$ENSSIZE; i++ )); do
-            ! grep -q -s "Simulation done" $ENSPATH/mem$i/task.log && echo $ENSPATH'/mem'$i 'has crashed ' $j ' times. EXIT' && exit
+            ! grep -q -s "Simulation done" $ENSPATH/mem$i/task.log && echo $ENSPATH'/mem'$i 'has crashed 3 times. EXIT' && exit
         done
         #------------------
         ## 2.submit enkf after finishing the ensemble simulations 
@@ -170,7 +160,14 @@ KFACTOR=2
             script=${ENSPATH}/$slurm_enkf
             cp ${NEXTSIM_ENV_ROOT_DIR}/$slurm_enkf $script
             # Do EnKF
-            sbatch ${NEXTSIM_ENV_ROOT_DIR}/$slurm_enkf  $ENSPATH
+            # sbatch ${NEXTSIM_ENV_ROOT_DIR}/$slurm_enkf  $ENSPATH
+            cd ${ENSPATH}/filter
+            make clean
+            ./enkf_prep --no-superobing enkf.prm 2>&1 | tee prep.out
+           # mpirun -np 128 ./enkf_calc --use-rmsd-for-obsstats --ignore-no-obs enkf.prm 2>&1 | tee calc.out
+           # mpirun -np 128 ./enkf_update --calculate-spread enkf.prm 2>&1 | tee update.out
+            srun ./enkf_calc --use-rmsd-for-obsstats --ignore-no-obs enkf.prm 2>&1 | tee calc.out
+            srun ./enkf_update --calculate-spread enkf.prm 2>&1 | tee update.out
             wait
         fi
         analysis_source=${ENSPATH}/filter/prior
