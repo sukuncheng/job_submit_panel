@@ -1,5 +1,9 @@
-# Todo
+# research proposal
+assess the implementation of EnKF assimilating ice thickness and concentration in esemble neXtSIM forecast
 
+# Experimental design
+
+# Todo
 ~~1. DONE: add a script-block to resubmit crashed job. Waiting all jobs are finished before moving to enkf~~
 ~~2. DONE: stop daily output of .bin and .dat, only output the final. output_per_day=0 in nextsim.cfg~~
 ~~3. DONE. increate time step in nextsim.cfg in the latest nextsim version. from 200 to 400~~
@@ -14,14 +18,12 @@
 ~~13.  make dataset links in NEXTSIMDIR/data~~
 ~~14. member_analysis, restart file, for each member are linked to NEXTSIMDIR/data for  ensemble forecasts in the next DA cycle.~~
 ~~15. CANCELLED. add [statevector]restart_path in nextsim.cfg. restart_path is set as restart. input_path~~
-1. Consider change studied time from winter 2018 to winter 2019. TOPAZ in 12.2018 is not completed.
-2. Adjust ECMWF data air drag coefficient?
-3. Tune factors (R, K, inflation, localisation radii) in enkf
-4. Assimilate ice thickness, concentration indpendently and ajointly. There is a bug in assimilating concentration.
+~~16.  DONE Consider change studied time from winter 2018 to winter **2019**. TOPAZ in 12.2018 is not completed.
+~~17.  DONE. Adjust ECMWF data air drag coefficient?
+~~18.  DONE. Tune factors (R, K, inflation, localisation radii) in enkf
+~~19  DONE Assimilate ice thickness, concentration indpendently and ajointly. There is a bug in assimilating concentration.
 5. merge enkf_interface_sukun to enkf_interface and develop
    update the asr code in nextsim based on the ecmwf ec2_...
-
-describe analysis_sea_ice_thickness_unc
 
 
 # Enkf - c
@@ -29,7 +31,7 @@ describe analysis_sea_ice_thickness_unc
   make clean;make; cp ./bin/* example_filter/; cd example_filter/; make clean; 
   keywords in code related to spread: UPDATE_DOANALYSISSPREAD， &fields[i - bufindex], "write analysis spread" 
 ## reference_grid.nc 
-  - Prepared by Einar for using enkf-c code
+  - truncated from ORCA, adopted from NEMO,  for exchange model status with enkf
   - Grid size: 528*522
   - Covered area:
   longitude: -180 to 180
@@ -82,6 +84,115 @@ The repository includes subfolders:
 - difference between TOPAZ4RC_daily and TP4DAILY
 
 # 2021
+All data assimilation methods are baded on the Bayes's theory  
+The theorem leads the problem to least-square inverse problem with Gaussian error distribution
+
+
+# run python in singularity
+singularity exec --bind /nird/projects/nird/NS2993K/NORSTORE_OSL_DISK/NS2993K/chengsukun:/plot --cleanenv /cluster/projects/nn2993k/sim/singularity_image_files/pynextsim-no-code.sif  python /plot/plot_summary_time_series.py
+
+Or
+add SINGULARITY_BINDPATH+=",/nird/projects/nird/NS2993K/NORSTORE_OSL_DISK/NS2993K/chengsukun" in 
+~/pynextsim.sing.src
+singularity exec --cleanenv /cluster/projects/nn2993k/sim/singularity_image_files/pynextsim-no-code.sif python $work_path/file  
+
+persistent field is meant to be the initial conditions (ie the restart), with the idea that comparing its evaluation with the forecast tells you if the model is helping. We take a bit of a shortcut and use the first day of the moorings file (or maybe the first record)
+
+investigate DA sic on 10-25-2019
+using Yumeng's python code based on pynextsimf
+forecast std in prior 0.013425477828866423
+analysis std in prior 0.009236595317403553
+Mooring DAsic std before DA (2019d297) 0.014722677178171457
+Mooring freerun std before DA (2019d297) 0.013344032832063563
+Mooring DAsic std after DA (2019d298) 0.012371694701988201
+Mooring freerun std after DA (2019d298) 0.013571240514265859
+
+exportStateVector->stateVectorAppendNetcdf
+
+loadGrid
+
+add sst, sss to statevector output to enkf-c, 
+M_sst    Sea surface temperature 
+M_sss    Sea surface salinity
+
+get_ensmean.py   collect moorings from a run result to a new folder 
+compare_DA.py     
+plot_bias_RMSE.py
+
+
+# 1-Oct
+- obviously larger bias of SIT from map view in DAsic compare to others, mainly observed in Chukchi Sea, and less in Beaufort Sea and Laptev Sea
+- 
+
+
+# 30-Sep.
+- correlation between sic and sit. The relation for sit>1 is not reliable
+- display bias map
+- check the impact of high assimilating frequency of sic on the bias and rmse
+- 
+
+
+# 7-Sep.
+- the same nudging coefficient is used for SST and SSS
+- 8-nudging
+- draft a subsection about the functioning of the couple neXtSIM - TOPAZ is. What variables are exchanged and how. Possibly including an illustration. 
+- only marginal advantages from DA are seen on the full Arctic, but larger improvements on the IIEE and RMSE are visible
+- setup on Betzy HPC
+
+# 11-Aug
+(what is analysis or reanalysis) if it is forecast,the forecast is just free run of TOPAZ initialized from when. 
+        if we are using the reanalysis, it means we use the data twice to some extend. 
+
+  - Whether the quality of the forecast obtained arbitrary time is constant.
+  
+  - It is not a standard experiment setup if we use reanalysis TOPAZ + sea ice system (instead, we use forecast topaz).  
+    Because TOPAZ has already assimilated concentration and thickness. As the ocean forcing, the constraint concentration and thickness are already going through the simulation with assimilation. At least for concentration. 
+  - We understood the system better and expect from assimilating ice concentration cannot be very visible and effective when one looks at the skills of our stand-alone system over 1-2 day after assimilation.
+
+  - if one assimilates ice thickness in a system forced by ocean that has seen a constain sea ice itself is constraint by data being concentration and thickness like TOPAZ, then the thickness is constraint in TOPAZ. 
+    Therefore, the temperature of the ocean and energy flux through the ice in TOPAZ, exacted from the ocean, is already seeing the change of thickness being constraint. 
+    If we force the ocean with TOPAZ, we still be a bit attractived in the solution of TOPAZ in terms of sea ice thickness. 
+
+# 23-June
+scatter plot sic vs sit using one member forecast/analysis
+1. sic bias (model -obs.) is larger (a jump) after 1-day forecast from restarting.
+2. spread of sic is not reducued as expected.  
+May due to the bias/rmse difference defined between pynextsim and enkf-c
+3. investigate one enkf, prior/forecast
+4.  values of variables in OW are 0.
+5. ensure it is not necessary to assimilate sss and sst
+6. use inflation to tune dfs and srf.
+7. compare the root-meansquare error of the ensemble mean to the average ensemble spread. two different and inconsistent methodologies have been used over the last few years in the meteorology and hydrology literature to compute the average ensemble spread. 
+   1.  the square root of average ensemble variance 
+   2.  the average of ensemble standard deviation . The second option is incorrect. 
+
+# 21 june
+error in using reanalysis sit&sic to restart forecasting. the loaded analyzed sic is different from M_conc preloaded from other sources. The run crashed quickly. 
+fix scale factor in loading analyzed concentration
+is it necessary to count for the classification oof thin, and thick ice when loading concentration? M_conc_thin and M_conc. Would it affect the formation of ridge in code?
+
+# 9-June
+assimilate osisaf ice concentration
+/cluster/projects/nn2993k/sim/data/OSISAF_ice_conc/polstere/2019_nh_polstere
+variable names:
+  ice_conc
+  total_uncertainty
+
+https://spaces.awi.de/display/CS2SMOS/CryoSat-SMOS+Merged+Sea+Ice+Thickness
+2019-10-18, 2020-4-12
+
+# 19-5
+- apply the drag correction, run one member with and without perturbations for 1 month 
+and verify if the damage variable is overall larger in the perturbed run than in the unperturbed run. 
+  - I want firstly tune the air drag coefficient.
+  - ensure that air drag coefficient = air drag coefficient*drag_correction_ratio
+  - The uncertainty of air drag coefficient is larger than the amplification in wind pertturbation. Therefore, In the calculation of wind-ice stress tau_a =rhoa*air_drag_coef*|U|*U, the amplification can be ignored.
+- ensure variance of wind speed using 3m/s. DONE
+- when to perturb the cohension. ONLY AT THE INITLIZATION OF SPINUP EXPERIMENT
+- what is free run    == deterministic one
+
+ask Gullium cohesion in leads
+
 # 29-4
 enkf-c is updated to v2.8
 enkf_calc crashes using ETKF  
