@@ -14,7 +14,6 @@
 #                     -- prior 
 echo " Initialize files system, write nextsim.cfg, pseudo2D.nml to workpath"
 #1. prepare forecast files
-	 #s/^input_path=.*$/input_path=${NEXTSIM_DATA_DIR}/g; \
 # nextsim.cfg,  #"${duration}" # input_path, basename are defined in slurm.*.template.sh
     sed -i "s/^time_init=.*$/time_init=${time_init}/g; \
          s/^duration=.*$/duration=${duration}/g; \
@@ -26,6 +25,10 @@ echo " Initialize files system, write nextsim.cfg, pseudo2D.nml to workpath"
          s/^DAtype.*$/DAtype=${DA_VAR}/g; \
          s/^restart_from_analysis=.*$/restart_from_analysis=${restart_from_analysis}/g" \
         ${JOB_SETUP_DIR}/nextsim.cfg 
+    # sed -i " s|^input_path=.*$|input_path=${restart_path}|g; \
+    #          s|^restart_path=.*$|restart_path=${restart_path}|g;" \
+    #     ${JOB_SETUP_DIR}/nextsim.cfg 
+        sed -i " s|^input_path=.*$|input_path=${restart_path}|g" ${JOB_SETUP_DIR}/nextsim.cfg
         cp ${JOB_SETUP_DIR}/nextsim.cfg  ${ENSPATH}/nextsim.cfg
         
     # # pseudo2D.nml, perturb cohesion C_lab=1.5e6 [±33%]  # s/^C_perturb.*$/C_perturb=0.33/g" 

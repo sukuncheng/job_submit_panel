@@ -19,7 +19,7 @@ function WaitforTaskFinish(){
 JOB_SETUP_DIR=$(cd `dirname $0`;pwd)  
 ENV_FILE=${NEXTSIM_ENV_ROOT_DIR}/nextsim.ensemble.intel.src   # set ENSEMBLE=0 in this file
 sed -i "s|^export USE_ENSEMBLE.*$|export USE_ENSEMBLE=0|g;" ${ENV_FILE}  # NEED TO RECOMPILE neXtSIM
-slurm_nextsim=slurm.single.sh
+slurm_nextsim_script=slurm.single.sh
 >nohup.out  # empty this file
 ##-------  Confirm working,data,ouput directories --------
     # experiment settings
@@ -44,8 +44,8 @@ restart_path=/cluster/home/chengsukun/src/restart
 ## ----------- execute ensemble runs ----------
 # b. prepare the slurm script 
     ENSPATH=${OUTPUT_DIR} 
-    script=${ENSPATH}/$slurm_nextsim
-    cp $NEXTSIM_ENV_ROOT_DIR/$slurm_nextsim $script
+    script=${ENSPATH}/$slurm_nextsim_script
+    cp $NEXTSIM_ENV_ROOT_DIR/$slurm_nextsim_script $script
 
 echo "period ${time_init} to $(date +%Y%m%d -d "${time_init} + $((${duration})) day")"
 for (( i=1; i<=${#ASR_air_drag[@]}; i++ )); do

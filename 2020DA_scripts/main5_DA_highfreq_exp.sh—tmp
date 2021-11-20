@@ -4,7 +4,7 @@
 # create workpath
 # link restart file
 # call part1_create_file_system.sh to file nextsim.cfg and mkdir folder infrastruce
-# submit jobs to queue by slurm_nextsim from workpath
+# submit jobs to queue by slurm_nextsim_script from workpath
 
 # set -ux  # uncomment for debugging, it causes error: unbounded variable https://www.coder.work/article/2569773
 err_report() {
@@ -75,8 +75,8 @@ function link_perturbation(){
 JOB_SETUP_DIR=$(cd `dirname $BASH_SOURCE`;pwd)
 ENV_FILE=${NEXTSIM_ENV_ROOT_DIR}/nextsim.ensemble.intel.src
 source $ENV_FILE
-slurm_nextsim=slurm.ensemble.template.sh
-slurm_enkf=slurm.enkf.template.sh
+slurm_nextsim_script=slurm.ensemble.template.sh
+slurm_enkf_script=slurm.enkf.template.sh
 
 restart_path=$NEXTSIM_DATA_DIR   # select a folder for exchange restart data
 ##-------  Confirm working,data,ouput directories --------
@@ -124,8 +124,8 @@ KFACTOR=2
 
     # b. submit the script for ensemble forecasts
         cd $ENSPATH
-        script=${ENSPATH}/$slurm_nextsim
-        cp ${NEXTSIM_ENV_ROOT_DIR}/$slurm_nextsim $script 
+        script=${ENSPATH}/$slurm_nextsim_script
+        cp ${NEXTSIM_ENV_ROOT_DIR}/$slurm_nextsim_script $script 
     #------------------
         for (( j=1; j<=3; j++ )); do
             count=0
@@ -157,10 +157,10 @@ KFACTOR=2
             for (( i=1; i<=${ENSSIZE}; i++ )); do
                 cp ${ENSPATH}/mem${i}/prior.nc  ${ENSPATH}/filter/prior/$(printf "mem%.3d" $i).nc
             done          
-            script=${ENSPATH}/$slurm_enkf
-            cp ${NEXTSIM_ENV_ROOT_DIR}/$slurm_enkf $script
+            script=${ENSPATH}/$slurm_enkf_script
+            cp ${NEXTSIM_ENV_ROOT_DIR}/$slurm_enkf_script $script
             # Do EnKF
-            # sbatch ${NEXTSIM_ENV_ROOT_DIR}/$slurm_enkf  $ENSPATH
+            # sbatch ${NEXTSIM_ENV_ROOT_DIR}/$slurm_enkf_script  $ENSPATH
             cd ${ENSPATH}/filter
             make clean
             ./enkf_prep --no-superobing enkf.prm 2>&1 | tee prep.out

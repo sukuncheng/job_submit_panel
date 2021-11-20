@@ -4,7 +4,7 @@
 # create workpath
 # link restart file
 # call part1_create_file_system.sh to file nextsim.cfg and mkdir folder infrastruce
-# submit jobs to queue by slurm_nextsim from workpath
+# submit jobs to queue by slurm_nextsim_script from workpath
 
 # set -uex  # uncomment for debugging
 err_report() {
@@ -72,13 +72,13 @@ function link_perturbation(){ # note the index 180=45*4 correspond to the last p
 # create workpath
 # link restart file
 # call part1_create_file_system.sh to modify nextsim.cfg and pseudo2D.nml and enkf settings to workpath
-# submit jobs to queue by slurm_nextsim from workpath
+# submit jobs to queue by slurm_nextsim_script from workpath
 # link restart file
 ##-------  Confirm working,data,ouput directories --------
 JOB_SETUP_DIR=$(cd `dirname $BASH_SOURCE`;pwd)
 ENV_FILE=${NEXTSIM_ENV_ROOT_DIR}/nextsim.ensemble.intel.src
-slurm_nextsim=slurm.ensemble.template.sh
-slurm_enkf=slurm.enkf.template.sh
+slurm_nextsim_script=slurm.ensemble.template.sh
+slurm_enkf_script=slurm.enkf.template.sh
 
 >nohup.out  # empty this file
 restart_path=$NEXTSIM_DATA_DIR   # select a folder for exchange restart data
@@ -123,8 +123,8 @@ for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
     
 # b. submit the script for ensemble forecasts
     cd $ENSPATH
-    script=${ENSPATH}/$slurm_nextsim
-    cp $NEXTSIM_ENV_ROOT_DIR/$slurm_nextsim $script 
+    script=${ENSPATH}/$slurm_nextsim_script
+    cp $NEXTSIM_ENV_ROOT_DIR/$slurm_nextsim_script $script 
 
     count=0
     for (( j=1; j<=3; j++ )); do
@@ -147,8 +147,8 @@ for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
 
     ## 2.submit enkf after finishing the ensemble simulations 
     if [ ${UPDATE} == 1 ] && [ ! -f $ENSPATH/filter/update.out ]; then
-        script=${ENSPATH}/$slurm_enkf
-        cp ${NEXTSIM_ENV_ROOT_DIR}/$slurm_enkf $script
+        script=${ENSPATH}/$slurm_enkf_script
+        cp ${NEXTSIM_ENV_ROOT_DIR}/$slurm_enkf_script $script
         cmd="sbatch $script $ENSPATH"  # --dependency=afterok:${jobid}
         $cmd 2>&1
     fi

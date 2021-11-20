@@ -2,12 +2,12 @@ function [] = main_moorings_animation()
     clc
     clear
     close all
-    dbstop if error
+    % dbstop if error
     
     main_settings
     check_a_member = 0; % check_a_member=0 presents ensemble average
-    for method = {'mean', 'Spread'}  %mean: ensemble ensemble, spread: ensemble spread
-        for Var = {'sic','sit','damage'}
+    for method = {'mean'} %{'mean', 'Spread'}  %mean: ensemble ensemble, spread: ensemble spread
+        for Var = {'sic','sit'}
             fun_moorings(char(Var),char(method),check_a_member);
         end
     end
@@ -20,7 +20,7 @@ function fun_moorings(Var,method,check_a_member)
     if strcmp(method,'Spread')
         colormap(bluewhitered)
     else
-        colormap(jet)
+        colormap(viridis)
     end
     gifname = [ Exp_ID '_' method '_' Var '.gif']
     n = 0;
@@ -28,7 +28,7 @@ function fun_moorings(Var,method,check_a_member)
         for j = 1:Duration
             n = (i-1)*Duration +j;
             t = dates(n);
-            data_dir = [ simul_dir '/date' num2str(i) ];
+            data_dir = [ simul_dir '/date' num2str(i) ]
             filename = ['Moorings_' num2str(year(t)) 'd' num2str(day(t,'dayofyear'),'%03d') '.nc'];
             clear data
             [gifname '  ' datestr(t) '  ' filename]
@@ -43,7 +43,7 @@ function fun_moorings(Var,method,check_a_member)
                 data_tmp = ncread(file_dir,Var);
                 data(ie,:,:) = data_tmp(:,:,1);
             end   
-    %         data(data==0) = nan;   % exclude open water from nextsim.Moorings
+            data(data==0) = nan;   % exclude open water from nextsim.Moorings
             if check_a_member>0
                 X = squeeze(data);              
             else 
@@ -64,10 +64,8 @@ function fun_moorings(Var,method,check_a_member)
                 if strcmp(Var,'sic')
                     caxis([0 1])
                 elseif strcmp(Var,'sit')
-                    caxis([0 6]);
+                    caxis([0 4.5]);
                     title(h,'(m)')
-                elseif strcmp(Var,'damage')
-                    caxis([0 1])
                 end
             else
                 if strcmp(Var,'sic')
@@ -75,8 +73,6 @@ function fun_moorings(Var,method,check_a_member)
                 elseif strcmp(Var,'sit')
                     caxis([0 1.8]);
                     title(h,'(m)')
-                elseif strcmp(Var,'damage')
-                    caxis([0 0.5])
                 end
             end
             

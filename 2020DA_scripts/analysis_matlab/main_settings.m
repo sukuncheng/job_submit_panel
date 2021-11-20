@@ -8,22 +8,8 @@ function [] = main_settings()
     mnt_dir='/cluster/work/users/chengsukun/simulations'; 
     % mnt_dir='/nird/projects/nird/NS2993K/NORSTORE_OSL_DISK/NS2993K/chengsukun';
     %%
-    exp=2; 
-    if  exp=3
-        Var='sic';
-        Exp_ID = 'Exp_18Oct2019';
-        start_date = '2019-10-18';
-        N_periods = 84;
-        Duration = 1; % duration days set in nextsim.cfg 
-        simul_dir = '/test_DAsitsic_highfreq_2019-10-18_1days_x_84cycles_memsize40_offline_perturbations';
-        for i = 1:N_periods
-            for j = 1:Duration
-                n = (i-1)*Duration +j;
-                dates(n) = datetime(start_date) + n - 1;    
-                dates_num(n) = datenum(dates(n));
-            end
-        end
-    elseif exp==0
+    exp=1; 
+    if exp==0
         Var='spinup'
         Exp_ID = 'Spinup';
         start_date = "2019-09-03"; N_periods = 1; Duration = 45;
@@ -36,11 +22,13 @@ function [] = main_settings()
         Var='sic';
         Exp_ID = 'Exp_18Oct2019';
         start_date = '2019-10-18';
-        N_periods = 26;
-        Duration = 7; % duration days set in nextsim.cfg 
-        simul_dir = ['/test_DA' Var '_' start_date '_' num2str(Duration) ...
-        'days_x_' num2str(N_periods) 'cycles_memsize40_WithPostAssim'];
-        N_periods=6; 
+        % N_periods = 26;
+        % Duration = 7; % duration days set in nextsim.cfg 
+        % simul_dir = ['/test_DA' Var '_' start_date '_' num2str(Duration) ...
+        % 'days_x_' num2str(N_periods) 'cycles_memsize40_WithPostAssim'];
+        Duration = 1;
+        simul_dir = '/test_DAsitsic_sic1sit7_2019-10-18_1days_x_182cycles_memsize40_option4';
+        N_periods=182; 
         for i = 1:N_periods
             for j = 1:Duration
                 n = (i-1)*Duration +j;
