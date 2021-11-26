@@ -5,9 +5,9 @@ function [] = main_moorings_animation()
     % dbstop if error
     
     main_settings
-    check_a_member = 0; % check_a_member=0 presents ensemble average
-    for method = {'mean'} %{'mean', 'Spread'}  %mean: ensemble ensemble, spread: ensemble spread
-        for Var = {'sic','sit'}
+    check_a_member = 1; % check_a_member=0 presents ensemble average
+    for method = {'mean', 'Spread'}  %mean: ensemble ensemble, spread: ensemble spread
+        for Var = {'sit','sic'}
             fun_moorings(char(Var),char(method),check_a_member);
         end
     end
@@ -40,7 +40,15 @@ function fun_moorings(Var,method,check_a_member)
             for ie = id
                 file_dir = [data_dir '/mem' num2str(ie) '/' filename];
     %             ncdisp(file_dir)
-                data_tmp = ncread(file_dir,Var);
+            if strcmp(Var,'sic')
+                data_tmp = ncread(file_dir,'sic');
+            elseif strcmp(Var,'sit')
+                data_tmp = ncread(file_dir,'sit');
+            elseif strcmp(Var,'abs_sit')
+                total_sic = ncread(file_dir,'sic');
+                total_sit = ncread(file_dir,'sit');
+                data_tmp = total_sit./total_sic;
+            end
                 data(ie,:,:) = data_tmp(:,:,1);
             end   
             data(data==0) = nan;   % exclude open water from nextsim.Moorings
@@ -64,7 +72,7 @@ function fun_moorings(Var,method,check_a_member)
                 if strcmp(Var,'sic')
                     caxis([0 1])
                 elseif strcmp(Var,'sit')
-                    caxis([0 4.5]);
+                    % caxis([0 4.5]);
                     title(h,'(m)')
                 end
             else

@@ -8,16 +8,16 @@ function [] = main_settings()
     mnt_dir='/cluster/work/users/chengsukun/simulations'; 
     % mnt_dir='/nird/projects/nird/NS2993K/NORSTORE_OSL_DISK/NS2993K/chengsukun';
     %%
-    exp=1; 
+    exp=0; 
     if exp==0
         Var='spinup'
-        Exp_ID = 'Spinup';
+        Exp_ID = 'Spinup_D35';
         start_date = "2019-09-03"; N_periods = 1; Duration = 45;
         for i = 1:Duration
             dates(i) = datetime(start_date) + i-1;    
             dates_num(i) = datenum(dates(i));
         end
-        simul_dir = '/test_spinup_2019-09-03_45days_x_1cycles_memsize40';
+        simul_dir = '/test_spinup_2019-09-03_45days_x_1cycles_memsize40_OceanNudgingDd5';
     elseif exp==1
         Var='sic';
         Exp_ID = 'Exp_18Oct2019';
@@ -27,8 +27,9 @@ function [] = main_settings()
         % simul_dir = ['/test_DA' Var '_' start_date '_' num2str(Duration) ...
         % 'days_x_' num2str(N_periods) 'cycles_memsize40_WithPostAssim'];
         Duration = 1;
-        simul_dir = '/test_DAsitsic_sic1sit7_2019-10-18_1days_x_182cycles_memsize40_option4';
-        N_periods=182; 
+        % simul_dir = '/test_DAsitsic_sic1sit7_2019-10-18_1days_x_182cycles_memsize40_option4';
+        simul_dir = 'test_DAsitsic_sic1sit7_2019-10-18_1days_x_182cycles_memsize40_option5_failed_assimconc_thinonly';
+        N_periods=17; 
         for i = 1:N_periods
             for j = 1:Duration
                 n = (i-1)*Duration +j;
@@ -48,7 +49,7 @@ function [] = main_settings()
                 dates_num(n) = datenum(dates(n));
             end
         end
-        simul_dir = '/test_FreeRun_2019-10-18_7days_x_26cycles_memsize40';
+        simul_dir = '/test_FreeRun_2019-10-18_7days_x_26cycles_memsize40_offline_perturbations';
     end        
     simul_dir = [mnt_dir simul_dir];   
     save('test_inform.mat','Exp_ID','dates','N_periods','dates_num','Ne','simul_dir','Duration','Radius')

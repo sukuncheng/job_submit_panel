@@ -31,7 +31,7 @@ function WaitforTaskFinish(){
 JOB_SETUP_DIR=$(cd `dirname $0`;pwd)
 >nohup.out  # empty this file
 
-ENSPATH=/cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40_offline_perturbations/date1
+ENSPATH=/cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40_OceanNudgingDd15/date1
 for VAR in sic sit sitsic; do #sic sit sitsic
     #set enkf parameters
     KFACTORs=("2")  # default as 2 in topaz

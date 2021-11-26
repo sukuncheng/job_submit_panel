@@ -1,178 +1,153 @@
 #!/bin/bash 
 # script for submitting an ensemble run with DA(sic,sit, sitsic), restarting from spinup run, defined by main1_spinup_exp.sh
 
+# Instruction:
 # create workpath
-# link restart file
-# call part1_create_file_system.sh to file nextsim.cfg and mkdir folder infrastruce
-# submit jobs to queue by slurm_nextsim_script from workpath
+# link perturbation file
+# call part1_create_file_system.sh to modify nextsim.cfg and enkf settings to workpath
+# submit jobs to queue by slurm_nextsim_script from workpath, in which link restart files.
 
-set -ux  # Bash empty array expansion with `set -u`, use ${arr[@]-} instead of use ${arr[@]} to avoid errors
+set -ux  # uncomment for debugging,# Bash empty array expansion with `set -u`, use ${arr[@]-} instead of use ${arr[@]} to avoid errors
 err_report() {
     echo "Error on line $1"
 }
 trap 'err_report $LINENO' ERR
 
-# 
-function link_restarts(){
-    #echo "project *.nc.analysis on reference_grid.nc, links restart files to $restart_path for next DA cycle"
-    ENSSIZE=$1  
-    ENSPATH=$2
-    FILTER=$2/filter  
-    restart_path=$3
-    analysis_source=$4
-
-    rm -f  $restart_path/{field_mem* mesh_mem* WindPerturbation_mem* *.nc.analysis}
-
-    for (( i=1; i<=${ENSSIZE}; i++ )); do
-        memname=mem${i}
-    #    ln -sf ${ENSPATH}/${memname}/WindPerturbation_${memname}.nc         ${restart_path}/WindPerturbation_${memname}.nc  
-        ln -sf ${ENSPATH}/${memname}/restart/field_final.bin  $restart_path/field_${memname}.bin
-        ln -sf ${ENSPATH}/${memname}/restart/field_final.dat  $restart_path/field_${memname}.dat
-        ln -sf ${ENSPATH}/${memname}/restart/mesh_final.bin   $restart_path/mesh_${memname}.bin
-        ln -sf ${ENSPATH}/${memname}/restart/mesh_final.dat   $restart_path/mesh_${memname}.dat
-    done  
-
-# link reanalysis
-    [ ! -d ${analysis_source} ] && return;    
-    for (( i=1; i<=${ENSSIZE}; i++ )); do
-        memname=mem${i}    
-        [ ! -f ${analysis_source}/${memname}.nc.analysis ] && cdo merge ${NEXTSIM_DATA_DIR}/reference_grid.nc  ${analysis_source}/$(printf "mem%.3d" $i).nc.analysis  ${analysis_source}/${memname}.nc.analysis         
-        ln -sf ${analysis_source}/${memname}.nc.analysis          $restart_path/${memname}.nc.analysis
-    done
-}
-
 function link_perturbation(){ 
     # note the index 180=45*4 correspond to the last perturbation used in the end of spinup run
-    echo "links perturbation files to $restart_path/Perturbation using input file id"
+    echo "links perturbation files to restart_path/Perturbation using input file id"
     # The number is calculated ahead as Nfiles +1
     restart_path=$1
     duration=$2
     iperiod=$3
     ENSSIZE=$4
-
+    
     [ ! -d ${restart_path}/Perturbations ] && mkdir -p ${restart_path}/Perturbations || rm -f ${restart_path}/Perturbations/*.nc
-    Perturbations_Dir=/cluster/work/users/chengsukun/offline_perturbations/result
+    Perturbation_source=/cluster/work/users/chengsukun/offline_perturbations/result
+
     for (( i=1; i<=${ENSSIZE}; i++ )); do
         memname=mem${i}    
         # link data sources based on different loading frequencies
         # atmoshphere
         Nfiles=$(( $duration*4+1))  # number of perturbations to link
         for (( j=0; j<=${Nfiles}; j++ )); do  #+1 is because an instance could end at 23:45 or 24:00 for different members due to ? +1 corresponds to the longer one.
-            ln -sf ${Perturbations_Dir}/${memname}/synforc_$((${j}+45*4 + ($iperiod-1)*($Nfiles-1) )).nc  ${restart_path}/Perturbations/AtmospherePerturbations_${memname}_series${j}.nc
+            ln -sf ${Perturbation_source}/${memname}/synforc_$((${j}+45*4 + ($iperiod-1)*($Nfiles-1) )).nc  ${restart_path}/Perturbations/AtmospherePerturbations_${memname}_series${j}.nc
         done
         # ocean 
         Nfiles=$duration+1  # topaz data is loaded at 12:00pm. 
         for (( j=0; j<=${Nfiles}; j++ )); do
-            ln -sf ${Perturbations_Dir}/${memname}/synforc_$((${j}+45   + ($iperiod-1)*$Nfiles)).nc  ${restart_path}/Perturbations/OceanPerturbations_${memname}_series${j}.nc
+            ln -sf ${Perturbation_source}/${memname}/synforc_$((${j}+45   + ($iperiod-1)*$Nfiles)).nc  ${restart_path}/Perturbations/OceanPerturbations_${memname}_series${j}.nc
         done
     done
 }
 
 ##-------  Confirm working,data,ouput directories --------
+>nohup.out  # empty this file
 JOB_SETUP_DIR=$(cd `dirname $BASH_SOURCE`;pwd)
-source ${NEXTSIM_ENV_ROOT_DIR}/nextsim.ensemble.intel.src
 slurm_nextsim_script=${NEXTSIM_ENV_ROOT_DIR}/slurm.ensemble.template.sh
 slurm_enkf_script=${NEXTSIM_ENV_ROOT_DIR}/slurm.enkf.template.sh
 
-restart_path=$NEXTSIM_DATA_DIR   # select a folder for exchange restart data
 ##-------  Confirm working,data,ouput directories --------
 # experiment settings
-first_restart_path=/cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40_offline_perturbations/date1
+ENSSIZE=40      # ensemble size  
 time_init0=2019-10-18   # starting date of simulation
-# comment #VAR = sit in enkf_cfg_sic/model.prm
 duration=7      # forecast length; tduration*duration is the total simulation time
 tduration=26    # number of DA cycles. 
-ENSSIZE=40         # ensemble size  
+Exp_ID=sic7     # sit7,sic7sit7
+DA_VAR=sic      # sit, sicsit
 
-UPDATE=1           # 1: active EnKF assimilation 
+
+duration=1      # forecast length; tduration*duration is the total simulation time
+tduration=182   # number of DA cycles. 
+Exp_ID=sic1sit7 # sic1sit7
+DA_VAR=sic      # start from sic da results
+start_from_restart=true
 restart_from_analysis=true
+UPDATE=1           # 1: active EnKF asrezsimilation 
 INFLATION=1
 LOCRAD=300
 RFACTOR=2
 KFACTOR=2
 
-for DA_VAR in sic sit sitsic; do #sic sit sitsic
-    >nohup.out  # empty this file
-    OUTPUT_DIR=${simulations}/test_DA${DA_VAR}_${time_init0}_${duration}days_x_${tduration}cycles_memsize${ENSSIZE}_offline_perturbations
-    echo 'work path:' $OUTPUT_DIR
-    # [ -d $OUTPUT_DIR ] && rm -rf $OUTPUT_DIR
-    [ ! -d $OUTPUT_DIR ] && mkdir -p ${OUTPUT_DIR}
-    cp ${JOB_SETUP_DIR}/$(basename $BASH_SOURCE)  ${OUTPUT_DIR} 
+nudging_day=15
+restart_source=/cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40_OceanNudgingDd${nudging_day}/date1
+analysis_source=${restart_source}/filter/size40_I${INFLATION}_L${LOCRAD}_R${RFACTOR}_K${KFACTOR}_DA${DA_VAR}
+OUTPUT_DIR=${simulations}/test_${Exp_ID}_${time_init0}_${duration}days_x_${tduration}cycles_memsize${ENSSIZE}
+echo 'work path:' $OUTPUT_DIR
+[ -d $OUTPUT_DIR ] && rm -rf $OUTPUT_DIR 
+[ ! -d $OUTPUT_DIR ] && mkdir -p ${OUTPUT_DIR} 
+cp ${JOB_SETUP_DIR}/$(basename $BASH_SOURCE)  ${OUTPUT_DIR} 
+cp -rf $NEXTSIMDIR/model ${OUTPUT_DIR}/nextsim_source_code 
+# ----------- execute ensemble runs ----------
+for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
+    # [ $(($iperiod%7)) -eq 0 ] && DA_VAR=sitsic  || DA_VAR=sic  
+    time_init=$(date +%Y-%m-%d -d "${time_init0} + $((($iperiod-1)*${duration})) day")
+    echo "period ${time_init} to $(date +%Y%m%d -d "${time_init} + ${duration} day")"
+# a. create files strucure, copy and modify configuration files inside
+    ENSPATH=${OUTPUT_DIR}/date${iperiod}
+    mkdir -p ${ENSPATH}   
+    source ${JOB_SETUP_DIR}/part1_create_file_system.sh
 
-    ## ----------- execute ensemble runs ----------
-    for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
-        start_from_restart=true
-        if [ $iperiod -eq 1 ]; then  # prepare and link restart files
-            analysis_source=${first_restart_path}/filter/size40_I${INFLATION}_L${LOCRAD}_R${RFACTOR}_K${KFACTOR}_DA${DA_VAR}
-            link_restarts $ENSSIZE   $first_restart_path  $restart_path $analysis_source
-        fi
-        
-        time_init=$(date +%Y-%m-%d -d "${time_init0} + $((($iperiod-1)*${duration})) day")
-        echo "period ${time_init} to $(date +%Y%m%d -d "${time_init} + ${duration} day")"
-    # a. create files strucure, copy and modify configuration files inside
-        ENSPATH=${OUTPUT_DIR}/date${iperiod}
-        mkdir -p ${ENSPATH}   
-        source ${JOB_SETUP_DIR}/part1_create_file_system.sh
+# b. submit the script for ensemble forecasts
+    cd $ENSPATH
+    cp $slurm_nextsim_script $ENSPATH/.
 
-    # b. submit the script for ensemble forecasts
-        cd $ENSPATH
-        cp $slurm_nextsim_script $ENSPATH/.
-    #------------------
-        # check for crashed member and resubmit
-        for (( j=1; j<=3; j++ )); do            
-            count=0
-            list=()
-            for (( i=1; i<=$ENSSIZE; i++ )); do
-                ! grep -q -s "Simulation done" $ENSPATH/mem$i/task.log && count=$(($count+1)) && list=(${list[@]-} $i);
-            done
-            if (( $count >0 )); then
-		        echo 'Try' $j ', date' $iperiod ', start calculating member(s):' ${list[@]-} 
-                # dynamically request nodes based on the number of idle node
-                idle_node=`sinfo --states=idle | grep normal | grep idle | awk '{print $4}'`
-            	dt=10  # unit time cost of a member, in minutes
-                if (( $count<=$idle_node )); then
-                    Nnode=$count
-                    Time=$dt
-                else
-                    Numbers=(4 5 8 10 20 40)
-                    for (( id=1; id<${#Numbers[@]}; id++ )); do
+#------------------
+    # check for crashed member and resubmit
+    for (( jj=1; jj<=2; jj++ )); do
+        count=0
+        list=()
+        for (( i=1; i<=$ENSSIZE; i++ )); do
+            ! grep -q -s "Simulation done" $ENSPATH/mem$i/task.log && count=$(($count+1)) && list=(${list[@]-} $i);
+        done
+        if (( $count >0 )); then
+            echo 'Try' $jj ', date' $iperiod ', start calculating member(s):' ${list[@]-} 
+            # dynamically request nodes based on the number of idle node
+            idle_node=`sinfo --states=idle | grep normal | grep idle | awk '{print $4}'`
+            dt=$((1*$duration*$jj))  # unit time cost of a member, in minutes
+            if (( $count<=$idle_node )); then
+                Nnode=$count
+                Time=$dt
+            else
+                Numbers=(4 5 8 10 20 40)
+                for (( id=1; id<${#Numbers[@]}; id++ )); do
                     if (( ${Numbers[id]}> $idle_node )); then                        
                         Nnode=${Numbers[id-1]}
                         break
                     fi
-                    done
-                    Time=$(( $dt*($count+$Nnode-1)/$Nnode ))
-                fi
-		        (( $Nnode<4 )) && Nnode=4  
-                (( j==1 )) && link_perturbation $restart_path $duration $iperiod $ENSSIZE  # link perturbation files  
-                echo "request nodes and time/node: " $Nnode ", " $Time   
-                sbatch -W --time=0-0:$Time:0 --nodes=$Nnode $slurm_nextsim_script ${ENSPATH} ${ENSSIZE}  $Nnode
-                wait
-            else
-                break
+                done
+                Time=$(( $dt*($count+$Nnode-1)/$Nnode ))
             fi
-        done
-        # check for crashed member, report error and exit
-        for (( i=1; i<=$ENSSIZE; i++ )); do
-            ! grep -q -s "Simulation done" $ENSPATH/mem$i/task.log && echo $ENSPATH'/mem'$i 'has crashed ' $(( $j-1 )) ' times. EXIT' && exit
-        done
-        #------------------
-        ## 2.submit enkf after finishing the ensemble simulations 
-        if [ ${UPDATE} == 1 ] && ! grep -q -s "finished" ${ENSPATH}/filter/update.out ; then  
-            for (( i=1; i<=${ENSSIZE}; i++ )); do
-                cp ${ENSPATH}/mem${i}/prior.nc  ${ENSPATH}/filter/prior/$(printf "mem%.3d" $i).nc
-            done          
-            cp $slurm_enkf_script ${ENSPATH}/.
-            # Do EnKF
-            sbatch $slurm_enkf_script ${ENSPATH}
+            (( $Nnode<4 )) && Nnode=4  
+            echo "request nodes and time/node: " $Nnode ", " $Time
+            (( jj==1 )) && link_perturbation $NEXTSIM_DATA_DIR $duration $iperiod $ENSSIZE 
+            sbatch -W --time=0-0:$Time:0 --nodes=$Nnode $slurm_nextsim_script ${ENSPATH} ${ENSSIZE}  $Nnode $restart_source $analysis_source
+            # sbatch -W --time=0-0:$Time:0 --nodes=1 --qos=devel $slurm_nextsim_script ${ENSPATH} ${ENSSIZE}  $Nnode $restart_source $analysis_source
             wait
+        else
+            break
         fi
-        analysis_source=${ENSPATH}/filter/prior
-        link_restarts ${ENSSIZE}   ${ENSPATH}  ${restart_path} ${analysis_source}
     done
-    cp ${JOB_SETUP_DIR}/nohup.out  ${OUTPUT_DIR}
-    echo "finished"
-done # sic sit sitsic
+    # check for crashed member, report error and exit
+    for (( i=1; i<=$ENSSIZE; i++ )); do
+        ! grep -q -s "Simulation done" $ENSPATH/mem$i/task.log && echo $ENSPATH'/mem'$i 'has crashed ' $(( $jj-1 )) ' times. EXIT' && exit
+    done
+    #------------------
+    ## 2.submit enkf after finishing the ensemble simulations 
+    if [ ${UPDATE} == 1 ] && ! grep -q -s "finished" ${ENSPATH}/filter/update.out ; then  
+        for (( i=1; i<=${ENSSIZE}; i++ )); do
+            cp ${ENSPATH}/mem${i}/prior.nc  ${ENSPATH}/filter/prior/$(printf "mem%.3d" $i).nc
+        done          
+        cp $slurm_enkf_script ${ENSPATH}/.
+        # Do EnKF
+        sbatch $slurm_enkf_script ${ENSPATH}
+        wait
+    fi
+    analysis_source=${ENSPATH}/filter/prior
+    restart_source=${ENSPATH}
+done
+cp ${JOB_SETUP_DIR}/nohup.out  ${OUTPUT_DIR}
+echo "finished"
 
 
 
