@@ -27,7 +27,9 @@ echo " Initialize files system, write nextsim.cfg, pseudo2D.nml to workpath"
             s/^DAtype.*$/DAtype=${DA_VAR}/g; \
             s/^restart_from_analysis=.*$/restart_from_analysis=${restart_from_analysis}/g" \
         ${JOB_SETUP_DIR}/nextsim.cfg 
-
+    sed -i "s|^input_path=.*$|input_path=${restart_path}|g; \
+            s|^restart_path=.*$|restart_path=|g;" \
+        ${JOB_SETUP_DIR}/nextsim.cfg
     cp ${JOB_SETUP_DIR}/nextsim.cfg  ${ENSPATH}/nextsim.cfg
 
     cd ${ENSPATH}

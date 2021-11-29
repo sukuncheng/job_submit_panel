@@ -1,5 +1,5 @@
 #!/bin/bash
-set -eux
+set -ux
 err_report() {
     echo "Error on line $1"
 }
@@ -30,8 +30,8 @@ function WaitforTaskFinish(){
 # INFLATIONs=("1" "1.03" "1.09")  # <1.1 for 100 members
 JOB_SETUP_DIR=$(cd `dirname $0`;pwd)
 >nohup.out  # empty this file
-
-ENSPATH=/cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40_OceanNudgingDd15/date1
+slurm_enkf_script=${NEXTSIM_ENV_ROOT_DIR}/slurm.enkf.template.sh
+ENSPATH=/cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40_OceanNudgingDd5/date1
 for VAR in sic sit sitsic; do #sic sit sitsic
     #set enkf parameters
     KFACTORs=("2")  # default as 2 in topaz
@@ -77,12 +77,12 @@ for VAR in sic sit sitsic; do #sic sit sitsic
                 s|^KFACTOR.*$|KFACTOR = ${KFACTOR}|g;"  enkf.prm
         sed -i "s|^FILE=.*$|FILE=$NEXTSIM_DATA_DIR/OSISAF_ice_conc/polstere/2019_nh_polstere/ice_conc_nh_polstere-100_multi_201910181200.nc|g; "  obs.prm
         sed -i "s|^DATA=.*$|DATA=reference_grid.nc|g; "  grid.prm
-        # sbatch $script; wait   # run enkf
-        make clean
-        ./enkf_prep --no-superobing enkf.prm 2>&1 | tee prep.out
-        mpirun -np 16 ./enkf_calc --use-rmsd-for-obsstats --ignore-no-obs enkf.prm 2>&1 | tee calc.out
-        mpirun -np 16 ./enkf_update --calculate-spread enkf.prm 2>&1 | tee update.out
-        
+
+        # make clean
+        # ./enkf_prep --no-superobing enkf.prm 2>&1 | tee prep.out
+        # mpirun -np 16 ./enkf_calc --use-rmsd-for-obsstats --ignore-no-obs enkf.prm 2>&1 | tee calc.out
+        # mpirun -np 16 ./enkf_update --calculate-spread enkf.prm 2>&1 | tee update.out
+        sbatch --qos=devel $slurm_enkf_script ${ENSPATH}
         for (( i=1; i<=${ENSSIZE}; i++ )); do
             memname=mem${i}
             cdo merge reference_grid.nc  ${FILTER}/prior/$(printf "mem%.3d" $i).nc.analysis  ${FILTER}/prior/${memname}.nc.analysis   

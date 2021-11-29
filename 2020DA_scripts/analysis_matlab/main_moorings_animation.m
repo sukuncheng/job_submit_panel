@@ -5,9 +5,9 @@ function [] = main_moorings_animation()
     % dbstop if error
     
     main_settings
-    check_a_member = 1; % check_a_member=0 presents ensemble average
+    check_a_member = 0; % check_a_member=0 presents ensemble average
     for method = {'mean', 'Spread'}  %mean: ensemble ensemble, spread: ensemble spread
-        for Var = {'sit','sic'}
+        for Var = {'sic','sit'}
             fun_moorings(char(Var),char(method),check_a_member);
         end
     end

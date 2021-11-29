@@ -1,0 +1,37 @@
+period 2019-10-18 to 20191025
+ Initialize files system, write nextsim.cfg, pseudo2D.nml to workpath
+links perturbation files to restart_path/Perturbation using input file id
+Try 1 , date 1 , start calculating member(s): 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40
+request nodes and time/node:  40 ,  19
+Submitted batch job 263990
+period 2019-10-25 to 20191101
+ Initialize files system, write nextsim.cfg, pseudo2D.nml to workpath
+links perturbation files to restart_path/Perturbation using input file id
+Try 1 , date 2 , start calculating member(s): 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40
+request nodes and time/node:  40 ,  19
+Submitted batch job 263992
+period 2019-11-01 to 20191108
+ Initialize files system, write nextsim.cfg, pseudo2D.nml to workpath
+links perturbation files to restart_path/Perturbation using input file id
+Try 1 , date 3 , start calculating member(s): 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40
+request nodes and time/node:  40 ,  19
+Submitted batch job 263996
+period 2019-11-08 to 20191115
+ Initialize files system, write nextsim.cfg, pseudo2D.nml to workpath
+links perturbation files to restart_path/Perturbation using input file id
+Try 1 , date 4 , start calculating member(s): 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40
+request nodes and time/node:  40 ,  19
+Submitted batch job 263998
+period 2019-11-15 to 20191122
+ Initialize files system, write nextsim.cfg, pseudo2D.nml to workpath
+links perturbation files to restart_path/Perturbation using input file id
+Try 1 , date 5 , start calculating member(s): 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40
+request nodes and time/node:  40 ,  19
+Submitted batch job 264000
+period 2019-11-22 to 20191129
+ Initialize files system, write nextsim.cfg, pseudo2D.nml to workpath
+links perturbation files to restart_path/Perturbation using input file id
+Try 1 , date 6 , start calculating member(s): 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40
+request nodes and time/node:  40 ,  19
+Submitted batch job 264002
+finished
