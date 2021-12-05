@@ -12,7 +12,7 @@
 #         -- filter (include EnKF package)
 #                     -- obs  (link observations from NEXTIM_DATA_DIR)
 #                     -- prior 
-echo " Initialize files system, write nextsim.cfg, pseudo2D.nml to workpath"
+echo " Initialize files system, write nextsim.cfg to workpath"  #, pseudo2D.nml
 #1. prepare forecast files
 # nextsim.cfg,  #"${duration}" # input_path, basename are defined in slurm.*.template.sh
     sed -i "s/^time_init=.*$/time_init=${time_init}/g; \
@@ -43,6 +43,7 @@ echo " Initialize files system, write nextsim.cfg, pseudo2D.nml to workpath"
             ${ENSPATH}/nextsim.cfg > ${MEMPATH}/nextsim.cfg
         cp ${MEMPATH}/nextsim.cfg ${MEMPATH}/nextsim.cfg.backup
     done   
+
 
 #-----------------------------------------------------------
 #2. prepare analysis files

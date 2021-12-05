@@ -120,6 +120,9 @@ compare_DA.py
 plot_bias_RMSE.py
 
 
+# 29-11
+enkf_prep in enkf-c is not paralleled, which cost >95% time for DA. Thus, I move it to preprocessing. The result of code are submited as one job for 26 periods.
+there is no cs2smos data in the end of date26 
 # 1-Oct
 - obviously larger bias of SIT from map view in DAsic compare to others, mainly observed in Chukchi Sea, and less in Beaufort Sea and Laptev Sea
 - 

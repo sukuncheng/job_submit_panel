@@ -1,0 +1,543 @@
+Starting job 265586 on b[1253-1256,3255-3258,3263-3271,3273-3295] at Fri Dec 3 05:36:34 CET 2021
+
+work path: /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40
+period 2019-10-18 to 20191019
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date1/filter/obs.prm
+period 2019-10-19 to 20191020
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date2/filter/obs.prm
+period 2019-10-20 to 20191021
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date3/filter/obs.prm
+period 2019-10-21 to 20191022
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date4/filter/obs.prm
+period 2019-10-22 to 20191023
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date5/filter/obs.prm
+period 2019-10-23 to 20191024
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date6/filter/obs.prm
+period 2019-10-24 to 20191025
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date7/filter/obs.prm
+period 2019-10-25 to 20191026
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date8/filter/obs.prm
+period 2019-10-26 to 20191027
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date9/filter/obs.prm
+period 2019-10-27 to 20191028
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date10/filter/obs.prm
+period 2019-10-28 to 20191029
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date11/filter/obs.prm
+period 2019-10-29 to 20191030
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date12/filter/obs.prm
+period 2019-10-30 to 20191031
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date13/filter/obs.prm
+period 2019-10-31 to 20191101
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date14/filter/obs.prm
+period 2019-11-01 to 20191102
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date15/filter/obs.prm
+period 2019-11-02 to 20191103
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date16/filter/obs.prm
+period 2019-11-03 to 20191104
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date17/filter/obs.prm
+period 2019-11-04 to 20191105
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date18/filter/obs.prm
+period 2019-11-05 to 20191106
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date19/filter/obs.prm
+period 2019-11-06 to 20191107
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date20/filter/obs.prm
+period 2019-11-07 to 20191108
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date21/filter/obs.prm
+period 2019-11-08 to 20191109
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date22/filter/obs.prm
+period 2019-11-09 to 20191110
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date23/filter/obs.prm
+period 2019-11-10 to 20191111
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date24/filter/obs.prm
+period 2019-11-11 to 20191112
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date25/filter/obs.prm
+period 2019-11-12 to 20191113
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date26/filter/obs.prm
+period 2019-11-13 to 20191114
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date27/filter/obs.prm
+period 2019-11-14 to 20191115
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date28/filter/obs.prm
+period 2019-11-15 to 20191116
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date29/filter/obs.prm
+period 2019-11-16 to 20191117
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date30/filter/obs.prm
+period 2019-11-17 to 20191118
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date31/filter/obs.prm
+period 2019-11-18 to 20191119
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date32/filter/obs.prm
+period 2019-11-19 to 20191120
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date33/filter/obs.prm
+period 2019-11-20 to 20191121
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date34/filter/obs.prm
+period 2019-11-21 to 20191122
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date35/filter/obs.prm
+period 2019-11-22 to 20191123
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date36/filter/obs.prm
+period 2019-11-23 to 20191124
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date37/filter/obs.prm
+period 2019-11-24 to 20191125
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date38/filter/obs.prm
+period 2019-11-25 to 20191126
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date39/filter/obs.prm
+period 2019-11-26 to 20191127
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date40/filter/obs.prm
+period 2019-11-27 to 20191128
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date41/filter/obs.prm
+period 2019-11-28 to 20191129
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date42/filter/obs.prm
+period 2019-11-29 to 20191130
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date43/filter/obs.prm
+period 2019-11-30 to 20191201
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date44/filter/obs.prm
+period 2019-12-01 to 20191202
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date45/filter/obs.prm
+period 2019-12-02 to 20191203
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date46/filter/obs.prm
+period 2019-12-03 to 20191204
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date47/filter/obs.prm
+period 2019-12-04 to 20191205
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date48/filter/obs.prm
+period 2019-12-05 to 20191206
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date49/filter/obs.prm
+period 2019-12-06 to 20191207
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date50/filter/obs.prm
+period 2019-12-07 to 20191208
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date51/filter/obs.prm
+period 2019-12-08 to 20191209
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date52/filter/obs.prm
+period 2019-12-09 to 20191210
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date53/filter/obs.prm
+period 2019-12-10 to 20191211
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date54/filter/obs.prm
+period 2019-12-11 to 20191212
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date55/filter/obs.prm
+period 2019-12-12 to 20191213
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date56/filter/obs.prm
+period 2019-12-13 to 20191214
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date57/filter/obs.prm
+period 2019-12-14 to 20191215
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date58/filter/obs.prm
+period 2019-12-15 to 20191216
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date59/filter/obs.prm
+period 2019-12-16 to 20191217
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date60/filter/obs.prm
+period 2019-12-17 to 20191218
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date61/filter/obs.prm
+period 2019-12-18 to 20191219
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date62/filter/obs.prm
+period 2019-12-19 to 20191220
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date63/filter/obs.prm
+period 2019-12-20 to 20191221
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date64/filter/obs.prm
+period 2019-12-21 to 20191222
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date65/filter/obs.prm
+period 2019-12-22 to 20191223
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date66/filter/obs.prm
+period 2019-12-23 to 20191224
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date67/filter/obs.prm
+period 2019-12-24 to 20191225
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date68/filter/obs.prm
+period 2019-12-25 to 20191226
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date69/filter/obs.prm
+period 2019-12-26 to 20191227
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date70/filter/obs.prm
+period 2019-12-27 to 20191228
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date71/filter/obs.prm
+period 2019-12-28 to 20191229
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date72/filter/obs.prm
+period 2019-12-29 to 20191230
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date73/filter/obs.prm
+period 2019-12-30 to 20191231
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date74/filter/obs.prm
+period 2019-12-31 to 20200101
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date75/filter/obs.prm
+period 2020-01-01 to 20200102
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date76/filter/obs.prm
+period 2020-01-02 to 20200103
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date77/filter/obs.prm
+period 2020-01-03 to 20200104
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date78/filter/obs.prm
+period 2020-01-04 to 20200105
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date79/filter/obs.prm
+period 2020-01-05 to 20200106
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date80/filter/obs.prm
+period 2020-01-06 to 20200107
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date81/filter/obs.prm
+period 2020-01-07 to 20200108
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date82/filter/obs.prm
+period 2020-01-08 to 20200109
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date83/filter/obs.prm
+period 2020-01-09 to 20200110
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date84/filter/obs.prm
+period 2020-01-10 to 20200111
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date85/filter/obs.prm
+period 2020-01-11 to 20200112
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date86/filter/obs.prm
+period 2020-01-12 to 20200113
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date87/filter/obs.prm
+period 2020-01-13 to 20200114
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date88/filter/obs.prm
+period 2020-01-14 to 20200115
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date89/filter/obs.prm
+period 2020-01-15 to 20200116
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date90/filter/obs.prm
+period 2020-01-16 to 20200117
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date91/filter/obs.prm
+period 2020-01-17 to 20200118
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date92/filter/obs.prm
+period 2020-01-18 to 20200119
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date93/filter/obs.prm
+period 2020-01-19 to 20200120
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date94/filter/obs.prm
+period 2020-01-20 to 20200121
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date95/filter/obs.prm
+period 2020-01-21 to 20200122
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date96/filter/obs.prm
+period 2020-01-22 to 20200123
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date97/filter/obs.prm
+period 2020-01-23 to 20200124
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date98/filter/obs.prm
+period 2020-01-24 to 20200125
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date99/filter/obs.prm
+period 2020-01-25 to 20200126
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date100/filter/obs.prm
+period 2020-01-26 to 20200127
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date101/filter/obs.prm
+period 2020-01-27 to 20200128
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date102/filter/obs.prm
+period 2020-01-28 to 20200129
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date103/filter/obs.prm
+period 2020-01-29 to 20200130
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date104/filter/obs.prm
+period 2020-01-30 to 20200131
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date105/filter/obs.prm
+period 2020-01-31 to 20200201
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date106/filter/obs.prm
+period 2020-02-01 to 20200202
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date107/filter/obs.prm
+period 2020-02-02 to 20200203
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date108/filter/obs.prm
+period 2020-02-03 to 20200204
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date109/filter/obs.prm
+period 2020-02-04 to 20200205
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date110/filter/obs.prm
+period 2020-02-05 to 20200206
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date111/filter/obs.prm
+period 2020-02-06 to 20200207
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date112/filter/obs.prm
+period 2020-02-07 to 20200208
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date113/filter/obs.prm
+period 2020-02-08 to 20200209
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date114/filter/obs.prm
+period 2020-02-09 to 20200210
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date115/filter/obs.prm
+period 2020-02-10 to 20200211
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date116/filter/obs.prm
+period 2020-02-11 to 20200212
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date117/filter/obs.prm
+period 2020-02-12 to 20200213
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date118/filter/obs.prm
+period 2020-02-13 to 20200214
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date119/filter/obs.prm
+period 2020-02-14 to 20200215
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date120/filter/obs.prm
+period 2020-02-15 to 20200216
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date121/filter/obs.prm
+period 2020-02-16 to 20200217
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date122/filter/obs.prm
+period 2020-02-17 to 20200218
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date123/filter/obs.prm
+period 2020-02-18 to 20200219
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date124/filter/obs.prm
+period 2020-02-19 to 20200220
+ Initialize files system, write nextsim.cfg to workpath
+  get enkf-c configs, check enkf.prm, grid.prm,obs.prm, obsstypes.prm, model.prm & executable files
+  add observations path to /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date125/filter/obs.prm
+links perturbation files to restart_path/Perturbation using input file id
+Try 1 , date 125 , start calculating member(s): 30
+Reading nextsim.cfg...
+[INFO] : -----------------------Simulation started on 2021-Dec-03 05:39:57
+[INFO] : TIMESTEP= 900 s
+[INFO] : DURATION= 1 day(s)
+[WARNING] : For best deformation scaling results, the ratio simul.timestep/t_damage should be < 10. (Currently it is 44.9992).  THE SPIRIT OF VERO IS WATCHING YOU
+[INFO] :  ---------- progression: ( 0%) ---------- time spent: 00:00:08
+[INFO] :  ---------- progression: ( 5%) ---------- time spent: 00:00:09
+nextsim.exec: finiteelement.cpp:5131: std::pair<double, double> Nextsim::FiniteElement::specificHumidity(Nextsim::schemes::specificHumidity, int, double): Assertion `temp > -physical::tfrwK' failed.
+srun: error: b1253: task 110: Aborted
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+slurmstepd: error: *** STEP 265586.0 ON b1253 CANCELLED AT 2021-12-03T05:45:24 ***
+slurmstepd: error: *** JOB 265586 ON b1253 CANCELLED AT 2021-12-03T05:45:24 ***
+
+Task and CPU usage stats:
+       JobID    JobName  AllocCPUS   NTasks     MinCPU MinCPUTask     AveCPU    Elapsed ExitCode 
+------------ ---------- ---------- -------- ---------- ---------- ---------- ---------- -------- 
+265586         sic1sit7       5120                                             00:08:50      0:0 
+265586.batch      batch        128        1   00:00:08          0   00:00:08   00:08:50     0:15 
+265586.exte+     extern       5120       40   00:00:00         39   00:00:00   00:08:50      0:0 
+265586.0     nextsim.e+        128      128   00:00:03        110   00:05:25   00:05:39      0:6 
+
+Memory usage stats:
+       JobID     MaxRSS MaxRSSTask     AveRSS MaxPages   MaxPagesTask   AvePages 
+------------ ---------- ---------- ---------- -------- -------------- ---------- 
+265586                                                                           
+265586.batch      7773K          0      7773K       10              0         10 
+265586.exte+       820K          0     806323        3             39          2 
+265586.0        318857K          0  116328088        9             27          3 
+
+Disk usage stats:
+       JobID  MaxDiskRead MaxDiskReadTask    AveDiskRead MaxDiskWrite MaxDiskWriteTask   AveDiskWrite 
+------------ ------------ --------------- -------------- ------------ ---------------- -------------- 
+265586                                                                                                
+265586.batch      657.00M               0        657.00M      412.49M                0        412.49M 
+265586.exte+        0.00M              39          0.00M            0               39              0 
+265586.0          246.56M               0        151.06M       12.63M                0          0.10M 
+
+Job 265586 completed at Fri Dec 3 05:45:28 CET 2021

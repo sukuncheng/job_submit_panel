@@ -6,8 +6,8 @@ function [] = main_moorings_animation()
     
     main_settings
     check_a_member = 0; % check_a_member=0 presents ensemble average
-    for method = {'mean', 'Spread'}  %mean: ensemble ensemble, spread: ensemble spread
-        for Var = {'sic','sit'}
+    for method = {'Spread','mean'}  %mean: ensemble ensemble, spread: ensemble spread
+        for Var = {'sic','sit'}        
             fun_moorings(char(Var),char(method),check_a_member);
         end
     end
@@ -70,7 +70,7 @@ function fun_moorings(Var,method,check_a_member)
             h=colorbar;
             if strcmp(method,'mean')
                 if strcmp(Var,'sic')
-                    caxis([0 1])
+                    caxis([0.15 1])
                 elseif strcmp(Var,'sit')
                     % caxis([0 4.5]);
                     title(h,'(m)')

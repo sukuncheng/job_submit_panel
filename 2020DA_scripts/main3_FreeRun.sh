@@ -1,8 +1,19 @@
 #!/bin/bash 
-# script for submitting an ensemble run without DA, restarting from spinup run, defined by main1_spinup_exp.sh
+# ======================================================
+#SBATCH --account=nn2993k      #nn9481k #nn9878k   # #nn2993k   #ACCOUNT_NUMBER
+#SBATCH --job-name=freerun
+#SBATCH --time=0-5:0:0        #dd-hh:mm:ss, # Short request job time can be accepted easier.
+##SBATCH --qos=devel          # preproc, devel, short and normal if comment this line,  https://documentation.sigma2.no/jobs/job_types/fram_job_types.html
+#SBATCH --nodes=40             # request number of nodes
+#SBATCH --ntasks-per-node=128  # MPI parallel thread size
+#SBATCH --cpus-per-task=1      #
+#SBATCH --output=$SLURM_JOB_NAME.log         # Stdout
+#SBATCH --error=$SLURM_JOB_NAME.log          # Stderr
+# ======================================================
 
+# script for submitting an ensemble run without DA, restarting from spinup run, defined by main1_spinup_exp.sh
 # Instruction:
-# create workpath
+# create file structure 
 # call part1_create_file_system.sh to modify nextsim.cfg and enkf settings to workpath
 # link restart files &perturbation files.
 # submit jobs to queue by slurm_nextsim_script from workpath.
@@ -14,35 +25,34 @@ err_report() {
 trap 'err_report $LINENO' ERR
 
 ##-------  Confirm working,data,ouput directories --------
->nohup.out  # empty this file
-JOB_SETUP_DIR=$(cd `dirname $BASH_SOURCE`;pwd)
+JOB_SETUP_DIR=/cluster/home/chengsukun/src/job_submit_panel/2020DA_scripts  #$(cd `dirname $BASH_SOURCE`;pwd)
 source ${NEXTSIM_ENV_ROOT_DIR}/nextsim.ensemble.intel.src
-slurm_nextsim_script=${NEXTSIM_ENV_ROOT_DIR}/slurm.ensemble.template.sh
 source ./link_restart_perturbation.sh
 ##-------  Confirm working,data,ouput directories --------
 # experiment settings
-ENSSIZE=40     # ensemble size  
+ENSSIZE=40      # ensemble size  
 time_init0=2019-10-18   # starting date of simulation
 duration=7      # forecast length; tduration*duration is the total simulation time
 tduration=26    # number of DA cycles. 
-Exp_ID=FreeRun
+Exp_ID=$SLURM_JOB_NAME
+DA_VAR=
 start_from_restart=true
 restart_from_analysis=false   
 UPDATE=0        # 1: active EnKF assimilation 
 
 # days=( 5 15 25 )
 # for nudging_day in "${days[@]}"; do
-nudging_day=5
-    DA_VAR=
-    analysis_source=0
+nudging_day=5    
     restart_source=/cluster/work/users/chengsukun/simulations/test_spinup_2019-09-03_45days_x_1cycles_memsize40_OceanNudgingDd${nudging_day}/date1
     Perturbation_source=/cluster/work/users/chengsukun/offline_perturbations/result
+    analysis_source=0
     restart_path=/cluster/work/users/chengsukun/tempory_link_files/${Exp_ID}_${nudging_day}
-    [ ! -d ${restart_path} ] && mkdir -p ${restart_path} # || rm -rf ${restart_path}/*
+    [ ! -d ${restart_path} ] && mkdir -p ${restart_path}
     ln -sf ${NEXTSIM_DATA_DIR}/* ${restart_path}/ #note the slash '/' is necessary. It only links files not directory
     export NEXTSIM_DATA_DIR=${restart_path}
     OUTPUT_DIR=${simulations}/test_${Exp_ID}_${time_init0}_${duration}days_x_${tduration}cycles_memsize${ENSSIZE}_OceanNudgingDd${nudging_day}
-    # [ -d $OUTPUT_DIR ] && rm -rf $OUTPUT_DIR
+    echo 'work path:' $OUTPUT_DIR
+    #[ -d $OUTPUT_DIR ] && rm -rf $OUTPUT_DIR
     [ ! -d $OUTPUT_DIR ] && mkdir -p ${OUTPUT_DIR}
     cp ${JOB_SETUP_DIR}/$(basename $BASH_SOURCE)  ${OUTPUT_DIR} 
     cp -rf ${NEXTSIMDIR}/model ${OUTPUT_DIR}/nextsim_source_code 
@@ -55,93 +65,40 @@ nudging_day=5
         mkdir -p ${ENSPATH}   
         source ${JOB_SETUP_DIR}/part1_create_file_system.sh
 
-    # b. submit the script for ensemble forecasts
+    # b. execute simulation
         cd $ENSPATH
-        cp ${slurm_nextsim_script} $ENSPATH/.
-
-        #------------------
-        # check for crashed member and resubmit
-        for (( jj=1; jj<=2; jj++ )); do            
-                count=0
-                list=()
-                for (( i=1; i<=$ENSSIZE; i++ )); do
-                    ! grep -q -s "Simulation done" $ENSPATH/mem$i/task.log && count=$(($count+1)) && list=(${list[@]-} $i);
-                done
-                if (( $count >0 )); then
-                    (( jj==1 )) && link_restarts     $ENSSIZE   $restart_source      $restart_path $analysis_source
-                    (( jj==1 )) && link_perturbation $ENSSIZE   $Perturbation_source $restart_path $duration  $iperiod 
-                    echo 'Try' $jj ', date' $iperiod ', start calculating member(s):' ${list[@]-} 
-                    # dynamically request nodes based on the number of idle node
-                    idle_node=`sinfo --states=idle | grep normal | grep idle | awk '{print $4}'`
-                    dt=$((2*$duration+5))  # unit time cost of a member, in minutes
-                    if (( $count<=$idle_node )); then
-                        Nnode=$count
-                        Time=$dt
-                    else
-                        Numbers=(10 20 40 )
-                        for (( id=1; id<${#Numbers[@]}; id++ )); do
-                        if (( ${Numbers[id]}> $idle_node )); then                        
-                            Nnode=${Numbers[id-1]}
-                            break
-                        fi
-                        done
-                        Time=$(( $dt*$count/$Nnode ))
-                    fi
-                    (( $Nnode<4 )) && Nnode=4  
-                    echo "request nodes and time/node: " $Nnode ", " $Time              
-                    sbatch -W --time=0-0:$Time:0 --nodes=$Nnode $slurm_nextsim_script ${ENSPATH} ${ENSSIZE}  $Nnode 
-                    # sbatch -W --time=0-0:$Time:0 --nodes=1 --qos=devel $slurm_nextsim_script ${ENSPATH} ${ENSSIZE}  $Nnode 
-                    wait
-                else
-                    break
-                fi
+        Nnode=40
+        for (( jj=1; jj<=2; jj++ )); do          # check for crashed member and resubmit
+            count=0
+            list=()
+            for (( i=1; i<=$ENSSIZE; i++ )); do
+                ! grep -q -s "Simulation done" $ENSPATH/mem$i/task.log && count=$(($count+1)) && list=(${list[@]-} $i);
             done
+            if (( $count >0 )); then
+                (( jj==1 )) && link_restarts     $ENSSIZE   $restart_source      $restart_path $analysis_source
+                (( jj==1 )) && link_perturbation $ENSSIZE   $Perturbation_source $restart_path $duration  $iperiod 
+                echo 'Try' $jj ', date' $iperiod ', start calculating member(s):' ${list[@]-} 
+                #
+                for (( i=1; i<=$ENSSIZE; i++ )); do                                
+                    cd $ENSPATH/mem${i}
+                    cp nextsim.cfg nextsim.cfg.backup
+                    grep -q -s "Simulation done" task.log && continue
+                    rm -rf *.nc *.log *.bin *.dat *.txt restart
+                    srun --nodes=1 --mpi=pmi2 -n128 $NEXTSIMDIR/model/bin/nextsim.exec  --config-files=nextsim.cfg 2>&1 | tee task.log  &    
+                    (( $i%$Nnode==0 )) && wait    
+                    cp nextsim.cfg.backup nextsim.cfg
+                done   
+                wait  
+            else
+                break
+            fi   
+        done
         # check for crashed member, report error and exit
         for (( i=1; i<=$ENSSIZE; i++ )); do
             ! grep -q -s "Simulation done" $ENSPATH/mem$i/task.log && echo $ENSPATH'/mem'$i 'has crashed ' $(( $jj-1 )) ' times. EXIT' && exit
         done
         restart_source=${ENSPATH}
     done
-    # cp ${JOB_SETUP_DIR}/nohup.out  ${OUTPUT_DIR}
+    cp ${JOB_SETUP_DIR}/${SLURM_JOB_NAME}.log  ${OUTPUT_DIR}
 # done
 echo "finished"
-
-
-
-# function WaitforTaskFinish(){
-#     # ------ wait the completeness in this cycle.
-#     ENSSIZE=$1
-#     count=0
-#     while [[ $count -lt $ENSSIZE ]]; do 
-#         for (( i=0; i<$ENSSIZE; i++ )); do
-#             grep -q -s "Simulation done" $ENSPATH/mem$i/task.log && count=$(( $count+1 ))            
-#         done
-#         sleep 30        
-#     done
-# }
-# # 
-# jstat=$(squeue -u chengsukun |grep $jid |awk '{print $5}')
-# #if $jstat == 'R'
-# #if $jstat == 'CG'
-
-# sbatch --time=0-0:10:0   $script $ENSPATH $ENV_FILE ${ENSSIZE} > job_submit.log
-# jid=$(cat job_submit.log |awk '{print $4}')
-# WaitforTaskFinish $jstat
-
-# function WaitforTaskFinish(){
-#     # ------ wait the completeness in this cycle.
-#     XPID=$(squeue -u chengsukun | grep -o chengsuk |wc -l) 	
-#     while [[ $XPID -gt $1 ]]; do 
-#         sleep 60
-#         XPID=$(squeue -u chengsukun | grep -o chengsuk |wc -l) # number of running jobs 
-#     done
-# }
-
-# function WaitforTaskFinish(){
-#     # ------ wait the completeness in this cycle.
-#     XPID=0
-#     while [[ $XPID -gt $1 ]]; do 
-#         sleep 30
-#         XPID=$(squeue -u chengsukun | grep -o chengsuk |wc -l) # number of running jobs 
-#     done
-# }

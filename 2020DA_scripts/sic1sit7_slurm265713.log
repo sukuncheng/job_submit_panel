@@ -1,0 +1,223 @@
+Starting job 265713 on b[1118-1126,1128-1133,3214,3217,3219-3222,3238-3239,3241-3246,3248,3352,3370,3374,3380-3386] at Fri Dec 3 12:14:43 CET 2021
+
+work path: /cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40
+period 2019-10-18 to 20191019
+period 2019-10-19 to 20191020
+period 2019-10-20 to 20191021
+period 2019-10-21 to 20191022
+period 2019-10-22 to 20191023
+period 2019-10-23 to 20191024
+period 2019-10-24 to 20191025
+period 2019-10-25 to 20191026
+period 2019-10-26 to 20191027
+period 2019-10-27 to 20191028
+period 2019-10-28 to 20191029
+period 2019-10-29 to 20191030
+period 2019-10-30 to 20191031
+period 2019-10-31 to 20191101
+period 2019-11-01 to 20191102
+period 2019-11-02 to 20191103
+period 2019-11-03 to 20191104
+period 2019-11-04 to 20191105
+period 2019-11-05 to 20191106
+period 2019-11-06 to 20191107
+period 2019-11-07 to 20191108
+period 2019-11-08 to 20191109
+period 2019-11-09 to 20191110
+period 2019-11-10 to 20191111
+period 2019-11-11 to 20191112
+period 2019-11-12 to 20191113
+period 2019-11-13 to 20191114
+period 2019-11-14 to 20191115
+period 2019-11-15 to 20191116
+period 2019-11-16 to 20191117
+period 2019-11-17 to 20191118
+period 2019-11-18 to 20191119
+period 2019-11-19 to 20191120
+period 2019-11-20 to 20191121
+period 2019-11-21 to 20191122
+period 2019-11-22 to 20191123
+period 2019-11-23 to 20191124
+period 2019-11-24 to 20191125
+period 2019-11-25 to 20191126
+period 2019-11-26 to 20191127
+period 2019-11-27 to 20191128
+period 2019-11-28 to 20191129
+period 2019-11-29 to 20191130
+period 2019-11-30 to 20191201
+period 2019-12-01 to 20191202
+period 2019-12-02 to 20191203
+period 2019-12-03 to 20191204
+period 2019-12-04 to 20191205
+period 2019-12-05 to 20191206
+period 2019-12-06 to 20191207
+period 2019-12-07 to 20191208
+period 2019-12-08 to 20191209
+period 2019-12-09 to 20191210
+period 2019-12-10 to 20191211
+period 2019-12-11 to 20191212
+period 2019-12-12 to 20191213
+period 2019-12-13 to 20191214
+period 2019-12-14 to 20191215
+period 2019-12-15 to 20191216
+period 2019-12-16 to 20191217
+period 2019-12-17 to 20191218
+period 2019-12-18 to 20191219
+period 2019-12-19 to 20191220
+period 2019-12-20 to 20191221
+period 2019-12-21 to 20191222
+period 2019-12-22 to 20191223
+period 2019-12-23 to 20191224
+period 2019-12-24 to 20191225
+period 2019-12-25 to 20191226
+period 2019-12-26 to 20191227
+period 2019-12-27 to 20191228
+period 2019-12-28 to 20191229
+period 2019-12-29 to 20191230
+period 2019-12-30 to 20191231
+period 2019-12-31 to 20200101
+period 2020-01-01 to 20200102
+period 2020-01-02 to 20200103
+period 2020-01-03 to 20200104
+period 2020-01-04 to 20200105
+period 2020-01-05 to 20200106
+period 2020-01-06 to 20200107
+period 2020-01-07 to 20200108
+period 2020-01-08 to 20200109
+period 2020-01-09 to 20200110
+period 2020-01-10 to 20200111
+period 2020-01-11 to 20200112
+period 2020-01-12 to 20200113
+period 2020-01-13 to 20200114
+period 2020-01-14 to 20200115
+period 2020-01-15 to 20200116
+period 2020-01-16 to 20200117
+period 2020-01-17 to 20200118
+period 2020-01-18 to 20200119
+period 2020-01-19 to 20200120
+period 2020-01-20 to 20200121
+period 2020-01-21 to 20200122
+period 2020-01-22 to 20200123
+period 2020-01-23 to 20200124
+period 2020-01-24 to 20200125
+period 2020-01-25 to 20200126
+period 2020-01-26 to 20200127
+period 2020-01-27 to 20200128
+period 2020-01-28 to 20200129
+period 2020-01-29 to 20200130
+period 2020-01-30 to 20200131
+period 2020-01-31 to 20200201
+period 2020-02-01 to 20200202
+period 2020-02-02 to 20200203
+period 2020-02-03 to 20200204
+period 2020-02-04 to 20200205
+period 2020-02-05 to 20200206
+period 2020-02-06 to 20200207
+period 2020-02-07 to 20200208
+period 2020-02-08 to 20200209
+period 2020-02-09 to 20200210
+period 2020-02-10 to 20200211
+period 2020-02-11 to 20200212
+period 2020-02-12 to 20200213
+period 2020-02-13 to 20200214
+period 2020-02-14 to 20200215
+period 2020-02-15 to 20200216
+period 2020-02-16 to 20200217
+period 2020-02-17 to 20200218
+period 2020-02-18 to 20200219
+period 2020-02-19 to 20200220
+period 2020-02-20 to 20200221
+period 2020-02-21 to 20200222
+period 2020-02-22 to 20200223
+period 2020-02-23 to 20200224
+period 2020-02-24 to 20200225
+period 2020-02-25 to 20200226
+period 2020-02-26 to 20200227
+period 2020-02-27 to 20200228
+period 2020-02-28 to 20200229
+period 2020-02-29 to 20200301
+period 2020-03-01 to 20200302
+period 2020-03-02 to 20200303
+period 2020-03-03 to 20200304
+period 2020-03-04 to 20200305
+period 2020-03-05 to 20200306
+period 2020-03-06 to 20200307
+period 2020-03-07 to 20200308
+period 2020-03-08 to 20200309
+period 2020-03-09 to 20200310
+period 2020-03-10 to 20200311
+period 2020-03-11 to 20200312
+period 2020-03-12 to 20200313
+period 2020-03-13 to 20200314
+period 2020-03-14 to 20200315
+period 2020-03-15 to 20200316
+period 2020-03-16 to 20200317
+period 2020-03-17 to 20200318
+period 2020-03-18 to 20200319
+period 2020-03-19 to 20200320
+period 2020-03-20 to 20200321
+links perturbation files to restart_path/Perturbation using input file id
+Try 1 , date 155 , start calculating member(s): 6 26 39
+Reading nextsim.cfg...
+Reading nextsim.cfg...
+Reading nextsim.cfg...
+[INFO] : -----------------------Simulation started on 2021-Dec-03 12:16:49
+[INFO] : TIMESTEP= 900 s
+[INFO] : DURATION= 1 day(s)
+[WARNING] : For best deformation scaling results, the ratio simul.timestep/t_damage should be < 10. (Currently it is 44.9992).  THE SPIRIT OF VERO IS WATCHING YOU
+[INFO] : -----------------------Simulation started on 2021-Dec-03 12:16:49
+[INFO] : TIMESTEP= 900 s
+[INFO] : DURATION= 1 day(s)
+[WARNING] : For best deformation scaling results, the ratio simul.timestep/t_damage should be < 10. (Currently it is 44.9992).  THE SPIRIT OF VERO IS WATCHING YOU
+[INFO] : -----------------------Simulation started on 2021-Dec-03 12:16:49
+[INFO] : TIMESTEP= 900 s
+[INFO] : DURATION= 1 day(s)
+[WARNING] : For best deformation scaling results, the ratio simul.timestep/t_damage should be < 10. (Currently it is 44.9992).  THE SPIRIT OF VERO IS WATCHING YOU
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+  what():  File not found: /cluster/work/users/chengsukun/tempory_link_files/sic1sit7/mesh_mem1.dat
+  what():  File not found: /cluster/work/users/chengsukun/tempory_link_files/sic1sit7/mesh_mem1.dat
+terminate called after throwing an instance of 'std::runtime_error'
+  what():  File not found: /cluster/work/users/chengsukun/tempory_link_files/sic1sit7/mesh_mem1.dat
+srun: error: b1119: task 0: Aborted
+srun: error: b1118: task 0: Aborted
+srun: error: b1120: task 0: Aborted
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+slurmstepd: error: *** STEP 265713.0 ON b1118 CANCELLED AT 2021-12-03T12:17:11 ***
+slurmstepd: error: *** STEP 265713.1 ON b1119 CANCELLED AT 2021-12-03T12:17:11 ***
+slurmstepd: error: *** STEP 265713.2 ON b1120 CANCELLED AT 2021-12-03T12:17:11 ***
+slurmstepd: error: *** JOB 265713 ON b1118 CANCELLED AT 2021-12-03T12:17:11 ***
+
+Task and CPU usage stats:
+       JobID    JobName  AllocCPUS   NTasks     MinCPU MinCPUTask     AveCPU    Elapsed ExitCode 
+------------ ---------- ---------- -------- ---------- ---------- ---------- ---------- -------- 
+265713         sic1sit7       5120                                             00:02:28      0:0 
+265713.batch      batch        128        1   00:00:03          0   00:00:03   00:02:29     0:15 
+265713.exte+     extern       5120       40   00:00:00         22   00:00:00   00:02:28      0:0 
+265713.0     nextsim.e+        128      128   00:00:00          0   00:00:23   00:00:33      0:6 
+265713.1     nextsim.e+        128      128   00:00:00          0   00:00:23   00:00:33      0:6 
+265713.2     nextsim.e+        128      128   00:00:00          0   00:00:23   00:00:32      0:6 
+
+Memory usage stats:
+       JobID     MaxRSS MaxRSSTask     AveRSS MaxPages   MaxPagesTask   AvePages 
+------------ ---------- ---------- ---------- -------- -------------- ---------- 
+265713                                                                           
+265713.batch     19096K          0     19096K       10              0         10 
+265713.exte+       834K         17     814976        3             22          2 
+265713.0         11809K          3   11407504        4             16          0 
+265713.1         11809K         14   11700904        5             30          0 
+265713.2         11809K          4   11415136        5              6          1 
+
+Disk usage stats:
+       JobID  MaxDiskRead MaxDiskReadTask    AveDiskRead MaxDiskWrite MaxDiskWriteTask   AveDiskWrite 
+------------ ------------ --------------- -------------- ------------ ---------------- -------------- 
+265713                                                                                                
+265713.batch      156.27M               0        156.27M        3.45M                0          3.45M 
+265713.exte+        0.00M              22          0.00M            0               22              0 
+265713.0            0.93M             100          0.92M        0.00M              100          0.00M 
+265713.1            0.93M             103          0.92M        0.00M              100          0.00M 
+265713.2            0.93M             101          0.92M        0.00M              100          0.00M 
+
+Job 265713 completed at Fri Dec 3 12:17:14 CET 2021
