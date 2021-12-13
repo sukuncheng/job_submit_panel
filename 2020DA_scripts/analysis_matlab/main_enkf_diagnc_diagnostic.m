@@ -7,20 +7,44 @@ function [] = main_enkf_diagnc_diagnostic()
     
     start_date=datetime(2019,10,18);
     Ne = 40; % members   
-    mnt_dir = '/Users/sukeng/Desktop/betzy/simulations/test_DAsitsic_highfreq_2019-10-18_1days_x_84cycles_memsize40_offline_perturbations';
-    lons = 0:30:150;
-    lats = 84*ones(1,length(lons));
+    mnt_dir = ['/cluster/work/users/chengsukun/simulations/' 'test_sit7_2019-10-18_7days_x_26cycles_memsize40_d5'];
+    DA_var='sit'
+    periods=26
+    lons = -60:30:150; %[-60:30:150 -45:30:165];
+    lats = 84*ones(1,length(lons)); %[84*ones(1,length(lons)/2) 86*ones(1,length(lons)/2)];
+    row = 2;
+    col = length(lons);
     N = length(lons); 
-    for k = 1:84
-        if(mod(k,7)==1)
-            continue
-        end
+    for k = 1:periods
+        k
         simul_dir = [mnt_dir '/date' num2str(k) '/filter'];
         thedate = start_date + k -1;
         %
         figure(1); %         set(gcf,'Position',[100,150,1400,700], 'color','w')
         set(gcf,'units','normalized','outerposition',[0 0 1 1])
         clf
+        filename = ['../reference_grid.nc'];
+        lon = ncread(filename,'plon');
+        lat = ncread(filename,'plat');
+        analysis_sit = ncread([simul_dir '/prior/mem001.nc.analysis'],'sit');
+        prior_sit    = ncread([simul_dir '/prior/mem001.nc'],'sit');
+        subplot(row,col,1); fun_geo_pcolor(lon,lat,analysis_sit-prior_sit,[datestr(thedate)  '   increment sit'],'m'); caxis([0 7]); 
+        colormap(gca,summer);   
+        analysis_sic = ncread([simul_dir '/prior/mem001.nc.analysis'],'sic');
+        prior_sic    = ncread([simul_dir '/prior/mem001.nc'],'sic');
+        subplot(row,col,2); fun_geo_pcolor(lon,lat,analysis_sic-prior_sic,[datestr(thedate)  '   increment sic'],'m'); caxis([0 7]); 
+        colormap(gca,summer);    
+        %
+        % pre_fix = '/cluster/work/users/chengsukun/nextsim_data_dir/CS2_SMOS_v2.3/W_XX-ESA,SMOS_CS2,NH_25KM_EASE2_';
+        % sur_fix = '_r_v203_01_l4sit.nc';
+        % t1 = strrep(datestr(thedate-3,26),'/','');
+        % t2 = strrep(datestr(thedate+3,26),'/','');
+        % filename = [pre_fix t1 '_' t2 sur_fix];
+        % lon = ncread(filename,'lon');
+        % lat = ncread(filename,'lat');
+        % Var = ncread(filename,'analysis_sea_ice_thickness');
+        % subplot(row,col,2); fun_geo_pcolor(lon,lat,Var,'observation sit','m');  caxis([0 7]); colormap(gca,summer);    
+
         filename = [ simul_dir '/observations.nc'];
         lon = ncread(filename,'lon'); 
         lat = ncread(filename,'lat'); 
@@ -28,11 +52,9 @@ function [] = main_enkf_diagnc_diagnostic()
         Hx_a  = ncread(filename,'Hx_a');   % forecast(_f)/analysis(_a) observation (forecast observation ensemble mean)
         Hx_f  = ncread(filename,'Hx_f');
         unit = '';
-        subplot(262);  fun_geo_pcolor_scatter(lon,lat,y,' observation sic',unit);
-        subplot(263); fun_geo_pcolor_scatter(lon,lat,y-Hx_a,'sic analysis innovation: y - Hx_a',unit);
-%         subplot(263); fun_geo_pcolor_scatter(lon,lat,Hx_a-Hx_f,'increment: Hx_a-Hx_f',unit);  
+        subplot(row,col,3); fun_geo_pcolor_scatter(lon,lat,y,[' observation ' DA_var] ,unit);  caxis([0 1]);colormap(gca,summer)
+        subplot(row,col,4); fun_geo_pcolor_scatter(lon,lat,y-Hx_a,[DA_var 'analysis innovation: y - Hx_a'],unit);
         colormap(gca,bluewhitered);        
-        
         hold on;
         m_plot(lons,lats,'.k','markersize',12); % add investigated points
         % ----------------    
@@ -41,6 +63,7 @@ function [] = main_enkf_diagnc_diagnostic()
         srf    = ncread(filename,'srf');     % spread reduction factor
         nlobs  = ncread(filename,'nlobs');
     %     pdfs   = ncread(filename,'pdfs');  
+    %     % pdfs seems to be the average of multi-observations. for single observation, pdfs = dfs
     %     psrf   = ncread(filename,'psrf');   
     %     pnlobs = ncread(filename,'pnlobs');
         %
@@ -48,21 +71,23 @@ function [] = main_enkf_diagnc_diagnostic()
         lon = ncread(filename,'plon');
         lat = ncread(filename,'plat');
         unit = '';
-        subplot(264); fun_geo_pcolor(lon,lat, dfs,' dfs',unit); %caxis([0 18])
-        subplot(265); fun_geo_pcolor(lon,lat, srf,' srf',unit); %caxis([0 3])
-        subplot(266); fun_geo_pcolor(lon,lat, nlobs,' nlobs',unit); 
-    %     % pdfs seems to be the average of multi-observations. for single observation, pdfs = dfs
-    %     subplot(234); fun_geo_pcolor(lon,lat,  pdfs,'pdfs',unit); 
-    %     subplot(235); fun_geo_pcolor(lon,lat,  psrf,'psrf',unit); 
-    %     subplot(236); fun_geo_pcolor(lon,lat,pnlobs,'pnlobs',unit); 
-    
+        subplot(row,col,5); fun_geo_pcolor(lon,lat, dfs,' dfs',unit); colormap(gca,bluewhitered);     %caxis([0 18])
+        subplot(row,col,6); fun_geo_pcolor(lon,lat, srf,' srf',unit); colormap(gca,bluewhitered);    %caxis([0 3])
+        % subplot(row,col,7); fun_geo_pcolor(lon,lat, nlobs,' nlobs',unit); colormap(gca,bluewhitered);    
         %
-        analysis_sit = ncread([simul_dir '/prior/mem001.nc.analysis'],'sit');
-        prior_sit    = ncread([simul_dir '/prior/mem001.nc'],'sit');
-        subplot(261); fun_geo_pcolor(lon,lat,analysis_sit,[datestr(thedate)  '   analysis sit'],'m'); 
-%         set(findall(gcf,'-property','FontSize'),'FontSize',14);
+        
+        filename = [simul_dir '/spread.nc'];
+        sit_an_spread = ncread(filename,'sit_an');  % sea_ice_thickness analysis
+        subplot(row,col,7); fun_geo_pcolor(lon,lat,sit_an_spread,'spread of analysis sit','');
+        colormap(gca,summer); 
+        
+        sic_an_spread = ncread(filename,'sic_an');  % sea_ice_thickness analysis
+        subplot(row,col,8); fun_geo_pcolor(lon,lat,sic_an_spread,'spread of analysis sic','');
+        colormap(gca,bluewhitered);  
+
 
        %% row 2
+       col=2;
         for ie = 1:Ne
             filename = [simul_dir '/prior/mem' num2str(ie,'%03d') '.nc'];
             LON = ncread(filename,'longitude');
@@ -83,14 +108,6 @@ function [] = main_enkf_diagnc_diagnostic()
                 analysis(i).sit(ie) = ana_sit(idx,idy);
             end
         end
-
-%         figure(2)
-%         set(gcf,'Position',[10,150,1100,900], 'color','w')
-%         clf
-%         row = 3;
-%         col = ceil(N/row);
-        row=2;
-        col=6;
         for i = 1:N   
             subplot(row,col,col+i)
             plot(prior(i).sit, prior(i).sic,'or')
@@ -100,15 +117,16 @@ function [] = main_enkf_diagnc_diagnostic()
             ylabel('sic'); 
             title(['(lon,lat)=(' num2str(lons(i)) ',' num2str(lats(i)) ')'])
         end
+        legend('prior','analysis')
         set(findall(gcf,'-property','FontSize'),'FontSize',15);
-        saveas(figure(1),['day' num2str(k) '_maps.png'],'png')
+        exportgraphics(figure(1),['day' num2str(k) '_maps.png'],'Resolution',300)
     end  
 end
 
 
 function fun_geo_pcolor(lon,lat,Var,Title, unit)
     Var(Var==0) = nan;
-    m_proj('Stereographic','lon',-45,'lat',90,'radius',25);
+    m_proj('Stereographic','lon',-45,'lat',90,'radius',20);
     m_pcolor(lon, lat, Var); shading flat; 
     h = colorbar('southoutside');
     title(h, unit);
@@ -120,7 +138,7 @@ end
 %
 function fun_geo_pcolor_scatter(lon,lat,Var,Title, unit)
     Var(Var==0) = nan;
-    m_proj('Stereographic','lon',-45,'lat',90,'radius',25);
+    m_proj('Stereographic','lon',-45,'lat',90,'radius',20);
     m_scatter(lon, lat, 12, Var,'.'); shading flat; 
     h = colorbar('southoutside');
     title(h, unit);
