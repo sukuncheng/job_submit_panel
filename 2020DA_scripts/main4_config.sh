@@ -15,7 +15,7 @@
 # duration=7    # forecast length; tduration*duration is the total simulation time
 # tduration=26  # number of DA cycles. 
 
-Exp_ID=sic1sit7     
+Exp_ID=sic3sit7     
 DA_VAR=sitsic   
 duration=1     # forecast length; tduration*duration is the total simulation time
 tduration=182  # number of DA cycles. 
@@ -27,9 +27,9 @@ restart_from_analysis=true
 UPDATE=1           # 1: active EnKF assimilation 
 INFLATION=1
 LOCRAD=300
-RFACTOR=1.5
+RFACTOR=2
 KFACTOR=2
-nudging_day=5
+nudging_day=15
 #----------------------  Experiment setup: file directories -------------------------------
 slurm_nextsim_script=${NEXTSIM_ENV_ROOT_DIR}/slurm.ensemble.template.sh
 slurm_enkf_script=${NEXTSIM_ENV_ROOT_DIR}/slurm.enkf.template.sh

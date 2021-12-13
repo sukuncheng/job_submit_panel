@@ -41,12 +41,12 @@ source main4_config.sh
 #    if ! grep -q -s "finished" prep.out
 #    then        
 #        make clean
-#        srun -N1 -n1 ./enkf_prep --no-superobing enkf.prm 2>&1 > prep.out &
+#        srun -N1 -n1 -c1 --exact ./enkf_prep --no-superobing enkf.prm 2>&1 > prep.out &
 #    fi
 #done
 #wait
 #echo "finished files preprocess"
-#
+
 # Experiment execution: b. sbatch run jobs--------------------------       
 # link restart files & perturbation files.
 # submit jobs to queue 

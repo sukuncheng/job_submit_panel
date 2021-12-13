@@ -15,7 +15,8 @@
 # link restart files &perturbation files.
 # submit ensemble-DA jobs to queue.
 
-# set -ux  # uncomment for debugging,# Bash empty array expansion with `set -u`, use ${arr[@]-} instead of use ${arr[@]} to avoid errors
+ #
+#set -uex  # uncomment for debugging,# Bash empty array expansion with `set -u`, use ${arr[@]-} instead of use ${arr[@]} to avoid errors
 source $1
 source $2
 export NEXTSIM_DATA_DIR=${restart_path}
@@ -60,7 +61,7 @@ for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
     done
     #------------------
     ## 2.submit enkf after finishing the ensemble simulations 
-    if [ ${UPDATE} == 1 ] && ! grep -q -s "finished" ${ENSPATH}/filter/update.out ; then  
+    if [ -d ${OUTPUT_DIR}/date${iperiod}/filter ] && ! grep -q -s "finished" ${ENSPATH}/filter/update.out ; then  
         for (( i=1; i<=${ENSSIZE}; i++ )); do
             cp ${ENSPATH}/mem${i}/prior.nc  ${ENSPATH}/filter/prior/$(printf "mem%.3d" $i).nc
         done       

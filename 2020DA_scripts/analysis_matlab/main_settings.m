@@ -8,8 +8,14 @@ function [] = main_settings()
     mnt_dir='/cluster/work/users/chengsukun/simulations'; 
     % mnt_dir='/nird/projects/nird/NS2993K/NORSTORE_OSL_DISK/NS2993K/chengsukun';
     %%
-    exp=5; 
-    if exp==5
+    exp=6; 
+    if exp==6
+        Exp_ID = 'Exp_sic3sit7';
+        start_date = '2019-10-18';
+        N_periods = 182;
+        Duration = 1; % duration days set in nextsim.cfg
+        simul_dir = '/test_sic3sit7_2019-10-18_1days_x_182cycles_memsize40_d5_R2';
+    elseif exp==5
         Exp_ID = 'Exp_sic1sit7';
         start_date = '2019-10-18';
         N_periods = 154;
