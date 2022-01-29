@@ -1,5 +1,5 @@
 #!/bin/bash
-# sukun.cheng@nersc.no,  01/11/2020
+# sukun.cheng@nersc.no,  23/1/2022
 # PURPOSE: prepare experiment directories and files
 #   - create working directory and subdirectories,
 #   - copy EnKF package to ENSPATH/filter
@@ -12,9 +12,8 @@
 #         -- filter (include EnKF package)
 #                     -- obs  (link observations from NEXTIM_DATA_DIR)
 #                     -- prior 
-echo " Initialize files system, write nextsim.cfg to workpath"  #, pseudo2D.nml
-#1. prepare forecast files
-# nextsim.cfg,  #"${duration}" # input_path, basename are defined in slurm.*.template.sh
+
+#1. prepare configuratio file
     sed -i "s/^time_init=.*$/time_init=${time_init}/g; \
             s/^duration=.*$/duration=${duration}/g; \
             s/^dynamics-type=.*$/dynamics-type=bbm/g; \
@@ -27,26 +26,22 @@ echo " Initialize files system, write nextsim.cfg to workpath"  #, pseudo2D.nml
             s/^DAtype.*$/DAtype=${DA_VAR}/g; \
             s/^restart_from_analysis=.*$/restart_from_analysis=${restart_from_analysis}/g" \
         ${JOB_SETUP_DIR}/nextsim.cfg 
-    sed -i "s|^input_path=.*$|input_path=${restart_path}|g; \
-            s|^restart_path=.*$|restart_path=|g;" \
-        ${JOB_SETUP_DIR}/nextsim.cfg
-    cp ${JOB_SETUP_DIR}/nextsim.cfg  ${ENSPATH}/nextsim.cfg
 
-    cd ${ENSPATH}
     for (( i=1; i<=${ENSSIZE}; i++ )); do
 	    memname=mem${i}
         MEMPATH=${ENSPATH}/${memname}
-        mkdir -p $MEMPATH
-        sed -e "s;^basename.*$;basename=${memname};g" \
-            -e "s;^ensemble_member.*$;ensemble_member=${i};g" \
-            -e "s;^exporter_path.*$;exporter_path=${MEMPATH}/;g" \
-            ${ENSPATH}/nextsim.cfg > ${MEMPATH}/nextsim.cfg
-        cp ${MEMPATH}/nextsim.cfg ${MEMPATH}/nextsim.cfg.backup
+        ls ${MEMPATH}
+        sed -e "s|^basename.*$|basename=${memname}|g; \
+                s|^ensemble_member.*$|ensemble_member=${i}|g; \
+                s|^exporter_path.*$|exporter_path=${MEMPATH}|g; \
+                s|^input_path=.*$|input_path=${MEMPATH}/data|g; \
+                s|^restart_path=.*$|restart_path=|g" \
+            ${JOB_SETUP_DIR}/nextsim.cfg > ${MEMPATH}/nextsim.cfg.backup
     done   
 
 
 #-----------------------------------------------------------
-#2. prepare analysis files
+#2. prepare assimilation files
 if [[ $UPDATE == 1 ]];then
     FILTER=$ENSPATH/filter
     mkdir -p ${FILTER}/prior  # store prior states

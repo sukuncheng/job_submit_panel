@@ -1,5 +1,5 @@
 #!/bin/bash
-# sukun.cheng@nersc.no,  01/11/2020
+# sukun.cheng@nersc.no,  23/1/2022
 # PURPOSE: prepare experiment directories and files
 #   - create working directory and subdirectories,
 #   - copy EnKF package to ENSPATH/filter
@@ -12,48 +12,36 @@
 #         -- filter (include EnKF package)
 #                     -- obs  (link observations from NEXTIM_DATA_DIR)
 #                     -- prior 
-echo "Part1 initialize files system, write nextsim.cfg, pseudo2D.nml to workpath"
-#1. prepare forecast files
-# nextsim.cfg,  #"${duration}" # input_path, basename are defined in slurm.*.template.sh
-    sed -i "s/^time_init=.*$/time_init=${time_init}/g; \
-         s/^duration=.*$/duration=1/g; \
-         s/^dynamics-type=.*$/dynamics-type=bbm/g; \
-         s/^output_timestep=.*$/output_timestep=4/g; \
-         s/^output_time_step_units=.*$/output_time_step_units=4/g; \
-         s/^start_from_restart=.*$/start_from_restart=${start_from_restart}/g; \
-         s/^write_final_restart=.*$/write_final_restart=true/g; \
-         s/^input_path=.*$/input_path=/g; \
-         s/^basename.*$/basename=/g; \
-         s/^restart_from_analysis=.*$/restart_from_analysis=${restart_from_analysis}/g" \
-        ${JOB_SETUP_DIR}/nextsim.cfg 
-        cp ${JOB_SETUP_DIR}/nextsim.cfg  ${ENSPATH}/nextsim.cfg
-        
-    # pseudo2D.nml, perturb cohesion C_lab=1.5e6 [±33%]  # s/^C_perturb.*$/C_perturb=0.33/g" 
-    sed -i "s/^iopath.*$/iopath = '.'/g; \
-            s/^randf.*$/randf    = .$randf./g; \
-            s/^vwndspd.*$/vwndspd=3/g; \
-            s/^scorr_dx.*$/scorr_dx=10/g; \
-            s/^C_lab.*$/C_lab=1.5e6/g; \
-            s/^C_perturb.*$/C_perturb=0.33/g;" \
-            ${JOB_SETUP_DIR}/pseudo2D.nml 
-            
-    cp ${JOB_SETUP_DIR}/pseudo2D.nml  ${ENSPATH}/pseudo2D.nml  
 
-    # cd ${ENSPATH}
-    # for (( i=1; i<=${ENSSIZE}; i++ )); do
-	#     memname=mem${i}
-    #     MEMPATH=${ENSPATH}/${memname}
-    #     mkdir -p $MEMPATH
-    #     sed -e "s;^id.*$;id=$i;g" \
-    #         -e "s;^basename.*$;basename=${memname};g" \
-    #         ${ENSPATH}/nextsim.cfg > ${MEMPATH}/nextsim.cfg  
-    
-    #     cp ${ENSPATH}/pseudo2D.nml $MEMPATH 
-    # done   
+#1. prepare configuratio file
+    sed -i "s/^time_init=.*$/time_init=${time_init}/g; \
+            s/^duration=.*$/duration=${duration}/g; \
+            s/^dynamics-type=.*$/dynamics-type=bbm/g; \
+            s/^ocean_nudge_timeS=.*$/ocean_nudge_timeS=$((86400*$nudging_day))/g; \
+            s/^ocean_nudge_timeT=.*$/ocean_nudge_timeT=$((86400*$nudging_day))/g; \
+            s/^output_timestep=.*$/output_timestep=1/g; \
+            s/^start_from_restart=.*$/start_from_restart=${start_from_restart}/g; \
+            s/^write_final_restart=.*$/write_final_restart=true/g; \
+            s/^basename.*$/basename=/g; \
+            s/^DAtype.*$/DAtype=${DA_VAR}/g; \
+            s/^restart_from_analysis=.*$/restart_from_analysis=${restart_from_analysis}/g" \
+        ${JOB_SETUP_DIR}/nextsim.cfg 
+
+    for (( i=1; i<=${ENSSIZE}; i++ )); do
+	    memname=mem${i}
+        MEMPATH=${ENSPATH}/${memname}
+        ls ${MEMPATH}
+        sed -e "s|^basename.*$|basename=${memname}|g; \
+                s|^ensemble_member.*$|ensemble_member=${i}|g; \
+                s|^exporter_path.*$|exporter_path=${MEMPATH}|g; \
+                s|^input_path=.*$|input_path=${MEMPATH}/data|g; \
+                s|^restart_path=.*$|restart_path=|g" \
+            ${JOB_SETUP_DIR}/nextsim.cfg > ${MEMPATH}/nextsim.cfg.backup
+    done   
 
 
 #-----------------------------------------------------------
-#2. prepare analysis files
+#2. prepare assimilation files
 if [[ $UPDATE == 1 ]];then
     FILTER=$ENSPATH/filter
     mkdir -p ${FILTER}/prior  # store prior states
@@ -87,11 +75,11 @@ if [[ $UPDATE == 1 ]];then
     [ ! -f $CS2SMOS_fname ] && echo "error: ${CS2SMOS_fname} is missing" 
     [ ! -f $OSISAF_fname ] && echo "error:  ${OSISAF_fname} is missing" 
     if [[ "$DA_VAR" == "sit" ]]; then
-        sed -i "s;^.*FILE.*$;FILE ="${CS2SMOS_fname}";1"  obs.prm 
+        sed -i "s;^.*FILE.*$;FILE ="${CS2SMOS_fname}";"  obs.prm 
     elif [[ "$DA_VAR" == "sic" ]]; then
-        sed -i "s;^.*FILE.*$;FILE ="${OSISAF_fname}";1"  obs.prm 
+        sed -i "s;^.*FILE.*$;FILE ="${OSISAF_fname}";"  obs.prm 
     elif [[ "$DA_VAR" == "sitsic" ]]; then
-        sed -i "s;^.*FILE.*$;FILE ="${CS2SMOS_fname}";1"  obs.prm
-        sed -i "s;^.*FILE.*$;FILE ="${OSISAF_fname}";2"  obs.prm         
+        sed -i "s;^.*FILE.*$;FILE ="${CS2SMOS_fname}";"  obs.prm
+        sed -i ':a;N;$!ba;s|\(.*\)FILE.*|\1FILE ='${OSISAF_fname}'|'  obs.prm  #edit the last matched keyword        
     fi
 fi

@@ -30,8 +30,6 @@ function [] = main_enkf_diagnc()
         end
     end
     
-    % calcualte the mean and std (b & d) of reduced centered random variable (RCRV) at the assimilation time. https://os.copernicus.org/articles/13/123/2017/os-13-123-2017.pdf 
-    % they provides simple diagnostics of whether the forecast ensemble provides a reliable estimate of the uncertainty of the ensemble mean, which is a trusted in view of the observations with the assumed uncertainties.
     function statistics = fun_process_enkf_diag(enkf_dir)
         global  title_date Exp_ID
         % nlobs = alloc2d(nj, ni, sizeof(int));

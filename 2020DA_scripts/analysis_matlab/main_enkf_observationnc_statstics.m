@@ -9,26 +9,43 @@ function [] = main_observation_RCRV()
     clc
     clear
     close all
-    dbstop if error
-    
-    load('test_inform.mat')
-    for i = 1:N_periods
-        enkf_dir = [ simul_dir '/date' num2str(i) '/filter'];         
-        [b(i), d(i)] = fun_get_RCRV_statistics(enkf_dir);
-    end
+    % dbstop if error
+    N_periods=25;
+    Duration = 7;
+    start_date = "2019-10-18";
+    dates = datetime(start_date) + (0:(N_periods-1))*Duration;
+    mnt_dir = '/cluster/work/users/chengsukun/simulations/DASIMII_EnKF-neXtSIM_exps/';
+    simul_dir{1}=[mnt_dir 'test_sic7_2019-10-18_7days_x_26cycles_memsize40_d5'];
+    simul_dir{2}=[mnt_dir 'test_sit7_2019-10-18_7days_x_26cycles_memsize40_d5'];
+    simul_dir{3}=[mnt_dir 'test_sic7sit7_2019-10-18_7days_x_26cycles_memsize40_d5'];
+    simul_dir{4}=[mnt_dir 'test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40_d5'];
 
-    %%
-    figure()
-    set (gcf,'Position',[100,200,1150,300], 'color','w')
-    plot(dates,b,'b-o', dates,d,'g-x');
-    hold on;
-    plot(dates,b*0,'--','color','k','linewidth',1)
-    legend('\mu_q', '\sigma_q');
-    ax = gca;
-    ax.XAxis.TickValues = dates';
-    ax.XAxis.TickLabelFormat = 'dd-MMM-yy';
-    set(findall(gcf,'-property','FontSize'),'FontSize',16);  
+    figure(1); 
+    set (gcf,'Position',[100,200,1400,600], 'color','w')
+    for j = 1:length(simul_dir)
+        clear b d
+        for i = 1:N_periods
+            enkf_dir = [ simul_dir{j} '/date' num2str(i) '/filter'];         
+            [b(i), d(i)] = fun_get_RCRV_statistics(enkf_dir);
+        end
+        %
+        subplot(211)
+        plot(dates,b,'.-','linewidth',1); hold on; ylabel('mean RCRV, \mu_q')
+        subplot(212)
+        plot(dates,d,'.-','linewidth',1); hold on; ylabel('std RCRV, \sigma_q')
+    end
+    subplot(211)
     xlim([dates(1)-1 dates(end)+1]);
+    legend('sic7','sit7','sic7sit7','sic1sit7')
+
+    subplot(212)
+    xlim([dates(1)-1 dates(end)+1]);
+    legend('sic7','sit7','sic7sit7','sic1sit7')
+    % ax = gca;
+    % ax.XAxis.TickValues = dates';
+    % ax.XAxis.TickLabelFormat = 'dd-MMM-yy';
+    set(findall(gcf,'-property','FontSize'),'FontSize',16);  
+    
     saveas(gcf,'enkf_observationnc_statstics','png');
 end
 
@@ -38,9 +55,9 @@ function [b, d] = fun_get_RCRV_statistics(filepath)
     filename = [filepath '/observations.nc'];
     y     = ncread(filename,'value');  % observation value
     Hx    = ncread(filename,'Hx_a');   % forecast(_f)/analysis(_a) observation (forecast observation ensemble mean)
-    std_o = ncread(filename,'std');    % standard deviation of observation error used in DA
-    std_e = ncread(filename,'std_a');  % standard deviation of the forecast(_f)/analysis(_a) observation ensemble
-    id = find(Hx>=0.01);
+    std_o = ncread(filename,'estd');   % standard deviation of observation error used in DA
+    std_e = ncread(filename,'std_a');  % standard deviation of the forecast(_f) or analysis(_a) observation ensemble
+    id = find(Hx>0.0);                 % exclude some difference or NaN
     %
     for i = 1:length(id)
 	    j = id(i);
@@ -48,11 +65,11 @@ function [b, d] = fun_get_RCRV_statistics(filepath)
     end
     b = mean(q);
     d = std(q);
-    %
-    lon = ncread(filename,'lon'); 
-    lat = ncread(filename,'lat'); 
+    % %
+    % lon = ncread(filename,'lon'); 
+    % lat = ncread(filename,'lat'); 
     
-    m_proj('Stereographic','lon',-45,'lat',90,'radius',25);
+    % m_proj('Stereographic','lon',-45,'lat',90,'radius',25);
 % %    
 %     figure(1); 
 %     clf
@@ -82,11 +99,5 @@ function [b, d] = fun_get_RCRV_statistics(filepath)
 %     set(gcf,'Position',[100,150,1100,950], 'color','w')
 %     saveas(gcf,'enkf_observationnc_statstics.png','png')
     %
-    
-    % figure(11);
-    % plot(sqrt(std_o(id).^2+std_e(id).^2), y(id)-Hx(id),'.'); hold on
-    % xlabel('sqrt(std_{obs}^2+std_{ens}^2)');
-    % ylabel('y-Hx');
-    % set(findall(gcf,'-property','FontSize'),'FontSize',16); 
 
 end
