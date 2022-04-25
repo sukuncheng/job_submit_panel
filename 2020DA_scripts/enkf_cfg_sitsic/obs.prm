@@ -1,0 +1,13 @@
+#READER = xy_gridded
+#PARAMETER VARNAME = analysis_sea_ice_thickness
+#ERROR_STD = 0.2
+
+PRODUCT = CS2SMOS
+READER = standard
+TYPE = SIT
+FILE =/cluster/work/users/chengsukun/nextsim_data_dir/CS2_SMOS_v2.3/W_XX-ESA,SMOS_CS2,NH_25KM_EASE2_20191015_20191021_r_v203_01_l4sit.nc
+
+PRODUCT = OSISAF_ice_conc
+READER = standard
+TYPE = SIC
+FILE = /cluster/work/users/chengsukun/nextsim_data_dir/OSISAF_ice_conc/polstere/2019_nh_polstere/ice_conc_nh_polstere-100_multi_201910181200.nc
