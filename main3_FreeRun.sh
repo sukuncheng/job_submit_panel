@@ -49,7 +49,7 @@ restart_source=/cluster/work/users/chengsukun/simulations/test_spinup__44days_x_
 analysis_source=0
 OUTPUT_DIR=${simulations}/test_${Exp_ID}_${time_init0}_${duration}days_x_${tduration}cycles_memsize${ENSSIZE}
 echo 'work path:' $OUTPUT_DIR
-#[ -d $OUTPUT_DIR ] && rm -rf $OUTPUT_DIR
+[ -d $OUTPUT_DIR ] && rm -rf $OUTPUT_DIR
 [ ! -d $OUTPUT_DIR ] && mkdir -p ${OUTPUT_DIR}
 cp ${JOB_SETUP_DIR}/$(basename $BASH_SOURCE)  ${OUTPUT_DIR} 
 cp -rf ${NEXTSIMDIR}/model ${OUTPUT_DIR}/nextsim_source_code 
