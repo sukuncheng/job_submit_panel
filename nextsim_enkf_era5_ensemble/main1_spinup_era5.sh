@@ -48,8 +48,9 @@ cp $slurm_nextsim_script  ${OUTPUT_DIR}
 cp -rf ${NEXTSIMDIR}/model ${OUTPUT_DIR}/nextsim_source_code
 # ----------- execute ensemble runs ----------
 for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
+    ENSPATH=${OUTPUT_DIR}/date${iperiod}
     for (( i=1; i<=${ENSSIZE}; i++ )); do     
-        ##### special section >>>>>
+    ##### special section >>>>>
         i_cluster=$(( $i/10 ))
         i_j=$(( $i%10 ))
         (( $i_j==0 )) && i_j=10 && i_cluster=$((${i_cluster}-1))
@@ -58,7 +59,6 @@ for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
         basename=${basenames[$i_cluster]}
         echo 'time_init:' $time_init  ', duration:' $duration  ,'mem:' $i_j
         # link external forcing files into each member/data folder
-        ENSPATH=${OUTPUT_DIR}/date${iperiod}
         memname=mem${i}
         MEMPATH=${ENSPATH}/${memname}
         input_path=${ENSPATH}/${memname}/data
@@ -86,7 +86,7 @@ for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
         ln -sf /cluster/work/users/chengsukun/nextsim_data_dir/*   ${input_path}/
 
         nextsim_data_dir=${input_path}
-        ###### <<<<<<<<<
+    ###### <<<<<<<<<
         if ${start_from_restart}; then
             ln -sf ${restart_source}/field_${basename}.bin  ${input_path}/field_${memname}.bin
             ln -sf ${restart_source}/field_${basename}.dat  ${input_path}/field_${memname}.dat

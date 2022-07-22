@@ -2,7 +2,7 @@
 
 # Script for downloading the ERA5 reanalysis and making it neXtSIM friendly.
 # See https://cds.climate.copernicus.eu/api-how-to for the neccesary requirements.
-# NB! I had to do pip install requests, in addition to pip install cdsapi
+# NB! pip install requests,  pip install cdsapi
 
 import cdsapi
 import os

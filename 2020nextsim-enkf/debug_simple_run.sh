@@ -22,6 +22,7 @@ code $config
 
 
 # ## step 3
-# cp nextsim.cfg.backup  nextsim.cfg
-# mpirun -np 32  $NEXTSIMDIR/model/bin/nextsim.exec  --config-file=nextsim.cfg >& task.log 
-# code task.log 
+export NEXTSIM_DATA_DIR=/cluster/work/users/chengsukun/simulations/test_era5_spinup_2019-09-02_46days_x_1cycles_memsize40/date1/mem1/data
+cp nextsim.cfg.backup  nextsim.cfg
+mpirun -np 2  $NEXTSIMDIR/model/bin/nextsim.exec  --config-file=nextsim.cfg >& task.log 
+code task.log 
