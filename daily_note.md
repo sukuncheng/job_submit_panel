@@ -1,7 +1,45 @@
 # research proposal
 assess the implementation of EnKF assimilating ice thickness and concentration in esemble neXtSIM forecast
 
-# Experimental design
+# DASIM II ensemble runs instructions
+1. install nextsim
+latest branch info:
+  git checkout IOPerturbation
+  git reset --hard 8126d13714b178b3cfca912e8b692edd51d4d827
+  make fresh -j16
+2. setup nextsim key paths
+   1. NEXTSIM_DATA_DIR includes atm & ocean inputs (could be links to  /sim/data/), bathymetry, mesh, etc
+3. install nextsim-tools python environment for post-processing
+4. experiment setup script in shell job_submit_panel/ensemble_nextsim_2022
+   1. main1_spinup_exp.sh: spin-up run
+   2. main2_spinup_exp_tune_EnKF_factors.sh: first assimilation based on the spinup
+   3. main3_FreeRun.sh: free run from 10-18-2019
+   4. main4_multi_short_jobs.sh also for DA runs using similar structure as main3_FreeRun.sh 
+   5. main4_onejob_DA_runs.sh: DA runs (sic7,sit7,sic7sit7,sic1sit7 chosen in main4_config.sh). it is more efficient in hpc, thus replace item 4. 
+      1. call slurm_ensembleDA_script.sh: script for submit ensemble run & enkf-c
+      2. main4_config.sh,part1_create_file_system,link_restart_perturbation.sh
+
+The following scripts are also important functions
+part1_create_file_system.sh:  create file structures
+slurm.enkf.template.sh:  simple, run enkf-c on hpc, but I find run it in the user-node is much more efficient
+slurm.ensemble.template.sh: script for submit ensemble run
+
+
+
+# 22/7/2022
+branch IOPerturbation-fram-compile
+The perturbation code is hard coded in nextsim/model/externaldata.cpp
+#ifdef ENSEMBLE 
+            if (strcmp (M_dataset->name.c_str(), "topaz_forecast_elements") == 0 || \
+                strcmp (M_dataset->name.c_str(), "asr_nodes") == 0 || \
+                strcmp (M_dataset->name.c_str(), "generic_atm_nodes") == 0 || \
+                strcmp (M_dataset->name.c_str(), "asr_elements") == 0 || \
+                strcmp (M_dataset->name.c_str(), "generic_atm_elements") == 0 )    
+            {
+                LOG(DEBUG) << "adding perturbations to loaded data\n";
+                this->perturbLoadedData();
+            }
+#endif
 
 # Todo
 ~~1. DONE: add a script-block to resubmit crashed job. Waiting all jobs are finished before moving to enkf~~
