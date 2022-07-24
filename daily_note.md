@@ -4,9 +4,14 @@ assess the implementation of EnKF assimilating ice thickness and concentration i
 # DASIM II ensemble runs instructions
 1. install nextsim
 latest branch info:
+  ss
   git checkout IOPerturbation
   git reset --hard 8126d13714b178b3cfca912e8b692edd51d4d827
   make fresh -j16
+1.1 create perturbations
+  cp -r ~/src/nextsim/modules/enkf/offline_perturbations  /cluster/work/users/chengsukun/offline_perturbations
+  cd /cluster/work/users/chengsukun/offline_perturbations
+  ./run_script.sh
 2. setup nextsim key paths
    1. NEXTSIM_DATA_DIR includes atm & ocean inputs (could be links to  /sim/data/), bathymetry, mesh, etc
 3. install nextsim-tools python environment for post-processing

@@ -8,8 +8,8 @@
 #SBATCH --cpus-per-task=1      #
 
 ##SBATCH --job-name=
-##SBATCH --output=$Exp_ID_%j.log         # Stdout
-##SBATCH --error=$Exp_ID_%j.log          # Stderr
+##SBATCH --output=slurm.%j.log         # Stdout
+##SBATCH --error=slurm.%j.log          # Stderr
 # ======================================================
 
 # link restart files &perturbation files.
@@ -25,7 +25,7 @@ source $2
 # ----------- execute ensemble runs ----------
 for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
     time_init=$(date +%Y-%m-%d -d "${time_init0} + $((($iperiod-1)*${duration})) day")
-    echo "period ${time_init} to $(date +%Y%m%d -d "${time_init} + ${duration} day")"
+    echo "period ${time_init} to $(date +%Y-%m-%d -d "${time_init} + ${duration} day")"
     ENSPATH=${OUTPUT_DIR}/date${iperiod}
     input_path=$ENSPATH/inputs  # inputs exclude forcing, be consistent with input_path in part1_create_file_system.sh  
     cd $ENSPATH

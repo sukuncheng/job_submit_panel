@@ -8,15 +8,15 @@ UPDATE=1           # 1: active EnKF assimilation
 # duration=7    # forecast length; tduration*duration is the total simulation time
 # tduration=26  # number of DA cycles.
 
-#Exp_ID=sic7     
-#DA_VAR=sic 
-#duration=7    # forecast length; tduration*duration is the total simulation time
-#tduration=26  # number of DA cycles. 
+Exp_ID=sic7     
+DA_VAR=sic 
+duration=7    # forecast length; tduration*duration is the total simulation time
+tduration=26  # number of DA cycles. 
 
- Exp_ID=sic7sit7     
- DA_VAR=sitsic  
- duration=7    # forecast length; tduration*duration is the total simulation time
- tduration=26  # number of DA cycles. 
+#  Exp_ID=sic7sit7     
+#  DA_VAR=sitsic  
+#  duration=7    # forecast length; tduration*duration is the total simulation time
+#  tduration=26  # number of DA cycles. 
 
 # Exp_ID=sic1sit7     
 # DA_VAR=sitsic   

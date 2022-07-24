@@ -11,8 +11,8 @@
 # #SBATCH --error=$SLURM_JOB_NAME.log          # Stderr
 # # ======================================================
 
-# script for submitting an ensemble run without DA, restarting from spinup run, defined by main1_spinup_exp.sh
 # Instruction:
+# script for submiting an ensemble run without DA, restarting from spinup run, defined by main1_spinup_exp.sh
 # create file structure 
 # call part1_create_file_system.sh to modify nextsim.cfg and enkf settings to workpath
 # link restart files &perturbation files.
@@ -33,15 +33,15 @@ source link_restart_perturbation.sh
 
 ##-------  Confirm working,data,ouput directories --------
 # experiment settings
-ENSSIZE=40      # ensemble size  
+Exp_ID=FreeRun
+ENSSIZE=40  
 time_init0=2019-10-18   # starting date of simulation
 duration=7      # forecast length; tduration*duration is the total simulation time
 tduration=26    # number of DA cycles.
-Exp_ID=FreeRun
+
 start_from_restart=true
 restart_from_analysis=false
 UPDATE=0        # 1: active EnKF assimilation 
-
 nudging_day=5
 DA_VAR=
 analysis_source=0
@@ -57,6 +57,7 @@ echo 'output path:' $OUTPUT_DIR
 [ -d $OUTPUT_DIR ] && rm -rf $OUTPUT_DIR
 [ ! -d $OUTPUT_DIR ] && mkdir -p ${OUTPUT_DIR}
 cp ${JOB_SETUP_DIR}/$(basename $BASH_SOURCE)  ${OUTPUT_DIR} 
+cp $slurm_nextsim_script  ${OUTPUT_DIR}  
 cp -rf ${NEXTSIMDIR}/model ${OUTPUT_DIR}/nextsim_source_code 
 # ----------- execute ensemble runs ----------
 for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
