@@ -8,21 +8,24 @@ UPDATE=1           # 1: active EnKF assimilation
 # duration=7    # forecast length; tduration*duration is the total simulation time
 # tduration=26  # number of DA cycles.
 
-Exp_ID=sic7     
-DA_VAR=sic 
-duration=7    # forecast length; tduration*duration is the total simulation time
-tduration=26  # number of DA cycles. 
+# Exp_ID=sic7     
+# DA_VAR=sic 
+# duration=7    # forecast length; tduration*duration is the total simulation time
+# tduration=26  # number of DA cycles. 
 
 #  Exp_ID=sic7sit7     
 #  DA_VAR=sitsic  
 #  duration=7    # forecast length; tduration*duration is the total simulation time
 #  tduration=26  # number of DA cycles. 
 
-# Exp_ID=sic1sit7     
-# DA_VAR=sitsic   
-# duration=1     # forecast length; tduration*duration is the total simulation time
-# tduration=182  # number of DA cycles. 
-
+Exp_ID=sic1sit7     
+DA_VAR=sitsic   
+duration=1     # forecast length; tduration*duration is the total simulation time
+tduration=182  # number of DA cycles. 
+# In sic1sit7, fix  osisaf drift only has one time output
+UPDATE=0
+duration=3
+# ADD OUTPUT_DIR=/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40 at the end!!!
 
 # #  --------  settings for free run-----------------------
 # Exp_ID=freerun     
@@ -53,3 +56,7 @@ analysis_source=${restart_source}/filter/size40_I${INFLATION}_L${LOCRAD}_R${RFAC
 Perturbation_source=/cluster/work/users/chengsukun/offline_perturbations/result
 
 NEXTSIM_DATA_DIR=/cluster/work/users/chengsukun/nextsim_data_dir  # nextsim reserved key: path of general model input datasets
+
+
+# for sic1sit7 run
+OUTPUT_DIR=/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40

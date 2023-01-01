@@ -1,0 +1,26 @@
+Starting job 501182 on b[1228-1229,1241-1242] at Sat Dec 17 21:28:30 CET 2022
+
+/var/spool/slurmd/job501182/slurm_script: line 81: ((: iperiod<=: syntax error: operand expected (error token is "<=")
+
+Task and CPU usage stats:
+JobID           JobName  AllocCPUS   NTasks     MinCPU MinCPUTask     AveCPU    Elapsed ExitCode 
+------------ ---------- ---------- -------- ---------- ---------- ---------- ---------- -------- 
+501182       allocation        512                                             00:00:00      1:0 
+501182.batch      batch        128        1   00:00:00          0   00:00:00   00:00:00      1:0 
+501182.exte+     extern        512        4   00:00:00          0   00:00:00   00:00:00      0:0 
+
+Memory usage stats:
+JobID            MaxRSS MaxRSSTask     AveRSS MaxPages   MaxPagesTask   AvePages 
+------------ ---------- ---------- ---------- -------- -------------- ---------- 
+501182                                                                           
+501182.batch      1856K          0      1856K        0              0          0 
+501182.exte+       856K          3     873728        0              0          0 
+
+Disk usage stats:
+JobID         MaxDiskRead MaxDiskReadTask    AveDiskRead MaxDiskWrite MaxDiskWriteTask   AveDiskWrite 
+------------ ------------ --------------- -------------- ------------ ---------------- -------------- 
+501182                                                                                                
+501182.batch            0               0              0            0                0              0 
+501182.exte+        0.00M               3          0.00M            0                0              0 
+
+Job 501182 completed at Sat Dec 17 21:28:31 CET 2022

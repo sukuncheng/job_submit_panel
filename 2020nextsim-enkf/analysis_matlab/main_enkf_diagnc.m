@@ -97,25 +97,25 @@ function [] = main_enkf_diagnc()
     end
     
     function fun_geo_plot(lon,lat,Var,Title, unit)
-        m_proj('Stereographic','lon',-45,'lat',90,'radius',25);
-    
-        if 0
-            m_pcolor(lon, lat, Var); shading flat; 
-        else
-            ID= find(Var~=0);
-            x = reshape(lon(ID),1,[]);
-            y = reshape(lat(ID),1,[]);
-            z = reshape(Var(ID),1,[]);
-            m_scatter(x,y,20,z,'.');
-        end
-    
-        h = colorbar;
-        title(h, unit);
-        m_grid();
-        m_coast(); 
-    %     m_coast('patch',0.7*[1 1 1]);    
-        set(gca,'XTickLabel',[],'YTickLabel',[]);
-        title({Title,''},'fontweight','normal');
-    %     colormap(gca,bluewhitered);
-        colormap(jet)
+    m_proj('Stereographic','lon',-45,'lat',90,'radius',25);
+
+    if 0
+        m_pcolor(lon, lat, Var); shading flat; 
+    else
+        ID= find(Var~=0);
+        x = reshape(lon(ID),1,[]);
+        y = reshape(lat(ID),1,[]);
+        z = reshape(Var(ID),1,[]);
+        m_scatter(x,y,20,z,'.');
     end
+
+    h = colorbar;
+    title(h, unit);
+    m_grid();
+    m_coast(); 
+%     m_coast('patch',0.7*[1 1 1]);    
+    set(gca,'XTickLabel',[],'YTickLabel',[]);
+    title({Title,''},'fontweight','normal');
+%     colormap(gca,bluewhitered);
+    colormap(jet)
+end

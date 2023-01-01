@@ -34,17 +34,12 @@ if nargin < 1
 end
 
 
-%bottom = [0 0 0.5]; %dark blue
-%botmiddle = [0 0.5 1];
-%middle = [1 1 1];  %white
-%topmiddle = [1 0 0];
-%top = [0.5 0 0];   % dark red
-
-bottom = [0 0 0.3]; %dark blue
-botmiddle = [0 0. 1];
+bottom = [0 0 0.5]; %dark blue
+botmiddle = [0 0.5 1];
 middle = [1 1 1];  %white
 topmiddle = [1 0 0];
 top = [0.5 0 0];   % dark red
+
 % Find middle
 lims = get(gca, 'CLim');
 

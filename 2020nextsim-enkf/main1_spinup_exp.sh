@@ -94,7 +94,7 @@ for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
                 done
             fi
             (( $Nnode<4 )) && Nnode=4  
-            sbatch -W --time=0-0:50:0 --nodes=$Nnode $slurm_nextsim_script ${ENSPATH} ${ENSSIZE}  $Nnode ${nextsim_data_dir}            
+            sbatch -W --time=0-1:50:0 --nodes=$Nnode $slurm_nextsim_script ${ENSPATH} ${ENSSIZE}  $Nnode ${nextsim_data_dir}            
             wait
         else
             break

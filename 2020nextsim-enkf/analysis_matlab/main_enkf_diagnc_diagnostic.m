@@ -7,7 +7,7 @@ function [] = main_enkf_diagnc_diagnostic()
     
     start_date=datetime(2019,10,18);
     Ne = 40; % members   
-    mnt_dir = ['/cluster/work/users/chengsukun/simulations/' 'test_sit7_2019-10-18_7days_x_26cycles_memsize40_d5'];
+    simul_dir ='/cluster/work/users/chengsukun/simulations/test_sic7_2019-10-18_7days_x_26cycles_memsize40';
     DA_var='sit'
     periods=26
     lons = -60:30:150; %[-60:30:150 -45:30:165];
@@ -86,7 +86,7 @@ function [] = main_enkf_diagnc_diagnostic()
         colormap(gca,bluewhitered);  
 
 
-       %% row 2
+       %% row 2 plot sic and sit from prior.nc and prior.nc.analysis, respectively
        col=2;
         for ie = 1:Ne
             filename = [simul_dir '/prior/mem' num2str(ie,'%03d') '.nc'];
@@ -112,7 +112,7 @@ function [] = main_enkf_diagnc_diagnostic()
             subplot(row,col,col+i)
             plot(prior(i).sit, prior(i).sic,'or')
             hold on
-            plot(analysis(i).sit,analysis(i).sic,'.g')
+            plot(analysis(i).sit,analysis(i).sic,'sb')
             xlabel('sit (m)');
             ylabel('sic'); 
             title(['(lon,lat)=(' num2str(lons(i)) ',' num2str(lats(i)) ')'])
@@ -121,29 +121,4 @@ function [] = main_enkf_diagnc_diagnostic()
         set(findall(gcf,'-property','FontSize'),'FontSize',15);
         exportgraphics(figure(1),['day' num2str(k) '_maps.png'],'Resolution',300)
     end  
-end
-
-
-function fun_geo_pcolor(lon,lat,Var,Title, unit)
-    Var(Var==0) = nan;
-    m_proj('Stereographic','lon',-45,'lat',90,'radius',20);
-    m_pcolor(lon, lat, Var); shading flat; 
-    h = colorbar('southoutside');
-    title(h, unit);
-    m_coast('patch',0.7*[1 1 1]);    
-    set(gca,'XTickLabel',[],'YTickLabel',[]);
-    title({Title,''})
-    m_grid('linest',':');
-end
-%
-function fun_geo_pcolor_scatter(lon,lat,Var,Title, unit)
-    Var(Var==0) = nan;
-    m_proj('Stereographic','lon',-45,'lat',90,'radius',20);
-    m_scatter(lon, lat, 12, Var,'.'); shading flat; 
-    h = colorbar('southoutside');
-    title(h, unit);
-    m_coast('patch',0.7*[1 1 1]);    
-    set(gca,'XTickLabel',[],'YTickLabel',[]);
-    title({Title,''})
-    m_grid('linest',':');
 end

@@ -11,3 +11,4 @@ var = sic
 hfunction = standard
 minvalue = 0
 maxvalue = 1
+#rfactor=0.6

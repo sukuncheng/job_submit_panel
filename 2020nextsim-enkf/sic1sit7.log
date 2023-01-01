@@ -1,0 +1,299 @@
+Starting job 502852 on b[4310-4313] at Wed Dec 21 13:43:17 CET 2022
+
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date1/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date2/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date3/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date4/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date5/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date6/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date7/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date8/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date9/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date10/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date11/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date12/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date13/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date14/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date15/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date16/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date17/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date18/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date19/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date20/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date21/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date22/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date23/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date24/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date25/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date26/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date27/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date28/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date29/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date30/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date31/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date32/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date33/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date34/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date35/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date36/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date37/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date38/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date39/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date40/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date41/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date42/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date43/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date44/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date45/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date46/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date47/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date48/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date49/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date50/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date51/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date52/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date53/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date54/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date55/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date56/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date57/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date58/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date59/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date60/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date61/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date62/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date63/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date64/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date65/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date66/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date67/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date68/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date69/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date70/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date71/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date72/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date73/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date74/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date75/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date76/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date77/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date78/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date79/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date80/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date81/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date82/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date83/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date84/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date85/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date86/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date87/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date88/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date89/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date90/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date91/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date92/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date93/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date94/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date95/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date96/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date97/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date98/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date99/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date100/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date101/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date102/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date103/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date104/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date105/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date106/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date107/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date108/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date109/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date110/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date111/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date112/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date113/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date114/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date115/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date116/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date117/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date118/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date119/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date120/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date121/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date122/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date123/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date124/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date125/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date126/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date127/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date128/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date129/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date130/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date131/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date132/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date133/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date134/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date135/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date136/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date137/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date138/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date139/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date140/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date141/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date142/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date143/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date144/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date145/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date146/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date147/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date148/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date149/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date150/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date151/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date152/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date153/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date154/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date155/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date156/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date157/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date158/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date159/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date160/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date161/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date162/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date163/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date164/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date165/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date166/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date167/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date168/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date169/inputs
+links perturbation files to input_path/Perturbation using input file id
+Try 1 , date 169 , start calculating member(s): 38
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date169
+Reading nextsim.cfg...
+[INFO] : -----------------------Simulation started on 2022-Dec-21 13:47:11
+[INFO] : TIMESTEP= 900 s
+[INFO] : DURATION= 3 day(s)
+[WARNING] : For best deformation scaling results, the ratio simul.timestep/t_damage should be < 10. (Currently it is 44.9992).  THE SPIRIT OF VERO IS WATCHING YOU
+[INFO] :  ---------- progression: ( 0%) ---------- time spent: 00:00:21
+[INFO] :  ---------- progression: ( 5%) ---------- time spent: 00:00:36
+[INFO] :  ---------- progression: (10%) ---------- time spent: 00:00:54
+[INFO] :  ---------- progression: (15%) ---------- time spent: 00:01:10
+[INFO] :  ---------- progression: (19%) ---------- time spent: 00:01:29
+[INFO] :  ---------- progression: (24%) ---------- time spent: 00:01:32
+[INFO] :  ---------- progression: (29%) ---------- time spent: 00:02:03
+[INFO] :  ---------- progression: (34%) ---------- time spent: 00:02:21
+[INFO] :  ---------- progression: (39%) ---------- time spent: 00:02:50
+[INFO] :  ---------- progression: (44%) ---------- time spent: 00:03:08
+[INFO] :  ---------- progression: (49%) ---------- time spent: 00:03:24
+[INFO] :  ---------- progression: (53%) ---------- time spent: 00:03:43
+[INFO] :  ---------- progression: (58%) ---------- time spent: 00:03:59
+[INFO] :  ---------- progression: (63%) ---------- time spent: 00:04:17
+[INFO] :  ---------- progression: (68%) ---------- time spent: 00:04:36
+[INFO] :  ---------- progression: (73%) ---------- time spent: 00:04:51
+[INFO] :  ---------- progression: (78%) ---------- time spent: 00:05:10
+[INFO] :  ---------- progression: (83%) ---------- time spent: 00:05:12
+[INFO] :  ---------- progression: (88%) ---------- time spent: 00:05:30
+[INFO] :  ---------- progression: (92%) ---------- time spent: 00:05:48
+[INFO] :  ---------- progression: (97%) ---------- time spent: 00:06:04
+[INFO] :    =====   Timer results =====   
+ Timer name                     | time spent | % of parent | % of total
+ Total                          |    0:05:59 |      100.00 |     100.00
+   check_fields                 |    0:00:00 |        0.00 |       0.00
+   remesh                       |    0:03:27 |       57.81 |      57.81
+     checkRegridding            |    0:00:00 |        0.16 |       0.09
+     updateGridMean             |    0:00:03 |        1.52 |       0.88
+     regrid                     |    0:03:24 |       98.29 |      56.83
+       checkMoveDrifters_regrid |    0:00:04 |        2.39 |       1.36
+       gatherNodalField         |    0:00:00 |        0.01 |       0.01
+       adaptMesh                |    0:00:16 |        8.25 |       4.69
+       partition                |    0:00:20 |       10.21 |       5.80
+       interpFields             |    0:02:40 |       78.81 |      44.79
+       Unaccounted for          |    0:00:00 |        0.33 |       0.18
+     resetMeshMean              |    0:00:00 |        0.01 |       0.00
+     Unaccounted for            |    0:00:00 |        0.01 |       0.01
+   checkReload                  |    0:01:34 |       26.31 |      26.31
+     Coord                      |    0:00:00 |        0.00 |       0.00
+     checkReloadDatasets        |    0:01:34 |       99.84 |      26.27
+       generic_atm_nodes        |    0:00:22 |       24.06 |       6.32
+       topaz_forecast_nodes     |    0:00:14 |       14.90 |       3.91
+       generic_atm_elements     |    0:00:37 |       39.46 |      10.37
+       topaz_forecast_elements  |    0:00:16 |       17.66 |       4.64
+       etopo_elements           |    0:00:03 |        3.91 |       1.03
+       Unaccounted for          |    0:00:00 |        0.00 |       0.00
+     bCoord                     |    0:00:00 |        0.15 |       0.04
+     Unaccounted for            |    0:00:00 |        0.00 |       0.00
+   auxiliary                    |    0:00:00 |        0.01 |       0.01
+     calcCohesion               |    0:00:00 |        0.33 |       0.00
+     calcCoriolis               |    0:00:00 |       94.46 |       0.01
+     Unaccounted for            |    0:00:00 |        5.21 |       0.00
+   thermo                       |    0:00:01 |        0.50 |       0.50
+     fluxes                     |    0:00:01 |       58.63 |       0.29
+       ow_fluxes                |    0:00:00 |       31.59 |       0.09
+       ia_fluxes                |    0:00:00 |       68.34 |       0.20
+       Unaccounted for          |    0:00:00 |        0.08 |       0.00
+     slab                       |    0:00:00 |       10.55 |       0.05
+     Unaccounted for            |    0:00:00 |       30.83 |       0.15
+   dynamics                     |    0:00:50 |       14.12 |      14.12
+     explicitSolve              |    0:00:50 |       99.57 |      14.06
+       prep elements            |    0:00:00 |        0.77 |       0.11
+       prep nodes               |    0:00:00 |        1.08 |       0.15
+       sub-time stepping        |    0:00:49 |       97.26 |      13.67
+         updateSigma            |    0:00:30 |       62.32 |       8.52
+         gradient terms         |    0:00:03 |        7.76 |       1.06
+         sub-solve              |    0:00:05 |       10.60 |       1.45
+         updateGhosts           |    0:00:09 |       18.87 |       2.58
+         move mesh              |    0:00:00 |        0.17 |       0.02
+         Unaccounted for        |    0:00:00 |        0.28 |       0.04
+       OW smoother              |    0:00:00 |        0.88 |       0.12
+       Unaccounted for          |    0:00:00 |        0.01 |       0.00
+     update                     |    0:00:00 |        0.43 |       0.06
+     Unaccounted for            |    0:00:00 |        0.00 |       0.00
+   output                       |    0:00:02 |        0.74 |       0.74
+     checkUpdateDrifters        |    0:00:01 |       68.74 |       0.51
+     Unaccounted for            |    0:00:00 |       31.26 |       0.23
+   Unaccounted for              |    0:00:01 |        0.51 |       0.51
+[INFO] : nb regrid total = 21
+[INFO] : -----------------------Simulation done on 2022-Dec-21 13:53:30
+[INFO] : -----------------------Total time spent:  00:06:20
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date170/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date171/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date172/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date173/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date174/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date175/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date176/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date177/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date178/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date179/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date180/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date181/inputs
+/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40/date182/inputs
+
+Task and CPU usage stats:
+JobID           JobName  AllocCPUS   NTasks     MinCPU MinCPUTask     AveCPU    Elapsed ExitCode 
+------------ ---------- ---------- -------- ---------- ---------- ---------- ---------- -------- 
+502852         sic1sit7        512                                             00:10:28      0:0 
+502852.batch      batch        128        1   00:00:02          0   00:00:02   00:10:28      0:0 
+502852.exte+     extern        512        4   00:00:00          3   00:00:00   00:10:28      0:0 
+502852.0     nextsim.e+        128      128   00:06:13        114   00:06:21   00:06:29      0:0 
+
+Memory usage stats:
+JobID            MaxRSS MaxRSSTask     AveRSS MaxPages   MaxPagesTask   AvePages 
+------------ ---------- ---------- ---------- -------- -------------- ---------- 
+502852                                                                           
+502852.batch      9013K          0      9013K       16              0          0 
+502852.exte+       851K          2    849.50K        3              3          1 
+502852.0        763254K          0  159053240      231              0         17 
+
+Disk usage stats:
+JobID         MaxDiskRead MaxDiskReadTask    AveDiskRead MaxDiskWrite MaxDiskWriteTask   AveDiskWrite 
+------------ ------------ --------------- -------------- ------------ ---------------- -------------- 
+502852                                                                                                
+502852.batch       75.32M               0         75.32M        0.12M                0          0.12M 
+502852.exte+        0.00M               3          0.00M            0                3              0 
+502852.0         4202.45M               0       2748.08M      259.82M                0          2.03M 
+
+Job 502852 completed at Wed Dec 21 13:53:45 CET 2022

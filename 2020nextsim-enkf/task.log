@@ -1,0 +1,269 @@
+srun: Job 501196 step creation temporarily disabled, retrying (Requested nodes are busy)
+srun: Job 501196 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 501196 step creation stiReading nextsim.cfg...
+[INFO] : -----------------srun: Job 501196 step creation still disabled, retrying (Requested nodes are busy)
+srun: Job 501196 step creation still disabled, retrying (Requested nodes are busy)
+srun: error: Unable to create step for job 501196: Job/step already completing or completed
+or: Unable to create step for job 501196: Job/step already completing or completed
+ 2 day(s)
+[WARNING] : For best deformation scaling results, the ratio simul.timestep/t_damage should be < 10. (Currently it is 44.9992).  THE SPIRIT OF VERO IS WATCHING YOU
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+  what():  Please provide restart.basename
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+  what():  Please provide restart.basename
+terminate called after throwing an instance of 'std::runtime_error'
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+  what():  Please provide restart.basename
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+  what():  Please provide restart.basename
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+terminate called after throwing an instance of 'std::runtime_error'
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+  what():  Please provide restart.basename
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+  what():  Please provide restart.basename
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+  what():  Please provide restart.basename
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+terminate called after throwing an instance of 'std::runtime_error'
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+terminate called after throwing an instance of 'std::runtime_error'
+  what():  Please provide restart.basename
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+  what():  Please provide restart.basename
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+  what():  Please provide restart.basename
+terminate called after throwing an instance of 'std::runtime_error'
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+  what():  Please provide restart.basename
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+terminate called after throwing an instance of 'std::runtime_error'
+  what():  Please provide restart.basename
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+  what():  Please provide restart.basename
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+terminate called after throwing an instance of 'std::runtime_error'
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+terminate called after throwing an instance of 'std::runtime_error'
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+terminate called after throwing an instance of 'std::runtime_error'
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+terminate called after throwing an instance of 'std::runtime_error'
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+terminate called after throwing an instance of 'std::runtime_error'
+  what():  Please provide restart.basename
+terminate called after throwing an instance of 'std::runtime_error'
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+terminate called after throwing an instance of 'std::runtime_error'
+  what():  Please provide restart.basename
+terminate called after throwing an instance of 'std::runtime_error'
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+terminate called after throwing an instance of 'std::runtime_error'
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+  what():  Please provide restart.basename
+  wsrun: error: b5288: tasks 0,3,20,28,31,47,49-51,55,57-59,68,70,75,77-78,80,90,92,94,97-98,106-107,110,113,117,120,124,126: Aborted (core dumped)
+srun: launch/slurm: _step_signal: Terminating StepId=501196.98
+slurmstepd: error: *** STEP 501196.98 ON b5288 CANCELLED AT 2022-12srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+srun: error: b5289: tasks 1-4,6-11,13-21,23-43,45-57srun: error: b5290: tasks 2-3,5-7,9,11-32,34-40,42-44,46-65,67-82,84-86,88-91,93-108,110,112-121,123-124,126-127: Aborted (core dumped)
+re dumped)
+srun: error: b5294: task 121: Aborted (core dumped)

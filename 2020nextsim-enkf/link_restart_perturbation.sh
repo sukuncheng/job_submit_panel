@@ -9,9 +9,10 @@ function link_perturbation(){
     ENSSIZE=$1
     Perturbation_source=$2
     input_path=$3
-    duration=$4
+    duration=1
     iperiod=$5   
     day0=$6
+    duration2=3
     
     [ ! -d ${input_path}/Perturbations ] && mkdir -p ${input_path}/Perturbations || rm -f ${input_path}/Perturbations/*.nc
 
@@ -19,13 +20,15 @@ function link_perturbation(){
         memname=mem${i}    
         # link data sources based on different loading frequencies
         # atmoshphere
-        Nfiles=$(( $duration*4+1))  # number of perturbations to link
-        for (( j=0; j<=${Nfiles}; j++ )); do  #+1 is because an instance could end at 23:45 or 24:00 for different members due to ? +1 corresponds to the longer one.
+        Nfiles=$(( $duration*4+1))  # number of perturbations to be skipped 
+        Nfiles2=$(( $duration2*4+1))  # number of perturbations to link
+        for (( j=0; j<=${Nfiles2}; j++ )); do  #+1 is because an instance could end at 23:45 or 24:00 for different members due to ? +1 corresponds to the longer one.
             ln -sf ${Perturbation_source}/${memname}/synforc_$((${j}+$day0*4 + ($iperiod-1)*($Nfiles-1) )).nc  ${input_path}/Perturbations/AtmospherePerturbations_${memname}_series${j}.nc
         done
         # ocean 
         Nfiles=$duration+1  # topaz data is loaded at 12:00pm. 
-        for (( j=0; j<=${Nfiles}; j++ )); do
+        Nfiles2=$duration2+1  # topaz data is loaded at 12:00pm. 
+        for (( j=0; j<=${Nfiles2}; j++ )); do
             ln -sf ${Perturbation_source}/${memname}/synforc_$((${j}+$day0 + ($iperiod-1)*$Nfiles)).nc  ${input_path}/Perturbations/OceanPerturbations_${memname}_series${j}.nc
         done
     done
