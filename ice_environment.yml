@@ -1,0 +1,34 @@
+name: ice
+channels:
+  - conda-forge
+dependencies:
+  - gdal
+  - cartopy
+  - cython
+  - pip
+  - pip:
+    - cmocean
+    - ipdb
+    - ipython
+    # - jupyter
+    - matplotlib
+    # - mock #使用mock对象替代掉指定的Python对象，以达到模拟对象的行为
+    - netcdf4
+    - netcdftime
+    # - nose #测试
+    # - notebook
+    - numpy
+    - pandas
+    # - paramiko #是一个用于做远程控制的模块，使用该模块可以对远程服务器进行命令或文件操作
+    - pillow
+    # - pygrib #使用seek, tell, read, readline, 和close方法打开grib文件。
+    - pyproj
+    - pyshp  # 
+    # - pytest
+    - pyyaml
+    - rtree
+    # - scikit-image
+    # - scikit-learn
+    - scipy
+    - shapely
+    - xarray

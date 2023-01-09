@@ -32,7 +32,7 @@ for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
     input_path=$ENSPATH/inputs  # inputs exclude forcing, be consistent with input_path in part1_create_file_system.sh  
     echo $input_path
     cd $ENSPATH
-    for (( jj=1; jj<=3; jj++ )); do          # check for crashed member and resubmit    
+    for (( jj=1; jj<=2; jj++ )); do          # check for crashed member and resubmit    
         count=0
         list=()
         for (( i=1; i<=$ENSSIZE; i++ )); do

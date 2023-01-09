@@ -2,37 +2,31 @@ function [] = main_enkf_increment_diagnostic()
     clc
     clear
     close all
-    % % dbstop if error
-    % %  load data sources data_src: 0-mooring, 1-prior, 2-analysis
-    % % data_src 1, moorings, with noise from postprocess and forecast, thus, it is more diffcult to explain.
-    % % data_src 2,3 DA inputs and outputs
-    % start_date = datetime(2019,10,18);  % display date
-    % periods = [26,26,26,182];
-    % durations = [7,7,7,1];
-    % data_dir = '/cluster/work/users/chengsukun/simulations/';
-    % tests ={    'test_sic7_2019-10-18_7days_x_26cycles_memsize40_d5';
-    %             'test_sit7_2019-10-18_7days_x_26cycles_memsize40_d5';
-    %             'test_sic7sit7_2019-10-18_7days_x_26cycles_memsize40_d5';
-    %             'test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40_d5'
-    % };
-    % figure(1);set(gcf,'Position',[10,15,1600,600], 'color','w')   
-    % for i =1:length(tests)
-    %     simul_dir =[data_dir  tests{i}];
-    %     [dates, sic_increment, sit_increment] = calc_rms_sicsit_on_DAgrid(periods(i),durations(i),simul_dir);
-    %     display_sic_sit_increment(dates, sic_increment,sit_increment);
-    %     saveas(figure(1),'sicsit_increments.png','png')
-    %     Ddates{i} = dates;
-    %     Dsic_increment{i} = sic_increment;
-    %     Dsit_increment{i} = sit_increment;
-    % end
-    % save('increment.mat')
-
-    load('increment.mat')
-    figure(1);set(gcf,'Position',[10,15,1600,600], 'color','w')  
-    for i =1:length(tests)
-        display_sic_sit_increment(Ddates{i}, Dsic_increment{i},Dsit_increment{i});
+    % dbstop if error
+    %  load data sources data_src: 0-mooring, 1-prior, 2-analysis
+    % data_src 1, moorings, with noise from postprocess and forecast, thus, it is more diffcult to explain.
+    % data_src 2,3 DA inputs and outputs
+    start_date = datetime(2019,10,18);  % display date
+    periods = [26,26,26,182];
+    durations = [7,7,7,1];
+    data_dir = '/cluster/work/users/chengsukun/simulations/';
+    tests ={    'test_sic7_2019-10-18_7days_x_26cycles_memsize40_d5';
+                'test_sit7_2019-10-18_7days_x_26cycles_memsize40_d5';
+                'test_sic7sit7_2019-10-18_7days_x_26cycles_memsize40_d5';
+                'test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40_d5'
+    };
+    figure(1);set(gcf,'Position',[10,15,1600,600], 'color','w')   
+    for i =1:length(tests)-3
+        simul_dir =[data_dir  tests{i}];
+        [dates, sic_increment, sit_increment] = calc_rms_sicsit_on_DAgrid(periods(i),durations(i),simul_dir);
+        display_sic_sit_increment(dates, sic_increment,sit_increment);
+        saveas(figure(1),'sicsit_increments.png','png')
+        Ddates{i} = dates;
+        Dsic_increment{i} = sic_increment;
+        Dsit_increment{i} = sit_increment;
     end
-    saveas(figure(1),'sicsit_increments.png','png')
+    save('increment.mat')
+    
 end
 
  % calc increment
@@ -57,13 +51,13 @@ end
 % -------- plot increment ------------------------------    
 function [] = display_sic_sit_increment(dates, sic_increment,sit_increment)
     subplot(121)
-    plot(dates,sic_increment,'-o'); hold on;
+    plot(dates,sic_increment);
     ylabel('increments of SIC');
     
     %
     subplot(122)
     plot(dates,sit_increment,'-o');
-    ylabel('increments of SIT'); hold on
+    ylabel('increments of SIT');
     set(findall(gcf,'-property','FontSize'),'FontSize',16);
 end
 

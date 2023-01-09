@@ -2,13 +2,13 @@
 #  ======================================================
 #SBATCH --account=nn2993k  #nn9481k #nn9878k   # #nn2993k   #ACCOUNT_NUMBER
 #SBATCH --job-name=era5_freerun
-#SBATCH --time=0-10:0:0        #dd-hh:mm:ss, # Short request job time can be accepted easier.
+#SBATCH --time=0-20:0:0        #dd-hh:mm:ss, # Short request job time can be accepted easier.
 ##SBATCH --qos=devel           # preproc, devel, short and normal if comment this line,  https://documentation.sigma2.no/jobs/job_types/fram_job_types.html
 #SBATCH --nodes=40             # request number of nodes
 #SBATCH --ntasks-per-node=128  # MPI parallel thread size
 #SBATCH --cpus-per-task=1      #
-#SBATCH --output=$SLURM_JOB_NAME.log         # Stdout
-#SBATCH --error=$SLURM_JOB_NAME.log          # Stderr
+#SBATCH --output=slurm.era5.%j.log         # Stdout
+#SBATCH --error=slurm.era5.%j.log          # Stderr
 # ======================================================
 # Instruction:
 # script for submiting an ensemble run without DA, restarting from spinup run, defined by main1_spinup_exp.sh
@@ -20,7 +20,12 @@
 # cp make.inc.betzy-intel ../make.inc
 # cd ~/src/nextsim; make fresh -j16
 
-set -uex  # uncomment for debugging,# Bash empty array expansion with `set -u`, use ${arr[@]-} instead of use ${arr[@]} to avoid errors
+# for long term free run
+# use this file as slurm sbatch 
+#    pros: easier to maintain a single file 
+#    cons: messed log file for ensemble runs
+
+# set -uex  # uncomment for debugging,# Bash empty array expansion with `set -u`, use ${arr[@]-} instead of use ${arr[@]} to avoid errors
 err_report() {
     echo "Error on line $1"
 }
@@ -28,10 +33,10 @@ trap 'err_report $LINENO' ERR
 
 ##-------  Confirm working,data,ouput directories --------
 >nohup.out  # empty this file
-JOB_SETUP_DIR=$(cd `dirname $BASH_SOURCE`;pwd) 
+JOB_SETUP_DIR=/cluster/home/chengsukun/src/job_submit_panel/nextsim_enkf_era5_ensemble #$(cd `dirname $BASH_SOURCE`;pwd) 
 slurm_nextsim_script=${JOB_SETUP_DIR}/slurm.ensemble.template.sh
 source ${NEXTSIM_ENV_ROOT_DIR}/nextsim.ensemble.intel.src
-
+rm -f ${NEXTSIM_DATA_DIR}/*.nc.analysis 
 ##-------  Confirm working,data,ouput directories --------
 # experiment settings
 Exp_ID=era5_FreeRun
@@ -43,7 +48,7 @@ tduration=26    # number of DA cycles.
 start_from_restart=true
 restart_from_analysis=false
 UPDATE=0        # 1: active EnKF assimilation 
-nudging_day=5  #15,15,25,35,45
+nudging_day=5
 DA_VAR=
 analysis_source=0
 restart_source=/cluster/work/users/chengsukun/simulations/test_era5_spinup_2019-09-02_46days_x_1cycles_memsize40/date1
@@ -52,7 +57,7 @@ OUTPUT_DIR=${simulations}/test_${Exp_ID}_${time_init0}_${duration}days_x_${tdura
 echo 'output path:' $OUTPUT_DIR
 [ -d $OUTPUT_DIR ] && rm -rf $OUTPUT_DIR
 [ ! -d $OUTPUT_DIR ] && mkdir -p ${OUTPUT_DIR}
-cp ${JOB_SETUP_DIR}/$(basename $BASH_SOURCE)  ${OUTPUT_DIR} 
+cp ${JOB_SETUP_DIR}/main3_FreeRun_era5.sh  ${OUTPUT_DIR} 
 cp $slurm_nextsim_script  ${OUTPUT_DIR}  
 cp -rf ${NEXTSIMDIR}/model ${OUTPUT_DIR}/nextsim_source_code
 # ----------- execute ensemble runs ----------
@@ -64,13 +69,6 @@ for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
     mkdir -p ${ENSPATH}
     for (( i=1; i<=${ENSSIZE}; i++ )); do     
     ##### special section >>>>>
-        i_cluster=$(( $i/10 ))
-        i_j=$(( $i%10 ))
-        (( $i_j==0 )) && i_j=10 && i_cluster=$((${i_cluster}-1))
-        time_init=${time_inits[$i_cluster]}
-        duration=${durations[$i_cluster]}
-        basename=${basenames[$i_cluster]}
-        echo 'time_init:' $time_init  ', duration:' $duration  ,'mem:' $i_j
         # link external forcing files into each member/data folder
         memname=mem${i}
         MEMPATH=${ENSPATH}/${memname}
@@ -94,23 +92,22 @@ for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
                 s|^input_path=.*$|input_path=${input_path}|g; \
                 s|^restart_path=.*$|restart_path=|g" \
             ${JOB_SETUP_DIR}/nextsim.cfg > ${MEMPATH}/nextsim.cfg.backup
-      
-        ln -sf /cluster/work/users/chengsukun/ERA5_ensemble/data_ensemble/ens${i_j}  ${input_path}/ERA5
-        ln -sf /cluster/work/users/chengsukun/nextsim_data_dir/*   ${input_path}/
 
-        nextsim_data_dir=${input_path}
+        ln -sf /cluster/work/users/chengsukun/nextsim_data_dir/*   ${input_path}
+        ln -sf /cluster/work/users/chengsukun/ERA5_ensemble/data_ensemble/ens$(( $i%10 +1 ))   ${input_path}/ERA5
+        
     ###### <<<<<<<<<
         if ${start_from_restart}; then
-            ln -sf ${restart_source}/field_${basename}.bin  ${input_path}/field_${memname}.bin
-            ln -sf ${restart_source}/field_${basename}.dat  ${input_path}/field_${memname}.dat
-            ln -sf ${restart_source}/mesh_${basename}.bin   ${input_path}/mesh_${memname}.bin
-            ln -sf ${restart_source}/mesh_${basename}.dat   ${input_path}/mesh_${memname}.dat
+            ln -sf ${restart_source}/${memname}/restart/field_final.bin  $input_path/field_${memname}.bin
+            ln -sf ${restart_source}/${memname}/restart/field_final.dat  $input_path/field_${memname}.dat
+            ln -sf ${restart_source}/${memname}/restart/mesh_final.bin   $input_path/mesh_${memname}.bin
+            ln -sf ${restart_source}/${memname}/restart/mesh_final.dat   $input_path/mesh_${memname}.dat
         fi
     done  
+    restart_source=${ENSPATH}
 # submit
     Nnode=${ENSSIZE}
     # sbatch -W --time=0-0:30:0 --nodes=$Nnode $slurm_nextsim_script ${ENSPATH} ${ENSSIZE} ${Nnode} 
-    # wait
     for (( i=1; i<=$ENSSIZE; i++ )); do
         MEMPATH=$ENSPATH/mem${i}
         cd $MEMPATH
@@ -124,4 +121,5 @@ for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
     wait
 done
 cp ${JOB_SETUP_DIR}/nohup.out  ${OUTPUT_DIR}    
+cp ${JOB_SETUP_DIR}/${SLURM_JOB_NAME}.log  ${OUTPUT_DIR}
 echo "finished"

@@ -1,3 +1,22 @@
+# Check if String contains Substring in Bash
+#!/bin/bash
+str="hello world"
+substr="world"
+if [[ $str == *"$substr"* ]];
+then
+    echo "String contains substring."
+else
+    echo "String does not contain substring."
+fi
+# file numbers in all folders in current path
+function filenumbers {	#
+	for d in `pwd`/{*,.*}/ ; do
+		[[ $d == *'/../'* ]] &&	continue
+		echo $d
+		find $d/* -type f | wc -l
+	done
+}
+
 # research proposal
 assess the implementation of EnKF assimilating ice thickness and concentration in esemble neXtSIM forecast
 

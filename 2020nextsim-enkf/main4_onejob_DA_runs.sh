@@ -58,6 +58,7 @@ source main4_config.sh
 #                 s/^log-level=debug$/#log-level=debug/g" \
 #                 nextsim.cfg.backup 
 #         cp nextsim.cfg.backup nextsim.cfg
+#         rm -f task.log
 #     done
 # done
 
@@ -70,15 +71,24 @@ source main4_config.sh
 #  cp ${JOB_SETUP_DIR}/{nohup.out,$Exp_ID.log}  ${OUTPUT_DIR}
 #  echo " part2 ensemble simulations have been submitted"
 
-# ##part3, in member folder, move Osisaf_drift.nc files to a subfolder
-# for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
-#     time_init=$(date +%Y-%m-%d -d "${time_init0} + $((($iperiod-1)*1)) day")
-#     date=$(date +%Y%m%d -d "${time_init0} + $((($iperiod-1)*1)) day")
-#     echo $date
-#     for (( i=1; i<=${ENSSIZE}; i++ )); do
-#         cd ${OUTPUT_DIR}/date${iperiod}/mem${i}    
-#         [ ! -d Osisaf_drift ] && mkdir Osisaf_drift
-#         mv OSISAF_Drifters_*.nc Osisaf_drift/
-#         cp Osisaf_drift/OSISAF_Drifters_$date.nc .
-#     done
-# done
+##part3, in member folder, move Osisaf_drift.nc files to a subfolder
+for (( iperiod=1; iperiod<=${tduration}; iperiod++ )); do
+    time_init=$(date +%Y-%m-%d -d "${time_init0} + $((($iperiod-1)*1)) day")
+    # date=$(date +%Y%m%d -d "${time_init0} + $((($iperiod-1)*1)) day")
+    # echo $date
+    # for (( i=1; i<=${ENSSIZE}; i++ )); do
+    #     cd ${OUTPUT_DIR}/date${iperiod}/mem${i}    
+    #     [ ! -d Osisaf_drift ] && mkdir Osisaf_drift
+    #     mv OSISAF_Drifters_*.nc Osisaf_drift/
+    #     cp Osisaf_drift/OSISAF_Drifters_$date.nc .
+    # done
+
+    # date=$(date +%Yd%j -d "${time_init0} + $((($iperiod-1)*1)) day")
+    # echo $date
+    # for (( i=1; i<=${ENSSIZE}; i++ )); do
+    #     cd ${OUTPUT_DIR}/date${iperiod}/mem${i}    
+    #     [ ! -d Moorings ] && mkdir Moorings
+    #     mv Moorings_*.nc Moorings/
+    #     cp Moorings/Moorings_$date.nc .
+    # done
+done
