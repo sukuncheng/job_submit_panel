@@ -1,0 +1,9 @@
+ulimit -s 2000000
+#
+module --force purge
+ml load StdEnv
+ml load CMake/3.12.1
+ml load Python/3.10.4-GCCcore-11.3.0
+ml load GDAL/3.5.0-foss-2022a
+ml load imkl/2022.1.0
+ml load iimpi/2022a
