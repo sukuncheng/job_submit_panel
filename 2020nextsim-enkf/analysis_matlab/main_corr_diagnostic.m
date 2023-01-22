@@ -44,7 +44,7 @@ function [] = main_corr_diagnostic()
     % % -------- sic-sit scatter plot of one member on a date----------
     % figure(3)
     % plot(squeeze(reshape(sic_f(1,:,:),1,1,[])),squeeze(reshape(sit_f(1,:,:),1,1,[])),'.b','markersize',2);
-    % xlabel('SIC ');xlim([0.15 1]);
+    % xlabel('SIC ');xlim ([0.15 1]);
     % ylabel('SIT (m)');ylim([0 6]);
     % set(findall(gcf,'-property','FontSize'),'FontSize',16);
     % saveas(figure(3),[ 'sicsit_1member_scatter.png'],'png')      
@@ -55,7 +55,7 @@ function [sit, sic, lon, lat] = load_data(t, data_src)
     % sit_sic(ie,x,y) saves sic*sit, 
     start_date=datetime(2019,10,18);
     Ne = 40; % members   
-    simul_dir ='/cluster/work/users/chengsukun/simulations/test_sic7_2019-10-18_7days_x_26cycles_memsize40';
+    simul_dir ='/cluster/work/users/chengsukun/simulations/test_sic7_2019-10-18_7days_x_26cycles_memsize40_d5';
     
     idate = floor(datenum(t - start_date+1)/7)+1;
     data_dir  = [ simul_dir '/date' num2str(idate) ]

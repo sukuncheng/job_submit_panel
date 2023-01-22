@@ -3,28 +3,28 @@
 restart_from_analysis=true
 UPDATE=1           # 1: active EnKF assimilation 
 
-# Exp_ID=sit7     
-# DA_VAR=sit  
-# duration=7    # forecast length; tduration*duration is the total simulation time
-# tduration=26  # number of DA cycles.
+#Exp_ID=sit7     
+#DA_VAR=sit  
+#duration=7    # forecast length; tduration*duration is the total simulation time
+#tduration=26  # number of DA cycles.
 
 # Exp_ID=sic7     
 # DA_VAR=sic 
 # duration=7    # forecast length; tduration*duration is the total simulation time
 # tduration=26  # number of DA cycles. 
 
-#  Exp_ID=sic7sit7     
-#  DA_VAR=sitsic  
-#  duration=7    # forecast length; tduration*duration is the total simulation time
-#  tduration=26  # number of DA cycles. 
+ Exp_ID=sic7sit7     
+ DA_VAR=sitsic  
+ duration=7    # forecast length; tduration*duration is the total simulation time
+ tduration=26  # number of DA cycles. 
 
-Exp_ID=sic1sit7     
-DA_VAR=sitsic   
-duration=1     # forecast length; tduration*duration is the total simulation time
-tduration=182  # number of DA cycles. 
-# In sic1sit7, fix  osisaf drift only has one time output
-UPDATE=0
-duration=3
+#Exp_ID=sic1sit7     
+#DA_VAR=sitsic   
+#duration=1     # forecast length; tduration*duration is the total simulation time
+#tduration=182  # number of DA cycles. 
+## In sic1sit7, fix  osisaf drift only has one time output
+#UPDATE=0
+#duration=3
 # ADD OUTPUT_DIR=/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40 at the end!!!
 
 # #  --------  settings for free run-----------------------
@@ -59,4 +59,4 @@ NEXTSIM_DATA_DIR=/cluster/work/users/chengsukun/nextsim_data_dir  # nextsim rese
 
 
 # for sic1sit7 run
-OUTPUT_DIR=/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40
+# OUTPUT_DIR=/cluster/work/users/chengsukun/simulations/test_sic1sit7_2019-10-18_1days_x_182cycles_memsize40

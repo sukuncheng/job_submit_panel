@@ -9,11 +9,15 @@ function link_perturbation(){
     ENSSIZE=$1
     Perturbation_source=$2
     input_path=$3
-    duration=1
+    duration=$4
     iperiod=$5   
     day0=$6
-    duration2=3
-    
+# active duration2 for@sic1sit7
+#    duration=1
+#    duration2=3
+# otherwise    
+    duration2=$duration
+
     [ ! -d ${input_path}/Perturbations ] && mkdir -p ${input_path}/Perturbations || rm -f ${input_path}/Perturbations/*.nc
 
     for (( i=1; i<=${ENSSIZE}; i++ )); do

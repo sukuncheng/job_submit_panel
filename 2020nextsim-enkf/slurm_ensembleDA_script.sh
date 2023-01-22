@@ -3,7 +3,7 @@
 #SBATCH --account=nn2993k      #nn9481k #nn9878k   # #nn2993k   #ACCOUNT_NUMBER
 #SBATCH --time=0-23:0:0        #dd-hh:mm:ss, # Short request job time can be accepted easier.
 ##SBATCH --qos=devel          # preproc, devel, short and normal if comment this line,  https://documentation.sigma2.no/jobs/job_types/fram_job_types.html
-#SBATCH --nodes=4          # request number of nodes
+#SBATCH --nodes=40          # request number of nodes
 #SBATCH --ntasks-per-node=128  # MPI parallel thread size
 #SBATCH --cpus-per-task=1      #
 
